@@ -1,11 +1,21 @@
 import React from "react";
+import TigerImg from "../assets/Tigerbackground.png";
+import WebLogo from "../assets/WebLogo.png";
 
 const Home = () => {
     return (
-        <div>
-            <h2>Welcome to Việt Nam zoo</h2>
-            <p>Việt Nam zoo is a zoo located in Hà Nội, Việt Nam. It is the largest zoo in Việt Nam. The zoo covers 177 hectares (430 acres), including 99 hectares (240 acres) of botanical gardens. The zoo is home to 2,678 animals, comprising 769 fauna from 90 species and 1,909 flora from 260 species.</p>
-        </div>
+        <>
+            <div className="header-img">
+                <div className="logo-box">
+                    <div className="logo">
+                        <div className="text-logo-top">VietNam Zoo</div>
+                        <div className="text-logo-down">Since 1864</div>
+                        <img className="web-logo" alt="WebLogo" src={WebLogo} />
+                    </div>
+                </div>
+                <img className="tiger-backgroud" alt="Tiger" src={TigerImg} />
+            </div>
+        </>
     );
 };
 

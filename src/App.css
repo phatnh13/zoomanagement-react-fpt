@@ -2,37 +2,74 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbars {
+  background-color: #F5F0DD;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbars .nav-link {
+  margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header-img {
+  height: 900px;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.header-img .tiger-backgroud {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo-box {
+  position: absolute;
+  height: 100px;
+  width: 231px;
+  left: 50px;
+}
+
+.logo-box .logo {
+  height: 100px;
+  left: 0;
+  position: relative;
+  top: 0;
+  width: 235px;
+}
+
+.logo-box .text-logo-top {
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  left: 117px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 15px;
+  white-space: nowrap;
+  width: 104px;
+}
+
+.logo-box .text-logo-down {
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  left: 168px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 64px;
+  white-space: nowrap;
+  width: 63px;
+}
+
+.logo-box .web-logo {
+  height: 100px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 6px;
+  width: 94px;
 }

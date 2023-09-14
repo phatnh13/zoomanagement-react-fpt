@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.22.15",
     "react-router-dom": "^6.16.0"
   }
 }

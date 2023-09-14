@@ -1,21 +1,20 @@
 import React from "react";
+import { Nav } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 
 const Layout = () => {
     return <>
-        <nav>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/Login">Log in</Link>
-                </li>
-                <li>
-                    <Link to="/register">Register</Link>
-                </li>
-            </ul>
-        </nav>
+        <Nav className="navbars" defaultActiveKey="/" as="ul">
+            <Nav.Item as="li" className="m-2">
+                <Link className="nav-link" to="/">Home</Link>
+            </Nav.Item>
+            <Nav.Item as="li" className="m-2">
+                <Link className="nav-link" to="/login">Log in</Link>  
+            </Nav.Item>
+            <Nav.Item as="li" className="m-2">
+                <Link className="nav-link" to="/register">register</Link>  
+            </Nav.Item>
+        </Nav>
         <Outlet />
     </>
 };

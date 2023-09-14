@@ -1,9 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Layout from "./components/Layout";
+import Register from './components/Register';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Route>
       </Routes>
     </BrowserRouter>
