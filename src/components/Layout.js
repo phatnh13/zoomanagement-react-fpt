@@ -6,7 +6,7 @@ const Layout = () => {
     return <>
         <Nav className="navbars" defaultActiveKey="/" as="ul">
             <Nav.Item as="li" className="m-2">
-                <Link className="nav-link" to="/">Home</Link>
+                <Link className="nav-link" to="">Home</Link>
             </Nav.Item>
             <Nav.Item as="li" className="m-2">
                 <Link className="nav-link" to="/login">Log in</Link>  

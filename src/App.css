@@ -73,3 +73,37 @@
   top: 6px;
   width: 94px;
 }
+
+.zoo-event-container {
+  position: absolute;
+  bottom: -300px;
+  left: 84px;
+}
+
+.zoo-event {
+  background-color: #F9F7EA;
+  border-radius: 50px;
+}
+
+.zoo-event-area {
+  text-align: center;
+  border-right: 1px solid #000;
+}
+
+.zoo-event-area:last-child {
+  border-right: none;
+}
+
+.event-link-box{
+  margin: auto;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #F0E9C4;
+  border-radius: 30px;
+  width: 70%;
+}
+
+.event-link {
+  text-decoration: none;
+}
