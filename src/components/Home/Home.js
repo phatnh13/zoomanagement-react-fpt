@@ -1,14 +1,13 @@
 import React from "react";
-import TigerImg from "../../assets/Tigerbackground.png";
-import WebLogo from "../../assets/WebLogo.png";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import TigerImg from "../../assets/Tigerbackground.png";
+import WebLogo from "../../assets/WebLogo.png";
 
 const Home = () => {
     return (
         <>
-
             <div className="header-img">
                 <div className="logo-box">
                     <div className="logo">

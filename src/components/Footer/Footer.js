@@ -21,6 +21,9 @@ const Footer = () => {
                     <Col></Col>
                 </Container>
             </div>
+            <div className="copy-right">
+                <p>Developed by VK3P</p>
+            </div>
         </div>
     );
 };

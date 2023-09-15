@@ -1,6 +1,7 @@
 .header-img {
     height: 900px;
     width: 100%;
+    margin-top: 50px;
 }
 
 .header-img .tiger-backgroud {
@@ -20,7 +21,6 @@
 .logo-box .logo {
     height: 100px;
     left: 0;
-    position: relative;
     top: 0;
     width: 235px;
 }
@@ -65,7 +65,7 @@
 .zoo-event-container {
     position: absolute;
     bottom: -300px;
-    left: 84px;
+    left: 6%;
 }
 
 .zoo-event {
@@ -137,4 +137,19 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+/* tablet */
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+    .zoo-event-container {
+        left: 2%;
+    }
+}
+
+/* moblie */
+@media (max-width: 46.1875em) {
+    .zoo-event-container {
+        left: 1px;
+        padding: 0;
+    }
 }
