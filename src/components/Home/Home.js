@@ -1,8 +1,9 @@
 import React from "react";
-import TigerImg from "../assets/Tigerbackground.png";
-import WebLogo from "../assets/WebLogo.png";
+import TigerImg from "../../assets/Tigerbackground.png";
+import WebLogo from "../../assets/WebLogo.png";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./Home.css";
 
 const Home = () => {
     return (
@@ -37,6 +38,11 @@ const Home = () => {
                         </Row>
                     </div>
                 </Container>
+            </div>
+            <div className="zoo-information">
+                <h4>Welcome to  Saigon Zoo</h4>
+                <p>Saigon Zoo is one of the buildings with the oldest history in Ho Chi Minh. Saigon Zoo is currently home to</p>
+                <p>590 animals of 125 species, 1,800 plants of 260 species; 23 species of domestic orchids; 33 species of cacti, 34 species of ornamental plants, green grass, etc.</p>
             </div>
         </>
     );

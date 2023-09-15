@@ -1,9 +1,9 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Layout = () => {
-    return <>
+    return <div className="navs-header" >
         <Nav className="navbars" defaultActiveKey="/" as="ul">
             <Nav.Item as="li" className="m-2">
                 <Link className="nav-link" to="">Home</Link>
@@ -15,8 +15,7 @@ const Layout = () => {
                 <Link className="nav-link" to="/register">register</Link>  
             </Nav.Item>
         </Nav>
-        <Outlet />
-    </>
+    </div>
 };
 
 export default Layout;
