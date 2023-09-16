@@ -80,6 +80,11 @@
     font-weight: 400;
 }
 
+.map-img {
+    width: 58px;
+    margin-bottom: 10px;
+}
+
 .zoo-event-area p:first-child {
     padding-top: 8px;
     margin-bottom: 4px;
@@ -102,6 +107,7 @@
 .event-link-box {
     margin: auto;
     margin-bottom: 10px;
+    margin-top: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     background-color: #F0E9C4;
@@ -139,7 +145,35 @@
     line-height: normal;
 }
 
-/* tablet */
+.home-ticket {
+    background-color: #777D59;
+    color: #fff;
+}
+
+.home-ticket__content__title {
+    padding-top: 16px;
+    padding-bottom: 15px;
+}
+
+.home-ticket__content__img__item {
+    text-align: center;
+    position: relative;
+}
+
+.home-ticket__content__img img {
+    width: 100%;
+    border-radius: 60px;
+    margin-bottom: 40px;
+    margin-right: 20px;
+}
+
+.home-ticket__content__img__item__price {
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+}
+
+ /* tablet */
 @media (min-width: 46.25em) and (max-width: 63.9375em) {
     .zoo-event-container {
         left: 2%;
@@ -152,4 +186,4 @@
         left: 1px;
         padding: 0;
     }
-}
+} 

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import TigerImg from "../../assets/Tigerbackground.png";
 import WebLogo from "../../assets/WebLogo.png";
+import MapLoge from "../../assets/MapLogo.png";
+import HomeTicKet from "./HomeTicKet";
 
 const Home = () => {
     return (
@@ -22,10 +24,16 @@ const Home = () => {
                         <Row>
                             <Col className="zoo-event-area">
                                 <p>OPENING HOURS</p>
-                                <p>Monday-Saturday</p>
+                                <p>Monday - Sunday</p>
                                 <p>8h30 - 18h30</p>
                             </Col>
-                            <Col className="zoo-event-area">MAP</Col>
+                            <Col className="zoo-event-area">
+                                <p>MAP</p>
+                                <img className="map-img" alt="Map" src={MapLoge} />
+                                <div className="event-link-box">
+                                    <Link className="event-link" to="/view-map">View Map</Link>
+                                </div>
+                            </Col>
                             <Col className="zoo-event-area">
                                 <p>NEXT FEEDING</p>
                                 <p>Panda Talk</p>
@@ -43,6 +51,7 @@ const Home = () => {
                 <p>Saigon Zoo is one of the buildings with the oldest history in Ho Chi Minh. Saigon Zoo is currently home to</p>
                 <p>590 animals of 125 species, 1,800 plants of 260 species; 23 species of domestic orchids; 33 species of cacti, 34 species of ornamental plants, green grass, etc.</p>
             </div>
+            <HomeTicKet />
         </>
     );
 };
