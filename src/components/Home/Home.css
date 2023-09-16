@@ -161,16 +161,15 @@
 }
 
 .home-ticket__content__img img {
-    width: 100%;
+    width: 90%;
     border-radius: 60px;
     margin-bottom: 40px;
     margin-right: 20px;
 }
 
-.home-ticket__content__img__item__price {
-    position: absolute;
-    bottom: 0;
-    left: 40%;
+.home-ticket__content__img p {
+    margin: auto;
+    left: 20%;
 }
 
  /* tablet */

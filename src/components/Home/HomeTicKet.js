@@ -22,9 +22,7 @@ const HomeTicKet = () => {
                         </div>
                         <div className="home-ticket__content__img__item">
                             <Image src={GiraffeImg} alt="Giraffe" />
-                            <div className="home-ticket__content__img__item__price">
-                                <p>From 1.4$ - 2$</p>
-                            </div>
+                            <p>From 1.4$ - 2$</p>
                         </div>
                     </div>
                 </div>
