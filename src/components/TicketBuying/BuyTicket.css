@@ -1,0 +1,157 @@
+.header-img {
+    height: 900px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.header-img .tiger-backgroud {
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+}
+
+.logo-box {
+    position: absolute;
+    height: 100px;
+    width: 231px;
+    left: 50px;
+}
+
+.logo-box .logo {
+    height: 100px;
+    left: 0;
+    top: 0;
+    width: 235px;
+}
+
+.logo-box .text-logo-top {
+    color: #000000;
+    font-family: 'Just Another Hand', cursive;
+    font-size: 40px;
+    font-weight: 400;
+    left: 117px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 15px;
+    white-space: nowrap;
+    width: 104px;
+}
+
+.logo-box .text-logo-down {
+    color: #000000;
+    font-family: 'Just Another Hand', cursive;
+    font-size: 24px;
+    font-weight: 400;
+    left: 168px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 64px;
+    white-space: nowrap;
+    width: 63px;
+}
+.logo-box .text-right{
+    color: #000000;
+    font-family: 'Just Another Hand', cursive;
+    font-size: 24px;
+    font-weight: 400;
+    left: 1600px;
+    position: absolute;
+    letter-spacing: 0;
+    top: 64px;
+    white-space: nowrap;
+    width: 63px;
+}
+
+.logo-box .web-logo {
+    height: 100px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 6px;
+    width: 94px;
+}
+.zoo-information h4 {
+    color: #3C5724;
+    font-family: 'Just Another Hand', cursive;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
+    margin-left: 65px;
+    top: 0;
+}
+.box-alert p{
+    color: #3C5724;
+    font-family: 'Just Another Hand', cursive;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
+    margin-left: 90px;
+    top: 0;
+}
+.box-alert .h4{
+    color: #3C5724;
+    font-family: 'Just Another Hand', cursive;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
+    margin-left: 60px;
+    top: 0;
+}
+.ticket-table{
+    margin-right: 200px;
+    margin-left: 200px;
+}
+.ticket-table-information{
+    background-color: #3C5724;
+    color: aliceblue;
+    font-family: 'Just Another Hand', cursive;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
+}
+.list-items{
+    
+    text-align: right;
+    
+}
+.text-align{
+    text-align: left;
+}
+.table{
+    
+    margin-left: 50px;
+    width: 1200px;
+    background-color: #F5F0DD;
+}
+.price{
+    
+
+}
+
+
+
+ /* tablet */
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+    .zoo-event-container {
+        left: 2%;
+    }
+}
+
+/* moblie */
+@media (max-width: 46.1875em) {
+    .zoo-event-container {
+        left: 1px;
+        padding: 0;
+    }
+} 

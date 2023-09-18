@@ -7,6 +7,7 @@ import Layout from "./components/Layout";
 import Register from './components/Register';
 import Footer from './components/Footer/Footer';
 import NoPage from './components/NoPage';
+import BuyTicket from './components/TicketBuying/BuyTicket';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/buyTicket" element={<BuyTicket />} />
+
           <Route path="*" element={<NoPage />} />
       </Routes>
       <Outlet />
