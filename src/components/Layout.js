@@ -15,8 +15,10 @@ const Layout = () => {
                 <Link className="nav-link" to="/register">register</Link>  
             </Nav.Item>
             <Nav.Item as="li" className="m-2">
-                <Link className="nav=link" to="/buyTicket">Ticket</Link>
-                
+                <Link className="nav=link" to="/buyTicket">Ticket</Link>                
+            </Nav.Item>
+            <Nav.Item as="li" className="m-2">
+                <Link className="nav=link" to="/cart">Cart</Link>                
             </Nav.Item>
         </Nav>
     </div>
