@@ -1,6 +1,7 @@
-.html{
-    background-color: red
+.wrapper{
+    background-color: #F8E9C2;
 }
+
 .header-img {
     height: 900px;
     width: 100%;
@@ -42,6 +43,7 @@
     width: 104px;
 }
 
+
 .logo-box .text-logo-down {
     color: #000000;
     font-family: 'Just Another Hand', cursive;
@@ -76,6 +78,9 @@
     top: 6px;
     width: 94px;
 }
+.zoo-information{
+    padding: 0;
+}
 .zoo-information h4 {
     color: #3C5724;
     font-family: 'Just Another Hand', cursive;
@@ -85,7 +90,6 @@
     line-height: normal;
     text-align: left;
     margin-left: 65px;
-    margin-top: 0;
 }
 .box-alert{
     margin-right: 200px;
@@ -124,6 +128,9 @@
     line-height: normal;
     text-align: left;
 }
+.ticket-table-information{
+    background-color: #3C5724;
+}
 .list-items{
     display: flex;
     text-align: right;
@@ -134,16 +141,22 @@
 }
 .table{
     border-bottom: 1px;
-    width: 1500px;
+    width: 1450px;
     background-color: #F5F0DD;
     text-align: center;
+    margin-left: 25px;
 }
 .list-items{
     margin-left: 350px;
 }
 .note{
     text-align: left;
+    margin-left: 200px;
 }
+.btn-success{
+    margin-left: 1350px;
+}
+
 
 
  /* tablet */

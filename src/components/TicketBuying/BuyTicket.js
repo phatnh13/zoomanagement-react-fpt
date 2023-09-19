@@ -6,6 +6,8 @@ import Alert from 'react-bootstrap/Alert';
 import { Col } from "react-bootstrap";
 import { FaFacebook, FaGoogle, FaYoutube, FaInstagram, FaCalendarDay } from "react-icons/fa6";
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
 
 
 
@@ -57,7 +59,8 @@ const BuyTicket = () => {
     }
 
     return (
-        <>
+        <>  
+        <div className="wrapper">
             <div className="header-img">
                 <div className="logo-box">
                     <div className="logo">
@@ -127,7 +130,7 @@ const BuyTicket = () => {
                                     <tr>
                                         <th className="text-align">Day Ticket Zoo - Children<p>lower than 1m3</p></th>
                                         <th className="list-items">
-                                            <input type='button' name="-" onClick={decrease3} />
+                                            <input type='button' value="-" onClick={decrease3} />
                                             <input type='text' value={products3.count} onChange={handleChange3} />
                                             <input type='button' value="+" onClick={() => setTicket3({ count: products3.count + 1 })} />
                                         </th>
@@ -145,8 +148,11 @@ const BuyTicket = () => {
 
                             </Table>
                         </div>
-
-                        <div className="note">
+                    </div>
+                    <Button className="btn-success" variant="success" size="lg" active>
+                        Add to cart
+                    </Button>{' '}
+                    <div className="note">
                         <p>Please note!</p>
 
                         <p>After purchase you will receive your tickets by e-mail (can be presented digitally). The tickets are only valid on the selected date. Booked tickets are excluded from cancellation and/or exchange.</p>
@@ -157,11 +163,10 @@ const BuyTicket = () => {
 
                         <p>* Only valid in combination with a corresponding proof. The proof must be personalized, given a (valid) validity and issued by an official authority/institution (not digital). The proof will be checked at the admission checkers - please have it ready along with a photo ID.</p>
                     </div>
-                    </div>
-                
+
                 </div>
             </div >
-
+        </div>
         </>
     );
 };
