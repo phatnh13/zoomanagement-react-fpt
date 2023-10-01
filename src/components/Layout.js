@@ -14,7 +14,7 @@ const Layout = () => {
           <Nav className="me-auto">
             <Nav.Link as={Link} to={"/"} >Home</Nav.Link>
             <Nav.Link as={Link} to={"/login"} >Login</Nav.Link>
-            <Nav.Link as={Link} to={"/ticket"} >Tickets</Nav.Link>
+            <Nav.Link as={Link} to={"/buyingticket"} >Tickets</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

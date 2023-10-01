@@ -5,7 +5,9 @@ import Home from "./components/Home/Home";
 import Layout from "./components/Layout";
 import Footer from './components/Footer/Footer';
 import NoPage from './components/NoPage';
-import Ticket from './components/Ticket/Ticket';
+import Ticket from './components/BuyingTicket/BuyingTicket';
+import BuyingTicket from './components/BuyingTicket/BuyingTicket';
+import ViewCart from "./components/BuyingTicket/ViewCart";
 
 function App() {
   return (
@@ -27,7 +29,10 @@ function App() {
 
           <Route path="*" element={<NoPage />} />
 
-          <Route path="/ticket" element={<Ticket />} />
+          <Route path="/buyingticket" element={<BuyingTicket />} />
+
+          <Route path="/viewcart" element={<ViewCart />} />
+
       </Routes>
       <Outlet />
       <Footer />

@@ -1,16 +1,14 @@
-.header-img {
-    height: 100%;
-    width: 100%;
-    margin-top: 50px;
+.header-img{
+    display: flex;
 }
-
-.header-img .white-tiger-backgroud {
-    height: 100%;
-    left: 0;
+.logo-box{
+    position: absolute;
+}
+.header-img .tiger-img{
     object-fit: cover;
     width: 100%;
+    height: 200px;
 }
-
 .logo-box {
     position: absolute;
     height: 100px;
@@ -38,8 +36,6 @@
     white-space: nowrap;
     width: 104px;
 }
-
-
 .logo-box .text-logo-down {
     color: #000000;
     font-family: 'Just Another Hand', cursive;
@@ -118,16 +114,16 @@
 .ticket-table{
     margin-right: 200px;
     margin-left: 200px;
-    font-family: 'Just Another Hand';
     font-size: 50px;
     font-style: normal;
-    font-weight: 400;
     line-height: normal;
     text-align: left;
+    font-family: 'Just Another Hand';
 }
 .ticket-table-information{
     background-color: #3C5724;
     color: white;
+
 }
 .list-items{
     display: flex;
@@ -139,7 +135,6 @@
     padding-left: 20px;
 }
 .table{
-    border-bottom: none!important;
     width: 1500px;
     text-align: center;
 }
