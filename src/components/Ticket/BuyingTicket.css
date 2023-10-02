@@ -70,13 +70,10 @@
     top: 6px;
     width: 94px;
 }
-.zoo-information{
-    padding: 0;
-}
 .zoo-information h4 {
     color: #3C5724;
     font-family: 'Just Another Hand';
-    font-size: 96px;
+    font-size: 80px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -119,12 +116,13 @@
     line-height: normal;
     text-align: left;
     font-family: "Just Another Hand";
+    padding-bottom: 25px;
 }
 .ticket-table-information{
     background-color: #3C5724;
     color: white;
     text-align: left;
-
+    font-size: 40px;
 }
 .list-items{
     text-align: left;
@@ -169,6 +167,19 @@
 }
 .button-direct{
    text-align: right;
+}
+.address-form{
+    margin-top: 10px;
+    text-align: left;
+    font-family: 'Just Another Hand';
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.forn-information{
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
 }
  /* tablet */
 @media (min-width: 46.25em) and (max-width: 63.9375em) {
