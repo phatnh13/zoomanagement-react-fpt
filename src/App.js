@@ -5,6 +5,8 @@ import Home from "./components/Home/Home";
 import Layout from "./components/Layout";
 import Footer from './components/Footer/Footer';
 import NoPage from './components/NoPage';
+import News from "./components/News/News";
+import Hours from "./components/Hours/Hours";
 
 function App() {
   return (
@@ -23,7 +25,8 @@ function App() {
           */}
           
           <Route index element={<Home />} />
-
+          <Route path="/news" element={<News />} />
+          <Route path="/hours" element={<Hours />} />
           <Route path="*" element={<NoPage />} />
       </Routes>
       <Outlet />

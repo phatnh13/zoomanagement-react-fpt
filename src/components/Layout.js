@@ -15,11 +15,12 @@ const Layout = () => {
             <Nav.Link as={Link} to={"/"} >Home</Nav.Link>
             <Nav.Link as={Link} to={"/login"} >Login</Nav.Link>
             <Nav.Link as={Link} to={"/ticket"} >Tickets</Nav.Link>
+            <Nav.Link as={Link} to={"/news"} >News</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    )
+    );
 };
 
 export default Layout;
