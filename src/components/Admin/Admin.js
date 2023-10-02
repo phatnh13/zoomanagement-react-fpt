@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Container, Table, Button, Row, Col, Form, Badge } from "react-bootstrap";
 import AdminNavbar from "./AdminNavbar";
-
+import StaffTable from "./StaffManagement/StaffTable";
 const Admin = () => {
     const [users, setUsers] = useState(
         [
@@ -43,64 +43,53 @@ const Admin = () => {
     //         });
     // }, []);
     return (
-        <>
+        <Container fluid>
             <AdminNavbar />
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
-                <Col lg={3} md={8} xs={12}>
-                </Col>
-                <Col className="" lg={9} md={8} xs={12}>
+            {/*Start search*/}
+                    {/*Search filter */}
+                <Col lg={3} md={3} xs={12}>
                     <Form.Group className="mb-3" controlId="search">
-                    <Form.Control
-                        type="text"
-                        placeholder="Search"
-                        value={search}
-                        onChange={(e) => {setSearch(e.target.value)}}>
-                    </Form.Control>
+                        <Form.Select>
+                            <option>Name</option>
+                            <option>Name</option>
+                        </Form.Select>
+                        </Form.Group>
+                </Col>
+                    {/*Search filter */}
+                    {/*Search bar */}
+                <Col lg={8} md={8} xs={11}>
+                    <Form.Group className="mb-3" controlId="search">
+                        <Form.Control
+                            type="text"
+                            placeholder="Search"
+                            value={search}
+                            onChange={(e) => {setSearch(e.target.value) }}>
+                        </Form.Control>
                     </Form.Group>
                 </Col>
-
-            </Row>
-            <Container>
-                <div className="text-center text-uppercase" >
-                    <h3>staff's managing table <Badge size="sm" bg="secondary">2</Badge></h3>
+                    {/*Search bar */}
+            {/*End search*/}
+            {/*Start add button*/}
+                <Col lg={1} md={1} xs={1}>
+                <div className="mb-3 d-grid">
+                <Button variant="outline-primary" size="sm">Add</Button>
                 </div>
-                <Table striped bordered hover >
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>UserName</th>
-                            <th>Gender</th>
-                            <th>Age</th>
-                            <th>phoneNumber</th>
-                            <th>Email</th>
-                            <th className="col-1">password</th>
-                            <th className="col-1">isDelete</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Male</td>
-                            <td>20</td>
-                            <td>0992222</td>
-                            <td>mark@example.com</td>
-                            <td>***</td>
-                            <td>True</td>
-                            <td className="text-center">
-                                <Button variant="outline-primary" size="sm">Update</Button>
-                            </td>
-                            <td className="text-center">
-                                <Button variant="outline-primary" size="sm">Delete</Button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </Container>
+                </Col>
+            {/*Start add button*/}
+            </Row>
+            <Row>
+                <Col>
+            {/*Start Table*/}
+                <StaffTable userList={users} />
+            {/*Start Table*/}
+                </Col>
+            </Row>
 
-        </>
+
+
+
+        </Container>
     );
 }
 // let renderTableData(users) => {

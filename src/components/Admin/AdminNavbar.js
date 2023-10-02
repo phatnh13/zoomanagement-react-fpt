@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const AdminNavbar = () => {
     const name = "Admin";
     return (
-            <Navbar expand="lg" className="bg-body-tertiary">
+            <Navbar expand="md" className="bg-body-tertiary">
                 <Container>
                     <Navbar.Brand href="/">Sài Gòn Zoo</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
