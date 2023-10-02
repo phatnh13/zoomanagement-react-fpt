@@ -92,7 +92,7 @@
 .box-alert p{
     color: #3C5724;
     font-family: 'Just Another Hand';
-    font-size: 26px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -114,20 +114,20 @@
 .ticket-table{
     margin-right: 200px;
     margin-left: 200px;
-    font-size: 50px;
+    font-size: 40px;
     font-style: normal;
     line-height: normal;
     text-align: left;
-    font-family: 'Just Another Hand';
+    font-family: "Just Another Hand";
 }
 .ticket-table-information{
     background-color: #3C5724;
     color: white;
+    text-align: left;
 
 }
 .list-items{
-    display: flex;
-    text-align: right;
+    text-align: left;
     
 }
 .text-align{
@@ -135,18 +135,20 @@
     padding-left: 20px;
 }
 .table{
-    width: 1500px;
     text-align: center;
 }
 .list-items{
-    margin-left: 350px;
+    text-align: center;
+
+}
+.list-ticket{
+    text-align:  left;
 }
 .note{
     text-align: left;
     margin-left: 200px;
-    color: #3C5724;
     font-family: 'Just Another Hand';
-    font-size: 26px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -154,18 +156,19 @@
 .btn-success{
     margin-left: 1350px;
 }
-.box-alert-2{
+.h1{
     color: #3C5724;
-    font-family: 'Just Another Hand', cursive;
-    font-size: 26px;
+    font-family: 'Just Another Hand';
+    font-size: 96px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     text-align: left;
-    margin-left: 90px;
-    top: 0;
-    padding: 5px;
-    margin: 0;
+    margin-left: 65px;
+    margin-bottom: 0;
+}
+.button-direct{
+   text-align: right;
 }
  /* tablet */
 @media (min-width: 46.25em) and (max-width: 63.9375em) {

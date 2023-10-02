@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import TigerImg from "../../assets/whiteTiger.jpg";
 import WebLogo from "../../assets/WebLogo.png";
-import Alert from 'react-bootstrap/Alert';
 import { Col } from "react-bootstrap";
-import { FaFacebook, FaGoogle, FaYoutube, FaInstagram, FaCalendarDay } from "react-icons/fa6";
-import Table from 'react-bootstrap/Table';
+import { FaFacebook, FaGoogle, FaYoutube, FaInstagram} from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Image from 'react-bootstrap/Image';
 import "./BuyingTicket.css"

@@ -1,12 +1,9 @@
-import React, { useState } from "react";
-import TigerImg from "../../assets/whiteTiger.jpg";
-import WebLogo from "../../assets/WebLogo.png";
+import React, { useEffect, useState } from "react";
 import Alert from 'react-bootstrap/Alert';
-import { Col, Button } from "react-bootstrap";
-import { FaFacebook, FaGoogle, FaYoutube, FaInstagram, FaCalendarDay } from "react-icons/fa6";
+import { Button } from "react-bootstrap";
+import { FaCalendarDay } from "react-icons/fa6";
 import Table from 'react-bootstrap/Table';
 import { Link } from "react-router-dom";
-import Image from 'react-bootstrap/Image';
 import HeaderCart from "./HeaderCart";
 import "./BuyingTicket.css"
 
@@ -56,14 +53,15 @@ const BuyingTicket = () => {
         }
         setTicket3({ count: products3.count - 1 })
     }
-    const [amount, setAmount] = React.useState({count: 0})
+    const [amount, setAmount] = React.useState({ count: 0 })
     const handleChange4 = (e) => {
-        setAmount({ count: e.target.value})
+        setAmount({ count: e.target.value })
     }
-    const [price, setPrice] = React.useState({count: 0})
+    const [price, setPrice] = React.useState({ count: 0 })
     const handleChange5 = (e) => {
-        setPrice({ count: e.target.value})
+        setPrice({ count: e.target.value })
     }
+    
     return (
         <>
             <HeaderCart />
@@ -78,16 +76,18 @@ const BuyingTicket = () => {
                     </Alert>
                 </div>
                 <div className="ticket-table">
-                    <div className="ticket-table-information">Please select your item</div>
 
                     <Table className="table" bordered variant="none">
                         <thead>
-                                                    <tr>
-                            <th className="text-align" colSpan={2}>Please select a day</th>
-                            <th><FaCalendarDay /></th>
-                            <th>Cost</th>
-                        </tr>
+                             <th className="ticket-table-information" colSpan={4}>PLEASE SELECT YOUR ITEM</th>
                         </thead>
+                        <tbody>
+                            <tr>
+                                <th className="text-align" colSpan={2}>Please select a day</th>
+                                <th><FaCalendarDay /></th>
+                                <th>Cost</th>
+                            </tr>
+                        </tbody>
 
                         <tbody>
                             <tr>
@@ -120,32 +120,35 @@ const BuyingTicket = () => {
                             <tr>
                                 <th className="text-align" colSpan={2}>Total</th>
                                 <th>
-                                <input type='text' disabled value={amount.count} onChange={handleChange4} />
+                                    <input type='text' disabled value={amount.count} onChange={handleChange4} />
                                 </th>
                                 <th>
-                                <input type='text' disabled value={price.count} onChange={handleChange5} />
+                                    <input type='text' disabled value={price.count} onChange={handleChange5} />
                                 </th>
                             </tr>
                         </tbody>
+                        
                     </Table>
-                    <Button variant="outline-success" onClick={() => setPrice({count: products1.count*2+products2.count*1.4})} onClickCapture={() => setAmount({count: products1.count+products2.count+products3.count})}>Xac nhan</Button>{' '}
-                    <Button variant="outline-success"><Link to="/viewcart">Add to cart</Link></Button>{' '}
-                </div>
-                
-                    <div className="note">
-                        <p>Please note!</p>
-
-                        <p>After purchase you will receive your tickets by e-mail (can be presented digitally). The tickets are only valid on the selected date. Booked tickets are excluded from cancellation and/or exchange.</p>
-
-                        <p>Please find further information on the conservation contribution here. The contribution is optional and can be deselected in the cart.</p>
-
-                        <p>Children under 12 years of age and any visitors who lack the necessary maturity or require permanent supervision due to a mental and/or physical condition must be accompanied and supervised on the premises at all times by an adult chaperone</p>
-
-                        <p>* Only valid in combination with a corresponding proof. The proof must be personalized, given a (valid) validity and issued by an official authority/institution (not digital). The proof will be checked at the admission checkers - please have it ready along with a photo ID.</p>
+                    <div className="button-direct">
+                    <Button variant="outline-success" style={{ fontSize: '40px' }} onClick={() => setPrice({ count: products1.count * 2 + products2.count * 1.4 })} onClickCapture={() => setAmount({ count: products1.count + products2.count + products3.count }) }>Xac nhan</Button>{' '}
+                    <Button variant="outline-success" style={{ fontSize: '40px' }}><Link to="/viewcart">Add to cart</Link></Button>{' '}
                     </div>
-
                 </div>
-        
+
+                <div className="note">
+                    <p>Please note!</p>
+
+                    <p>After purchase you will receive your tickets by e-mail (can be presented digitally). The tickets are only valid on the selected date. Booked tickets are excluded from cancellation and/or exchange.</p>
+
+                    <p>Please find further information on the conservation contribution here. The contribution is optional and can be deselected in the cart.</p>
+
+                    <p>Children under 12 years of age and any visitors who lack the necessary maturity or require permanent supervision due to a mental and/or physical condition must be accompanied and supervised on the premises at all times by an adult chaperone</p>
+
+                    <p>* Only valid in combination with a corresponding proof. The proof must be personalized, given a (valid) validity and issued by an official authority/institution (not digital). The proof will be checked at the admission checkers - please have it ready along with a photo ID.</p>
+                </div>
+
+            </div>
+
         </>
     );
 };
