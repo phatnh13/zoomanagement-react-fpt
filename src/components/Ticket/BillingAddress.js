@@ -11,7 +11,7 @@ const BillingAddress = () => {
         return (
             <div className="navigation-buttons button-direct">
                 <Link to='/viewcart'>
-                    <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px' }} onClick={onBackClick}>
+                    <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px', marginRight: '80px' }} onClick={onBackClick}>
                         <svg
                             width="40"
                             height="40"
@@ -23,7 +23,6 @@ const BillingAddress = () => {
                         BACK
                     </Button>
                 </Link>
-                {' '}
                 <Link to='/paymentmethod'>
                 <Button className="next-button" style={{ backgroundColor: 'green', fontSize: '30px' }} onClick={onNextClick}>
                     CONTINUE {' '}

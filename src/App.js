@@ -9,6 +9,7 @@ import BuyingTicket from './components/Ticket/BuyingTicket';
 import ViewCart from "./components/Ticket/ViewCart";
 import BillingAddress from './components/Ticket/BillingAddress';
 import PaymentMethod from './components/Ticket/PaymentMethod';
+import Summary from './components/Ticket/Summary';
 
 function App() {
   return (
@@ -37,6 +38,8 @@ function App() {
         <Route path="/billingaddress" element={<BillingAddress />} />
 
         <Route path="/paymentmethod" element={<PaymentMethod />} />
+
+        <Route path="/summary" element={<Summary />} />
 
       </Routes>
       <Outlet />

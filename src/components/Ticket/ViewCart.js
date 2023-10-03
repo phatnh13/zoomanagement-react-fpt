@@ -19,7 +19,7 @@ const ViewCart = () => {
         return (
             <div className="navigation-buttons button-direct">
                 <Link to='/buyingticket'>
-                <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px' }} onClick={onBackClick}>
+                <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px', marginRight: '80px' }} onClick={onBackClick}>
                     <svg
                         width="40"
                         height="40"
