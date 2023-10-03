@@ -8,7 +8,7 @@ import HeaderCart from "./HeaderCart";
 import "./BuyingTicket.css"
 
 const BuyingTicket = () => {
-    const [products1, setTicket1] = useState({
+    const [ticket1, setTicket1] = useState({
         count: 0
     })
 
@@ -18,12 +18,12 @@ const BuyingTicket = () => {
     }
 
     const decrease1 = (e) => {
-        if (products1.count <= 0) {
+        if (ticket1.count <= 0) {
             return
         }
-        setTicket1({ count: products1.count - 1 })
+        setTicket1({ count: ticket1.count - 1 })
     }
-    const [products2, setTicket2] = useState({
+    const [ticket2, setTicket2] = useState({
         count: 0
     })
 
@@ -33,12 +33,12 @@ const BuyingTicket = () => {
     }
 
     const decrease2 = (e) => {
-        if (products2.count <= 0) {
+        if (ticket2.count <= 0) {
             return
         }
-        setTicket2({ count: products2.count - 1 })
+        setTicket2({ count: ticket2.count - 1 })
     }
-    const [products3, setTicket3] = useState({
+    const [ticket3, setTicket3] = useState({
         count: 0
     })
 
@@ -48,10 +48,10 @@ const BuyingTicket = () => {
     }
 
     const decrease3 = (e) => {
-        if (products3.count <= 0) {
+        if (ticket3.count <= 0) {
             return
         }
-        setTicket3({ count: products3.count - 1 })
+        setTicket3({ count: ticket3.count - 1 })
     }
     const [amount, setAmount] = React.useState({ count: 0 })
     const handleChange4 = (e) => {
@@ -94,8 +94,8 @@ const BuyingTicket = () => {
                                 <th className="text-align" colSpan={2}>Day Ticket Zoo - Adult</th>
                                 <th className="list-items">
                                     <input type='button' value="-" onClick={decrease1} />
-                                    <input type='text' value={products1.count} onChange={handleChange1} />
-                                    <input type='button' value="+" onClick={() => setTicket1({ count: products1.count + 1 })} />
+                                    <input type='text' value={ticket1.count} onChange={handleChange1} />
+                                    <input type='button' value="+" onClick={() => setTicket1({ count: ticket1.count + 1 })} />
                                 </th>
                                 <th>2$</th>
                             </tr>
@@ -103,8 +103,8 @@ const BuyingTicket = () => {
                                 <th className="text-align" colSpan={2}>Day Ticket Zoo - Children<p>aged under 18</p></th>
                                 <th className="list-items">
                                     <input type='button' value="-" onClick={decrease2} />
-                                    <input type='text' value={products2.count} onChange={handleChange2} />
-                                    <input type='button' value="+" onClick={() => setTicket2({ count: products2.count + 1 })} />
+                                    <input type='text' value={ticket2.count} onChange={handleChange2} />
+                                    <input type='button' value="+" onClick={() => setTicket2({ count: ticket2.count + 1 })} />
                                 </th>
                                 <th>1.4$</th>
                             </tr>
@@ -112,8 +112,8 @@ const BuyingTicket = () => {
                                 <th className="text-align" colSpan={2}>Day Ticket Zoo - Children<p>lower than 1m3</p></th>
                                 <th className="list-items">
                                     <input type='button' value="-" onClick={decrease3} />
-                                    <input type='text' value={products3.count} onChange={handleChange3} />
-                                    <input type='button' value="+" onClick={() => setTicket3({ count: products3.count + 1 })} />
+                                    <input type='text' value={ticket3.count} onChange={handleChange3} />
+                                    <input type='button' value="+" onClick={() => setTicket3({ count: ticket3.count + 1 })} />
                                 </th>
                                 <th>Free</th>
                             </tr>
@@ -130,7 +130,7 @@ const BuyingTicket = () => {
                         
                     </Table>
                     <div className="button-direct">
-                    <Button variant="outline-success" style={{ fontSize: '40px' }} onClick={() => setPrice({ count: products1.count * 2 + products2.count * 1.4 })} onClickCapture={() => setAmount({ count: products1.count + products2.count + products3.count }) }>Xac nhan</Button>{' '}
+                    <Button variant="outline-success" style={{ fontSize: '40px' }} onClick={() => setPrice({ count: ticket1.count * 2 + ticket2.count * 1.4 })} onClickCapture={() => setAmount({ count: ticket1.count + ticket2.count + ticket3.count }) }>Xac nhan</Button>{' '}
                     <Button variant="outline-success" style={{ fontSize: '40px' }}><Link to="/viewcart">Add to cart</Link></Button>{' '}
                     </div>
                 </div>
