@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Container, Table, Button, Row, Col, Form, Badge } from "react-bootstrap";
-import AdminNavbar from "./AdminNavbar";
 import StaffTable from "./StaffManagement/StaffTable";
 const Admin = () => {
     const [users, setUsers] = useState(
@@ -44,7 +43,6 @@ const Admin = () => {
     // }, []);
     return (
         <Container fluid>
-            <AdminNavbar />
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
             {/*Start search*/}
                     {/*Search filter */}

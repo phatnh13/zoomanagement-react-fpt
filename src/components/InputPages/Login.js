@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-import { useState } from 'react';
-// import { Link } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
-import Layout from "../Layout";
-import Footer from "../Footer/Footer";
-
+import { UserContext } from "../../UserContext";
 const Login = () => {
+    let currentValue = useContext(UserContext);
+    console.log(currentValue);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     let [message, setMessage] = useState("");
@@ -85,27 +84,14 @@ const Login = () => {
     }
 
     useEffect(validate, [email, password]);
-
     return (
         <Container fluid>
-            <Layout />
-            <Row className="pt-5 d-flex justify-content-center align-items-center">
+            <Row className="py-5 d-flex justify-content-center align-items-center">
                 <Col md={8} lg={5} xs={12}>
                     <Card className="shadow">
                         <Card.Body>
                             <div className="mb-2 mt-md-4">
                                 <h2 className="my-6 text-center">Login</h2>
-                                {/* <ul className="text-danger">
-                                    {Object.keys(errors).map((control) => {
-                                        if (dirty[control]) {
-                                            return errors[control].map((err) => {
-                                                return <li key={err}>{err}</li>
-                                            })
-                                        } else {
-                                            return "";
-                                        }
-                                    })}
-                                </ul> */}
                                 <div className="mb-3">
                                     <Form>
                                         {/*Start Email*/}

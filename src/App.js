@@ -1,36 +1,49 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from "./components/Home/Home";
-import NoPage from './components/NoPage';
-import Login from './components/InputPages/Login';
-import Admin from './components/Admin/Admin';
+import { privateRoutes, publicRoutes } from './routes';
+import { DefaultLayout } from './components/Layout';
+import { UserContext } from './UserContext';
 
 function App() {
   return (
-    <div className='app'>
-      
-      <Routes>
-          {/* format for <Route path="/something" element={<something />} />
-          Home page: "/"
-          Login page: "/login"
-          Ticket page: "/ticket"
-          Admin page: "/admin", "/admin/species", "/admin/species/add", 
-          "/admin/species/edit", "/admin/species/delete", "/admin/species/sort"
-          Staff page: "/staff", "/staff/animals", "/staff/animals/add",
-          "/staff/animals/edit", "/staff/animals/delete", "/staff/animals/sort"
-        
-          */}
-          
-          <Route index element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<Admin />} />
-
-          <Route path="*" element={<NoPage />} />
-      </Routes>
-      <Outlet />
-      
-    </div>
+    <UserContext.Provider value={"hi"}>
+      <div className='app'>
+        <Routes>
+          {publicRoutes.map((route, index) => {
+            const Layout = route.layout || DefaultLayout;
+            const Page = route.component;
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <Layout>
+                    <Page />
+                  </Layout>
+                }
+              />
+            )
+          })}
+          {privateRoutes.map((route, index) => {
+            const Layout = route.layout || DefaultLayout;
+            const Page = route.component;
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <Layout>
+                    <Page />
+                  </Layout>
+                }
+              />
+            )
+          }
+          )}
+        </Routes>
+      </div>
+    </UserContext.Provider>
   );
 }
 
