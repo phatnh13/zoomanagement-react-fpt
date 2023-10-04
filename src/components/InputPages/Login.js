@@ -89,8 +89,8 @@ const Login = () => {
     return (
         <Container fluid>
             <Layout />
-            <Row className="vh-100 d-flex justify-content-center align-items-center">
-                <Col md={8} lg={6} xs={12}>
+            <Row className="pt-5 d-flex justify-content-center align-items-center">
+                <Col md={8} lg={5} xs={12}>
                     <Card className="shadow">
                         <Card.Body>
                             <div className="mb-2 mt-md-4">
@@ -125,7 +125,7 @@ const Login = () => {
                                             />
                                             <div className="text-danger">
                                                 {dirty["email"] && errors["email"][0] ?
-                                                 errors["email"] : ""}
+                                                 errors["email"][0] : ""}
                                             </div>
                                         </Form.Group>
                                         {/*End Email*/}
@@ -146,7 +146,7 @@ const Login = () => {
                                             />
                                             <div className="text-danger">
                                                 {dirty["password"] && errors["password"][0] ?
-                                                 errors["password"] : ""}
+                                                 errors["password"][0] : ""}
                                             </div>
                                         </Form.Group>
                                         {/*End Password*/}
