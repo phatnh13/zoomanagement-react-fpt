@@ -54,7 +54,7 @@ const Summary = () => {
             </div>
             <div className="ticket-table">
                 <Row>
-                    <Col>
+                <Col>
                         <div className="ticket-table-information">Billing Address</div>
                         <Table striped bordered hover size="sm">
                             <tbody style={{ textAlign: 'left' }}>

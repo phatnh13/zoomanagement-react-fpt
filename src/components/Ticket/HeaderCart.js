@@ -16,7 +16,6 @@ const HeaderCart = () => {
                     <div className="text-logo-down">Since 1864</div>
                     <img className="web-logo" alt="WebLogo" src={WebLogo} />
                     <div className="text-right">
-                        <Link to="/home">Back to Zoo website</Link>
                         <Col className="footer-social-icon">
                             <FaFacebook className="footer-icon" />
                             <FaGoogle className="footer-icon" />
