@@ -4,7 +4,7 @@
 .tiger-img{
     object-fit: cover;
     width: 100%;
-    height: 15em;
+    height: 15rem;
 }
 .text-logo-top {
     left: 2.5em;
@@ -26,13 +26,13 @@
 }
 .text-right{
     font-size: 2rem;
-    margin-left: 50em;
+    margin-left: 90rem;
 }
 .web-logo {
     object-fit: cover;
     position: absolute;
 }
-.zoo-information h4 {
+h4 {
     color: #3C5724;
     font-size: 5em;
     font-weight: 400;
@@ -83,13 +83,6 @@
 }
 .list-ticket{
     text-align:  left;
-}
-.note{
-    text-align: left;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 }
 .btn-success{
     margin-left: 1350px;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Alert from 'react-bootstrap/Alert';
-import { Button, Form, FormLabel } from "react-bootstrap";
+import { Button, FormLabel } from "react-bootstrap";
 import { FaCalendarDay } from "react-icons/fa6";
 import Table from 'react-bootstrap/Table';
 import { Link } from "react-router-dom";
@@ -58,9 +58,6 @@ const BuyingTicket = () => {
         setAmount({ count: e.target.value })
     }
     const [price, setPrice] = React.useState({ count: 0 })
-    const handleChange5 = (e) => {
-        setPrice({ count: e.target.value })
-    }
 
     return (
         <>
@@ -69,7 +66,7 @@ const BuyingTicket = () => {
                 <div className="zoo-information">
                     <h4 className="ms-5">Zoo Day Ticket</h4>
                     <div className="box-alert">
-                        <Alert className="mx-auto" style={{width: '94em'}} variant="success">
+                        <Alert className="mx-auto" style={{width: '94rem'}} variant="success">
                             <Alert.Heading><h3>TIP-CHEAPEST AND QUICKEST TICKET ONLY ONLINE!</h3></Alert.Heading>
                             <p>Online tickets cheaper than at ticket booths on site</p>
                             <p>Skip the queue with online tickets and go straight to ticket checkers</p>
