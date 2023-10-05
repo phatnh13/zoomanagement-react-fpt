@@ -67,16 +67,16 @@ const BuyingTicket = () => {
             <div className="min-vh-100">
                 <HeaderCart />
                 <div className="zoo-information">
-                    <h4>Zoo Day Ticket</h4>
+                    <h4 className="ms-5">Zoo Day Ticket</h4>
                     <div className="box-alert">
-                        <Alert className="mx-auto" style={{width: '1500px'}} variant="success">
+                        <Alert className="mx-auto" style={{width: '94em'}} variant="success">
                             <Alert.Heading><h3>TIP-CHEAPEST AND QUICKEST TICKET ONLY ONLINE!</h3></Alert.Heading>
                             <p>Online tickets cheaper than at ticket booths on site</p>
                             <p>Skip the queue with online tickets and go straight to ticket checkers</p>
                             <p>Easy online booking without user account</p>
                         </Alert>
                     </div>
-                    <div className="ticket-table">
+                    <div className="ticket-table mx-auto" style={{width: '38em'}}>
 
                         <Table className="table" bordered variant="none">
                             <thead>

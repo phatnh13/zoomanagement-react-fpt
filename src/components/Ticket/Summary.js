@@ -50,9 +50,9 @@ const Summary = () => {
         <>
             <HeaderCart />
             <div className="zoo-information">
-                <h4>SUMMARY</h4>
+                <h4 className="ms-5">SUMMARY</h4>
             </div>
-            <div className="ticket-table">
+            <div className="ticket-table mx-auto" style={{width: '38em'}}>
                 <Row>
                 <Col>
                         <div className="ticket-table-information">Billing Address</div>

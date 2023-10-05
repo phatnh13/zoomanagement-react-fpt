@@ -61,14 +61,14 @@ const ViewCart = () => {
         <>
             <HeaderCart />
             <div className="zoo-information">
-                <h4>View Cart</h4>
+                <h4 className="ms-5">View Cart</h4>
                 <div className="box-alert">
-                    <Alert variant="success">
+                    <Alert className="mx-auto" style={{width: '94em'}} variant="success">
                         <Alert.Heading><h3>Day ticket Zoo - Adult has been added to the cart!</h3></Alert.Heading>
                     </Alert>
                 </div>
             </div>
-            <div className="ticket-table">
+            <div className="ticket-table  mx-auto" style={{width: '38em'}}>
                 <div className="ticket-table-information">ITEMS</div>
 
                 <Table className="table" bordered variant="none">

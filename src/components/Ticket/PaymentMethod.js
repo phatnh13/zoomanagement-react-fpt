@@ -52,9 +52,9 @@ const PaymentMethod = () => {
         <>
             <HeaderCart />
             <div className="zoo-information">
-                <h4>METHOD OF PAYMENT</h4>
+                <h4 className="ms-5">METHOD OF PAYMENT</h4>
             </div>
-            <div className="ticket-table">
+            <div className="ticket-table  mx-auto" style={{width: '38em'}}>
                 <div className="ticket-table-information">CHOOSE YOUR PAYMENT</div>
                 <div class="form-check">
                     <Form>

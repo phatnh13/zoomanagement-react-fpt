@@ -53,9 +53,9 @@ const BillingAddress = () => {
         <>
             <HeaderCart />
             <div className="zoo-information">
-                <h4>BILLING ADDRESS</h4>
+                <h4 className="ms-5">BILLING ADDRESS</h4>
             </div>
-            <div className="ticket-table">
+            <div className="ticket-table  mx-auto" style={{width: '38em'}}>
                 <div className="ticket-table-information">Billing Address</div>
                 <Form className="address-form">
                     <Row className="mb-3">
