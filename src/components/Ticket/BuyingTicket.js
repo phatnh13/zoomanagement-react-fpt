@@ -66,14 +66,14 @@ const BuyingTicket = () => {
                 <div className="zoo-information">
                     <h4 className="ms-5">Zoo Day Ticket</h4>
                     <div className="box-alert">
-                        <Alert className="mx-auto" style={{width: '94rem'}} variant="success">
+                        <Alert className="mx-auto" style={{width: '90rem'}} variant="success">
                             <Alert.Heading><h3>TIP-CHEAPEST AND QUICKEST TICKET ONLY ONLINE!</h3></Alert.Heading>
                             <p>Online tickets cheaper than at ticket booths on site</p>
                             <p>Skip the queue with online tickets and go straight to ticket checkers</p>
                             <p>Easy online booking without user account</p>
                         </Alert>
                     </div>
-                    <div className="ticket-table mx-auto" style={{width: '38em'}}>
+                    <div className="ticket-table mx-auto" style={{width: '90rem'}}>
 
                         <Table className="table" bordered variant="none">
                             <thead>
@@ -137,7 +137,7 @@ const BuyingTicket = () => {
                             <Button variant="outline-success" style={{ fontSize: '40px' }} onClick={() => setPrice({ count: ticket1.count * 2 + ticket2.count * 1.4 })} onClickCapture={() => setAmount({ count: ticket1.count + ticket2.count + ticket3.count })}>Xac nhan</Button>{' '}
                             <Button variant="outline-success" style={{ fontSize: '40px' }}><Link to="/viewcart">Add to cart</Link></Button>{' '}
                         </div>
-                        <div className="note">
+                        <div className="note fs-3">
                         <p>Please note!</p>
 
                         <p>After purchase you will receive your tickets by e-mail (can be presented digitally). The tickets are only valid on the selected date. Booked tickets are excluded from cancellation and/or exchange.</p>

@@ -14,7 +14,7 @@ const HeaderCart = () => {
                     <div className="text-logo-top ms-auto">VietNam Zoo</div>
                     <div className="text-logo-down ms-auto">Since 1864</div>
                     <img className="mt-3 ms-3" alt="WebLogo" src={WebLogo} />
-                        <Col className="footer-social-icon text-right">
+                        <Col className="footer-social-icon text-right d-flex">
                             <FaFacebook className="footer-icon" />
                             <FaGoogle className="footer-icon" />
                             <FaInstagram className="footer-icon" />
