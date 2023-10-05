@@ -16,6 +16,7 @@ const Layout = () => {
             <Nav.Link as={Link} to={"/login"} >Login</Nav.Link>
             <Nav.Link as={Link} to={"/ticket"} >Tickets</Nav.Link>
             <Nav.Link as={Link} to={"/news"} >News</Nav.Link>
+            <Nav.Link as={Link} to={"/hours"} >Hours</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

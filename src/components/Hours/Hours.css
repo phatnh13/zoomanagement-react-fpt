@@ -1,0 +1,24 @@
+.hours-header-img {
+    height: 100%;
+    width: 100%;
+}
+
+.hours-header-img .gate-backgroud {
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    
+}
+
+.list-title {
+    background-color: #F5F1DF;
+}
+
+.list-group-flush {
+    background-color: #ECEBD3;
+}
+
+.list-note {
+    background-color: #ebe1b5;
+}
