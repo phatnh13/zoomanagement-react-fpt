@@ -1,8 +1,7 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { Container, Table, Button, Row, Col, Form, Badge } from "react-bootstrap";
-import StaffTable from "./StaffManagement/StaffTable";
-const Admin = () => {
+import React, { useState, useEffect } from "react";
+import { Container, Button, Row, Col, Form, Badge } from "react-bootstrap";
+import StaffTable from "./StaffTable";
+const StaffManaging = () => {
     const [users, setUsers] = useState(
         [
             {
@@ -74,7 +73,7 @@ const Admin = () => {
                 <Button variant="outline-primary" size="sm">Add</Button>
                 </div>
                 </Col>
-            {/*Start add button*/}
+            {/*End add button*/}
             </Row>
             <Row>
                 <Col>
@@ -83,14 +82,10 @@ const Admin = () => {
             {/*Start Table*/}
                 </Col>
             </Row>
-
-
-
-
         </Container>
     );
 }
 // let renderTableData(users) => {
 //     return users.map((user, index) => {
 // }
-export default Admin;
+export default StaffManaging;

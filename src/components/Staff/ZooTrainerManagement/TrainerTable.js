@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Table, Badge } from "react-bootstrap";
-import StaffTableContent from "./StaffTableContent";
+import TrainerTableContent from "./TrainerTableContent";
 const StaffTable = ({userList}) => {
     return (
         <Container>
             <div className="text-uppercase" >
-                <h3>staff's managing table <Badge size="sm" bg="secondary">2</Badge></h3>
+                <h3>trainer's managing table <Badge size="sm" bg="secondary">2</Badge></h3>
             </div>
             <Table striped bordered hover responsive="md" >
                 <thead>
@@ -24,7 +24,7 @@ const StaffTable = ({userList}) => {
                 </thead>
                 <tbody>
                         {userList.map((control, index) => {
-                            return <StaffTableContent key={index} index={index} user={control} />;
+                            return <TrainerTableContent key={index} index={index} user={control} />;
                         })}
                 </tbody>
             </Table>
