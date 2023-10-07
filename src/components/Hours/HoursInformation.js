@@ -1,53 +1,48 @@
 import React from "react";
-import { Container, Image } from "react-bootstrap";
+import { CardFooter,  CardImg } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
+import Iguana from "../../assets/Iguana.png"
+import Hippo from "../../assets/Hippo.png"
+import Panda from "../../assets/Panda.png"
+import "./Hours.css"
 
 const HoursInformation = () => {
     return (
-        <CardGroup>
-            <Card>
-                <Card.Img variant="top" src="holder.js/100px160" />
-                <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                        This is a wider card with supporting text below as a natural lead-in
-                        to additional content. This content is a little bit longer.
-                    </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="holder.js/100px160" />
-                <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                        This card has supporting text below as a natural lead-in to
-                        additional content.{' '}
-                    </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="holder.js/100px160" />
-                <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                        This is a wider card with supporting text below as a natural lead-in
-                        to additional content. This card has even longer content than the
-                        first to show that equal height action.
-                    </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-        </CardGroup>
+        <section className="panel panel__ctas">
+            <div className="wrapper">
+                <Card style={{ width: '18rem' }}>
+                    <CardImg src={Iguana} alt="Iguanas" />
+                    <Card.ImgOverlay style={{ color: "white" }}>
+                        <Card.Title>Lots to </Card.Title>
+                        <Card.Title >experience</Card.Title>
+                        <CardFooter>
+                            <Link to="/map" style={{color: "white", position: "absolute", bottom: 5}} >An overview of the inhabitant {'>'}</Link>
+                        </CardFooter>
+                    </Card.ImgOverlay>
+                </Card>
+                <Card style={{ width: '18rem' }}>
+                    <CardImg src={Hippo} alt="Hippo" />
+                    <Card.ImgOverlay style={{ color: "black" }}>
+                        <Card.Title>Online </Card.Title>
+                        <Card.Title >tickets</Card.Title>
+                        <CardFooter>
+                            <Link to="/ByingTickets" style={{color: "white", position: "absolute", bottom: 5}}> Save your time! {'>'}</Link>
+                        </CardFooter>
+                    </Card.ImgOverlay>
+                </Card>
+                <Card style={{ width: '18rem' }}>
+                    <CardImg src={Panda} alt="Panda" />
+                    <Card.ImgOverlay style={{ color: "white" }}>
+                        <Card.Title>Be a </Card.Title>
+                        <Card.Title >supporter</Card.Title>
+                        <CardFooter>
+                            <Link to="/donate" className="mx-auto" style={{color: "white", position: "absolute", bottom: 5}}> Become an animal sponsor {'>'}</Link>
+                        </CardFooter>
+                    </Card.ImgOverlay>
+                </Card>
+            </div>
+        </section>
     );
 };
 

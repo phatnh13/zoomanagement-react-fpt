@@ -10,10 +10,10 @@ const Hours = () => {
     return (
         <>
 
-            <Card className="bg-dark text-white">
-                <Card.Img src={Gate} alt="gate-background" />
+            <Card className="bg-dark text-black">
+                <Card.Img src={Gate} alt="gate-background" height={500} />
                 <Card.ImgOverlay>
-                    <div className="hours-header-img">
+                    <div className="header-img">
                         <div className="logo-box">
                             <div className="logo">
                                 <div className="text-logo-top">VietNam Zoo</div>
@@ -40,8 +40,8 @@ const Hours = () => {
                     </ListGroup.Item>
                 </ListGroup>
             </Card>
-            
-            <HoursInformation/>
+
+            <HoursInformation />
         </>
     );
 };
