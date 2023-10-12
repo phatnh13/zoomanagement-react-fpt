@@ -1,10 +1,10 @@
 import React from "react";
 import "./Home.css";
-
+import Welcome from "./Welcome";
 const Home = () => {
     return (
         <>
-            <h1>Hello</h1>
+            <Welcome />
         </>
     );
 };

@@ -11,7 +11,7 @@ const BillingAddress = () => {
         return (
             <div className="navigation-buttons button-direct">
                 <Link to='/viewcart'>
-                    <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px', marginRight: '80px' }} onClick={onBackClick}>
+                    <Button className="button-left" onClick={onBackClick}>
                         <svg
                             width="40"
                             height="40"
@@ -24,7 +24,7 @@ const BillingAddress = () => {
                     </Button>
                 </Link>
                 <Link to='/paymentmethod'>
-                <Button className="next-button" style={{ backgroundColor: 'green', fontSize: '30px' }} onClick={onNextClick}>
+                <Button type="submit" className="button-right" onClick={onNextClick}>
                     CONTINUE {' '}
                     <svg
                         width="40"
@@ -55,19 +55,19 @@ const BillingAddress = () => {
             <div className="zoo-information">
                 <h4 className="ms-5">BILLING ADDRESS</h4>
             </div>
-            <div className="ticket-table  mx-auto" style={{width: '38em'}}>
+            <div className="ticket-table  mx-auto">
                 <div className="ticket-table-information">Billing Address</div>
                 <Form className="address-form">
                     <Row className="mb-3">
                         <Form.Group as={Col} lg="6">
-                            <Form.Control className="forn-information" size="lg"
+                            <Form.Control className="form-information" size="lg"
                                 required
                                 type="text"
                                 placeholder="FIRST NAME"
                             />
                         </Form.Group>
                         <Form.Group as={Col} lg="6">
-                            <Form.Control className="forn-information" size="lg"
+                            <Form.Control className="form-information" size="lg"
                                 type="text"
                                 placeholder="LAST NAME"
                             />
@@ -75,7 +75,7 @@ const BillingAddress = () => {
                     </Row>
                     <Row className="mb-3">
                         <Form.Group as={Col}>
-                            <Form.Control className="forn-information" size="lg"
+                            <Form.Control className="form-information" size="lg"
                                 type="text"
                                 placeholder="PHONE NUMBER"
                                 required />
@@ -86,7 +86,7 @@ const BillingAddress = () => {
                     </Row>
                     <Row className="mb-3">
                         <Form.Group as={Col} lg="6">
-                            <Form.Control className="forn-information" size="lg"
+                            <Form.Control className="form-information" size="lg"
                                 required
                                 type="text"
                                 placeholder="EMAIL *"
@@ -96,7 +96,7 @@ const BillingAddress = () => {
                             </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col} lg="6">
-                            <Form.Control className="forn-information" size="lg"
+                            <Form.Control className="form-information" size="lg"
                                 required
                                 type="text"
                                 placeholder="REPEAT EMAIL ADDRESS"

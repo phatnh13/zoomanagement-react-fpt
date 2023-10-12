@@ -52,7 +52,7 @@ const Summary = () => {
             <div className="zoo-information">
                 <h4 className="ms-5">SUMMARY</h4>
             </div>
-            <div className="ticket-table mx-auto" style={{width: '38em'}}>
+            <div className="ticket-table mx-auto">
                 <Row>
                 <Col>
                         <div className="ticket-table-information">Billing Address</div>
@@ -97,7 +97,7 @@ const Summary = () => {
                     <tbody>
                         <tr>
                             <th className="text-align">Lấy img ra</th>
-                            <th className="list-ticket">
+                            <th className="text-align">
                                 <p style={{ color: '#3C5724' }}>Loại Ticket: Type</p>
                                 <p>Your selected options:</p>
 

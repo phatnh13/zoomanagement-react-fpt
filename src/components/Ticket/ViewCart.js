@@ -17,9 +17,9 @@ const ViewCart = () => {
     })
     const NavigationButtons = ({ onBackClick, onNextClick }) => {
         return (
-            <div className="navigation-buttons button-direct">
+            <div className="button-direct">
                 <Link to='/buyingticket'>
-                <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px', marginRight: '80px' }} onClick={onBackClick}>
+                <Button className="button-left" onClick={onBackClick}>
                     <svg
                         width="40"
                         height="40"
@@ -33,7 +33,7 @@ const ViewCart = () => {
                 </Link>
                 {' '}
                 <Link to='/billingaddress'>
-                <Button className="next-button" style={{ backgroundColor: 'green', fontSize: '30px' }} onClick={onNextClick}>
+                <Button className="button-right" onClick={onNextClick}>
                     CHECK OUT {' '}
                     <svg
                         width="40"
@@ -63,12 +63,12 @@ const ViewCart = () => {
             <div className="zoo-information">
                 <h4 className="ms-5">View Cart</h4>
                 <div className="box-alert">
-                    <Alert className="mx-auto" style={{width: '94em'}} variant="success">
+                    <Alert className="mx-auto" style={{width: '90rem'}} variant="success">
                         <Alert.Heading><h3>Day ticket Zoo - Adult has been added to the cart!</h3></Alert.Heading>
                     </Alert>
                 </div>
             </div>
-            <div className="ticket-table  mx-auto" style={{width: '38em'}}>
+            <div className="ticket-table  mx-auto">
                 <div className="ticket-table-information">ITEMS</div>
 
                 <Table className="table" bordered variant="none">
@@ -85,7 +85,7 @@ const ViewCart = () => {
                     <tbody>
                         <tr>
                             <th className="text-align">Lấy img ra</th>
-                            <th className="list-ticket">
+                            <th className="text-align">
                                 <p style={{ color: '#3C5724' }}>Loại Ticket: {ticket1.Type}</p>
                                 <p>Your selected options:</p>
 

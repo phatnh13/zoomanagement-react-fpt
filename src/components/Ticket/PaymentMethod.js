@@ -10,7 +10,7 @@ const PaymentMethod = () => {
         return (
             <div className="navigation-buttons button-direct">
                 <Link to='/billingaddress'>
-                    <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px', marginRight: '80px' }} onClick={onBackClick}>
+                    <Button className="button-left" onClick={onBackClick}>
                         <svg
                             width="40"
                             height="40"
@@ -23,7 +23,7 @@ const PaymentMethod = () => {
                     </Button>
                 </Link>
                 <Link to='/summary'>
-                    <Button className="next-button" style={{ backgroundColor: 'green', fontSize: '30px' }} onClick={onNextClick}>
+                    <Button className="button-right" onClick={onNextClick}>
                         CONTINUE {' '}
                         <svg
                             width="40"
@@ -54,7 +54,7 @@ const PaymentMethod = () => {
             <div className="zoo-information">
                 <h4 className="ms-5">METHOD OF PAYMENT</h4>
             </div>
-            <div className="ticket-table  mx-auto" style={{width: '38em'}}>
+            <div className="ticket-table  mx-auto">
                 <div className="ticket-table-information">CHOOSE YOUR PAYMENT</div>
                 <div class="form-check">
                     <Form>

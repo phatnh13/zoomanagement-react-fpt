@@ -10,6 +10,7 @@ import ViewCart from "./components/Ticket/ViewCart";
 import BillingAddress from './components/Ticket/BillingAddress';
 import PaymentMethod from './components/Ticket/PaymentMethod';
 import Summary from './components/Ticket/Summary';
+import Welcome from './components/Home/Welcome';
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
         <Route path="/paymentmethod" element={<PaymentMethod />} />
 
         <Route path="/summary" element={<Summary />} />
+
+        <Route path="/welcome" element={<Welcome />} />
 
       </Routes>
       <Outlet />
