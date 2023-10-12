@@ -27,9 +27,9 @@ const Map = () => {
     return (
         <>
             <div  className="text-center">
-                <h1>Saigon Zoo Map</h1>
+                <h1 style={{fontSize: 150, fontFamily: "Just Another Hand"}}>Saigon Zoo Map</h1>
             </div>
-            <center><Image src={ZooMap} alt="zoo-map" fluid ></Image></center>
+            <center><Image style={{borderWidth: 60}} src={ZooMap} alt="zoo-map" fluid ></Image></center>
             <hr />
             <Accordion className="md-auto" defaultActiveKey={['0']} alwaysOpen fluid>
                 <Accordion.Item eventKey="0">
