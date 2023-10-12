@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import HeaderCart from "./HeaderCart";
 import "./BuyingTicket.css"
 
+
 const BuyingTicket = () => {
     const [ticket1, setTicket1] = useState({
         count: 0
@@ -40,11 +41,11 @@ const BuyingTicket = () => {
     const NavigationButtons = ({ onOkClick, onAddClick }) => {
         return (
             <div className="button-direct">
-                <Button className="button-left" onClick={onOkClick}>
+                <Button className="button-left" onClick={onOkClick} disabled={ticket1.count ===0 && ticket2.count ===0 && ticket3.count ===0}>
                     Xac nhan
                 </Button>
                 <Link to='/viewcart'>
-                    <Button className="button-right" onClick={onAddClick}>
+                    <Button className="button-right" onClick={onAddClick} disabled={ticket1.count ===0 && ticket2.count ===0 && ticket3.count ===0}>
                         Add to cart {' '}
                     </Button>
                 </Link>
@@ -62,7 +63,7 @@ const BuyingTicket = () => {
         // Implement your logic for going next
         console.log('Add button clicked');
     };
-
+    
     return (
         <>
             <div className="min-vh-100">
