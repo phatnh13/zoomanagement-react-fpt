@@ -1,62 +1,32 @@
-import React, { useState } from "react";
-import Alert from 'react-bootstrap/Alert';
-import { Button, FormLabel } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Button, FormLabel, Table, Alert } from "react-bootstrap";
 import { FaCalendarDay } from "react-icons/fa6";
-import Table from 'react-bootstrap/Table';
 import { Link } from "react-router-dom";
 import HeaderCart from "./HeaderCart";
 import "./BuyingTicket.css"
-
+import { TicketContext } from "./TicketContext/TicketContext";
 
 const BuyingTicket = () => {
-    const [ticket1, setTicket1] = useState({
-        count: 0
-    })
-    const decrease1 = (e) => {
-        if (ticket1.count <= 0) {
-            return
-        }
-        setTicket1({ count: ticket1.count - 1 })
-    }
-    const [ticket2, setTicket2] = useState({
-        count: 0
-    })
-    const decrease2 = (e) => {
-        if (ticket2.count <= 0) {
-            return
-        }
-        setTicket2({ count: ticket2.count - 1 })
-    }
-    const [ticket3, setTicket3] = useState({
-        count: 0
-    })
-    const decrease3 = (e) => {
-        if (ticket3.count <= 0) {
-            return
-        }
-        setTicket3({ count: ticket3.count - 1 })
-    }
-    const [amount, setAmount] = React.useState({ count: 0 })
-    const [price, setPrice] = React.useState({ count: 0 })
+    const context = useContext(TicketContext)
+    
     const NavigationButtons = ({ onOkClick, onAddClick }) => {
         return (
             <div className="button-direct">
-                <Button className="button-left" onClick={onOkClick} disabled={ticket1.count ===0 && ticket2.count ===0 && ticket3.count ===0}>
+                <Button className="button-left" onClick={onOkClick} disabled={context.ticket1.count ===0 && context.ticket2.count ===0 && context.ticket3.count ===0}>
                     Xac nhan
                 </Button>
-                <Link to='/viewcart'>
-                    <Button className="button-right" onClick={onAddClick} disabled={ticket1.count ===0 && ticket2.count ===0 && ticket3.count ===0}>
-                        Add to cart {' '}
+                
+                    <Button to className="button-right" onClick={onAddClick} disabled={context.ticket1.count ===0 && context.ticket2.count ===0 && context.ticket3.count ===0}>
+                        <Link className="link-underline-hover" style={{color: 'white', textDecoration: 'none'}} to='/viewcart'>Add to cart {' '}</Link>
                     </Button>
-                </Link>
             </div>
         );
     };
     const handleOkClick = () => {
         // Implement your logic for going back
-        setPrice({ count: ticket1.count * 2 + ticket2.count * 1.4 })
-        setAmount({ count: ticket1.count + ticket2.count + ticket3.count })
-        console.log('Ok button clicked');
+        context.setPrice({ count: context.ticket1.count * 2 + context.ticket2.count * 1.4 })
+        context.setAmount({ count: context.ticket1.count + context.ticket2.count + context.ticket3.count })
+        console.log(context);
     };
 
     const handleAddClick = () => {
@@ -97,9 +67,9 @@ const BuyingTicket = () => {
                                     <th className="text-align">Day Ticket Zoo - Adult</th>
                                     <th class="align-self-center" colSpan={2}>
 
-                                        <Button variant="outline-dark" onClick={decrease1}>-</Button> {' '}
-                                        <FormLabel type='text'>{' '}{ticket1.count}{' '}</FormLabel>{' '}
-                                        <Button variant="outline-dark" onClick={() => setTicket1({ count: ticket1.count + 1 })}>+</Button>
+                                        <Button variant="outline-dark" onClick={context.decrease1}>-</Button> {' '}
+                                        <FormLabel type='text'>{' '}{context.ticket1.count}{' '}</FormLabel>{' '}
+                                        <Button variant="outline-dark" onClick={() => context.setTicket1({ count: context.ticket1.count + 1 })}>+</Button>
 
                                     </th>
                                     <th>2$</th>
@@ -108,9 +78,9 @@ const BuyingTicket = () => {
                                     <th className="text-align">Day Ticket Zoo - Children<p>aged under 18</p></th>
                                     <th class="align-self-center" colSpan={2}>
 
-                                        <Button variant="outline-dark" onClick={decrease2}>-</Button> {' '}
-                                        <FormLabel type='text'>{' '}{ticket2.count}{' '}</FormLabel>{' '}
-                                        <Button variant="outline-dark" onClick={() => setTicket2({ count: ticket2.count + 1 })}>+</Button>
+                                        <Button variant="outline-dark" onClick={context.decrease2}>-</Button> {' '}
+                                        <FormLabel type='text'>{' '}{context.ticket2.count}{' '}</FormLabel>{' '}
+                                        <Button variant="outline-dark" onClick={() => context.setTicket2({ count: context.ticket2.count + 1 })}>+</Button>
 
                                     </th>
                                     <th>1.4$</th>
@@ -119,9 +89,9 @@ const BuyingTicket = () => {
                                     <th className="text-align">Day Ticket Zoo - Children<p>lower than 1m3</p></th>
                                     <th class="align-self-center" colSpan={2}>
 
-                                        <Button variant="outline-dark" onClick={decrease3}>-</Button> {' '}
-                                        <FormLabel type='text'>{' '}{ticket3.count}{' '}</FormLabel>{' '}
-                                        <Button variant="outline-dark" onClick={() => setTicket3({ count: ticket3.count + 1 })}>+</Button>
+                                        <Button variant="outline-dark" onClick={context.decrease3}>-</Button> {' '}
+                                        <FormLabel type='text'>{' '}{context.ticket3.count}{' '}</FormLabel>{' '}
+                                        <Button variant="outline-dark" onClick={() => context.setTicket3({ count: context.ticket3.count + 1 })}>+</Button>
 
                                     </th>
                                     <th>Free</th>
@@ -129,10 +99,10 @@ const BuyingTicket = () => {
                                 <tr>
                                     <th className="text-align">Total</th>
                                     <th colSpan={2}>
-                                        <FormLabel type='text'>{amount.count}</FormLabel>
+                                        <FormLabel type='text'>{context.amount.count}</FormLabel>
                                     </th>
                                     <th>
-                                        <FormLabel type='text'>{price.count}</FormLabel>
+                                        <FormLabel type='text'>{context.price.count}</FormLabel>
                                     </th>
                                 </tr>
                             </tbody>
@@ -154,7 +124,6 @@ const BuyingTicket = () => {
 
                 </div>
             </div>
-
         </>
     );
 };

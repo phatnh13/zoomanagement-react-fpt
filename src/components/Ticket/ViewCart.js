@@ -1,20 +1,11 @@
-import React, { useState} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import HeaderCart from "./HeaderCart";
 import "./BuyingTicket.css"
-import Alert from 'react-bootstrap/Alert';
-import { Button } from "react-bootstrap";
-import Table from 'react-bootstrap/Table';
-import moment from "moment";
+import { Button, Alert } from "react-bootstrap";
+import TicketItemsTable from "./TicketItemsTable";
+
 const ViewCart = () => {
-    const date = moment().format("MMMM/DD/YYYY")
-    const [ticket1] = useState({
-        Id: "01",
-        Type: "Aldult",
-        Validfrom: date,
-        Price: 2,
-        Quantity: 3,
-    })
     const NavigationButtons = ({ onBackClick, onNextClick }) => {
         return (
             <div className="button-direct">
@@ -70,35 +61,8 @@ const ViewCart = () => {
             </div>
             <div className="ticket-table  mx-auto">
                 <div className="ticket-table-information">ITEMS</div>
+                <TicketItemsTable />
 
-                <Table className="table" bordered variant="none">
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Item information</th>
-                            <th>Item price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                        </tr>
-                    </tbody>
-
-                    <tbody>
-                        <tr>
-                            <th className="text-align">Lấy img ra</th>
-                            <th className="text-align">
-                                <p style={{ color: '#3C5724' }}>Loại Ticket: {ticket1.Type}</p>
-                                <p>Your selected options:</p>
-
-                                <p>Valid from: {ticket1.Validfrom}</p>
-                                <p>Valid to:</p>
-                                <p>Item reserved for you until:</p>
-                            </th>
-                            <th>{ticket1.Price}</th>
-                            <th>{ticket1.Quantity}</th>
-                            <th>{ticket1.Price*ticket1.Quantity}</th>
-                        </tr>
-                    </tbody>
-                </Table>
                 <NavigationButtons onBackClick={handleBackClick} onNextClick={handleNextClick} />
             </div>         
         </>

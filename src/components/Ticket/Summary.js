@@ -1,8 +1,10 @@
 
-import React from "react";
+import React, {useContext} from "react";
 import HeaderCart from "./HeaderCart";
 import { Row, Table, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { TicketContext } from "./TicketContext/TicketContext";
+import TicketItemsTable from "./TicketItemsTable";
 
 const Summary = () => {
     const NavigationButtons = ({ onBackClick, onNextClick }) => {
@@ -37,6 +39,7 @@ const Summary = () => {
             </div>
         );
     };
+    const context = useContext(TicketContext);
     const handleBackClick = () => {
         // Implement your logic for going back
         console.log('Back button clicked');
@@ -58,8 +61,8 @@ const Summary = () => {
                         <div className="ticket-table-information">Billing Address</div>
                         <Table striped bordered hover size="sm">
                             <tbody style={{ textAlign: 'left' }}>
-                                <p>Name: lastName firstName</p>
-                                <p>Phonenumber: phone</p>
+                                <p>Name: {context.firstName}{' '}{context.lastName}</p>
+                                <p>Phone Number: {context.phoneNumber}</p>
                             </tbody>
                         </Table>
                     </Col>
@@ -83,34 +86,7 @@ const Summary = () => {
                     </Col>
                 </Row>
                 <div className="ticket-table-information">ITEMS</div>
-                <Table className="table" bordered variant="none" border>
-                    <tbody>
-                        <tr>
-                            <th></th>
-                            <th>Item information</th>
-                            <th>Item price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                        </tr>
-                    </tbody>
-
-                    <tbody>
-                        <tr>
-                            <th className="text-align">Lấy img ra</th>
-                            <th className="text-align">
-                                <p style={{ color: '#3C5724' }}>Loại Ticket: Type</p>
-                                <p>Your selected options:</p>
-
-                                <p>Valid from: </p>
-                                <p>Valid to:</p>
-                                <p>Item reserved for you until:</p>
-                            </th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </tbody>
-                </Table>
+                <TicketItemsTable />
                 <NavigationButtons onBackClick={handleBackClick} onNextClick={handleNextClick} />
             </div>
 

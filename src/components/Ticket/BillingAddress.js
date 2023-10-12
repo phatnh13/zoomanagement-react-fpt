@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import HeaderCart from "./HeaderCart";
 import { Button, Col, Row, Form } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import ReactDOM from 'react-dom/client';
+import { TicketContext } from "./TicketContext/TicketContext";
 const BillingAddress = () => {
     const NavigationButtons = ({ onBackClick, onNextClick }) => {
         return (
@@ -43,9 +43,10 @@ const BillingAddress = () => {
 
     const handleNextClick = () => {
         // Implement your logic for going next
-        console.log('Next button clicked');
-
+        console.log(context);
     };
+    const context = useContext(TicketContext) 
+
 
     return (
         <>
@@ -63,21 +64,27 @@ const BillingAddress = () => {
                             <Form.Control className="form-information" size="lg"
                                 required
                                 type="text"
+                                value={context.firstName}
+                                onChange={e => context.setFirstName(e.target.value)}
                             />
                         </Form.Group>
                         <Form.Group as={Col} lg="6">
                             <Form.Label>Last Name</Form.Label>
                             <Form.Control className="form-information" size="lg"
                                 type="text"
+                                value={context.lastName}
+                                onChange={e => context.setLastName(e.target.value)}
                             />
                         </Form.Group>
                     </Row>
                     <Row className="mb-3">
-                        <Form.Group as={Col} lg="6" controlId="formBasicEmail">
+                        <Form.Group as={Col} lg="6">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control className="form-information" size="lg"
                                 required
-                                type="text"
+                                type="email"
+                                value={context.email}
+                                onChange={e => context.setEmail(e.target.value)}
                             />
                             <Form.Control.Feedback type="invalid">
                                 Please provide your email!
@@ -87,6 +94,8 @@ const BillingAddress = () => {
                             <Form.Label>Phone Number</Form.Label>
                             <Form.Control className="form-information" size="lg"
                                 type="text"
+                                value={context.phoneNumber}
+                                onChange={e => context.setPhoneNumber(e.target.value)}
                                 required />
                             <Form.Control.Feedback type="invalid">
                                 Please provide your phonenumber!
