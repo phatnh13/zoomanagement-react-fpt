@@ -3,11 +3,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { privateRoutes, publicRoutes } from './routes';
 import { DefaultLayout } from './components/Layout';
-import { UserContext } from './UserContext';
 
 function App() {
   return (
-    <UserContext.Provider value={"hi"}>
+    
       <div className='app'>
         <Routes>
           {publicRoutes.map((route, index) => {
@@ -43,7 +42,7 @@ function App() {
           )}
         </Routes>
       </div>
-    </UserContext.Provider>
+    
   );
 }
 

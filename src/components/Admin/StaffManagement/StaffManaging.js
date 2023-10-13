@@ -1,91 +1,121 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button, Row, Col, Form, Badge } from "react-bootstrap";
+import { Container, Button, Row, Col, Form, Pagination } from "react-bootstrap";
 import StaffTable from "./StaffTable";
 const StaffManaging = () => {
-    const [users, setUsers] = useState(
-        [
-            {
-                id: 1, UserName: "Phuong",
-                Gender: "Male", Age: "20", phoneNumber: "0992221",
-                Email: "example1@example.com", password: "***", isDelete: "True"
+
+    var [users, setUsers] = useState([]);
+    var [searchString, setsearchString] = useState("");
+    var [totalPages, setTotalPages] = useState(0);
+    var [currentPage, setCurrentPage] = useState(1);
+    var [searchBy, setSearchBy] = useState("FullName");
+
+    let PaginationLoad = () => {
+        let items = [];
+        for (let page = 1; page <= totalPages; page++) {
+            items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+        }
+        return items;
+    }
+
+    const onPaginationClick = (e) => {
+        setCurrentPage(e.target.text);
+    }
+
+    useEffect(() => {
+        fetch(`https://localhost:7193/api/Staff?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
             },
-            {
-                id: 2, UserName: "Phong",
-                Gender: "Male", Age: "20", phoneNumber: "0992222",
-                Email: "example2@example.com", password: "***", isDelete: "False"
+        })
+            .then((res) => res.json())
+            .then(data => {
+                setUsers(data.pagingList);
+                setTotalPages(data.totalPages);
+            }).catch(rejected => {
+                console.log(rejected);
+            });
+    },[currentPage, searchBy, searchString]);
+
+    useEffect(() => {
+        fetch("https://localhost:7193/api/Staff?searchBy=FullName", {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
             },
-            {
-                id: 3, UserName: "Phat",
-                Gender: "Male", Age: "20", phoneNumber: "0992223",
-                Email: "example3@example.com", password: "***", isDelete: "True"
-            },
-            {
-                id: 4, UserName: "Viet",
-                Gender: "Male", Age: "20", phoneNumber: "0992224",
-                Email: "example4@example.com", password: "***", isDelete: "False"
-            },
-            {
-                id: 5, UserName: "Khoi",
-                Gender: "Male", Age: "20", phoneNumber: "0992225",
-                Email: "example5@example.com", password: "***", isDelete: "True"
-            },
-        ]
-    );
-    var [search, setSearch] = useState("");
-    // useEffect(() => {
-    //     fetch("http://localhost:5000/users")
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log(data);
-    //             setUsers(data);
-    //         });
-    // }, []);
+        })
+            .then((res) => res.json())
+            .then(data => {
+                setUsers(data.pagingList);
+                setTotalPages(data.totalPages);
+            }).catch(rejected => {
+                console.log(rejected);
+            });
+    }, []);
+    
     return (
         <Container fluid>
-            <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
-            {/*Start search*/}
-                    {/*Search filter */}
+            <Row className="vh-20 d-flex justify-content-center my-3 pb-1 border-bottom">
+                {/*Start search*/}
+                {/*Search filter */}
                 <Col lg={3} md={3} xs={12}>
                     <Form.Group className="mb-3" controlId="search">
-                        <Form.Select>
-                            <option>Name</option>
-                            <option>Name</option>
+                        <Form.Select 
+                            value={searchBy}
+                            onChange={(e) => { 
+                                setSearchBy(e.target.value)
+                            }}
+                        >
+                            <option value={"FullName"}>Full Name</option>
+                            <option value={"Email"}>Email</option>
                         </Form.Select>
-                        </Form.Group>
+                    </Form.Group>
                 </Col>
-                    {/*Search filter */}
-                    {/*Search bar */}
-                <Col lg={8} md={8} xs={11}>
+                {/*Search filter */}
+                {/*Search bar */}
+                <Col lg={6} md={6} xs={11}>
                     <Form.Group className="mb-3" controlId="search">
                         <Form.Control
                             type="text"
                             placeholder="Search"
-                            value={search}
-                            onChange={(e) => {setSearch(e.target.value) }}>
+                            value={searchString}
+                            onChange={(e) => { 
+                                setCurrentPage(1);
+                                setsearchString(e.target.value)
+                                console.log(searchString);
+                                // searchStaff();
+
+                            }}
+                        >
                         </Form.Control>
                     </Form.Group>
                 </Col>
-                    {/*Search bar */}
-            {/*End search*/}
-            {/*Start add button*/}
+                {/* <Col lg={1} md={1} xs={1}>
+                    <div className="pb-1">
+                        <Button variant="outline-primary" onClick={searchStaff}>Search</Button>
+                    </div>
+                </Col> */}
+                {/*Search bar */}
+                {/*End search*/}
+                {/*Start add button*/}
                 <Col lg={1} md={1} xs={1}>
-                <div className="mb-3 d-grid">
-                <Button variant="outline-primary" size="sm">Add</Button>
-                </div>
+                    <Button href="/admin/staff/add" variant="outline-primary">Add</Button>
                 </Col>
-            {/*End add button*/}
+                {/*End add button*/}
             </Row>
             <Row>
                 <Col>
-            {/*Start Table*/}
-                <StaffTable userList={users} />
-            {/*Start Table*/}
+                    {/*Start Table*/}
+                    <StaffTable userList={users} />
+                    {/*End Table*/}
+                    <Pagination size="md" className="d-flex justify-content-center">
+                        {PaginationLoad()}
+                    </Pagination>
                 </Col>
             </Row>
         </Container>
-    );
+
+    )
 }
-// let renderTableData(users) => {
-//     return users.map((user, index) => {
-// }
+
 export default StaffManaging;

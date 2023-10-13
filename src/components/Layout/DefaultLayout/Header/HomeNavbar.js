@@ -7,7 +7,7 @@ const HomeNavbar = () => {
   return (
     <Container fluid>
         <Navbar expand="lg" variant="light" fixed="top" className="ps-4">
-        <Navbar.Brand className="" href="/"><Image src={ZooLogo} width={60} height={60} />Sai Gon Zoo</Navbar.Brand>
+        <Navbar.Brand className="" href="/"><Image src={ZooLogo} width={60} height={60} /> Sai Gon Zoo</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto pb-1">

@@ -1,42 +1,31 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
-import { UserContext } from "../../UserContext";
 const Login = () => {
-    let currentValue = useContext(UserContext);
-    console.log(currentValue);
 
-    const [email, setEmail] = useState("");
+    const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
-        email: false,
+        userName: false,
         password: false
     });
     let [errors, setErrors] = useState(
         {
-            email: [],
+            userName: [],
             password: []
         });
     //Validation
     let validate = () => {
         let errorsData = {};
-        //email
-        errorsData.email = [];
-        if (email === "") {
-            errorsData.email.push("Email is required");
-        }
-        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        if (!emailRegex.test(email)) {
-            errorsData.email.push("Email is invalid");
+        //userName
+        errorsData.userName = [];
+        if (userName === "") {
+            errorsData.userName.push("Username is required");
         }
         //password
         errorsData.password = [];
         if (password === "") {
             errorsData.password.push("Password is required");
-        }
-        const passwordRegex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,16})/;
-        if (!passwordRegex.test(password)) {
-            errorsData.password.push("Password should be 8 to 16 characters long and should contain at least one uppercase letter, one lowercase letter, and one numeric digit");
         }
         setErrors(errorsData);
     }
@@ -58,35 +47,49 @@ const Login = () => {
             dirtyData[control] = true;
         });
         setDirty(dirtyData);
+
         //Validate all input
         validate();
+
         //Send response to server if valid
         if (isValid()) {
-            let response = await fetch("http://localhost:3000/login",
+            let response = await fetch("https://localhost:7193/api/User/login",
                 {
                     method: "POST",
                     body: JSON.stringify({
-                        email: email,
+                        userName: userName,
                         password: password
                     }),
                     headers: {
-                        "Content-type": "application/json"
-                    },
+                        "content-type": "application/json; charset=UTF-8"
+                    }
                 }
-            );
-            if (response.ok) {
-                setMessage(<span className="text-success">Login successful</span>);
+            ).then((res) => res.json())
+                .then(data => {
+                    console.log(data);
+                    localStorage.setItem("loginUser", JSON.stringify(data));
+                    console.log(JSON.parse(localStorage.getItem("loginUser")));
+                }).catch(rejected => {
+                    console.log(rejected);
+                });
+            if (JSON.parse(localStorage.getItem("loginUser")).role === "Admin") {
+                window.location.href = "/admin/staff";
             }
-
+            else if (JSON.parse(localStorage.getItem("loginUser")).role === "Staff") {
+                window.location.href = "/staff";
+            }
+            else {
+                window.location.href = "/";
+            }
         } else {
             setMessage(<span className="text-danger">Login failed</span>);
         }
     }
 
-    useEffect(validate, [email, password]);
+    useEffect(validate, [userName, password]);
     return (
         <Container fluid>
-            <Row className="py-5 d-flex justify-content-center align-items-center">
+            <Row className="mt-5 py-5 d-flex justify-content-center align-items-center">
                 <Col md={8} lg={5} xs={12}>
                     <Card className="shadow">
                         <Card.Body>
@@ -94,27 +97,27 @@ const Login = () => {
                                 <h2 className="my-6 text-center">Login</h2>
                                 <div className="mb-3">
                                     <Form>
-                                        {/*Start Email*/}
+                                        {/*Start userName*/}
                                         <Form.Group
                                             className="mb-3"
-                                            controlId="loginEmail"
+                                            controlId="loginuserName"
                                         >
-                                            <Form.Label className="text-center">Email address</Form.Label>
+                                            <Form.Label className="text-center">Username</Form.Label>
                                             <Form.Control
-                                                type="email"
-                                                placeholder="Enter email"
-                                                value={email}
+                                                type="text"
+                                                placeholder="Enter your username"
+                                                value={userName}
                                                 onChange={(e) => {
-                                                    setEmail(e.target.value);
+                                                    setUserName(e.target.value);
                                                     validate();
                                                 }}
                                             />
                                             <div className="text-danger">
-                                                {dirty["email"] && errors["email"][0] ?
-                                                 errors["email"][0] : ""}
+                                                {dirty["userName"] && errors["userName"][0] ?
+                                                    errors["userName"][0] : ""}
                                             </div>
                                         </Form.Group>
-                                        {/*End Email*/}
+                                        {/*End userName*/}
                                         {/*Start Password*/}
                                         <Form.Group
                                             className="mb-3"
@@ -132,7 +135,7 @@ const Login = () => {
                                             />
                                             <div className="text-danger">
                                                 {dirty["password"] && errors["password"][0] ?
-                                                 errors["password"][0] : ""}
+                                                    errors["password"][0] : ""}
                                             </div>
                                         </Form.Group>
                                         {/*End Password*/}
