@@ -1,14 +1,10 @@
 import React from "react";
-import { Col, Container, Row, Image } from "react-bootstrap";
 import "./Home.css";
-import TigerBackground from "../../assets/Tigerbackground.png";
+import Welcome from "./Welcome";
 const Home = () => {
     return (
         <>
-            <Container fluid className="vh-100">
-            <Image className="bg-img" src={TigerBackground} fluid>
-            </Image>
-            </Container>
+            <Welcome />
         </>
     );
 };

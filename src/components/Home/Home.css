@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .bg-img {
     z-index: -1;
     position: absolute;
@@ -5,3 +6,82 @@
     top: 0;
     left: 0;
 }
+=======
+.welcome-text__information {
+    display: flex;
+    color: #3C5724;
+    font-family: "Just Another Hand";
+    font-size: 5rem;
+    justify-content: center;
+}
+
+.about-zoo__information {
+    display: flex;
+    font-family: "Just Another Hand";
+    font-size: 3rem;
+    align-items: center;
+    line-height: normal;
+    margin-bottom: 1rem;
+}
+
+.view-price__welcome {
+    align-items: center;
+}
+
+.image-price {
+    border-radius: 10%;
+    -moz-border-radius: 10%;
+    -webkit-border-radius: 10%;
+    height: 50%;
+    background-size: cover;
+}
+
+.welcome-text__top {
+    margin-left: 7rem;
+    margin-right: 7rem;
+}
+
+.background-ticket__price {
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+
+.view-price__ticket {
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+.image-container {
+    position: relative;
+    display: inline-block; /* You can use other display values based on your layout */
+  }
+  
+.img-price{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10%;
+    -moz-border-radius: 10%;
+    -webkit-border-radius: 10%;
+    height: 50%;
+    background-size: cover;
+  }
+  
+  .title {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* You can adjust the background color and opacity as needed */
+    color: white; /* Text color */
+    padding: 5px 10px; /* Adjust padding to your liking */
+    font-size: 14px;
+  }
+  .btn-view-all-price{
+    display: flex;
+    justify-content: right;
+    background-color: #3C5724;
+    font-size: large;
+    color: white;
+  }
+>>>>>>> origin/phat
