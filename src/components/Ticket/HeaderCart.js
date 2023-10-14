@@ -1,14 +1,14 @@
 import React from "react";
 import TigerImg from "../../assets/whiteTiger.jpg";
 import WebLogo from "../../assets/WebLogo.png";
-import { Col } from "react-bootstrap";
+import { Col, Container } from "react-bootstrap";
 import { FaFacebook, FaGoogle, FaYoutube, FaInstagram} from "react-icons/fa6";
 import Image from 'react-bootstrap/Image';
 import "./BuyingTicket.css"
 
 const HeaderCart = () => {
     return (
-        <>
+        <Container>
             <div className=".d-flex">
                 <div className="logo-box position-absolute mx-5">
                     <div className="text-logo-top ms-auto">VietNam Zoo</div>
@@ -23,7 +23,7 @@ const HeaderCart = () => {
                 </div>
                 <Image src={TigerImg} className="tiger-img"/>
             </div>
-        </>
+        </Container>
     );
 };
 export default HeaderCart;

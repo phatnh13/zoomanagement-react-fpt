@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button, FormLabel, Table, Alert } from "react-bootstrap";
+import { Button, FormLabel, Table, Alert, Container } from "react-bootstrap";
 import { FaCalendarDay } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import HeaderCart from "./HeaderCart";
@@ -35,20 +35,20 @@ const BuyingTicket = () => {
     };
     
     return (
-        <>
-            <div className="min-vh-100">
-                <HeaderCart />
+        
+            <Container className="min-vh-100">
+                {/* <HeaderCart /> */}
                 <div className="zoo-information">
                     <h4 className="ms-5">Zoo Day Ticket</h4>
-                    <div className="box-alert">
-                        <Alert className="mx-auto" style={{ width: '90rem' }} variant="success">
+                    <Container className="box-alert">
+                        <Alert className="mx-auto" variant="success">
                             <Alert.Heading><h3>TIP-CHEAPEST AND QUICKEST TICKET ONLY ONLINE!</h3></Alert.Heading>
                             <p>Online tickets cheaper than at ticket booths on site</p>
                             <p>Skip the queue with online tickets and go straight to ticket checkers</p>
                             <p>Easy online booking without user account</p>
                         </Alert>
-                    </div>
-                    <div className="ticket-table mx-auto">
+                    </Container>
+                    <Container className="ticket-table mx-auto">
 
                         <Table className="table" bordered variant="none">
                             <thead>
@@ -120,11 +120,11 @@ const BuyingTicket = () => {
 
                             <p>* Only valid in combination with a corresponding proof. The proof must be personalized, given a (valid) validity and issued by an official authority/institution (not digital). The proof will be checked at the admission checkers - please have it ready along with a photo ID.</p>
                         </div>
-                    </div>
+                    </Container>
 
                 </div>
-            </div>
-        </>
+            </Container>
+        
     );
 };
 

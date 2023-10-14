@@ -4,6 +4,7 @@ import React from "react";
 export const TicketContext = createContext();
 
 export function TicketProvider({ children }){
+    //Ticket1
     const [ticket1, setTicket1] = useState({
         count: 0,
     })
@@ -13,6 +14,7 @@ export function TicketProvider({ children }){
         }
         setTicket1({ count: ticket1.count - 1 })
     }
+    //Ticket2
     const [ticket2, setTicket2] = useState({
         count: 0,
     })
@@ -22,6 +24,7 @@ export function TicketProvider({ children }){
         }
         setTicket2({ count: ticket2.count - 1 })
     }
+    //Ticket3
     const [ticket3, setTicket3] = useState({
         count: 0,
     })
