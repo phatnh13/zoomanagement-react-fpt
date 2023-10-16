@@ -26,10 +26,10 @@ import ScarletIbis2 from '../../assets/co-do-11.jpg';
 const Map = () => {
     return (
         <>
-            <div  className="text-center">
-                <h1 style={{fontSize: 150, fontFamily: "Just Another Hand"}}>Saigon Zoo Map</h1>
+            <div className="text-center">
+                <h1 style={{ fontSize: 150, fontFamily: "Just Another Hand" }}>Saigon Zoo Map</h1>
             </div>
-            <center><Image style={{borderWidth: 60}} src={ZooMap} alt="zoo-map" fluid ></Image></center>
+            <center><Image style={{ borderWidth: 60 }} src={ZooMap} alt="zoo-map" fluid ></Image></center>
             <hr />
             <Accordion className="md-auto" defaultActiveKey={['0']} alwaysOpen fluid>
                 <Accordion.Item eventKey="0">
@@ -37,7 +37,7 @@ const Map = () => {
                     <Accordion.Body className="vc_tta-panel-body" >
                         <Card className="vc_row wpb_row vc_inner row">
                             <Card.Body className="d-flex">
-                                <Col className="col-md-6">
+                                <Col md={6} className="mb-2">
                                     <center>
                                         <div>
                                             <Carousel fade>
