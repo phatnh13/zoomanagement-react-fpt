@@ -1,0 +1,41 @@
+.hours-header-img {
+    height: 100%;
+    width: 100%;
+}
+
+.hours-header-img .gate-backgroud {
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+
+}
+
+.list-title {
+    background-color: #F5F1DF;
+}
+
+.list-group-flush {
+    background-color: #ECEBD3;
+}
+
+.list-note {
+    background-color: #ebe1b5;
+}
+
+.panel__ctas {
+    position: relative;
+    background: #e3e3df;
+}
+
+.panel__ctas .wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+    padding: 50px 15px;
+}
+
+.wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+}
