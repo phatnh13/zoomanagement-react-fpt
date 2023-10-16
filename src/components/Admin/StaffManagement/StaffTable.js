@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Table, } from "react-bootstrap";
+import { Container, Modal, Table, } from "react-bootstrap";
 import StaffTableContent from "./StaffTableContent";
 const StaffTable = ({ userList,totalPages }) => {
     
@@ -29,7 +29,7 @@ const StaffTable = ({ userList,totalPages }) => {
                     })}
                 </tbody>
             </Table>
-            
+
         </Container>
     )
 }

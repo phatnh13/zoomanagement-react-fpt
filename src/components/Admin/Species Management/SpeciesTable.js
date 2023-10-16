@@ -6,7 +6,7 @@ function SpeciesTable({speciesList}) {
     return ( 
         <Container>
             <div className="text-uppercase" >
-                <h3>species's managing table <Badge size="sm" bg="secondary">5</Badge></h3>
+                <h3>species's managing table</h3>
             </div>
             <Table striped bordered hover responsive="md" >
                 <thead>

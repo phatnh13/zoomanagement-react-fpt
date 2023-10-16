@@ -18,6 +18,7 @@ import StaffManaging from '../components/Admin/StaffManagement/StaffManaging';
 import AddStaff from '../components/Admin/StaffManagement/AddStaff';
 import UpdateStaff from '../components/Admin/StaffManagement/UpdateStaff';
 import SpeciesManaging from '../components/Admin/Species Management/SpeciesManaging';
+import AddSpecies from '../components/Admin/Species Management/AddSpecies';
 //Staff managing
 import ZooTrainerManaging from '../components/Staff/ZooTrainerManagement/ZooTrainerManaging';
 import CageManaging from '../components/Staff/CageManagement/CageManaging';
@@ -40,7 +41,7 @@ const privateRoutes = [
     { path: '/admin/staff/update', component: UpdateStaff, layout: AdminLayout},
     { path: '/admin/staff/add', component: AddStaff, layout: AdminLayout},
     { path: '/admin/species', component: SpeciesManaging, layout: AdminLayout},
-    { path: '/admin/species/add', component: SpeciesManaging, layout: AdminLayout},
+    { path: '/admin/species/add', component: AddSpecies, layout: AdminLayout},
     { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
     { path: '/staff/cage', component: CageManaging, layout: StaffLayout},
 ]

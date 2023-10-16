@@ -1,8 +1,140 @@
-import React from "react";
-import { Container } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Button, Row, Col, Form, Card } from "react-bootstrap";
 
 function AddSpecies() {
-    return ( 
+    const [speciesName, setSpeciesName] = useState("");
+    const [family, setFamily] = useState("");
+    const [information, setInformation] = useState("");
+    const [characteristic, setCharacteristic] = useState("");
+    const [allocation, setAllocation] = useState("");
+    const [ecological, setEcological] = useState("");
+    const [reproduction, setReproduction] = useState("");
+    const [diet, setDiet] = useState("");
+    const [image, setImage] = useState("");
+
+    let [message, setMessage] = useState("");
+    let [dirty, setDirty] = useState({
+        speciesName: false,
+        family: false,
+        information: false,
+        characteristic: false,
+        allocation: false,
+        ecological: false,
+        reproduction: false,
+        diet: false,
+    });
+    let [errors, setErrors] = useState(
+        {
+            speciesName: [],
+            family: [],
+            information: [],
+            characteristic: [],
+            allocation: [],
+            ecological: [],
+            reproduction: [],
+            diet: [],
+        });
+    //Validation
+    let validate = () => {
+        let errorsData = {};
+        //speciesName
+        errorsData.speciesName = [];
+        if (speciesName === "") {
+            errorsData.speciesName.push("Species name is required");
+        }
+        //family
+        errorsData.family = [];
+        if (family === "") {
+            errorsData.family.push("Family box is required");
+        }
+        //information
+        errorsData.information = [];
+        if (information === "") {
+            errorsData.information.push("Information is required");
+        }
+        //characteristic
+        errorsData.characteristic = [];
+        if (characteristic === "") {
+            errorsData.characteristic.push("Characteristic box is required");
+        }
+        //allocation
+        errorsData.allocation = [];
+        if (allocation === "") {
+            errorsData.allocation.push("Allocation box is required");
+        }
+        //ecological
+        errorsData.ecological = [];
+        if (ecological === "") {
+            errorsData.ecological.push("Ecological box is required");
+        }
+        //reproduction
+        errorsData.reproduction = [];
+        if (reproduction === "") {
+            errorsData.reproduction.push("Reproduction box is required");
+        }
+        //diet
+        errorsData.diet = [];
+        if (diet === "") {
+            errorsData.diet.push("Diet box is required");
+        }
+        setErrors(errorsData);
+    }
+    //Check valid before submit
+    let isValid = () => {
+        let valid = true;
+        for (let control in errors) {
+            if (errors[control].length > 0) {
+                valid = false;
+            }
+        }
+        return valid;
+    }
+    // Species Add event
+    let onAddClick = async () => {
+        // Set all input dirty=true
+        let dirtyData = dirty;
+        Object.keys(dirty).forEach((control) => {
+            dirtyData[control] = true;
+        });
+        setDirty(dirtyData);
+
+        //Validate all input
+        validate();
+
+        //Send response to server if valid
+        if (isValid()) {
+            await fetch("https://localhost:7193/api/User",
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        speciesName: speciesName,
+                        family: family,
+                        infomation: information,
+                        characteristic: characteristic,
+                        allocation: allocation,
+                        ecological: ecological,
+                        diet: diet,
+                        breedingAndReproduction: reproduction,
+                        imageFile: image
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }).then((res) => {
+                    if (res.ok) {
+                        console.log("Add successfully");
+                        setMessage(<span className="text-success">Add successfully</span>);
+                    } else {
+                        console.log("Add failed");
+                        console.log(res);
+                        setMessage(<span className="text-danger">Add failed</span>);
+                    }
+                }).catch(rejected => {
+                    console.log(rejected);
+                });
+        }
+    }
+    return (
         <Container fluid>
             <Row className="py-5 d-flex justify-content-center align-items-center">
                 <Col md={8} lg={5} xs={12}>
@@ -13,134 +145,154 @@ function AddSpecies() {
                                     <Form>
                                         <Form.Group
                                             className="mb-3"
-                                            controlId="staffAddName">
-                                            <Form.Label>Username</Form.Label>
+                                            controlId="speciesAddName">
+                                            <Form.Label>Species Name</Form.Label>
                                             <Form.Control
                                                 type="text"
-                                                value={UserName}
+                                                value={speciesName}
                                                 onChange={(e) => {
-                                                    setUserName(e.target.value);
+                                                    setSpeciesName(e.target.value);
                                                     validate();
                                                 }}
-                                                placeholder="Enter Username" />
+                                                placeholder="Enter species name" />
                                             <div className="text-danger">
-                                                {dirty["userName"] && errors["userName"][0] ?
-                                                    errors["userName"][0] : ""}
+                                                {dirty["speciesName"] && errors["speciesName"][0] ?
+                                                    errors["speciesName"][0] : ""}
                                             </div>
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
-                                            controlId="staffAddEmail">
-                                            <Form.Label>Email</Form.Label>
+                                            controlId="speciesAddFamily">
+                                            <Form.Label>Family</Form.Label>
                                             <Form.Control
                                                 type="text"
-                                                value={Email}
+                                                value={family}
                                                 onChange={(e) => {
-                                                    setEmail(e.target.value);
+                                                    setFamily(e.target.value);
                                                     validate();
                                                 }}
-                                                placeholder="Enter Email" />
+                                                placeholder="Enter its family" />
                                             <div className="text-danger">
-                                                {dirty["Email"] && errors["Email"][0] ?
-                                                    errors["Email"][0] : ""}
+                                                {dirty["family"] && errors["family"][0] ?
+                                                    errors["family"][0] : ""}
                                             </div>
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
-                                            controlId="staffAddPhone">
-                                            <Form.Label>Phone Number</Form.Label>
+                                            controlId="speciesAddinfo">
+                                            <Form.Label>Information</Form.Label>
                                             <Form.Control
                                                 type="text"
-                                                value={PhoneNumber}
+                                                value={information}
                                                 onChange={(e) => {
-                                                    setPhoneNumber(e.target.value);
+                                                    setInformation(e.target.value);
                                                     validate();
                                                 }}
-                                                placeholder="Enter your phone number" />
+                                                placeholder="Enter information" />
                                             <div className="text-danger">
-                                                {dirty["PhoneNumber"] && errors["PhoneNumber"][0] ?
-                                                    errors["PhoneNumber"][0] : ""}
+                                                {dirty["information"] && errors["information"][0] ?
+                                                    errors["information"][0] : ""}
                                             </div>
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
-                                            controlId="staffAddFullName">
-                                            <Form.Label>Full name</Form.Label>
+                                            controlId="speciesAddCharacteristic">
+                                            <Form.Label>Characteristic</Form.Label>
                                             <Form.Control
                                                 type="text"
-                                                value={FullName}
+                                                value={characteristic}
                                                 onChange={(e) => {
-                                                    setFullName(e.target.value);
+                                                    setCharacteristic(e.target.value);
                                                     validate();
                                                 }}
-                                                placeholder="Enter full name" />
+                                                placeholder="Enter its characteristic" />
                                             <div className="text-danger">
-                                                {dirty["FullName"] && errors["FullName"][0] ?
-                                                    errors["FullName"][0] : ""}
+                                                {dirty["characteristic"] && errors["characteristic"][0] ?
+                                                    errors["characteristic"][0] : ""}
                                             </div>
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
-                                            controlId="staffAddPassword">
-                                            <Form.Label>Password</Form.Label>
+                                            controlId="speciesAddAllocation">
+                                            <Form.Label>Allocation</Form.Label>
                                             <Form.Control
-                                                type="password"
-                                                value={Password}
+                                                type="text"
+                                                value={allocation}
                                                 onChange={(e) => {
-                                                    setPassword(e.target.value);
+                                                    setAllocation(e.target.value);
                                                     validate();
                                                 }}
-                                                placeholder="Enter password" />
+                                                placeholder="Enter its allocation" />
                                             <div className="text-danger">
-                                                {dirty["Password"] && errors["Password"][0] ?
-                                                    errors["Password"][0] : ""}
+                                                {dirty["allocation"] && errors["allocation"][0] ?
+                                                    errors["allocation"][0] : ""}
                                             </div>
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
-                                            controlId="addConfirmPassword">
-                                            <Form.Label>Confirm Password</Form.Label>
+                                            controlId="speciesAddEcological">
+                                            <Form.Label>Ecological</Form.Label>
                                             <Form.Control
-                                                type="password"
-                                                value={ConfirmPassword}
+                                                type="text"
+                                                value={ecological}
                                                 onChange={(e) => {
-                                                    setConfirmPassword(e.target.value);
+                                                    setEcological(e.target.value);
                                                     validate();
                                                 }}
-                                                placeholder="Enter confirm password" />
+                                                placeholder="Enter its ecological" />
                                             <div className="text-danger">
-                                                {dirty["ConfirmPassword"] && errors["ConfirmPassword"][0] ?
-                                                    errors["ConfirmPassword"][0] : ""}
+                                                {dirty["ecological"] && errors["ecological"][0] ?
+                                                    errors["ecological"][0] : ""}
                                             </div>
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
-                                            controlId="addDateofBirth">
-                                            <Form.Label>Date Of Birth</Form.Label>
+                                            controlId="speciesAddDiet">
+                                            <Form.Label>Diet</Form.Label>
                                             <Form.Control
-                                                type="date"
-                                                value={DateOfBirth}
+                                                type="text"
+                                                value={diet}
                                                 onChange={(e) => {
-                                                    setDateOfBirth(e.target.value);
+                                                    setDiet(e.target.value);
+                                                    validate();
                                                 }}
-                                                placeholder="Enter full name" />
+                                                placeholder="Enter its diet" />
+                                            <div className="text-danger">
+                                                {dirty["diet"] && errors["diet"][0] ?
+                                                    errors["diet"][0] : ""}
+                                            </div>
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
-                                            controlId="addGender">
-                                            <Form.Label>Gender</Form.Label>
-                                            <Form.Select
-                                                value={Gender}
+                                            controlId="speciesAddReproduction">
+                                            <Form.Label>Reproduction</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                value={reproduction}
                                                 onChange={(e) => {
-                                                    setGender(e.target.value);
+                                                    setReproduction(e.target.value);
+                                                    validate();
                                                 }}
-                                            >
-                                                <option >Choose gender</option>
-                                                <option value={"Male"}>Male</option>
-                                                <option value={"Female"}>Female</option>
-                                                <option value={"Other"}>Other</option>
-                                            </Form.Select>
+                                                placeholder="Enter its reproduction info" />
+                                            <div className="text-danger">
+                                                {dirty["reproduction"] && errors["reproduction"][0] ?
+                                                    errors["reproduction"][0] : ""}
+                                            </div>
                                         </Form.Group>
+                                        <Form.Group
+                                            className="mb-3"
+                                            controlId="speciesAddReproduction">
+                                            <Form.Label>Image</Form.Label>
+                                            <Form.Control
+                                                type="file"
+                                                value={image}
+                                                onChange={(e) => {
+                                                    setImage(e.target.value);
+                                                    validate();
+                                                }}
+                                                />
+                                        </Form.Group>
+
                                         <Row>
                                             <Col lg={6} md={6} sm={0}>
                                             </Col>
@@ -162,7 +314,7 @@ function AddSpecies() {
                 </Col>
             </Row>
         </Container>
-     )
+    )
 }
 
 export default AddSpecies;
