@@ -1,7 +1,6 @@
 import React from "react";
 import WebLogo from "../../assets/WebLogo.png"
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import {Card, ListGroup} from "react-bootstrap";
 import "./Hours.css"
 import Gate from "../../assets/gate.JPG"
 import HoursInformation from "./HoursInformation";

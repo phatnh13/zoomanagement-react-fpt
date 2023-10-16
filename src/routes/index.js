@@ -6,6 +6,9 @@ import {StaffLayout} from '../components/Layout/';
 import Home from '../components/Home/Home';
 import NoPage from '../components/NoPage';
 import Login from '../components/InputPages/Login';
+import Hours from '../components/Hours/Hours';
+import Map from '../components/Map/Map';
+import News from '../components/News/News';
 //Booking
 import BuyingTicket from '../components/Ticket/BuyingTicket';
 import ViewCart from "../components/Ticket/ViewCart";
@@ -34,6 +37,9 @@ const publicRoutes = [
     { path: '/billingaddress', component: BillingAddress},
     { path: '/paymentmethod', component: PaymentMethod},
     { path: '/summary', component: Summary},
+    { path: '/hours', component: Hours},
+    { path: '/map', component: Map},
+    { path: '/news', component: News},
     { path: '*', component: NoPage},
 ]
 const privateRoutes = [
