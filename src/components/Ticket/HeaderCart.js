@@ -1,29 +1,36 @@
 import React from "react";
-import TigerImg from "../../assets/whiteTiger.jpg";
+import TigerImg from "../../assets/SnowTiger.jpg";
 import WebLogo from "../../assets/WebLogo.png";
-import { Col, Container } from "react-bootstrap";
-import { FaFacebook, FaGoogle, FaYoutube, FaInstagram} from "react-icons/fa6";
+import { Col, Container, Row } from "react-bootstrap";
+import { FaFacebook, FaGoogle, FaYoutube, FaInstagram } from "react-icons/fa6";
 import Image from 'react-bootstrap/Image';
 import "./BuyingTicket.css"
 
 const HeaderCart = () => {
     return (
-        <Container>
-            <div className=".d-flex">
-                <div className="logo-box position-absolute mx-5">
-                    <div className="text-logo-top ms-auto">VietNam Zoo</div>
-                    <div className="text-logo-down ms-auto">Since 1864</div>
-                    <img className="mt-3 ms-3" alt="WebLogo" src={WebLogo} />
-                        <Col className="footer-social-icon text-right d-flex">
+        <div className="" style={{ height: '15rem', backgroundImage: `url(${TigerImg})` }}>
+            <div>
+                <div className="logo-box mx-5">
+                    <Row>
+                        <Col className="col-md-10 mt-5">
+                            <Row>
+                                <img className="col-md-1" style={{marginLeft: '3rem'}} src={WebLogo} />
+                                <Col>
+                                    <div className="text-logo-top">VietNam Zoo</div>
+                                    <div className="text-logo-down">Since 1864</div>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col className="text-right col-md-2 mt-5">
                             <FaFacebook className="footer-icon" />
                             <FaGoogle className="footer-icon" />
                             <FaInstagram className="footer-icon" />
                             <FaYoutube className="footer-icon" />
                         </Col>
+                    </Row>
                 </div>
-                <Image src={TigerImg} className="tiger-img"/>
             </div>
-        </Container>
+        </div>
     );
 };
 export default HeaderCart;

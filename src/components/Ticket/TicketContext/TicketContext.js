@@ -40,6 +40,12 @@ export function TicketProvider({ children }){
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
+    const [user, setUser] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+    })
     const value = {
         ticket1, setTicket1, decrease1,
         ticket2, setTicket2, decrease2,
@@ -49,7 +55,8 @@ export function TicketProvider({ children }){
         lastName, setLastName,
         firstName, setFirstName,
         email, setEmail,
-        phoneNumber, setPhoneNumber
+        phoneNumber, setPhoneNumber,
+        user, setUser
     }
     return (
         <TicketContext.Provider value={value}>

@@ -1,7 +1,7 @@
 
 import React, {useContext} from "react";
 import HeaderCart from "./HeaderCart";
-import { Row, Table, Col, Button } from "react-bootstrap";
+import { Row, Table, Col, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
 import TicketItemsTable from "./TicketItemsTable";
@@ -52,9 +52,8 @@ const Summary = () => {
     return (
         <>
             <HeaderCart />
-            <div className="zoo-information">
+            <Container className="zoo-information vh-100">
                 <h4 className="ms-5">SUMMARY</h4>
-            </div>
             <div className="ticket-table mx-auto">
                 <Row>
                 <Col>
@@ -88,7 +87,8 @@ const Summary = () => {
                 <div className="ticket-table-information">ITEMS</div>
                 <TicketItemsTable />
                 <NavigationButtons onBackClick={handleBackClick} onNextClick={handleNextClick} />
-            </div>
+                </div>
+            </Container>
 
         </>
     )

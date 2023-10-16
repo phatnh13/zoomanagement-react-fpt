@@ -8,17 +8,17 @@ import { TicketContext } from "./TicketContext/TicketContext";
 
 const BuyingTicket = () => {
     const context = useContext(TicketContext)
-    
+
     const NavigationButtons = ({ onOkClick, onAddClick }) => {
         return (
             <div className="button-direct">
-                <Button className="button-left" onClick={onOkClick} disabled={context.ticket1.count ===0 && context.ticket2.count ===0 && context.ticket3.count ===0}>
+                <Button className="button-left" onClick={onOkClick} disabled={context.ticket1.count === 0 && context.ticket2.count === 0 && context.ticket3.count === 0}>
                     Xac nhan
                 </Button>
-                
-                    <Button to className="button-right" onClick={onAddClick} disabled={context.ticket1.count ===0 && context.ticket2.count ===0 && context.ticket3.count ===0}>
-                        <Link className="link-underline-hover" style={{color: 'white', textDecoration: 'none'}} to='/viewcart'>Add to cart {' '}</Link>
-                    </Button>
+
+                <Button to className="button-right" onClick={onAddClick} disabled={context.ticket1.count === 0 && context.ticket2.count === 0 && context.ticket3.count === 0}>
+                    <Link className="link-underline-hover" style={{ color: 'white', textDecoration: 'none' }} to='/viewcart'>Add to cart {' '}</Link>
+                </Button>
             </div>
         );
     };
@@ -33,22 +33,23 @@ const BuyingTicket = () => {
         // Implement your logic for going next
         console.log('Add button clicked');
     };
-    
+
     return (
-        
+        <>
+            <HeaderCart />
             <Container className="min-vh-100">
                 {/* <HeaderCart /> */}
                 <div className="zoo-information">
-                    <h4 className="ms-5">Zoo Day Ticket</h4>
+                    <h4>Zoo Day Ticket</h4>
                     <Container className="box-alert">
-                        <Alert className="mx-auto" variant="success">
+                        <Alert variant="success">
                             <Alert.Heading><h3>TIP-CHEAPEST AND QUICKEST TICKET ONLY ONLINE!</h3></Alert.Heading>
                             <p>Online tickets cheaper than at ticket booths on site</p>
                             <p>Skip the queue with online tickets and go straight to ticket checkers</p>
                             <p>Easy online booking without user account</p>
                         </Alert>
                     </Container>
-                    <Container className="ticket-table mx-auto">
+                    <Container className="ticket-table">
 
                         <Table className="table" bordered variant="none">
                             <thead>
@@ -124,7 +125,7 @@ const BuyingTicket = () => {
 
                 </div>
             </Container>
-        
+        </>
     );
 };
 

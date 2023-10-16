@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import HeaderCart from "./HeaderCart";
-import { Button, Col, Row, Form } from 'react-bootstrap';
+import { Button, Col, Row, Form, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
 const BillingAddress = () => {
@@ -20,7 +20,7 @@ const BillingAddress = () => {
                         BACK
                     </Button>
                 </Link>
-                <Link to='/paymentmethod'>
+                <Link to='/summary'>
                     <Button type="submit" className="button-right" onClick={onNextClick}>
                         CONTINUE {' '}
                         <svg
@@ -49,9 +49,10 @@ const BillingAddress = () => {
 
 
     return (
-        <>
-            <div className="vh-100">
+        <>      
             <HeaderCart />
+            <Container className="vh-100">
+            
             <div className="zoo-information">
                 <h4 className="ms-5">BILLING ADDRESS</h4>
             </div>
@@ -109,9 +110,8 @@ const BillingAddress = () => {
                     </Row>
                     <NavigationButtons onBackClick={handleBackClick} onNextClick={handleNextClick} />
                 </Form>
-
             </div>
-            </div>
+            </Container>
         </>
 
     );

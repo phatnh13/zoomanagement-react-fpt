@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HeaderCart from "./HeaderCart";
 import "./BuyingTicket.css"
-import { Button, Alert } from "react-bootstrap";
+import { Button, Alert, Container } from "react-bootstrap";
 import TicketItemsTable from "./TicketItemsTable";
 
 const ViewCart = () => {
@@ -51,20 +51,20 @@ const ViewCart = () => {
     return (
         <>
             <HeaderCart />
-            <div className="zoo-information">
+            <Container className="zoo-information">
                 <h4 className="ms-5">View Cart</h4>
                 <div className="box-alert">
-                    <Alert className="mx-auto" style={{width: '90rem'}} variant="success">
+                    <Alert className="mx-auto" variant="success">
                         <Alert.Heading><h3>Day ticket Zoo - Adult has been added to the cart!</h3></Alert.Heading>
                     </Alert>
                 </div>
-            </div>
-            <div className="ticket-table  mx-auto">
+            </Container>
+            <Container className="ticket-table  mx-auto">
                 <div className="ticket-table-information">ITEMS</div>
                 <TicketItemsTable />
 
                 <NavigationButtons onBackClick={handleBackClick} onNextClick={handleNextClick} />
-            </div>         
+            </Container>         
         </>
     );
 };

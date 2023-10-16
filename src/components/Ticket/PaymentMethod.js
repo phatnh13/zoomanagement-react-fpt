@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderCart from "./HeaderCart";
-import { Row, Col, Form } from "react-bootstrap";
+import { Row, Col, Form, Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 
@@ -51,10 +51,10 @@ const PaymentMethod = () => {
     return (
         <>
             <HeaderCart />
-            <div className="zoo-information">
+            <Container className="zoo-information">
                 <h4 className="ms-5">METHOD OF PAYMENT</h4>
-            </div>
-            <div className="ticket-table  mx-auto">
+            </Container>
+            <Container className="ticket-table  mx-auto">
                 <div className="ticket-table-information">CHOOSE YOUR PAYMENT</div>
                 <div class="form-check">
                     <Form>
@@ -74,7 +74,7 @@ const PaymentMethod = () => {
                     </label>
                 </div>
                 <NavigationButtons onBackClick={handleBackClick} onNextClick={handleNextClick} />
-            </div>
+            </Container>
         </>
     )
 

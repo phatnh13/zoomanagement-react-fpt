@@ -32,7 +32,7 @@ const publicRoutes = [
     { path: '/viewcart', component: ViewCart},
     { path: '/billingaddress', component: BillingAddress},
     { path: '/paymentmethod', component: PaymentMethod},
-    { path: '/sumary', component: Summary},
+    { path: '/summary', component: Summary},
     { path: '*', component: NoPage},
 ]
 const privateRoutes = [
