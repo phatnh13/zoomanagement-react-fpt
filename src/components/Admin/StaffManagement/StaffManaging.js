@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button, Row, Col, Form, Pagination } from "react-bootstrap";
+import { Container, Button, Row, Col, Form, Pagination, Modal } from "react-bootstrap";
 import StaffTable from "./StaffTable";
 const StaffManaging = () => {
 
@@ -9,6 +9,7 @@ const StaffManaging = () => {
     var [currentPage, setCurrentPage] = useState(1);
     var [searchBy, setSearchBy] = useState("FullName");
 
+    //#region Pagination
     let PaginationLoad = () => {
         let items = [];
         for (let page = 1; page <= totalPages; page++) {
@@ -20,12 +21,16 @@ const StaffManaging = () => {
     const onPaginationClick = (e) => {
         setCurrentPage(e.target.text);
     }
+    //#endregion
+    
 
     useEffect(() => {
+        
         fetch(`https://localhost:7193/api/Staff?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
             method: "GET",
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())
@@ -35,24 +40,25 @@ const StaffManaging = () => {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    },[currentPage, searchBy, searchString]);
+    }, [currentPage, searchBy, searchString]);
 
-    useEffect(() => {
-        fetch("https://localhost:7193/api/Staff?searchBy=FullName", {
-            method: "GET",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            },
-        })
-            .then((res) => res.json())
-            .then(data => {
-                setUsers(data.pagingList);
-                setTotalPages(data.totalPages);
-            }).catch(rejected => {
-                console.log(rejected);
-            });
-    }, []);
-    
+    // useEffect(() => {
+    //     fetch("https://localhost:7193/api/Staff?searchBy=FullName", {
+    //         method: "GET",
+    //         headers: {
+    //             "Content-type": "application/json; charset=UTF-8",
+    //             "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+    //         },
+    //     })
+    //         .then((res) => res.json())
+    //         .then(data => {
+    //             setUsers(data.pagingList);
+    //             setTotalPages(data.totalPages);
+    //         }).catch(rejected => {
+    //             console.log(rejected);
+    //         });
+    // }, []);
+
     return (
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center my-3 pb-1 border-bottom">
@@ -60,9 +66,9 @@ const StaffManaging = () => {
                 {/*Search filter */}
                 <Col lg={3} md={3} xs={12}>
                     <Form.Group className="mb-3" controlId="search">
-                        <Form.Select 
+                        <Form.Select
                             value={searchBy}
-                            onChange={(e) => { 
+                            onChange={(e) => {
                                 setSearchBy(e.target.value)
                             }}
                         >
@@ -79,7 +85,7 @@ const StaffManaging = () => {
                             type="text"
                             placeholder="Search"
                             value={searchString}
-                            onChange={(e) => { 
+                            onChange={(e) => {
                                 setCurrentPage(1);
                                 setsearchString(e.target.value)
                                 console.log(searchString);
@@ -90,11 +96,6 @@ const StaffManaging = () => {
                         </Form.Control>
                     </Form.Group>
                 </Col>
-                {/* <Col lg={1} md={1} xs={1}>
-                    <div className="pb-1">
-                        <Button variant="outline-primary" onClick={searchStaff}>Search</Button>
-                    </div>
-                </Col> */}
                 {/*Search bar */}
                 {/*End search*/}
                 {/*Start add button*/}
@@ -113,8 +114,9 @@ const StaffManaging = () => {
                     </Pagination>
                 </Col>
             </Row>
-        </Container>
 
+            
+        </Container>
     )
 }
 

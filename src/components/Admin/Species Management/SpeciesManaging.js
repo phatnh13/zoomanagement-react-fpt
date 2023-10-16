@@ -1,33 +1,61 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import React, { useState,useEffect } from 'react';
+import { Container, Row, Col, Form, Button,Pagination } from 'react-bootstrap';
 import SpeciesTable from './SpeciesTable';
 
 function SpeciesManaging() {
-    const [species, setSpecies] = useState(
-        [
-            {
-                id: 1, name: "dog",
-                description: "this is a dog"
+    const [species, setSpecies] = useState([]); 
+    var [searchString, setsearchString] = useState("");
+    var [totalPages, setTotalPages] = useState(0);
+    var [currentPage, setCurrentPage] = useState(1);
+    var [searchBy, setSearchBy] = useState("FullName");
+
+    //#region Pagination
+    let PaginationLoad = () => {
+        let items = [];
+        for (let page = 1; page <= totalPages; page++) {
+            items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+        }
+        return items;
+    }
+
+    const onPaginationClick = (e) => {
+        setCurrentPage(e.target.text);
+    }
+    //#endregion
+
+    useEffect(() => {
+        fetch(`https://localhost:7193/api/Staff?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "bearer " + localStorage.getItem("token")
             },
-            {
-                id: 2, name: "cat",
-                description: "this is a cat"
+        })
+            .then((res) => res.json())
+            .then(data => {
+                setSpecies(data.pagingList);
+                setTotalPages(data.totalPages);
+            }).catch(rejected => {
+                console.log(rejected);
+            });
+    }, [currentPage, searchBy, searchString]);
+
+    useEffect(() => {
+        fetch("https://localhost:7193/api/Staff?searchBy=FullName", {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "bearer " + localStorage.getItem("token")
             },
-            {
-                id: 3, name: "bird",
-                description: "this is a bird"
-            },
-            {
-                id: 4, name: "fish",
-                description: "this is a fish"
-            },
-            {
-                id: 5, name: "mouse",
-                description: "this is a mouse"
-            },
-        ]
-    );
-    var [search, setSearch] = useState("");
+        })
+            .then((res) => res.json())
+            .then(data => {
+                setSpecies(data.pagingList);
+                setTotalPages(data.totalPages);
+            }).catch(rejected => {
+                console.log(rejected);
+            });
+    }, []);
     return (
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
@@ -47,8 +75,8 @@ function SpeciesManaging() {
                         <Form.Control
                             type="text"
                             placeholder="Search"
-                            value={search}
-                            onChange={(e) => { setSearch(e.target.value) }}>
+                            value={searchString}
+                            onChange={(e) => { setsearchString(e.target.value) }}>
                         </Form.Control>
                     </Form.Group>
                 </Col>
@@ -67,6 +95,9 @@ function SpeciesManaging() {
                     {/*Start Table*/}
                     <SpeciesTable speciesList={species} />
                     {/*Start Table*/}
+                    <Pagination size="md" className="d-flex justify-content-center">
+                        {PaginationLoad()}
+                    </Pagination>
                 </Col>
             </Row>
         </Container>
