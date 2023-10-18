@@ -1,5 +1,5 @@
 
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import HeaderCart from "./HeaderCart";
 import { Row, Table, Col, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -51,45 +51,46 @@ const Summary = () => {
     };
     return (
         <>
-            <HeaderCart />
-            <Container className="zoo-information vh-100">
-                <h4 className="ms-5">SUMMARY</h4>
-            <div className="ticket-table mx-auto">
-                <Row>
-                <Col>
-                        <div className="ticket-table-information">Billing Address</div>
-                        <Table striped bordered hover size="sm">
-                            <tbody style={{ textAlign: 'left' }}>
-                                <p>Name: {context.firstName}{' '}{context.lastName}</p>
-                                <p>Phone Number: {context.phoneNumber}</p>
-                            </tbody>
-                        </Table>
-                    </Col>
-                    <Col>
-                        <div className="ticket-table-information">Shipping Method</div>
-                        <Table striped bordered hover size="sm">
-                            <tbody style={{ textAlign: 'left' }}>
-                                <p>Shipping type:</p>
-                                <p></p>
-                            </tbody>
-                        </Table>
-                    </Col>
-                    <Col>
-                        <div className="ticket-table-information">Payment Method</div>
-                        <Table striped bordered hover size="sm">
-                            <tbody style={{ textAlign: 'left' }}>
-                                <p>Payment Method:</p>
-                                <p></p>
-                            </tbody>
-                        </Table>
-                    </Col>
-                </Row>
-                <div className="ticket-table-information">ITEMS</div>
-                <TicketItemsTable />
-                <NavigationButtons onBackClick={handleBackClick} onNextClick={handleNextClick} />
-                </div>
-            </Container>
-
+            <div className="vh-100">
+                <HeaderCart />
+                <Container className="zoo-information">
+                    <h4 className="ms-5">SUMMARY</h4>
+                    <div className="ticket-table mx-auto">
+                        <Row>
+                            <Col>
+                                <div className="ticket-table-information">Billing Address</div>
+                                <Table striped bordered hover size="sm">
+                                    <tbody style={{ textAlign: 'left' }}>
+                                        <p>Name: {context.firstName}{' '}{context.lastName}</p>
+                                        <p>Phone Number: {context.phoneNumber}</p>
+                                    </tbody>
+                                </Table>
+                            </Col>
+                            <Col>
+                                <div className="ticket-table-information">Shipping Method</div>
+                                <Table striped bordered hover size="sm">
+                                    <tbody style={{ textAlign: 'left' }}>
+                                        <p>Shipping type:</p>
+                                        <p></p>
+                                    </tbody>
+                                </Table>
+                            </Col>
+                            <Col>
+                                <div className="ticket-table-information">Payment Method</div>
+                                <Table striped bordered hover size="sm">
+                                    <tbody style={{ textAlign: 'left' }}>
+                                        <p>Payment Method:</p>
+                                        <p></p>
+                                    </tbody>
+                                </Table>
+                            </Col>
+                        </Row>
+                        <div className="ticket-table-information">ITEMS</div>
+                        <TicketItemsTable />
+                        <NavigationButtons onBackClick={handleBackClick} onNextClick={handleNextClick} />
+                    </div>
+                </Container>
+            </div>
         </>
     )
 }

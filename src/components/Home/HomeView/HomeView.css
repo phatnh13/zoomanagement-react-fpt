@@ -1,0 +1,82 @@
+.home-page__view{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.video-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+}
+.home-view__top{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: right;
+    color: white;
+    margin-top: 8rem;
+}
+.btn-news__homeview{
+    background-color: #3C5724;
+    font-size: 3rem;
+    border-top-left-radius: 15%;
+    border-bottom-left-radius: 15%;
+    border-right: 0%;
+
+}
+.btn-ticket__homeview{
+    background-color: #F07300;
+    font-size: 3rem;
+}
+.home-view__center{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.btn-ticket__menu{
+    background-color:  #F5F0D7;
+    color: black;
+    margin-right: 4rem;
+}
+.home-view__bottom{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    background-color: #F9F7EA;
+    margin-top: 35%;
+    margin-left: 8rem;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+}
+h1{
+    font-size: 1rem;
+}
+h2{
+    font-size: 2rem;
+}
+.home-view-bottom__btn{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 5px;
+}
+.home-view-bottom__btn-bottom{
+    color: black;
+    background-color: #F0E9C4;
+    font-size: 1.5rem;
+}

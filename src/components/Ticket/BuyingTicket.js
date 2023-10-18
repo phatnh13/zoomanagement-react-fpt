@@ -110,7 +110,7 @@ const BuyingTicket = () => {
 
                         </Table>
                         <NavigationButtons onOkClick={handleOkClick} onAddClick={handleAddClick} />
-                        <div className="note fs-3">
+                        <div className="fs-4">
                             <p style={{ fontFamily: 'Just Another Hand' }}>Please note!</p>
 
                             <p>After purchase you will receive your tickets by e-mail (can be presented digitally). The tickets are only valid on the selected date. Booked tickets are excluded from cancellation and/or exchange.</p>
