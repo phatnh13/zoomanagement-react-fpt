@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Modal, Table, } from "react-bootstrap";
+import { Container, Table, } from "react-bootstrap";
 import StaffTableContent from "./StaffTableContent";
-const StaffTable = ({ userList,totalPages }) => {
+const StaffTable = ({ userList }) => {
     
     return (
         <Container>

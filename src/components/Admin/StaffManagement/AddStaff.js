@@ -99,6 +99,9 @@ function AddStaff() {
             await fetch("https://localhost:7193/api/User",
                 {
                     method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
                     body: JSON.stringify({
                         userName: UserName,
                         email: Email,
@@ -109,10 +112,7 @@ function AddStaff() {
                         dateOfBirth: DateOfBirth,
                         gender: Gender,
                         roleId: "2",
-                    }),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
+                    })
                 }).then((res) => {
                     if (res.ok) {
                         console.log("Add successfully");

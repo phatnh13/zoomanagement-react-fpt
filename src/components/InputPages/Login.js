@@ -53,7 +53,7 @@ const Login = () => {
 
         //Send response to server if valid
         if (isValid()) {
-            let response = await fetch("https://localhost:7193/api/User/login",
+            await fetch("https://vietnamzoo.azurewebsites.net/api/User/login",
                 {
                     method: "POST",
                     body: JSON.stringify({

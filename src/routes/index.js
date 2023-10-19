@@ -24,6 +24,7 @@ import SpeciesManaging from '../components/Admin/Species Management/SpeciesManag
 import AddSpecies from '../components/Admin/Species Management/AddSpecies';
 //Staff managing
 import ZooTrainerManaging from '../components/Staff/ZooTrainerManagement/ZooTrainerManaging';
+import AddTrainer from '../components/Staff/ZooTrainerManagement/AddTrainer';
 import CageManaging from '../components/Staff/CageManagement/CageManaging';
 
 //1
@@ -43,12 +44,15 @@ const publicRoutes = [
     { path: '*', component: NoPage},
 ]
 const privateRoutes = [
+    //Admin
     { path: '/admin/staff', component: StaffManaging, layout: AdminLayout},
-    { path: '/admin/staff/update', component: UpdateStaff, layout: AdminLayout},
+    { path: '/admin/staff/update/', component: UpdateStaff, layout: AdminLayout},
     { path: '/admin/staff/add', component: AddStaff, layout: AdminLayout},
     { path: '/admin/species', component: SpeciesManaging, layout: AdminLayout},
     { path: '/admin/species/add', component: AddSpecies, layout: AdminLayout},
+    //Staff
     { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
+    { path: '/staff/trainer/add', component: AddTrainer, layout: StaffLayout},
     { path: '/staff/cage', component: CageManaging, layout: StaffLayout},
 ]
 
