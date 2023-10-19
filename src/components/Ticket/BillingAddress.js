@@ -50,9 +50,9 @@ const BillingAddress = () => {
 
     return (
         <>      
+            <div className="vh-100">
             <HeaderCart />
-            <Container className="vh-100">
-            
+            <Container>           
             <div className="zoo-information">
                 <h4 className="ms-5">BILLING ADDRESS</h4>
             </div>
@@ -112,6 +112,7 @@ const BillingAddress = () => {
                 </Form>
             </div>
             </Container>
+            </div>
         </>
 
     );

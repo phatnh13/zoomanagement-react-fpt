@@ -1,5 +1,6 @@
-.logo-box{
+.logo-box__ticket{
     font-family: "Just Another Hand";
+    width: 100%;
 }
 .tiger-img{
     object-fit: cover;
@@ -10,7 +11,7 @@
 .text-logo-top {
     left: 2.5em;
     color: white;
-    font-size:  3em;
+    font-size:  2em;
     line-height: normal;
     top: 0.5em;
 }
@@ -31,24 +32,24 @@
 }
 h4 {
     color: #3C5724;
-    font-size: 5em;
+    font-size: 3rem;
     font-weight: 400;
     line-height: normal;
     text-align: left;
 }
 .box-alert p{
     color: #3C5724;
-    font-size: 2em;
+    font-size: 1em;
     text-align: left;
     margin-left: 2em;
 }
 .box-alert .h4{
     color: #3C5724;
     text-align: left;
-    margin-left: 1em;
+    margin-left: 1rem;
 }
 .ticket-table{
-    font-size: 2rem;
+    font-size: 1rem;
     line-height: normal;
     text-align: left;
 }
@@ -56,7 +57,7 @@ h4 {
     background-color: #3C5724;
     color: white;
     text-align: left;
-    font-size: 2rem;
+    font-size: 1rem;
 }
 .text-align{
     text-align: left;
@@ -67,7 +68,7 @@ h4 {
     line-height: normal;
 }
 .cart-table{
-    line-height: 2rem;
+    line-height: 1rem;
 }
 .button-direct{
    text-align: right;

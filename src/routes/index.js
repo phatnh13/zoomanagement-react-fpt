@@ -1,6 +1,7 @@
 //layout
 import {AdminLayout} from '../components/Layout/';
 import {StaffLayout} from '../components/Layout/';
+import { TicketLayout } from '../components/Layout/';
 
 //Customer
 import Home from '../components/Home/Home';
@@ -33,11 +34,6 @@ import CageManaging from '../components/Staff/CageManagement/CageManaging';
 const publicRoutes = [
     { path: '/', component: Home},
     { path: '/login', component: Login},
-    { path: '/buyingticket', component: BuyingTicket},
-    { path: '/viewcart', component: ViewCart},
-    { path: '/billingaddress', component: BillingAddress},
-    { path: '/paymentmethod', component: PaymentMethod},
-    { path: '/summary', component: Summary},
     { path: '/hours', component: Hours},
     { path: '/map', component: Map},
     { path: '/news', component: News},
@@ -54,6 +50,11 @@ const privateRoutes = [
     { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
     { path: '/staff/trainer/add', component: AddTrainer, layout: StaffLayout},
     { path: '/staff/cage', component: CageManaging, layout: StaffLayout},
+    { path: '/buyingticket', component: BuyingTicket, layout: TicketLayout},
+    { path: '/viewcart', component: ViewCart, layout: TicketLayout},
+    { path: '/billingaddress', component: BillingAddress, layout: TicketLayout},
+    { path: '/paymentmethod', component: PaymentMethod, layout: TicketLayout},
+    { path: '/summary', component: Summary, layout: TicketLayout},
 ]
 
 export { publicRoutes, privateRoutes }
