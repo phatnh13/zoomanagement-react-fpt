@@ -1,0 +1,32 @@
+@media (min-width: 1080px)
+{
+.page-header__navigation {
+    position: absolute;
+}
+.navigation__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.navigation__wrapper {
+    padding: 70px 0;
+    max-height: calc(100vh - 70px);
+    overflow: auto;
+}
+}
+.navigation__wrapper {
+    position: relative;
+    background-color: #f5f0d7;
+    padding: 10px 0;
+}
+.navigation__content-wrapper {
+    max-width: 1243px;
+    width: 100%;
+    margin: 0 auto;
+}
+ol[class], ul[class] {
+    list-style-type: none;
+}
+.navigation__list {
+    display: flex;
+    flex-direction: column;
+}

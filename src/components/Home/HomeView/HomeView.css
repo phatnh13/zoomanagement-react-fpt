@@ -24,7 +24,7 @@ video{
     display: flex;
     justify-content: right;
     color: white;
-    margin-top: 8rem;
+    margin-top: 6rem;
     z-index: 3;
 }
 .btn-news__homeview{
@@ -52,6 +52,10 @@ video{
     background-color:  #F5F0D7;
     color: black;
     margin-right: 4rem;
+    height: 100%;
+}
+.btn-ticket__menu::after {
+    display:none;
 }
 .home-view__bottom{
     position: absolute;
