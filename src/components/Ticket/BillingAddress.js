@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import HeaderCart from "./HeaderCart";
 import { Button, Col, Row, Form, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
+
 const BillingAddress = () => {
     const NavigationButtons = ({ onBackClick, onNextClick }) => {
         return (
@@ -51,10 +51,9 @@ const BillingAddress = () => {
     return (
         <>      
             <div className="vh-100">
-            <HeaderCart />
             <Container>           
             <div className="zoo-information">
-                <h4 className="ms-5">BILLING ADDRESS</h4>
+                <h4>BILLING ADDRESS</h4>
             </div>
             <div className="ticket-table  mx-auto">
                 <div className="ticket-table-information">Billing Address</div>

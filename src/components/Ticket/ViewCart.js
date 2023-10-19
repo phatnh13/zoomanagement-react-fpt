@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import HeaderCart from "./HeaderCart";
 import "./BuyingTicket.css"
 import { Button, Alert, Container } from "react-bootstrap";
 import TicketItemsTable from "./TicketItemsTable";
@@ -51,7 +50,6 @@ const ViewCart = () => {
     return (
         <>
             <div className="vh-100">
-                <HeaderCart />
                 <Container className="zoo-information">
                     <h4>View Cart</h4>
                     <div className="box-alert">

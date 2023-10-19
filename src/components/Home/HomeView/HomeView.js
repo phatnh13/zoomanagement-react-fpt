@@ -1,6 +1,6 @@
 import React from "react";
 import TigerVideoHome from "../../../assets/Tiger-Video-Home.mp4"
-import { Row, Button, Col, Image } from "react-bootstrap";
+import { Row, Button, Col, Image, Dropdown, DropdownButton, ButtonGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./HomeView.css"
 import MapLogo from "../../../assets/MapLogo.png"
@@ -34,11 +34,14 @@ const HomeView = () => {
                     </Link>
 
 
-                    <Button className="btn-ticket__menu">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="47" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                        </svg>
-                    </Button>
+                    <DropdownButton className="btn-ticket__menu" as={ButtonGroup}>
+                        <Dropdown.Item eventKey="1">
+                            <Link to='/login'>
+                            Login
+                            </Link>
+                            </Dropdown.Item>
+                        <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+                    </DropdownButton>
                 </div>
                 <div className="home-view__center">
                     <div style={{ marginLeft: '5rem' }}>
@@ -71,7 +74,7 @@ const HomeView = () => {
                         <Col className="col-md-5">
                             <h1>MAP</h1>
                             <div className="home-view-bottom__logo">
-                            <Image src={MapLogo} />
+                                <Image src={MapLogo} />
                             </div>
                             <div className="home-view-bottom__btn">
                                 <Button className="home-view-bottom__btn-bottom">

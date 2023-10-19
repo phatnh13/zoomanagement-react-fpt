@@ -46,10 +46,14 @@ const privateRoutes = [
     { path: '/admin/staff/add', component: AddStaff, layout: AdminLayout},
     { path: '/admin/species', component: SpeciesManaging, layout: AdminLayout},
     { path: '/admin/species/add', component: AddSpecies, layout: AdminLayout},
+
     //Staff
     { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
     { path: '/staff/trainer/add', component: AddTrainer, layout: StaffLayout},
     { path: '/staff/cage', component: CageManaging, layout: StaffLayout},
+
+    //Customer
+    //--Ticket--
     { path: '/buyingticket', component: BuyingTicket, layout: TicketLayout},
     { path: '/viewcart', component: ViewCart, layout: TicketLayout},
     { path: '/billingaddress', component: BillingAddress, layout: TicketLayout},

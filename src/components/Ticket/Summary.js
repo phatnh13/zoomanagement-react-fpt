@@ -1,6 +1,5 @@
 
 import React, { useContext } from "react";
-import HeaderCart from "./HeaderCart";
 import { Row, Table, Col, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
@@ -23,7 +22,7 @@ const Summary = () => {
                         {' '}BACK
                     </Button>
                 </Link>
-                <Link to='/paymentmethod'>
+                <Link to='/'>
                     <Button className="next-button" style={{ backgroundColor: 'green', fontSize: '30px' }} onClick={onNextClick}>
                         BUY {' '}
                         <svg
@@ -52,9 +51,8 @@ const Summary = () => {
     return (
         <>
             <div className="vh-100">
-                <HeaderCart />
                 <Container className="zoo-information">
-                    <h4 className="ms-5">SUMMARY</h4>
+                    <h4>SUMMARY</h4>
                     <div className="ticket-table mx-auto">
                         <Row>
                             <Col>
