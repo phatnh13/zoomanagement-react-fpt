@@ -32,14 +32,12 @@ const HomeView = () => {
                             Ticket
                         </Button>
                     </Link>
-
-
                     <DropdownButton className="btn-ticket__menu" as={ButtonGroup}>
                         <Dropdown.Item eventKey="1">
                             <Link to='/login'>
-                            Login
+                                Login
                             </Link>
-                            </Dropdown.Item>
+                        </Dropdown.Item>
                         <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
                     </DropdownButton>
                 </div>
@@ -61,9 +59,11 @@ const HomeView = () => {
                             <h2> 9:00 - 18:30</h2>
                             <p>Last admission: 17:00</p>
                             <div className="home-view-bottom__btn">
-                                <Button className="home-view-bottom__btn-bottom">
-                                    All Opening hours
-                                </Button>
+                                <Link to="/hours">
+                                    <Button className="home-view-bottom__btn-bottom">
+                                        All Opening hours
+                                    </Button>
+                                </Link>
                             </div>
                         </Col>
                         <Col className="col-md-2 text-center">
@@ -77,15 +77,16 @@ const HomeView = () => {
                                 <Image src={MapLogo} />
                             </div>
                             <div className="home-view-bottom__btn">
-                                <Button className="home-view-bottom__btn-bottom">
-                                    View Map
-                                </Button>
+                                <Link to="/map">
+                                    <Button className="home-view-bottom__btn-bottom">
+                                        View Map
+                                    </Button>
+                                </Link>
                             </div>
                         </Col>
                     </Row>
                 </div>
             </div>
-
         </>
     )
 
