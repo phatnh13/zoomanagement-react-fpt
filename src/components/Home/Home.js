@@ -5,7 +5,9 @@ import HomeView from "./HomeView/HomeView";
 const Home = () => {
     return (
         <>
+        <div className="vh-100">
             <HomeView />
+            </div>
             <Welcome />
         </>
     );
