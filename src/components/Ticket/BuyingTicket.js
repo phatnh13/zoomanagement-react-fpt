@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Button, FormLabel, Table, Alert, Container } from "react-bootstrap";
 import { FaCalendarDay } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import HeaderCart from "./HeaderCart";
 import "./BuyingTicket.css"
 import { TicketContext } from "./TicketContext/TicketContext";
 
@@ -36,7 +35,6 @@ const BuyingTicket = () => {
 
     return (
         <>
-            <HeaderCart />
             <Container className="min-vh-100">
                 {/* <HeaderCart /> */}
                 <div className="zoo-information">
@@ -77,7 +75,7 @@ const BuyingTicket = () => {
                                 </tr>
                                 <tr>
                                     <th className="text-align">Day Ticket Zoo - Children<p>aged under 18</p></th>
-                                    <th class="align-self-center" colSpan={2}>
+                                    <th colSpan={2}>
 
                                         <Button variant="outline-dark" onClick={context.decrease2}>-</Button> {' '}
                                         <FormLabel type='text'>{' '}{context.ticket2.count}{' '}</FormLabel>{' '}
@@ -88,7 +86,7 @@ const BuyingTicket = () => {
                                 </tr>
                                 <tr>
                                     <th className="text-align">Day Ticket Zoo - Children<p>lower than 1m3</p></th>
-                                    <th class="align-self-center" colSpan={2}>
+                                    <th colSpan={2}>
 
                                         <Button variant="outline-dark" onClick={context.decrease3}>-</Button> {' '}
                                         <FormLabel type='text'>{' '}{context.ticket3.count}{' '}</FormLabel>{' '}
@@ -110,8 +108,8 @@ const BuyingTicket = () => {
 
                         </Table>
                         <NavigationButtons onOkClick={handleOkClick} onAddClick={handleAddClick} />
-                        <div className="fs-4">
-                            <p style={{ fontFamily: 'Just Another Hand' }}>Please note!</p>
+                        <div className="fs-5">
+                            <p style={{ fontFamily: 'Just Another Hand', fontSize: '3rem' }}>Please note!</p>
 
                             <p>After purchase you will receive your tickets by e-mail (can be presented digitally). The tickets are only valid on the selected date. Booked tickets are excluded from cancellation and/or exchange.</p>
 

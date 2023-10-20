@@ -1,57 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { Container, Button, Row, Col, Form, Card } from "react-bootstrap";
-function UpdateStaff() {
-    const location = useLocation();
-    const [user, setUser] = useState({});
 
-    function formatDate(dateString) {
-        const originalDate = new Date(dateString);
-        const year = originalDate.getFullYear();
-        const month = String(originalDate.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-        const day = String(originalDate.getDate()).padStart(2, '0');
-      
-        return `${year}-${month}-${day}`;
-      }
-
-    useEffect(() => {
-        fetch(`https://localhost:7193/api/Staff/${location.state.id}`,
-            {
-                method: "GET",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
-                },
-            }
-        )
-            .then((res) => res.json())
-            .then(data => {
-                setUser(data);
-            }).catch(rejected => {
-                console.log(rejected);
-            });
-    },[location.state.id]);
-    
-
-    const [UserName, setUserName] = useState('');
-    const [Email, setEmail] = useState('');
-    const [PhoneNumber, setPhoneNumber] = useState('');
-    const [FullName, setFullName] = useState('');
-    const [DateOfBirth, setDateOfBirth] = useState('');
-    const [Gender, setGender] = useState('');
-
-    useEffect(() => {
-        setUserName(user.userName || '');
-        setEmail(user.email || '');
-        setPhoneNumber(user.phoneNumber || '');
-        setFullName(user.fullName || '');
-        setDateOfBirth(formatDate(user.dateOfBirth) || '');
-        setGender(user.gender || '');
-    }, [user]);
+function AddTrainer() {
+    const [UserName, setUserName] = useState("");
+    const [Email, setEmail] = useState("");
+    const [PhoneNumber, setPhoneNumber] = useState("");
+    const [FullName, setFullName] = useState("");
+    const [Password, setPassword] = useState("");
+    const [ConfirmPassword, setConfirmPassword] = useState("");
+    const [DateOfBirth, setDateOfBirth] = useState("");
+    const [Gender, setGender] = useState("");
 
     let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
-        UserName: false,
+        userName: false,
         Email: false,
         PhoneNumber: false,
         FullName: false,
@@ -60,7 +22,7 @@ function UpdateStaff() {
     });
     let [errors, setErrors] = useState(
         {
-            UserName: [],
+            userName: [],
             Email: [],
             PhoneNumber: [],
             FullName: [],
@@ -71,7 +33,7 @@ function UpdateStaff() {
     let validate = () => {
         let errorsData = {};
         //userName
-        errorsData.UserName = [];
+        errorsData.userName = [];
         if (UserName === "") {
             errorsData.userName.push("Username is required");
         }
@@ -98,6 +60,16 @@ function UpdateStaff() {
         if (FullName === "") {
             errorsData.FullName.push("FullName is required");
         }
+        //password
+        errorsData.Password = [];
+        if (Password === "") {
+            errorsData.Password.push("Password is required");
+        }
+        //ConfirmPassword
+        errorsData.ConfirmPassword = [];
+        if (ConfirmPassword === "") {
+            errorsData.ConfirmPassword.push("Confirm Password is required");
+        }
         setErrors(errorsData);
     }
     //Check valid before submit
@@ -110,8 +82,8 @@ function UpdateStaff() {
         }
         return valid;
     }
-    // Update Click event
-    let onUpdateClick = async () => {
+    // Login Click event
+    let onAddClick = async () => {
         // Set all input dirty=true
         let dirtyData = dirty;
         Object.keys(dirty).forEach((control) => {
@@ -126,19 +98,22 @@ function UpdateStaff() {
         if (isValid()) {
             await fetch("https://localhost:7193/api/User",
                 {
-                    method: "PUT",
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                    },
                     body: JSON.stringify({
                         userName: UserName,
-                        fullName: FullName,
                         email: Email,
-                        gender: Gender,
                         phoneNumber: PhoneNumber,
+                        fullName: FullName,
+                        password: Password,
+                        confirmPassword: ConfirmPassword,
                         dateOfBirth: DateOfBirth,
-                        
-                    }),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
+                        gender: Gender,
+                        roleId: "3",
+                    })
                 }).then((res) => {
                     if (res.ok) {
                         console.log("Add successfully");
@@ -153,7 +128,8 @@ function UpdateStaff() {
                 });
         }
     }
-    // useEffect(validate, [UserName, Email, PhoneNumber, FullName]);
+
+    useEffect(validate, [UserName, Email, PhoneNumber, FullName, Password, ConfirmPassword]);
     return (
         <Container fluid>
             <Row className="py-5 d-flex justify-content-center align-items-center">
@@ -233,6 +209,40 @@ function UpdateStaff() {
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
+                                            controlId="staffAddPassword">
+                                            <Form.Label>Password</Form.Label>
+                                            <Form.Control
+                                                type="password"
+                                                value={Password}
+                                                onChange={(e) => {
+                                                    setPassword(e.target.value);
+                                                    validate();
+                                                }}
+                                                placeholder="Enter password" />
+                                            <div className="text-danger">
+                                                {dirty["Password"] && errors["Password"][0] ?
+                                                    errors["Password"][0] : ""}
+                                            </div>
+                                        </Form.Group>
+                                        <Form.Group
+                                            className="mb-3"
+                                            controlId="addConfirmPassword">
+                                            <Form.Label>Confirm Password</Form.Label>
+                                            <Form.Control
+                                                type="password"
+                                                value={ConfirmPassword}
+                                                onChange={(e) => {
+                                                    setConfirmPassword(e.target.value);
+                                                    validate();
+                                                }}
+                                                placeholder="Enter confirm password" />
+                                            <div className="text-danger">
+                                                {dirty["ConfirmPassword"] && errors["ConfirmPassword"][0] ?
+                                                    errors["ConfirmPassword"][0] : ""}
+                                            </div>
+                                        </Form.Group>
+                                        <Form.Group
+                                            className="mb-3"
                                             controlId="addDateofBirth">
                                             <Form.Label>Date Of Birth</Form.Label>
                                             <Form.Control
@@ -263,11 +273,11 @@ function UpdateStaff() {
                                             <Col lg={6} md={6} sm={0}>
                                             </Col>
                                             <Col lg={6} md={6} sm={12} className="d-flex justify-content-end">
-                                                <Button href="/admin/staff" size="sm" variant="secondary" className="mx-2" >
+                                                <Button size="sm" variant="secondary" className="mx-2" >
                                                     Cancel
                                                 </Button>
-                                                <Button size="sm" variant="primary" onClick={onUpdateClick}>
-                                                    Update
+                                                <Button size="sm" variant="primary" onClick={onAddClick}>
+                                                    Add
                                                 </Button>
                                             </Col>
                                         </Row>
@@ -282,4 +292,5 @@ function UpdateStaff() {
         </Container>
     )
 }
-export default UpdateStaff;
+
+export default AddTrainer;

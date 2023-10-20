@@ -1,37 +1,66 @@
-import React, {useState} from "react";
-import { Button, Container, Row, Col, Form } from "react-bootstrap";
+import React, {useEffect, useState} from "react";
+import { Button, Container, Row, Col, Form, Pagination } from "react-bootstrap";
 import CageTable from "./CageTable";
+import AddCageModal from "./AddCageModal";
 
 function CageManaging() {
-    const [cages, setCages] = useState(
-        [
-            {
-                id: 1, name: "Cage 1", areaName: "Area 1"
-            },
-            {
-                id: 2, name: "Cage 2", areaName: "Area 2"
-            },
-            {
-                id: 3, name: "Cage 3", areaName: "Area 3"
-            },
-            {
-                id: 4, name: "Cage 4", areaName: "Area 4"
-            },
-            {
-                id: 5, name: "Cage 5", areaName: "Area 5"
-            },
-        ]
-    );
-    var [search, setSearch] = useState("");
+    const [showState, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [searchString, setsearchString] = useState("");
+    const [currentPage, setCurrentPage] = useState(1); //page number
+    const [searchBy, setSearchBy] = useState("CageName"); //search by column name
+    const [totalPages, setTotalPages] = useState(0);
+    const [cages, setCages] = useState([]);
+
+    //#region Pagination
+    let PaginationLoad = () => {
+        let items = [];
+        for (let page = 1; page <= totalPages; page++) {
+            items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+        }
+        return items;
+    }
+
+    const onPaginationClick = (e) => {
+        setCurrentPage(e.target.text);
+    }
+    //#endregion
+
+    useEffect(() => {
+
+        fetch(`https://localhost:7193/api/Cage?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+        },
+        })
+            .then((res) => res.json())
+            .then(data => {
+                setCages(data.pagingList);
+                setTotalPages(data.totalPages);
+            }).catch(rejected => {
+                console.log(rejected);
+            });
+    }, [currentPage, searchBy, searchString]);
+
+
     return (
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
-                {/*Start search*/}
+            {/*Start search*/}
                 {/*Search filter */}
                 <Col lg={3} md={3} xs={12}>
                     <Form.Group className="mb-3" controlId="search">
-                        <Form.Select>
-                            <option>Name</option>
+                        <Form.Select
+                            value={searchBy}
+                            onChange={(e) => {
+                                setSearchBy(e.target.value)
+                            }}
+                        >
+                            <option value={"CageName"}>Cage Name</option>
                         </Form.Select>
                     </Form.Group>
                 </Col>
@@ -42,17 +71,17 @@ function CageManaging() {
                         <Form.Control
                             type="text"
                             placeholder="Search"
-                            value={search}
-                            onChange={(e) => { setSearch(e.target.value) }}>
+                            value={searchString}
+                            onChange={(e) => { setsearchString(e.target.value) }}>
                         </Form.Control>
                     </Form.Group>
                 </Col>
                 {/*Search bar */}
-                {/*End search*/}
+            {/*End search*/}
                 {/*Start add button*/}
                 <Col lg={1} md={1} xs={1}>
                     <div className="mb-3 d-grid">
-                        <Button variant="outline-primary" size="sm">Add</Button>
+                        <Button variant="outline-primary" size="sm" onClick={handleShow}>Add</Button>
                     </div>
                 </Col>
                 {/*End add button*/}
@@ -61,9 +90,15 @@ function CageManaging() {
                 <Col>
                     {/*Start Table*/}
                     <CageTable cageList={cages} />
+                    <Pagination size="md" className="d-flex justify-content-center">
+                        {PaginationLoad()}
+                    </Pagination>
                     {/*Start Table*/}
                 </Col>
             </Row>
+            {/*Start modal*/}
+            <AddCageModal show={showState} handleClose={handleClose} />
+            {/*End modal*/}
         </Container>
     )
 }

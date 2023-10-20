@@ -4,7 +4,7 @@ function defaultLayout({children}) {
     
     return (
         <div>
-            <HomeNavbar />
+            {/* <HomeNavbar /> */}
             <div>
             {children}
             </div>

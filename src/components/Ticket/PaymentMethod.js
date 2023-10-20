@@ -1,5 +1,4 @@
 import React from "react";
-import HeaderCart from "./HeaderCart";
 import { Row, Col, Form, Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
@@ -50,7 +49,6 @@ const PaymentMethod = () => {
 
     return (
         <>
-            <HeaderCart />
             <Container className="zoo-information">
                 <h4 className="ms-5">METHOD OF PAYMENT</h4>
             </Container>

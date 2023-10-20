@@ -1,0 +1,27 @@
+.logo-box__ticket{
+    width: 100%;
+    display: flex;
+    font-family: "Just Another Hand";
+    color: #FFF;
+}
+.header-left{
+    margin-top: 30px;
+}
+.zoo-logo{
+    justify-content: right;
+    display: flex;
+}
+.text-logo__top-right {
+    font-size:  4rem;
+    line-height: normal;
+}
+.text-logo__down-right {
+    font-size: 2rem;
+    line-height: normal;
+}
+.text-logo__top-left {
+    font-size:  4rem;
+}
+.text-logo__down-left{
+    font-size: 4rem;
+}

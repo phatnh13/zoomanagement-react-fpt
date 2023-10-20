@@ -3,7 +3,29 @@ import { Container, Row, Col, Form, Button,Pagination } from 'react-bootstrap';
 import SpeciesTable from './SpeciesTable';
 
 function SpeciesManaging() {
-    const [species, setSpecies] = useState([]); 
+    const [species, setSpecies] = useState(
+        [
+            {
+                "id": 1,
+                "name": "Cat",
+                "description": "A cat is a small, usually furry, domesticated, carnivorous mammal.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Dog",
+                "description": "A cat is a small, usually furry, domesticated, carnivorous mammal.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Bird",
+                "description": "A cat is a small, usually furry, domesticated, carnivorous mammal.",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
+            },
+            
+        ]
+        ); 
     var [searchString, setsearchString] = useState("");
     var [totalPages, setTotalPages] = useState(0);
     var [currentPage, setCurrentPage] = useState(1);
