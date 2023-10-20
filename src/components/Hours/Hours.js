@@ -35,7 +35,7 @@ const Hours = () => {
                     <ListGroup.Item className="list-group-flush">9:00 -18:30 : Open for visitors</ListGroup.Item>
                     <ListGroup.Item className="list-note">
                         Important notes!
-                        All  animals cages and restaurants will be close 30 minutes before the Zoo itself.
+                        All animals cages and restaurants will be close 30 minutes before the Zoo itself.
                     </ListGroup.Item>
                 </ListGroup>
             </Card>

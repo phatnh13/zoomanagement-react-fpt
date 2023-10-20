@@ -10,6 +10,7 @@ import Login from '../components/InputPages/Login';
 import Hours from '../components/Hours/Hours';
 import Map from '../components/Map/Map';
 import News from '../components/News/News';
+import AllNews from '../components/AllNews/AllNews';
 //Booking
 import BuyingTicket from '../components/Ticket/BuyingTicket';
 import ViewCart from "../components/Ticket/ViewCart";
@@ -36,6 +37,7 @@ const publicRoutes = [
     { path: '/hours', component: Hours},
     { path: '/map', component: Map},
     { path: '/news', component: News},
+    { path: '/allnews', component: AllNews},
     { path: '*', component: NoPage},
 ]
 const privateRoutes = [
