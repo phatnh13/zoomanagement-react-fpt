@@ -13,7 +13,6 @@ const HomeMenu = () => {
                 </path>
               </svg>
             </li>
-            <li className='navigation_comment'>//</li>
             <li><h1>Ticket</h1></li>
             <li>
             <Link className='navigation__link' to='/buyingticket'>
@@ -29,7 +28,6 @@ const HomeMenu = () => {
                 <path d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z" />
               </svg>
             </li>
-            <li className='navigation_comment'>//</li>
             <li><h1>News</h1></li>
             <li>
             <Link className='navigation__link' to='/news'>
@@ -45,7 +43,6 @@ const HomeMenu = () => {
                 <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.502.502 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5V.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.498.498 0 0 0-.196 0L5 14.09zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1-.5-.1z" />
               </svg>
             </li>
-            <li className='navigation_comment'>//</li>
             <li><h1>Map</h1></li>
             <li>
             <Link className='navigation__link' to='/map'>
@@ -60,7 +57,6 @@ const HomeMenu = () => {
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
               </svg>
             </li>
-            <li className='navigation_comment'>//</li>
             <li><h1>Opening Hours</h1></li>
             <li>
             <Link className='navigation__link' to='/hours'>

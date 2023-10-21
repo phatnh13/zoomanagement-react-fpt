@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Container, Nav, Navbar, Image, Button, Offcanvas } from 'react-bootstrap';
+import { Nav, Navbar, Image, Button, Offcanvas } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import WebLogo from "../../../../assets/WebLogo.png";
 import HomeMenu from "../../../Home/HomeMenu/HomeMenu";
@@ -20,7 +20,11 @@ function OffCanvasExample({ name, ...props }) {
           </Button>
           <Offcanvas style={{backgroundColor: '#f5f0d7', height: '40%', with: "100%"}} show={show} onHide={handleClose} {...props}>
               <Offcanvas.Header closeButton>
-                  <Offcanvas.Title>Saigon Zoo</Offcanvas.Title>
+                  <Offcanvas.Title>
+                    <Link className="navigation__link" to='/'>
+                    Saigon Zoo
+                    </Link>
+                  </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                   <HomeMenu />

@@ -43,3 +43,7 @@
 .btn-ticket__menu::after {
     display:none;
 }
+.navigation__link{
+    text-decoration: none;
+    color: #000;
+}
