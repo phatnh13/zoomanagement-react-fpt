@@ -11,11 +11,9 @@ const Home = () => {
         <div className="vh-100">
             
             <HomeView />
-            </div>
-            <div className="vh-100">
-            <Welcome />
-            </div>
             <HomeMenu />
+            </div>
+            <Welcome />
             <div style={{
                 backgroundColor: '#F7F1DB',
             }}>

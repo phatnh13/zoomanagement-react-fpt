@@ -59,7 +59,7 @@ const HomeView = () => {
                 </div>
                 <div className="home-view__bottom d-flex">
                     <Row className="home-view-bottom__table d-flex">
-                        <Col className="col-md-4">
+                        <Col className="col-md-5">
                             <h1>OPENING HOURS</h1>
                             <h2>Today, {date} </h2>
                             <h2> 9:00 - 18:30</h2>
@@ -72,7 +72,7 @@ const HomeView = () => {
                                 </Link>
                             </div>
                         </Col>
-                        <Col className="col-md-3 text-center">
+                        <Col className="col-md-2 text-center">
                             <svg width="2" height="160" viewBox="0 0 1 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <line x1="0.499987" y1="-0.00357134" x2="1.49999" y2="139.996" stroke="black" />
                             </svg>

@@ -1,5 +1,5 @@
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Row, Table, Col, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
@@ -38,6 +38,31 @@ const Summary = () => {
             </div>
         );
     };
+    const [postOrder, setPostOrder] = useState([]);
+    useEffect(() => {
+        async function fetchPostOrder() {
+            try {
+                const requestUrl = 'https://localhost:7193/api/Order';
+                const respone = await fetch(requestUrl,
+                    {
+                        method: "POST",
+                        body: JSON.stringify({
+
+                        }),
+                        headers: {
+                            "content-type": "application/json; charset=UTF-8"
+                        }
+                    });
+                const responeJSON = await respone.json();
+                console.log(responeJSON);
+                const { data } = responeJSON;
+                setPostOrder(data);
+            } catch (error) {
+                console.log("Failed to fetch post order")
+            }
+        }
+        fetchPostOrder();
+    }, []);
     const context = useContext(TicketContext);
     const handleBackClick = () => {
         // Implement your logic for going back
