@@ -2,6 +2,8 @@ import React from "react";
 import Welcome from "./WelcomePage/Welcome";
 import HomeView from "./HomeView/HomeView";
 import HomeMenu from "./HomeMenu/HomeMenu";
+import WelcomeMap from "./HomeMap/WelcomeMap";
+import WelcomeNews from "./HomeNews/WelcomeNews";
 const Home = () => {
     return (
         <>
@@ -11,7 +13,13 @@ const Home = () => {
             <HomeView />
             </div>
             <Welcome />
-            <HomeMenu />
+            <div style={{
+                backgroundColor: '#F7F1DB',
+            }}>
+            < WelcomeMap />
+
+            <WelcomeNews />
+        </div >
         </>
     );
 };
