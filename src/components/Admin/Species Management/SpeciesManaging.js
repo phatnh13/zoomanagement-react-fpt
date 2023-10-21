@@ -29,7 +29,7 @@ function SpeciesManaging() {
     var [searchString, setsearchString] = useState("");
     var [totalPages, setTotalPages] = useState(0);
     var [currentPage, setCurrentPage] = useState(1);
-    var [searchBy, setSearchBy] = useState("FullName");
+    var [searchBy, setSearchBy] = useState("SpeciesName");
 
     //#region Pagination
     let PaginationLoad = () => {
@@ -46,7 +46,7 @@ function SpeciesManaging() {
     //#endregion
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Staff?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+        fetch(`https://localhost:7193/api/Species?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -62,22 +62,6 @@ function SpeciesManaging() {
             });
     }, [currentPage, searchBy, searchString]);
 
-    useEffect(() => {
-        fetch("https://localhost:7193/api/Staff?searchBy=FullName", {
-            method: "GET",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + localStorage.getItem("token")
-            },
-        })
-            .then((res) => res.json())
-            .then(data => {
-                setSpecies(data.pagingList);
-                setTotalPages(data.totalPages);
-            }).catch(rejected => {
-                console.log(rejected);
-            });
-    }, []);
     return (
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
@@ -107,7 +91,7 @@ function SpeciesManaging() {
                 {/*Start add button*/}
                 <Col lg={1} md={1} xs={1}>
                     <div className="mb-3 d-grid">
-                        <Button variant="outline-primary" size="sm">Add</Button>
+                        <Button href='/admin/species/add' variant="outline-primary" size="sm">Add</Button>
                     </div>
                 </Col>
                 {/*End add button*/}

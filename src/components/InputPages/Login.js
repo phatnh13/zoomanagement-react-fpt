@@ -53,7 +53,7 @@ const Login = () => {
 
         //Send response to server if valid
         if (isValid()) {
-            await fetch("https://vietnamzoo.azurewebsites.net/api/User/login",
+            await fetch("https://localhost:7193/api/User/login",
                 {
                     method: "POST",
                     body: JSON.stringify({
@@ -72,15 +72,16 @@ const Login = () => {
                 }).catch(rejected => {
                     console.log(rejected);
                 });
-            if (JSON.parse(localStorage.getItem("loginUser")).role === "Admin") {
-                window.location.href = "/admin/staff";
-            }
-            else if (JSON.parse(localStorage.getItem("loginUser")).role === "Staff") {
-                window.location.href = "/staff";
-            }
-            else {
-                window.location.href = "/";
-            }
+                //redirect
+            // if (JSON.parse(localStorage.getItem("loginUser")).role === "Admin") {
+            //     window.location.href = "/admin/staff";
+            // }
+            // else if (JSON.parse(localStorage.getItem("loginUser")).role === "Staff") {
+            //     window.location.href = "/staff/trainer";
+            // }
+            // else {
+            //     window.location.href = "/";
+            // }
         } else {
             setMessage(<span className="text-danger">Login failed</span>);
         }

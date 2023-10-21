@@ -10,9 +10,9 @@ function UpdateStaff() {
         const year = originalDate.getFullYear();
         const month = String(originalDate.getMonth() + 1).padStart(2, '0'); // Months are 0-based
         const day = String(originalDate.getDate()).padStart(2, '0');
-      
+
         return `${year}-${month}-${day}`;
-      }
+    }
 
     useEffect(() => {
         fetch(`https://localhost:7193/api/Staff/${location.state.id}`,
@@ -30,8 +30,8 @@ function UpdateStaff() {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    },[location.state.id]);
-    
+    }, [location.state.id]);
+
 
     const [UserName, setUserName] = useState('');
     const [Email, setEmail] = useState('');
@@ -134,10 +134,11 @@ function UpdateStaff() {
                         gender: Gender,
                         phoneNumber: PhoneNumber,
                         dateOfBirth: DateOfBirth,
-                        
+
                     }),
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
                     }
                 }).then((res) => {
                     if (res.ok) {

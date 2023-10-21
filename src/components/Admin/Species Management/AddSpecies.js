@@ -10,7 +10,7 @@ function AddSpecies() {
     const [ecological, setEcological] = useState("");
     const [reproduction, setReproduction] = useState("");
     const [diet, setDiet] = useState("");
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState(null);
 
     let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
@@ -91,6 +91,7 @@ function AddSpecies() {
     }
     // Species Add event
     let onAddClick = async () => {
+        
         // Set all input dirty=true
         let dirtyData = dirty;
         Object.keys(dirty).forEach((control) => {
@@ -100,26 +101,29 @@ function AddSpecies() {
 
         //Validate all input
         validate();
+        let formData = new FormData();
+
+        formData.append("SpeciesName", speciesName);
+        formData.append("Family", family);
+        formData.append("Infomation", information);
+        formData.append("Characteristic", characteristic);
+        formData.append("Allocation", allocation);
+        formData.append("Ecological", ecological);
+        formData.append("Diet", diet);
+        formData.append("BreedingAndReproduction", reproduction);
+        formData.append("ImageFile", image);
+        formData.append("IsDeleted", false);
 
         //Send response to server if valid
         if (isValid()) {
-            await fetch("https://localhost:7193/api/User",
+            await fetch("https://localhost:7193/api/Species",
                 {
                     method: "POST",
-                    body: JSON.stringify({
-                        speciesName: speciesName,
-                        family: family,
-                        infomation: information,
-                        characteristic: characteristic,
-                        allocation: allocation,
-                        ecological: ecological,
-                        diet: diet,
-                        breedingAndReproduction: reproduction,
-                        imageFile: image
-                    }),
                     headers: {
-                        "Content-Type": "application/json"
-                    }
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                    },
+                    body: formData
+
                 }).then((res) => {
                     if (res.ok) {
                         console.log("Add successfully");
@@ -134,15 +138,17 @@ function AddSpecies() {
                 });
         }
     }
+
+    useEffect(validate, [speciesName, family, information, characteristic, allocation, ecological, reproduction, diet]);
     return (
         <Container fluid>
             <Row className="py-5 d-flex justify-content-center align-items-center">
-                <Col md={8} lg={5} xs={12}>
+                <Col md={8} lg={10} xs={12}>
                     <Card className="shadow">
                         <Card.Body>
                             <div className="mb-1">
                                 <div className="mb-3">
-                                    <Form>
+                                    <Form  >
                                         <Form.Group
                                             className="mb-3"
                                             controlId="speciesAddName">
@@ -182,7 +188,8 @@ function AddSpecies() {
                                             controlId="speciesAddinfo">
                                             <Form.Label>Information</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
+                                                row={8}
                                                 value={information}
                                                 onChange={(e) => {
                                                     setInformation(e.target.value);
@@ -199,7 +206,8 @@ function AddSpecies() {
                                             controlId="speciesAddCharacteristic">
                                             <Form.Label>Characteristic</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
+                                                row={7}
                                                 value={characteristic}
                                                 onChange={(e) => {
                                                     setCharacteristic(e.target.value);
@@ -216,7 +224,8 @@ function AddSpecies() {
                                             controlId="speciesAddAllocation">
                                             <Form.Label>Allocation</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
+                                                row={5}
                                                 value={allocation}
                                                 onChange={(e) => {
                                                     setAllocation(e.target.value);
@@ -233,7 +242,8 @@ function AddSpecies() {
                                             controlId="speciesAddEcological">
                                             <Form.Label>Ecological</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
+                                                row={5}
                                                 value={ecological}
                                                 onChange={(e) => {
                                                     setEcological(e.target.value);
@@ -250,7 +260,8 @@ function AddSpecies() {
                                             controlId="speciesAddDiet">
                                             <Form.Label>Diet</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
+                                                row={4}
                                                 value={diet}
                                                 onChange={(e) => {
                                                     setDiet(e.target.value);
@@ -267,7 +278,8 @@ function AddSpecies() {
                                             controlId="speciesAddReproduction">
                                             <Form.Label>Reproduction</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                as="textarea"
+                                                row={4}
                                                 value={reproduction}
                                                 onChange={(e) => {
                                                     setReproduction(e.target.value);
@@ -285,22 +297,20 @@ function AddSpecies() {
                                             <Form.Label>Image</Form.Label>
                                             <Form.Control
                                                 type="file"
-                                                value={image}
                                                 onChange={(e) => {
-                                                    setImage(e.target.value);
-                                                    validate();
+                                                    setImage(e.target.files[0]);
                                                 }}
-                                                />
+                                            />
                                         </Form.Group>
 
                                         <Row>
                                             <Col lg={6} md={6} sm={0}>
                                             </Col>
                                             <Col lg={6} md={6} sm={12} className="d-flex justify-content-end">
-                                                <Button size="sm" variant="secondary" className="mx-2" >
+                                                <Button href="/admin/species/" size="sm" variant="secondary" className="mx-2" >
                                                     Cancel
                                                 </Button>
-                                                <Button size="sm" variant="primary" onClick={onAddClick}>
+                                                <Button size="sm" variant="primary" onClick={onAddClick} >
                                                     Add
                                                 </Button>
                                             </Col>
