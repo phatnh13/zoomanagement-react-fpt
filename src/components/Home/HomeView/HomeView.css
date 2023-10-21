@@ -17,51 +17,7 @@ video{
     height: 100%;
     background-color: rgba(0,0,0,.5);
 }
-.home-view__logo{
-    position: absolute;
-    top: 0;
-    display: flex;
-    margin-top: 5rem;
-    z-index: 3;
-}
-.home-view__top{
-    position: absolute;
-    width: 100%;
-    top: 0;
-    display: flex;
-    justify-content: right;
-    color: white;
-    margin-top: 5rem;
-    z-index: 3;
-}
-.btn-news__homeview{
-    background-color: #3C5724;
-    font-size: 2rem;
-    border-top-left-radius: 15%;
-    border-bottom-left-radius: 15%;
-    border-right: 0%;
 
-}
-.btn-ticket__homeview{
-    background-color: #F07300;
-    font-size: 2rem;
-}
-.home-view__center{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.btn-ticket__menu{
-    background-color:  #F5F0D7;
-    color: black;
-}
-.btn-ticket__menu::after {
-    display:none;
-}
 .home-view__bottom{
     position: absolute;
     width: 100%;
