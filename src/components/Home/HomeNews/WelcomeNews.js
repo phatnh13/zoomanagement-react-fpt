@@ -13,7 +13,7 @@ const WelcomeNews = () => {
         <>
             <div className="g-col-12 g-col-sm-12 g-col-md-12 g-col-lg-12 g-col-xl-12">
                 <div className="news">
-                    <div class="d-flex news-grid-slider__header-wrap">
+                    <div class="news-grid-slider__header-wrap">
                         <h2 class=" news-grid-slider__header">News</h2>
                         <a class="justify-content-end btn-home-news btn--light news-grid-slider__all-news-link" href="/allnews">all News
                         </a>

@@ -7,6 +7,9 @@
 }
 
 .news-grid-slider__header-wrap {
+    margin-top: 3rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
     display: flex;
     align-items: center;
 }
@@ -40,7 +43,7 @@
     border-radius: 8px;
     padding: 1px 24px 0;
     text-decoration: none;
-    color: #fff;
-    background-color: #f07300;
+    color: #166F16;
+    background-color: #EDE4BB;
     transition: background-color .2s ease;
 }

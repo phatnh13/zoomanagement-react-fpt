@@ -50,7 +50,9 @@ const WelcomeMap = () => {
                                     animals and habitats around the world via its Saigon
                                     World Wild conservation programme.
                                 </Card.Text>
-                                <Button variant="success" href='Map' >Saigon World Wild {'>'}</Button>
+                                <Button style={{
+                                    marginLeft: '5rem',
+                                }} variant="success" href='Map' >Saigon World Wild </Button>
                             </Card.Body>
                         </Card.ImgOverlay>
                     </Card>
