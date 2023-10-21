@@ -10,7 +10,9 @@ const Home = () => {
             
             <HomeView />
             </div>
+            <div className="vh-100">
             <Welcome />
+            </div>
             <HomeMenu />
         </>
     );
