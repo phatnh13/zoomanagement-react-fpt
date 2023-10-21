@@ -58,7 +58,6 @@ video{
 .btn-ticket__menu{
     background-color:  #F5F0D7;
     color: black;
-    height: 100%;
 }
 .btn-ticket__menu::after {
     display:none;

@@ -11,7 +11,6 @@ const Home = () => {
         <div className="vh-100">
             
             <HomeView />
-            <HomeMenu />
             </div>
             <Welcome />
             <div style={{

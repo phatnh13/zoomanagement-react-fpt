@@ -1,11 +1,37 @@
-import React from "react";
+import React, {useState} from "react";
 import TigerVideoHome from "../../../assets/Tiger-Video-Home.mp4"
-import { Row, Button, Col, Image, Dropdown } from "react-bootstrap";
+import { Row, Button, Col, Image, Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./HomeView.css"
 import MapLogo from "../../../assets/MapLogo.png"
 import WebLogo from "../../../assets/WebLogo.png";
 import moment from 'moment';
+import HomeMenu from "../HomeMenu/HomeMenu";
+
+function OffCanvasExample({ name, ...props }) {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return (
+        <>
+            <Button className="btn-ticket__menu me-5" variant="primary" onClick={handleShow}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+            </Button>
+            <Offcanvas style={{backgroundColor: '#f5f0d7', height: '40%', with: "100%"}} show={show} onHide={handleClose} {...props}>
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>Saigon Zoo</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <HomeMenu />
+                </Offcanvas.Body>
+            </Offcanvas>
+        </>
+    );
+}
 
 const HomeView = () => {
     const date = moment().format("DD MMMM");
@@ -34,18 +60,10 @@ const HomeView = () => {
                             Ticket
                         </Button>
                     </Link>
-                    <Dropdown>
-                        <Dropdown.Toggle className="btn-ticket__menu me-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                            </svg>
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                            {['top'].map((placement, idx) => (
+                                <OffCanvasExample key={idx} placement={placement} name={placement} />
+                            ))}
+
                 </div>
                 <div className="home-view__center">
                     <div style={{ marginLeft: '5rem' }}>
