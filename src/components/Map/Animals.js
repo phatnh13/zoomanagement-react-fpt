@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Card, Col } from "react-bootstrap";
 import Carousel from 'react-bootstrap/Carousel';
 import Accordion from 'react-bootstrap/Accordion';
@@ -22,7 +22,22 @@ import ScarletIbis from '../../assets/co-do-21.jpg';
 import ScarletIbis2 from '../../assets/co-do-11.jpg';
 
 
-const Animals = () => {
+const Animals = () => { 
+    const [species, setSpecies] = useState([]);
+
+    useEffect(() => {
+        const fetchSpecies = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/species');
+                const responseData = await response.json();
+                setSpecies(responseData);
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+        fetchSpecies();
+    }, [])
+
     return (
         <>
             <Accordion style={{
