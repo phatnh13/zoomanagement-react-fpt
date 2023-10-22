@@ -5,12 +5,52 @@ import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
 import TicketItemsTable from "./TicketItemsTable";
 
-const Summary = () => {
-    const NavigationButtons = ({ onBackClick, onNextClick }) => {
+const Summary = ({ show, handleClose }) => {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [tickets, setTickets] = useState("");
+
+
+
+    let handleAddOrder = async () => {
+        console.log("Add order");
+        console.log("Customer name: " + name);
+        console.log("Email: " + email);
+        console.log("Phone Number: " + phoneNumber);
+        console.log("Tickets: " + tickets);
+        await fetch("https://localhost:7193/api/Order", 
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: context.firstName,
+                email: context.email,
+                phoneNumber: context.phoneNumber,
+                tickets: context.tickets
+                
+            }),
+        })
+            .then((res) => {
+                if (res.ok) {
+                    alert("Add order successfully");
+                    handleClose();
+                } else {
+                    alert("Add order failed");
+                }
+            })
+            .catch(rejected => {
+                console.log(rejected);
+            });    
+            window.location.reload(false);
+    }
+    const NavigationButtons = () => {
         return (
             <div className="navigation-buttons button-direct">
                 <Link to='/viewcart'>
-                    <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px', marginRight: '80px' }} onClick={onBackClick}>
+                    <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px', marginRight: '80px' }}>
                         <svg
                             width="40"
                             height="40"
@@ -23,7 +63,7 @@ const Summary = () => {
                     </Button>
                 </Link>
                 <Link to='/'>
-                    <Button className="next-button" style={{ backgroundColor: 'green', fontSize: '30px' }} onClick={onNextClick}>
+                    <Button className="next-button" style={{ backgroundColor: 'green', fontSize: '30px' }}>
                         BUY {' '}
                         <svg
                             width="40"
@@ -38,41 +78,32 @@ const Summary = () => {
             </div>
         );
     };
-    const [postOrder, setPostOrder] = useState([]);
-    useEffect(() => {
-        async function fetchPostOrder() {
-            try {
-                const requestUrl = 'https://localhost:7193/api/Order';
-                const respone = await fetch(requestUrl,
-                    {
-                        method: "POST",
-                        body: JSON.stringify({
+    // const [postOrder, setPostOrder] = useState([]);
+    // useEffect(() => {
+    //     async function fetchPostOrder() {
+    //         try {
+    //             const requestUrl = 'https://localhost:7193/api/Order';
+    //             const respone = await fetch(requestUrl,
+    //                 {
+    //                     method: "POST",
+    //                     body: JSON.stringify({
 
-                        }),
-                        headers: {
-                            "content-type": "application/json; charset=UTF-8"
-                        }
-                    });
-                const responeJSON = await respone.json();
-                console.log(responeJSON);
-                const { data } = responeJSON;
-                setPostOrder(data);
-            } catch (error) {
-                console.log("Failed to fetch post order")
-            }
-        }
-        fetchPostOrder();
-    }, []);
+    //                     }),
+    //                     headers: {
+    //                         "content-type": "application/json; charset=UTF-8"
+    //                     }
+    //                 });
+    //             const responeJSON = await respone.json();
+    //             console.log(responeJSON);
+    //             const { data } = responeJSON;
+    //             setPostOrder(data);
+    //         } catch (error) {
+    //             console.log("Failed to fetch post order")
+    //         }
+    //     }
+    //     fetchPostOrder();
+    // }, []);
     const context = useContext(TicketContext);
-    const handleBackClick = () => {
-        // Implement your logic for going back
-        console.log('Back button clicked');
-    };
-
-    const handleNextClick = () => {
-        // Implement your logic for going next
-        console.log('Next button clicked');
-    };
     return (
         <>
             <div className="vh-100">
@@ -84,8 +115,15 @@ const Summary = () => {
                                 <div className="ticket-table-information">Billing Address</div>
                                 <Table striped bordered hover size="sm">
                                     <tbody style={{ textAlign: 'left' }}>
-                                        <p>Name: {context.firstName}{' '}{context.lastName}</p>
-                                        <p>Phone Number: {context.phoneNumber}</p>
+                                        <p  value={name}
+                                            onChange={(e) => {
+                                            setName(e.target.value);
+                                            }}>
+                                                    Name: {context.firstName}{' '}{context.lastName}</p>
+                                        <p  value={phoneNumber}
+                                                onChange={(e) => {
+                                                    setPhoneNumber(e.target.value);
+                                                }}>Phone Number: {context.phoneNumber}</p>
                                     </tbody>
                                 </Table>
                             </Col>
@@ -93,7 +131,10 @@ const Summary = () => {
                                 <div className="ticket-table-information">Shipping Method</div>
                                 <Table striped bordered hover size="sm">
                                     <tbody style={{ textAlign: 'left' }}>
-                                        <p>Shipping type:</p>
+                                        <p  value={email}
+                                            onChange={(e) => {
+                                            setEmail(e.target.value);
+                                            }}>Email: {context.email}</p>
                                         <p></p>
                                     </tbody>
                                 </Table>
@@ -110,7 +151,7 @@ const Summary = () => {
                         </Row>
                         <div className="ticket-table-information">ITEMS</div>
                         <TicketItemsTable />
-                        <NavigationButtons onBackClick={handleBackClick} onNextClick={handleNextClick} />
+                        <NavigationButtons onNextClick={handleAddOrder} />
                     </div>
                 </Container>
             </div>

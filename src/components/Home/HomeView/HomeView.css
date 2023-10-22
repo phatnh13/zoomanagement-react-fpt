@@ -47,12 +47,13 @@ h2{
     margin-bottom: 3px;
 }
 .home-view-bottom__btn-bottom{
-    color: black;
+    color: #3C5724;
     background-color: #F0E9C4;
     font-size: 1rem;
+    font-weight: bold;
 }
 .home-view-bottom__table{
-    width: 30rem;
+    width: 40rem;
     background-color:white;
     border-radius: 20px;
     -moz-border-radius: 20px;
