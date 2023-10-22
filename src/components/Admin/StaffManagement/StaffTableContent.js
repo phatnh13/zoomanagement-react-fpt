@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import StaffDeleteModal from "./StaffDeleteModal";
-import UpdateStaff from "./UpdateStaff";
 
 const StaffTableContent = ({ user, index }) => {
     const [show, setShow] = useState(false);
