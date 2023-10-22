@@ -15,11 +15,11 @@ const WelcomeNews = () => {
                 <div className="news">
                     <div class="news-grid-slider__header-wrap">
                         <h2 class=" news-grid-slider__header">News</h2>
-                        <a class="justify-content-end btn-home-news btn--light news-grid-slider__all-news-link" href="/allnews">all News
+                        <a class="justify-content-end btn-home-news btn--light news-grid-slider__all-news-link" href="/allnews">All News
                         </a>
                     </div>
                     <Container>
-                        <Row style={{ width: '100%' }} className="justify-content-center">
+                        <Row style={{ width: '100%' , paddingBottom: '3rem' }} className="justify-content-center">
                             <Col md={3} style={{ width: '25rem' }} >
                                 <CardImg src={Pan} alt="Panda" />
                                 <Card.Text>Saigon Zoo’s panda twins celebrate their fourth birthday</Card.Text>

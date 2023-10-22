@@ -9,6 +9,7 @@ const WelcomeMap = () => {
             <Row className="justify-content-md-center ">
                 <Col md={8}>
                     <Card style={{
+                        top: '40px',
                         width: '1160px',
                         height: '418px',
                         borderRadius: '100px',
