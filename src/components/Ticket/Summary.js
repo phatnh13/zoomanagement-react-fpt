@@ -30,7 +30,6 @@ const Summary = ({ show, handleClose }) => {
                 email: context.email,
                 phoneNumber: context.phoneNumber,
                 tickets: context.tickets
-                
             }),
         })
             .then((res) => {

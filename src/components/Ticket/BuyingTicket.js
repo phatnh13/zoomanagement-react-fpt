@@ -5,8 +5,50 @@ import { Link } from "react-router-dom";
 import "./BuyingTicket.css"
 import { TicketContext } from "./TicketContext/TicketContext";
 
+// intial state
+const initialState = []
+
+// acction
+const ADD_TICKET = 'ADD_TICKET'
+const REMOVE_TICKET = 'REMOVE_TICKET'
+
+const addTicket = payload => {
+    return {
+        type: ADD_TICKET,
+        payload
+    }
+}
+
+
+
 const BuyingTicket = () => {
     const context = useContext(TicketContext)
+    const tickets = context.tickets
+    const decrease = context.decrease
+
+    // reducer
+    const ticketReducer = (state, action) => {
+        switch (action.type) {
+            case ADD_TICKET:
+                context.setDecrease([...context.decrease, action.payload])
+                    // ...state,
+                    // decrease: [...state.decrease, action.payload]
+                    if (decrease.find(decrease => decrease.ticket.TicketId === action.payload.ticket.TicketId)) {
+                    }
+                    state.decrease.push(action.payload)
+                break;
+            case REMOVE_TICKET:
+                decrease.forEach((index, value) => {
+                    if (decrease[index] === action.payload) {
+                        decrease.splice(index, 1)
+                    }
+                });
+                break;
+            default:
+                throw new Error('Action type is not supported')
+        }
+        return state;
+    }
 
     const NavigationButtons = ({ onOkClick, onAddClick }) => {
         return (
@@ -62,7 +104,25 @@ const BuyingTicket = () => {
                             </tbody>
 
                             <tbody>
-                                <tr>
+
+                                {tickets.map((ticket) => {
+                                    return (
+                                        <tr key={ticket.ticketId}>
+                                            <th className="text-align">{ticket.ticketName}</th>
+                                            <th colSpan={2}>
+
+                                                <Button variant="outline-dark" onClick={context.decrease1}>-</Button> {' '}
+                                                <FormLabel type='text'>{' '}{context.ticket1.count}{' '}</FormLabel>{' '}
+
+                                                <Button variant="outline-dark" onClick={() => context.setTicket1({ count: context.ticket1.count + 1 })}>+</Button>
+
+                                            </th>
+                                            <th>{ticket.price}$</th>
+                                        </tr>
+                                    )
+                                })}
+
+                                {/* <tr>
                                     <th className="text-align">Day Ticket Zoo - Adult</th>
                                     <th class="align-self-center" colSpan={2}>
 
@@ -94,7 +154,7 @@ const BuyingTicket = () => {
 
                                     </th>
                                     <th>Free</th>
-                                </tr>
+                                </tr> */}
                                 <tr>
                                     <th className="text-align">Total</th>
                                     <th colSpan={2}>

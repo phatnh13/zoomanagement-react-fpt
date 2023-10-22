@@ -6,11 +6,8 @@ export const TicketContext = createContext();
 export function TicketProvider({ children }) {
     //Ticket1
 
-    const [ticket, setTicket] = useState([])
-    const [decrease, setDecrease] = useState([{
-        ticket: {},
-        quantity: 0
-    }])
+    const [tickets, setTickets] = useState([])
+    const [decrease, setDecrease] = useState([])
 
     const [ticket1, setTicket1] = useState({
         count: 0,
@@ -56,7 +53,8 @@ export function TicketProvider({ children }) {
         })
             .then(data => data.json())
             .then(data => {
-                setTicket(data)
+                setTickets(data)
+                console.log(data)
             })
             .catch(error => {
                 console.error(error);
@@ -81,7 +79,7 @@ export function TicketProvider({ children }) {
         ticket1, setTicket1,
         ticket2, setTicket2,
         ticket3, setTicket3,
-        ticket, setTicket,
+        tickets, setTickets,
         decrease, setDecrease,
         amount, setAmount,
         price, setPrice,
