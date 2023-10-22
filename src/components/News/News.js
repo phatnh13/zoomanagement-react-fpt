@@ -12,15 +12,17 @@ import { Link } from "react-router-dom";
 const News = () => {
     return (
         <>
-            <div className="header-img">
-                <div className="logo-box">
-                    <div className="logo">
-                        <div className="text-logo-top">VietNam Zoo</div>
-                        <div className="text-logo-down">Since 1864</div>
-                        <img className="web-logo" alt="WebLogo" src={WebLogo} />
+            <Link to='/'>
+                <div className="header-img">
+                    <div className="logo-box">
+                        <div className="logo">
+                            <div className="text-logo-top">VietNam Zoo</div>
+                            <div className="text-logo-down">Since 1864</div>
+                            <img className="web-logo" alt="WebLogo" src={WebLogo} />
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Link>
             <Container >
                 <div className="g-container">
                     <div className="g-void">
