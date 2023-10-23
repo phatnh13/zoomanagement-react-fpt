@@ -53,7 +53,7 @@ const BuyingTicket = () => {
     const NavigationButtons = ({ onOkClick, onAddClick }) => {
         return (
             <div className="button-direct">
-                <Button className="button-left" onClick={onOkClick} disabled={context.ticket1.count === 0 && context.ticket2.count === 0 && context.ticket3.count === 0}>
+                <Button className="button-left" onClick={onOkClick} disabled={context.ticket.count === 0 && context.ticket2.count === 0 && context.ticket3.count === 0}>
                     Xac nhan
                 </Button>
 
@@ -102,19 +102,17 @@ const BuyingTicket = () => {
                                     <th>Cost</th>
                                 </tr>
                             </tbody>
-
                             <tbody>
-
                                 {tickets.map((ticket) => {
                                     return (
                                         <tr key={ticket.ticketId}>
                                             <th className="text-align">{ticket.ticketName}</th>
                                             <th colSpan={2}>
 
-                                                <Button variant="outline-dark" onClick={context.decrease1}>-</Button> {' '}
-                                                <FormLabel type='text'>{' '}{context.ticket1.count}{' '}</FormLabel>{' '}
+                                                <Button variant="outline-dark" onClick={context.decrease}>-</Button> {' '}
+                                                <FormLabel type='text'>{' '}{context.ticket.count}{' '}</FormLabel>{' '}
 
-                                                <Button variant="outline-dark" onClick={() => context.setTicket1({ count: context.ticket1.count + 1 })}>+</Button>
+                                                <Button variant="outline-dark" onClick={() => context.setTicket1({ count: context.ticket.count + 1 })}>+</Button>
 
                                             </th>
                                             <th>{ticket.price}$</th>
