@@ -118,9 +118,7 @@ const BuyingTicket = () => {
     const tickets = context.tickets
     const [state, dispatch] = useReducer(ticketReducer, initialState)
     const { orders } = state
-
-
-    const NavigationButtons = ({ onOkClick, onAddClick }) => {
+    const NavigationButtons = ({ onAddClick }) => {
         return (
             <div className="button-direct">
                 <Button to className="button-right" onClick={onAddClick} disabled={orders.length === 0}>
@@ -131,8 +129,6 @@ const BuyingTicket = () => {
     };
     const handleOkClick = () => {
         // Implement your logic for going back
-        context.setPrice({ count: context.ticket1.count * 2 + context.ticket2.count * 1.4 })
-        context.setAmount({ count: context.ticket1.count + context.ticket2.count + context.ticket3.count })
         console.log(context);
     };
 
@@ -177,14 +173,14 @@ const BuyingTicket = () => {
                                             <th colSpan={2}>
 
                                                 <Button variant="outline-dark" onClick={() => dispatch(removeTicket(ticket))}>-</Button> {' '}
-                                                <FormLabel type='text'>{' '}
+                                                <FormLabel type='text'>
                                                     {orders.map(order => {
                                                         if (order.ticket.ticketId === ticket.ticketId) {
                                                             return order.quantity
                                                         }
                                                         return null;
                                                     })}{' '}
-                                                </FormLabel>{' '}
+                                                </FormLabel>
 
                                                 <Button variant="outline-dark" onClick={() => dispatch(addTicket(ticket))}>+</Button>
                                             </th >

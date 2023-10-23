@@ -8,23 +8,19 @@ const TicketItemsTable = () => {
 
     const context = useContext(TicketContext)
 
-    const ticketInfo = context.ticket
-
-    const ticket1Info = {
-        image: '',
-        name: 'Day Ticket Zoo - Adult',
-        price: 2
-    }
-    const ticket2Info = {
-        image: '',
-        name: 'Day Ticket Zoo - Children (under 16)',
-        price: 1.4
-    }
-    const ticket3Info = {
-        image: '',
-        name: 'Day Ticket Zoo - Children(Lower than 1m3)',
-        price: 0
-    }
+    const tickets = context.tickets
+    const orders = context.orders
+    const mappedOrderQuantities = tickets.map((ticket) => {
+        // Find the corresponding order for the current ticket
+        const order = orders.find((order) => order.ticket.ticketId === ticket.ticketId);
+    
+        // If an order is found, return its quantity, otherwise return 0 or any default value
+        const orderQuantity = order ? order.quantity : 0;
+    
+        // Return an object with the ticket and its corresponding order quantity
+        return { ticket, orderQuantity };
+    })
+    const { ticket, orderQuantity } = mappedOrderQuantities;
 
     const date = moment().format("MMMM/DD/YYYY")
     return (
@@ -40,24 +36,24 @@ const TicketItemsTable = () => {
             </tbody>
 
             <tbody>
-                {ticketInfo.map(ticket => {
-                    if (context.decrease.find(decrease => decrease.ticket.id === ticket.id)) {
+                     {mappedOrderQuantities.map((data) => {
                         return (
-                            <tr>
+                            <tr key={data.ticket.ticketId} data={data}>
                                 <th className="text-align">Lấy img ra</th>
                                 <th className="text-align">
-                                    <p style={{ color: '#3C5724' }}>{ticket.name} </p>
+                                    <p style={{ color: '#3C5724' }}>{data.ticket.name} </p>
                                     <p>Valid from: {date} </p>
                                     <p>Valid to:</p>
                                     <p>Item reserved for you until:</p>
                                 </th>
-                                <th>{ticket.price}</th>
-                                <th>{ticket.quantity}</th>
-                                <th>{ticket.price * ticket.quantity}</th>
+                                <th>{data.ticket.price}</th>
+                                <th>{data.orderQuantity}
+                                </th>
+                                <th>{data.ticket.price * data.orderQuantity}</th>
                             </tr>
                         )
                     }
-                })}
+                )}
 
                 {/* {context.ticket1.count !== 0 ? (
                     <tr>
