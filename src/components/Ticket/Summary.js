@@ -1,31 +1,55 @@
 
 import React, { useContext, useEffect, useState } from "react";
-import { Row, Table, Col, Button, Container,Modal } from "react-bootstrap";
+import { Row, Table, Col, Button, Container, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
 import TicketItemsTable from "./TicketItemsTable";
 
 
 const Summary = () => {
+
+    const context = useContext(TicketContext);
+    const tickets = context.tickets
+    const decrease = context.decrease;
+    const name = context.firstName;
+    const email = context.email;
+    const phoneNumber = context.phoneNumber
+    
+    const orders = tickets.map(ticket => ({
+        ...ticket.ticketId.toString(),
+        quantity: decrease.find(quantityItem => quantityItem.ticket.ticketId === ticket.ticketId).quantity
+    }));    
+      // Initialize an empty object
+      const resultObject = {};
+      
+      // Loop through the dataArray and populate the resultObject
+      orders.forEach(item => {
+        const key = item['0'].toString(); // Get the key from the '0' property
+        const value = item.quantity; // Get the value from the 'quantity' property
+        resultObject[key] = value; // Assign the value to the key in the result object
+      });
+      
+      console.log(resultObject);
+
     let handleAddOrder = async () => {
         console.log("Add order");
         console.log("Customer name: " + name);
         console.log("Email: " + email);
         console.log("Phone Number: " + phoneNumber);
-        console.log("Tickets: " + orders);
-        await fetch("https://localhost:7193/api/Order", 
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                phoneNumber: phoneNumber,
-                tickets: decrease
-            }),
-        })
+        console.log("Tickets: " + resultObject);
+        await fetch("https://localhost:7193/api/Order",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phoneNumber: phoneNumber,
+                    tickets: resultObject
+                }),
+            })
             .then((res) => {
                 if (res.ok) {
                     alert("Add order successfully");
@@ -35,12 +59,12 @@ const Summary = () => {
             })
             .catch(rejected => {
                 console.log(rejected);
-            });    
-            window.location.reload(false);
+            });
+        window.location.reload(false);
     }
-   
+
     const NavigationButtons = () => {
-        return (   
+        return (
             <div className="navigation-buttons button-direct">
                 <Link to='/viewcart'>
                     <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px', marginRight: '80px' }}>
@@ -71,47 +95,9 @@ const Summary = () => {
             </div>
         );
     };
-    // const [postOrder, setPostOrder] = useState([]);
-    // useEffect(() => {
-    //     async function fetchPostOrder() {
-    //         try {
-    //             const requestUrl = 'https://localhost:7193/api/Order';
-    //             const respone = await fetch(requestUrl,
-    //                 {
-    //                     method: "POST",
-    //                     body: JSON.stringify({
-
-    //                     }),
-    //                     headers: {
-    //                         "content-type": "application/json; charset=UTF-8"
-    //                     }
-    //                 });
-    //             const responeJSON = await respone.json();
-    //             console.log(responeJSON);
-    //             const { data } = responeJSON;
-    //             setPostOrder(data);
-    //         } catch (error) {
-    //             console.log("Failed to fetch post order")
-    //         }
-    //     }
-    //     fetchPostOrder();
-    // }, []);
-    const context = useContext(TicketContext);
-    const tickets = context.tickets
-    const decrease = context.decrease;
-    const name = context.firstName;
-    const email = context.email;
-    const phoneNumber = context.phoneNumber
-    const orders = tickets.map(ticket => ({
-        ticketId: ticket.ticketId,
-        quantity: decrease.find(quantityItem => quantityItem.ticket.ticketId === ticket.ticketId).quantity
-      }));
-      
-      console.log(orders);
-
     return (
         <>
-        
+
             <div className="vh-100">
                 <Container className="zoo-information">
                     <h4>SUMMARY</h4>
