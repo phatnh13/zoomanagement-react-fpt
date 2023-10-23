@@ -53,11 +53,11 @@ const BuyingTicket = () => {
     const NavigationButtons = ({ onOkClick, onAddClick }) => {
         return (
             <div className="button-direct">
-                <Button className="button-left" onClick={onOkClick} disabled={context.ticket.count === 0 && context.ticket2.count === 0 && context.ticket3.count === 0}>
+                <Button className="button-left" onClick={onOkClick}>
                     Xac nhan
                 </Button>
 
-                <Button to className="button-right" onClick={onAddClick} disabled={context.ticket1.count === 0 && context.ticket2.count === 0 && context.ticket3.count === 0}>
+                <Button to className="button-right" onClick={onAddClick}>
                     <Link className="link-underline-hover" style={{ color: 'white', textDecoration: 'none' }} to='/viewcart'>Add to cart {' '}</Link>
                 </Button>
             </div>
@@ -109,10 +109,10 @@ const BuyingTicket = () => {
                                             <th className="text-align">{ticket.ticketName}</th>
                                             <th colSpan={2}>
 
-                                                <Button variant="outline-dark" onClick={context.decrease}>-</Button> {' '}
-                                                <FormLabel type='text'>{' '}{context.ticket.count}{' '}</FormLabel>{' '}
+                                                <Button variant="outline-dark" onClick={context1.decrease}>-</Button> {' '}
+                                                <FormLabel type='text'>{' '}{context1.ticket.count}{' '}</FormLabel>{' '}
 
-                                                <Button variant="outline-dark" onClick={() => context.setTicket1({ count: context.ticket.count + 1 })}>+</Button>
+                                                <Button variant="outline-dark" onClick={() => context1.setTicket1({ count: context1.ticket.count + 1 })}>+</Button>
 
                                             </th>
                                             <th>{ticket.price}$</th>
