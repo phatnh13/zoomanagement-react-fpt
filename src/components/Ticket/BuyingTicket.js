@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useReducer } from "react";
 import { Button, FormLabel, Table, Alert, Container } from "react-bootstrap";
 import { FaCalendarDay } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -6,7 +6,9 @@ import "./BuyingTicket.css"
 import { TicketContext } from "./TicketContext/TicketContext";
 
 // intial state
-const initialState = []
+const initialState = {
+    orders: []
+}
 
 // acction
 const ADD_TICKET = 'ADD_TICKET'
@@ -19,45 +21,109 @@ const addTicket = payload => {
     }
 }
 
+const removeTicket = payload => {
+    return {
+        type: REMOVE_TICKET,
+        payload
+    }
+}
 
+// reducer
+const ticketReducer = (state, action) => {
+    // The ticket being added or removed
+    const ticket = action.payload
+    // Find the index of the existing order that matches the ticket being added, if any
+    const existingTicketIndex = state.orders.findIndex(order => order.ticket.ticketId === ticket.ticketId)
+
+    switch (action.type) {
+        case ADD_TICKET:
+            if (existingTicketIndex !== -1) {
+                // If the ticket being added already exists in the orders array, update the quantity of the existing order
+                const existingOrder = state.orders[existingTicketIndex]
+                var updatedOrder = {
+                    ...existingOrder,
+                    quantity: existingOrder.quantity + 1
+                }
+
+                // Create a new orders array with the updated order object
+                var updateOrders = [...state.orders]
+                updateOrders[existingTicketIndex] = updatedOrder
+
+                // Return a new state object with the updated orders array
+                const value = {
+                    ...state,
+                    orders: updateOrders
+                }
+                // console.log(value)
+                return value;
+
+            } else {
+                // If the ticket being added doesn't exist in the orders array, create a new order object and add it to the orders array
+                const newOrder = {
+                    ticket: ticket,
+                    quantity: 1
+                }
+                // Return a new state object with the new order object added to the orders array
+                const value = {
+                    ...state,
+                    orders: [...state.orders, newOrder]
+                }
+                // console.log(value)
+                return value;
+            }
+        case REMOVE_TICKET:
+            if (existingTicketIndex !== -1) {
+                // If the ticket being removed exists in the orders array, update the quantity of the existing order or remove it entirely if the quantity is 1
+                const existingOrder = state.orders[existingTicketIndex]
+                if (existingOrder.quantity === 1) {
+
+                    // Create a new orders array with the existing order removed
+                    var removeOrder = state.orders
+                        .filter(order => order.ticket.ticketId !== ticket.ticketId)
+
+                    // Return a new state object with the updated orders array
+                    const value = {
+                        ...state,
+                        orders: removeOrder
+                    }
+                    // console.log(value)
+                    return value;
+                } else {
+                    // If the quantity of the existing order is greater than 1, update the quantity of the existing order
+                    var updateOrder = {
+                        ...existingOrder,
+                        quantity: existingOrder.quantity - 1
+                    }
+
+                    // Create a new orders array with the updated order object
+                    var updateOrders = [...state.orders]
+                    updateOrders[existingTicketIndex] = updateOrder
+                    // Return a new state object with the updated orders array
+                    const value = {
+                        ...state,
+                        orders: updateOrders
+                    }
+                    // console.log(value)
+                    return value;
+                }
+            }
+            return state;
+        default:
+            throw new Error('Action type is not supported')
+    }
+}
 
 const BuyingTicket = () => {
     const context = useContext(TicketContext)
     const tickets = context.tickets
-    const decrease = context.decrease
+    const [state, dispatch] = useReducer(ticketReducer, initialState)
+    const { orders } = state
 
-    // reducer
-    const ticketReducer = (state, action) => {
-        switch (action.type) {
-            case ADD_TICKET:
-                context.setDecrease([...context.decrease, action.payload])
-                    // ...state,
-                    // decrease: [...state.decrease, action.payload]
-                    if (decrease.find(decrease => decrease.ticket.TicketId === action.payload.ticket.TicketId)) {
-                    }
-                    state.decrease.push(action.payload)
-                break;
-            case REMOVE_TICKET:
-                decrease.forEach((index, value) => {
-                    if (decrease[index] === action.payload) {
-                        decrease.splice(index, 1)
-                    }
-                });
-                break;
-            default:
-                throw new Error('Action type is not supported')
-        }
-        return state;
-    }
 
     const NavigationButtons = ({ onOkClick, onAddClick }) => {
         return (
             <div className="button-direct">
-                <Button className="button-left" onClick={onOkClick}>
-                    Xac nhan
-                </Button>
-
-                <Button to className="button-right" onClick={onAddClick}>
+                <Button to className="button-right" onClick={onAddClick} disabled={orders.length === 0}>
                     <Link className="link-underline-hover" style={{ color: 'white', textDecoration: 'none' }} to='/viewcart'>Add to cart {' '}</Link>
                 </Button>
             </div>
@@ -72,6 +138,7 @@ const BuyingTicket = () => {
 
     const handleAddClick = () => {
         // Implement your logic for going next
+        context.setDecrease(orders)
         console.log('Add button clicked');
     };
 
@@ -109,14 +176,20 @@ const BuyingTicket = () => {
                                             <th className="text-align">{ticket.ticketName}</th>
                                             <th colSpan={2}>
 
-                                                <Button variant="outline-dark" onClick={context1.decrease}>-</Button> {' '}
-                                                <FormLabel type='text'>{' '}{context1.ticket.count}{' '}</FormLabel>{' '}
+                                                <Button variant="outline-dark" onClick={() => dispatch(removeTicket(ticket))}>-</Button> {' '}
+                                                <FormLabel type='text'>{' '}
+                                                    {orders.map(order => {
+                                                        if (order.ticket.ticketId === ticket.ticketId) {
+                                                            return order.quantity
+                                                        }
+                                                        return null;
+                                                    })}{' '}
+                                                </FormLabel>{' '}
 
-                                                <Button variant="outline-dark" onClick={() => context1.setTicket1({ count: context1.ticket.count + 1 })}>+</Button>
-
-                                            </th>
+                                                <Button variant="outline-dark" onClick={() => dispatch(addTicket(ticket))}>+</Button>
+                                            </th >
                                             <th>{ticket.price}$</th>
-                                        </tr>
+                                        </tr >
                                     )
                                 })}
 
@@ -156,15 +229,14 @@ const BuyingTicket = () => {
                                 <tr>
                                     <th className="text-align">Total</th>
                                     <th colSpan={2}>
-                                        <FormLabel type='text'>{context.amount.count}</FormLabel>
                                     </th>
                                     <th>
                                         <FormLabel type='text'>{context.price.count}</FormLabel>
                                     </th>
                                 </tr>
-                            </tbody>
+                            </tbody >
 
-                        </Table>
+                        </Table >
                         <NavigationButtons onOkClick={handleOkClick} onAddClick={handleAddClick} />
                         <div className="fs-5">
                             <p style={{ fontFamily: 'Just Another Hand', fontSize: '3rem' }}>Please note!</p>
@@ -177,10 +249,10 @@ const BuyingTicket = () => {
 
                             <p>* Only valid in combination with a corresponding proof. The proof must be personalized, given a (valid) validity and issued by an official authority/institution (not digital). The proof will be checked at the admission checkers - please have it ready along with a photo ID.</p>
                         </div>
-                    </Container>
+                    </Container >
 
-                </div>
-            </Container>
+                </div >
+            </Container >
         </>
     );
 };
