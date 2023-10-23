@@ -20,11 +20,14 @@
     border-top-left-radius: 15%;
     border-bottom-left-radius: 15%;
     border-right: 0%;
-
+    border: none;
+    outline:none;
 }
 .btn-ticket__homeview{
     background-color: #F07300;
     font-size: 2rem;
+    border: none;
+    outline:none;
 }
 .home-view__center{
     position: absolute;
@@ -39,6 +42,8 @@
     background-color:  #F5F0D7;
     color: black;
     margin-right: 1rem;
+    border: none;
+    outline:none;
 }
 .btn-ticket__menu::after {
     display:none;

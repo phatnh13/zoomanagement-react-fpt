@@ -127,17 +127,11 @@ const BuyingTicket = () => {
             </div>
         );
     };
-    const handleOkClick = () => {
-        // Implement your logic for going back
-        console.log(context);
-    };
-
     const handleAddClick = () => {
         // Implement your logic for going next
         context.setDecrease(orders)
         console.log('Add button clicked');
     };
-
     return (
         <>
             <Container className="min-vh-100">
@@ -188,40 +182,6 @@ const BuyingTicket = () => {
                                         </tr >
                                     )
                                 })}
-
-                                {/* <tr>
-                                    <th className="text-align">Day Ticket Zoo - Adult</th>
-                                    <th class="align-self-center" colSpan={2}>
-
-                                        <Button variant="outline-dark" onClick={context.decrease1}>-</Button> {' '}
-                                        <FormLabel type='text'>{' '}{context.ticket1.count}{' '}</FormLabel>{' '}
-                                        <Button variant="outline-dark" onClick={() => context.setTicket1({ count: context.ticket1.count + 1 })}>+</Button>
-
-                                    </th>
-                                    <th>2$</th>
-                                </tr>
-                                <tr>
-                                    <th className="text-align">Day Ticket Zoo - Children<p>aged under 18</p></th>
-                                    <th colSpan={2}>
-
-                                        <Button variant="outline-dark" onClick={context.decrease2}>-</Button> {' '}
-                                        <FormLabel type='text'>{' '}{context.ticket2.count}{' '}</FormLabel>{' '}
-                                        <Button variant="outline-dark" onClick={() => context.setTicket2({ count: context.ticket2.count + 1 })}>+</Button>
-
-                                    </th>
-                                    <th>1.4$</th>
-                                </tr>
-                                <tr>
-                                    <th className="text-align">Day Ticket Zoo - Children<p>lower than 1m3</p></th>
-                                    <th colSpan={2}>
-
-                                        <Button variant="outline-dark" onClick={context.decrease3}>-</Button> {' '}
-                                        <FormLabel type='text'>{' '}{context.ticket3.count}{' '}</FormLabel>{' '}
-                                        <Button variant="outline-dark" onClick={() => context.setTicket3({ count: context.ticket3.count + 1 })}>+</Button>
-
-                                    </th>
-                                    <th>Free</th>
-                                </tr> */}
                                 <tr>
                                     <th className="text-align">Total</th>
                                     <th colSpan={2}>
@@ -233,7 +193,7 @@ const BuyingTicket = () => {
                             </tbody >
 
                         </Table >
-                        <NavigationButtons onOkClick={handleOkClick} onAddClick={handleAddClick} />
+                        <NavigationButtons onAddClick={handleAddClick} />
                         <div className="fs-5">
                             <p style={{ fontFamily: 'Just Another Hand', fontSize: '3rem' }}>Please note!</p>
 

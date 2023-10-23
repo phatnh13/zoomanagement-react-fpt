@@ -1,24 +1,18 @@
 
 import React, { useContext, useEffect, useState } from "react";
-import { Row, Table, Col, Button, Container } from "react-bootstrap";
+import { Row, Table, Col, Button, Container,Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
 import TicketItemsTable from "./TicketItemsTable";
 
-const Summary = ({ show, handleClose }) => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [tickets, setTickets] = useState("");
 
-
-
+const Summary = () => {
     let handleAddOrder = async () => {
         console.log("Add order");
         console.log("Customer name: " + name);
         console.log("Email: " + email);
         console.log("Phone Number: " + phoneNumber);
-        console.log("Tickets: " + tickets);
+        console.log("Tickets: " + orders);
         await fetch("https://localhost:7193/api/Order", 
         {
             method: "POST",
@@ -26,16 +20,15 @@ const Summary = ({ show, handleClose }) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                name: context.firstName,
-                email: context.email,
-                phoneNumber: context.phoneNumber,
-                tickets: context.tickets
+                name: name,
+                email: email,
+                phoneNumber: phoneNumber,
+                tickets: decrease
             }),
         })
             .then((res) => {
                 if (res.ok) {
                     alert("Add order successfully");
-                    handleClose();
                 } else {
                     alert("Add order failed");
                 }
@@ -45,8 +38,9 @@ const Summary = ({ show, handleClose }) => {
             });    
             window.location.reload(false);
     }
+   
     const NavigationButtons = () => {
-        return (
+        return (   
             <div className="navigation-buttons button-direct">
                 <Link to='/viewcart'>
                     <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px', marginRight: '80px' }}>
@@ -62,7 +56,7 @@ const Summary = ({ show, handleClose }) => {
                     </Button>
                 </Link>
                 <Link to='/'>
-                    <Button className="next-button" style={{ backgroundColor: 'green', fontSize: '30px' }}>
+                    <Button className="next-button" onClick={handleAddOrder} style={{ backgroundColor: 'green', fontSize: '30px' }}>
                         BUY {' '}
                         <svg
                             width="40"
@@ -103,8 +97,21 @@ const Summary = ({ show, handleClose }) => {
     //     fetchPostOrder();
     // }, []);
     const context = useContext(TicketContext);
+    const tickets = context.tickets
+    const decrease = context.decrease;
+    const name = context.firstName;
+    const email = context.email;
+    const phoneNumber = context.phoneNumber
+    const orders = tickets.map(ticket => ({
+        ticketId: ticket.ticketId,
+        quantity: decrease.find(quantityItem => quantityItem.ticket.ticketId === ticket.ticketId).quantity
+      }));
+      
+      console.log(orders);
+
     return (
         <>
+        
             <div className="vh-100">
                 <Container className="zoo-information">
                     <h4>SUMMARY</h4>
@@ -114,26 +121,16 @@ const Summary = ({ show, handleClose }) => {
                                 <div className="ticket-table-information">Billing Address</div>
                                 <Table striped bordered hover size="sm">
                                     <tbody style={{ textAlign: 'left' }}>
-                                        <p  value={name}
-                                            onChange={(e) => {
-                                            setName(e.target.value);
-                                            }}>
-                                                    Name: {context.firstName}{' '}{context.lastName}</p>
-                                        <p  value={phoneNumber}
-                                                onChange={(e) => {
-                                                    setPhoneNumber(e.target.value);
-                                                }}>Phone Number: {context.phoneNumber}</p>
+                                        <p>Name: {context.firstName}{' '}{context.lastName}</p>
+                                        <p>Phone Number: {context.phoneNumber}</p>
                                     </tbody>
                                 </Table>
                             </Col>
                             <Col>
-                                <div className="ticket-table-information">Shipping Method</div>
+                                <div className="ticket-table-information">Email</div>
                                 <Table striped bordered hover size="sm">
                                     <tbody style={{ textAlign: 'left' }}>
-                                        <p  value={email}
-                                            onChange={(e) => {
-                                            setEmail(e.target.value);
-                                            }}>Email: {context.email}</p>
+                                        <p>Email: {context.email}</p>
                                         <p></p>
                                     </tbody>
                                 </Table>

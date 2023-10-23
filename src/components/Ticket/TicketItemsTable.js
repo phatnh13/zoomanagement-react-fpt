@@ -8,21 +8,11 @@ const TicketItemsTable = () => {
 
     const context = useContext(TicketContext)
 
-    const tickets = context.tickets
-    const orders = context.orders
-    const mappedOrderQuantities = tickets.map((ticket) => {
-        // Find the corresponding order for the current ticket
-        const order = orders.find((order) => order.ticket.ticketId === ticket.ticketId);
-    
-        // If an order is found, return its quantity, otherwise return 0 or any default value
-        const orderQuantity = order ? order.quantity : 0;
-    
-        // Return an object with the ticket and its corresponding order quantity
-        return { ticket, orderQuantity };
-    })
-    const { ticket, orderQuantity } = mappedOrderQuantities;
+    const decrease = context.decrease
 
     const date = moment().format("MMMM/DD/YYYY")
+
+    console.log(decrease)
     return (
         <Table className="cart-table" bordered variant="none">
             <tbody>
@@ -36,20 +26,20 @@ const TicketItemsTable = () => {
             </tbody>
 
             <tbody>
-                     {mappedOrderQuantities.map((data) => {
+                     {decrease.map((data) => {
                         return (
                             <tr key={data.ticket.ticketId} data={data}>
                                 <th className="text-align">Lấy img ra</th>
                                 <th className="text-align">
-                                    <p style={{ color: '#3C5724' }}>{data.ticket.name} </p>
+                                    <p style={{ color: '#3C5724' }}>{data.ticket.ticketName} </p>
                                     <p>Valid from: {date} </p>
                                     <p>Valid to:</p>
                                     <p>Item reserved for you until:</p>
                                 </th>
                                 <th>{data.ticket.price}</th>
-                                <th>{data.orderQuantity}
+                                <th>{data.quantity}
                                 </th>
-                                <th>{data.ticket.price * data.orderQuantity}</th>
+                                <th>{data.ticket.price * data.quantity}</th>
                             </tr>
                         )
                     }
