@@ -9,7 +9,7 @@ import "./Hours.css"
 
 const HoursInformation = () => {
     return (
-        <section className="panel panel__ctas">
+        <section className="bg-white panel panel__ctas">
             <div className="wrapper">
                 <Card style={{ width: '18rem' }}>
                     <CardImg src={Iguana} alt="Iguanas" />

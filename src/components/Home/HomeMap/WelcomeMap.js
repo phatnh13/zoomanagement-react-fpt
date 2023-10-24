@@ -6,7 +6,7 @@ import Lions from '../../../assets/Lions.png';
 const WelcomeMap = () => {
     return (
         <>
-            <Row className="justify-content-md-center ">
+            <Row className="justify-content-md-center mt-4">
                 <Col md={8}>
                     <Card style={{
                         top: '40px',
@@ -19,7 +19,7 @@ const WelcomeMap = () => {
                         <Card.Img style={{ position: 'relative' }} src={Lions} alt="lions" />
                         <Card.ImgOverlay style={{ width: '18rem' }}>
                             <Card.Body style={{
-                                position: 'relative',
+                                position: 'absolute',
                                 width: '353px',
                                 height: '226px',
                                 top: '30px',

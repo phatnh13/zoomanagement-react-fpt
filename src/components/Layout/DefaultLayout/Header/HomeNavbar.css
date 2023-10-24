@@ -1,11 +1,38 @@
-.home-view__logo{
-    position: absolute;
-    top: 0;
+.logo-box__ticket {
+    width: 100%;
     display: flex;
-    z-index: 3;
-    padding-top: 70px;
+    font-family: "Just Another Hand";
+    color: black;
 }
-.home-view__top{
+
+.header-left {
+    margin-top: 30px;
+}
+
+.zoo-logo {
+    justify-content: right;
+    display: flex;
+}
+
+.text-logo__top-right {
+    font-size: 4rem;
+    line-height: normal;
+}
+
+.text-logo__down-right {
+    font-size: 2rem;
+    line-height: normal;
+}
+
+.text-logo__top-left {
+    font-size: 4rem;
+}
+
+.text-logo__down-left {
+    font-size: 4rem;
+}
+
+.home-view__top {
     position: absolute;
     width: 100%;
     top: 0;
@@ -14,19 +41,25 @@
     z-index: 3;
     padding-top: 70px;
 }
-.btn-news__homeview{
+
+.btn-news__homeview {
     background-color: #3C5724;
     font-size: 2rem;
     border-top-left-radius: 15%;
     border-bottom-left-radius: 15%;
     border-right: 0%;
-
+    border: none;
+    outline:none;
 }
-.btn-ticket__homeview{
+
+.btn-ticket__homeview {
     background-color: #F07300;
     font-size: 2rem;
+    border: none;
+    outline:none;
 }
-.home-view__center{
+
+.home-view__center {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -35,15 +68,20 @@
     flex-direction: column;
     justify-content: center;
 }
-.btn-ticket__menu{
-    background-color:  #F5F0D7;
+
+.btn-ticket__menu {
+    background-color: #F5F0D7;
     color: black;
     margin-right: 1rem;
+    border: none;
+    outline:none;
 }
+
 .btn-ticket__menu::after {
-    display:none;
+    display: none;
 }
-.navigation__link{
+
+.navigation__link {
     text-decoration: none;
     color: #000;
 }

@@ -10,7 +10,7 @@ import Login from '../components/InputPages/Login';
 import Hours from '../components/Hours/Hours';
 import Map from '../components/Map/Map';
 import News from '../components/News/News';
-import AllNews from '../components/AllNews/AllNews';
+import AllNews from '../components/News/AllNews';
 //Booking
 import BuyingTicket from '../components/Ticket/BuyingTicket';
 import ViewCart from "../components/Ticket/ViewCart";

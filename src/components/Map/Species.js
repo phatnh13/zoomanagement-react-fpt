@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Image, Card, Col } from "react-bootstrap";
 import Carousel from 'react-bootstrap/Carousel';
 import Accordion from 'react-bootstrap/Accordion';
-import RingTailedLemur from '../../assets/Ring-tailed-lemur.jpg';
-import RingTailedLemur2 from '../../assets/vuon-cao-2.jpg';
 import WhiteRhinoceros from '../../assets/te-giac-31.jpg';
 import WhiteRhinoceros2 from '../../assets/te-giac-21.jpg';
 import GreaterKudu from '../../assets/linh-duong-sung-xoan2.jpg';
@@ -22,7 +20,7 @@ import ScarletIbis from '../../assets/co-do-21.jpg';
 import ScarletIbis2 from '../../assets/co-do-11.jpg';
 
 
-const Animals = () => { 
+const Species = () => {
     const [species, setSpecies] = useState([]);
 
     useEffect(() => {
@@ -44,43 +42,48 @@ const Animals = () => {
                 alignItems: "center",
                 marginTop: '4rem',
                 marginLeft: '7rem',
-                marginRight: '7rem', 
+                marginRight: '7rem',
                 marginBottom: '3rem'
             }} className="md-auto" defaultActiveKey={['0']} fluid>
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>RING-TAILED LEMUR</Accordion.Header>
-                    <Accordion.Body className="vc_tta-panel-body" >
-                        <Card className="vc_row wpb_row vc_inner row">
-                            <Card.Body className="d-flex">
-                                <Col md={6} className="mb-2">
-                                    <center>
-                                        <div>
-                                            <Carousel fade>
-                                                <Carousel.Item interval={1000}>
-                                                    <Image src={RingTailedLemur} alt="ring-tailed-lemur" />
-                                                </Carousel.Item>
-                                                <Carousel.Item>
-                                                    <Image style={{ width: 500 }} src={RingTailedLemur2} alt="ring-tailed-lemur-2" />
-                                                </Carousel.Item>
-                                            </Carousel>
-                                        </div>
-                                    </center>
-                                </Col>
-                                <Col className="col-md-6">
-                                    <Card.Text  >
-                                        <p><strong>Family: </strong> Lemuridae</p>
-                                        <p><strong>Information:</strong> The ring-tailed lemur (Lemur catta) is a medium- to larger-sized strepsirrhine (wet-nosed) primate, and the most internationally-recognized lemur species, owing to its long, black-and-white, ringed tail. It belongs to Lemuridae, one of five lemur families, and is the only member of the Lemur genus. Like all lemurs, it is endemic to the island of Madagascar, where it is endangered.</p>
-                                        <p><strong>Characteristic: </strong> The species has a slender frame and narrow face, fox-like muzzle.[3] The ring-tailed lemur's trademark—a long, bushy tail—is ringed in alternating black and white transverse bands, numbering 12 or 13 white rings and 13 or 14 black rings, and always ending in a black tip.[3][25] The total number of rings nearly matches the approximate number of caudal vertebrae (~25).[26] Its tail is longer than its body[25] and is not prehensile. Instead, it is only used for balance, communication, and group cohesion.</p>
-                                        <p><strong>Allocation: </strong> Endemic to southern and southwestern Madagascar.</p>
-                                        <p><strong>Ecological: </strong> The ring-tailed lemur ranges further into highland areas than other lemurs. It inhabits deciduous forests, dry scrub, montane humid forests, and gallery forests (forests along riverbanks). It strongly favors gallery forests, but such forests have now been cleared from much of Madagascar in order to create pasture for livestock.</p>
-                                        <p><strong>Diet: </strong> The ring-tailed lemur is an opportunistic omnivore primarily eating fruits and leaves, particularly those of the tamarind tree (Tamarindus indica), known natively as kily.</p>
-                                        <p><strong>Breeding and reproduction: </strong> The breeding season runs from mid-April to mid-May. Estrus lasts 4 to 6 hours,[18] and females mate with multiple males during this period.</p>
-                                    </Card.Text>
-                                </Col>
-                            </Card.Body>
-                        </Card>
-                    </Accordion.Body>
-                </Accordion.Item>
+                {species.map((species, idx) => {
+                    return ( 
+                        <Accordion.Item eventKey="0" key={idx}>
+                            <Accordion.Header>{species.speciesName}</Accordion.Header>
+                            <Accordion.Body className="vc_tta-panel-body" >
+                                <Card className="vc_row wpb_row vc_inner row">
+                                    <Card.Body className="d-flex">
+                                        <Col md={6} className="mb-2">
+                                            <center>
+                                                <div>
+                                                    <Carousel fade>
+                                                        <Carousel.Item interval={1000}>
+                                                            <Image src={species.image} alt={species.speciesName} />
+                                                        </Carousel.Item>
+                                                        <Carousel.Item>
+                                                            <Image style={{ width: 500 }} src={species.image} alt={species.speciesName} />
+                                                        </Carousel.Item>
+                                                    </Carousel>
+                                                </div>
+                                            </center>
+                                        </Col>
+                                        <Col className="col-md-6">
+                                            <Card.Text  >
+                                                <p><strong>Family: </strong> {species.family}</p>
+                                                <p><strong>Information:</strong> {species.infomation}</p>
+                                                <p><strong>Characteristic: </strong> {species.characteristic}</p>
+                                                <p><strong>Allocation: </strong> {species.allocation}</p>
+                                                <p><strong>Ecological: </strong> {species.ecological}</p>
+                                                <p><strong>Diet: </strong> {species.diet}</p>
+                                                <p><strong>Breeding and reproduction: </strong> {species.breedingAndReproduction}</p>
+                                            </Card.Text>
+                                        </Col>
+                                    </Card.Body>
+                                </Card>
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    )
+                })}
+
                 <Accordion.Item eventKey="1">
                     <Accordion.Header>WHITE RHINOCEROS</Accordion.Header>
                     <Accordion.Body className="vc_tta-panel-body" >
@@ -358,4 +361,4 @@ const Animals = () => {
     );
 };
 
-export default Animals;
+export default Species;

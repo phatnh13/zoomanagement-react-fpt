@@ -20,19 +20,18 @@ const BillingAddress = () => {
                         BACK
                     </Button>
                 </Link>
-                <Link to='/summary'>
-                    <Button type="submit" className="button-right" onClick={onNextClick}>
-                        CONTINUE {' '}
-                        <svg
-                            width="40"
-                            height="40"
-                            fill="currentColor"
-                            class="bi bi-arrow-right-circle"
-                            viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-                        </svg>
-                    </Button>
-                </Link>
+
+                <Button type="submit" className="button-right" onclick={handleNextClick}>
+                    CONTINUE {' '}
+                    <svg
+                        width="40"
+                        height="40"
+                        fill="currentColor"
+                        class="bi bi-arrow-right-circle"
+                        viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                    </svg>
+                </Button>
             </div>
         );
     };
@@ -45,72 +44,72 @@ const BillingAddress = () => {
         // Implement your logic for going next
         console.log(context);
     };
-    const context = useContext(TicketContext) 
+    const context = useContext(TicketContext)
 
 
     return (
-        <>      
+        <>
             <div className="vh-100">
-            <Container>           
-            <div className="zoo-information">
-                <h4>BILLING ADDRESS</h4>
-            </div>
-            <div className="ticket-table  mx-auto">
-                <div className="ticket-table-information">Billing Address</div>
-                <Form className="address-form">
-                    <Row className="mb-3">
-                        <Form.Group as={Col} lg="6">
-                            <Form.Label>First Name</Form.Label>
-                            <Form.Control className="form-information" size="lg"
-                                required
-                                type="text"
-                                value={context.firstName}
-                                onChange={e => context.setFirstName(e.target.value)}
-                            />
-                        </Form.Group>
-                        <Form.Group as={Col} lg="6">
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control className="form-information" size="lg"
-                                type="text"
-                                value={context.lastName}
-                                onChange={e => context.setLastName(e.target.value)}
-                            />
-                        </Form.Group>
-                    </Row>
-                    <Row className="mb-3">
-                        <Form.Group as={Col} lg="6">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control className="form-information" size="lg"
-                                required
-                                type="email"
-                                value={context.email}
-                                onChange={e => context.setEmail(e.target.value)}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                Please provide your email!
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group as={Col} lg="6">
-                            <Form.Label>Phone Number</Form.Label>
-                            <Form.Control className="form-information" size="lg"
-                                type="text"
-                                value={context.phoneNumber}
-                                onChange={e => context.setPhoneNumber(e.target.value)}
-                                required />
-                            <Form.Control.Feedback type="invalid">
-                                Please provide your phonenumber!
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Row>
-                    <Row className="mb-3">
-                        <Form.Group as={Col} lg="6">
-                            Notice: Please check your email address for typing errors. Otherwise your booking cannot be delivered.
-                        </Form.Group>
-                    </Row>
-                    <NavigationButtons onBackClick={handleBackClick} onNextClick={handleNextClick} />
-                </Form>
-            </div>
-            </Container>
+                <Container>
+                    <div className="zoo-information">
+                        <h4>BILLING ADDRESS</h4>
+                    </div>
+                    <div className="ticket-table  mx-auto">
+                        <div className="ticket-table-information">Billing Address</div>
+                        <Form className="address-form">
+                            <Row className="mb-3">
+                                <Form.Group as={Col} lg="6">
+                                    <Form.Label>First Name</Form.Label>
+                                    <Form.Control className="form-information" size="lg"
+                                        required
+                                        type="text"
+                                        value={context.firstName}
+                                        onChange={e => context.setFirstName(e.target.value)}
+                                    />
+                                </Form.Group>
+                                <Form.Group as={Col} lg="6">
+                                    <Form.Label>Last Name</Form.Label>
+                                    <Form.Control className="form-information" size="lg"
+                                        type="text"
+                                        value={context.lastName}
+                                        onChange={e => context.setLastName(e.target.value)}
+                                    />
+                                </Form.Group>
+                            </Row>
+                            <Row className="mb-3">
+                                <Form.Group as={Col} lg="6">
+                                    <Form.Label>Email address</Form.Label>
+                                    <Form.Control className="form-information needs-validation" size="lg"
+                                        required
+                                        type="email"
+                                        value={context.email}
+                                        onChange={e => context.setEmail(e.target.value)}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        Please provide your email!
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                                <Form.Group as={Col} lg="6">
+                                    <Form.Label>Phone Number</Form.Label>
+                                    <Form.Control className="form-information" size="lg"
+                                        type="text"
+                                        value={context.phoneNumber}
+                                        onChange={e => context.setPhoneNumber(e.target.value)}
+                                        required />
+                                    <Form.Control.Feedback type="invalid">
+                                        Please provide your phonenumber!
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                            </Row>
+                            <Row className="mb-3">
+                                <Form.Group as={Col} lg="6">
+                                    Notice: Please check your email address for typing errors. Otherwise your booking cannot be delivered.
+                                </Form.Group>
+                            </Row>
+                            <NavigationButtons onBackClick={handleBackClick} onNextClick={handleNextClick} />
+                        </Form>
+                    </div>
+                </Container>
             </div>
         </>
 

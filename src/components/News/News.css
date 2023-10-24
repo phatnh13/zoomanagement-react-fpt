@@ -5,63 +5,6 @@
 .div {
     display: block;
 }
-
-.header-img {
-    height: 150px;
-    width: 50%;
-}
-
-.logo-box {
-    position: absolute;
-    height: 100px;
-    width: 231px;
-    left: 50px;
-}
-
-.logo-box .logo {
-    height: 100px;
-    left: 0;
-    top: 0;
-    width: 235px;
-}
-
-.logo-box .text-logo-top {
-    color: black;
-    font-family: 'Just Another Hand', cursive;
-    font-size: 40px;
-    font-weight: 400;
-    left: 117px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 15px;
-    white-space: nowrap;
-    width: 104px;
-}
-
-.logo-box .text-logo-down {
-    color: black;
-    font-family: 'Just Another Hand', cursive;
-    font-size: 24px;
-    font-weight: 400;
-    left: 168px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 64px;
-    white-space: nowrap;
-    width: 63px;
-}
-
-.logo-box .web-logo {
-    height: 100px;
-    left: 0;
-    object-fit: cover;
-    position: absolute;
-    top: 6px;
-    width: 94px;
-}
-
 /* @media (min-width: 768px) { */
     .g-container {
         padding-left: 10px;

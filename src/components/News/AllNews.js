@@ -1,9 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import WebLogo from "../../assets/WebLogo.png"
-import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import React ,{ useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AllNews = () => {
@@ -40,17 +38,6 @@ const AllNews = () => {
 
   return (
     <>
-      <Link to='/'>
-        <div className="header-img">
-          <div className="logo-box">
-            <div className="logo">
-              <div className="text-logo-top">VietNam Zoo</div>
-              <div className="text-logo-down">Since 1864</div>
-              <img className="web-logo" alt="WebLogo" src={WebLogo} />
-            </div>
-          </div>
-        </div>
-      </Link>
       <Row xs={1} md={2} className="g-4">
 
         {news.map((item, idx) => {
