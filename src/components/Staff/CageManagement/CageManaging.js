@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import { Button, Container, Row, Col, Form, Pagination } from "react-bootstrap";
 import CageTable from "./CageTable";
 import AddCageModal from "./AddCageModal";
+import AreaTable from "./AreaTable";
 
 function CageManaging() {
     const [showState, setShow] = useState(false);
@@ -10,9 +11,11 @@ function CageManaging() {
 
     const [searchString, setsearchString] = useState("");
     const [currentPage, setCurrentPage] = useState(1); //page number
-    const [searchBy, setSearchBy] = useState("CageName"); //search by column name
     const [totalPages, setTotalPages] = useState(0);
+    const [searchBy, setSearchBy] = useState("CageName"); //search by column name
+    
     const [cages, setCages] = useState([]);
+    const [areas, setAreas] = useState([]);
 
     //#region Pagination
     let PaginationLoad = () => {
@@ -25,17 +28,17 @@ function CageManaging() {
 
     const onPaginationClick = (e) => {
         setCurrentPage(e.target.text);
+        console.log(e.target.text);
     }
     //#endregion
 
     useEffect(() => {
-
         fetch(`https://localhost:7193/api/Cage?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
-        },
+            },
         })
             .then((res) => res.json())
             .then(data => {
@@ -44,13 +47,26 @@ function CageManaging() {
             }).catch(rejected => {
                 console.log(rejected);
             });
+            fetch(`https://localhost:7193/api/Areas?searchBy=AreaName`, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                }
+            })
+                .then((res) => res.json())
+                .then(data => {
+                    setAreas(data.pagingList);
+                }).catch(rejected => {
+                    console.log(rejected);
+                });
+        
     }, [currentPage, searchBy, searchString]);
-
 
     return (
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
-            {/*Start search*/}
+                {/*Start search*/}
                 {/*Search filter */}
                 <Col lg={3} md={3} xs={12}>
                     <Form.Group className="mb-3" controlId="search">
@@ -65,7 +81,6 @@ function CageManaging() {
                     </Form.Group>
                 </Col>
                 {/*Search filter */}
-                {/*Search bar */}
                 <Col lg={8} md={8} xs={11}>
                     <Form.Group className="mb-3" controlId="search">
                         <Form.Control
@@ -76,8 +91,7 @@ function CageManaging() {
                         </Form.Control>
                     </Form.Group>
                 </Col>
-                {/*Search bar */}
-            {/*End search*/}
+                {/*End search*/}
                 {/*Start add button*/}
                 <Col lg={1} md={1} xs={1}>
                     <div className="mb-3 d-grid">
@@ -86,19 +100,29 @@ function CageManaging() {
                 </Col>
                 {/*End add button*/}
             </Row>
-            <Row>
-                <Col>
+            <Row className="">
+                <Col lg={5} md={12} xs={12}>
+                    <AreaTable areaList={areas} />
+                </Col>
+                <Col lg={7} md={12} xs={12}>
                     {/*Start Table*/}
+                    {console.log(cages, "cage")}
                     <CageTable cageList={cages} />
-                    <Pagination size="md" className="d-flex justify-content-center">
+                    {/*Start Table*/}
+                </Col>
+            </Row>
+            <Row>
+                <Col lg={5} md={12} xs={12}></Col>
+                <Col>
+                <Pagination size="md" className="d-flex justify-content-center">
                         {PaginationLoad()}
                     </Pagination>
-                    {/*Start Table*/}
                 </Col>
             </Row>
             {/*Start modal*/}
             <AddCageModal show={showState} handleClose={handleClose} />
             {/*End modal*/}
+            {/* {console.log(cages, "cage")} */}
         </Container>
     )
 }

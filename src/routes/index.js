@@ -52,7 +52,7 @@ const privateRoutes = [
     //Staff
     { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
     { path: '/staff/trainer/add', component: AddTrainer, layout: StaffLayout},
-    { path: '/staff/cage', component: CageManaging, layout: StaffLayout},
+    { path: '/staff/area-cage', component: CageManaging, layout: StaffLayout},
 
     //Customer
     //--Ticket--
