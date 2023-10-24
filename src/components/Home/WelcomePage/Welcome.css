@@ -52,26 +52,27 @@
     -webkit-border-radius: 10%;
     background-size: cover;
     object-fit: cover;
+    height: 50%;
 }
 .btn-view-all-price {
     display: flex;
     justify-content: right;
     background-color: #3C5724;
     font-size: 2rem;
-    color: white;
-    border-radius: 10%;
-    -moz-border-radius: 10%;
-    -webkit-border-radius: 10%;
+    border: none;
+    outline:none;
 }
 .view-price__btn-direct-ticket{
     background-color: #F07300;
     font-size: 1.5rem;
     border: none;
+    color: white;
 }
 .view-price__card{
     align-items: center;
     width: 30rem;
     background: rgba(0,0,0,0);
+    border: none;
 }
 .view-price__txt-ticket{
     font-size: 3rem;

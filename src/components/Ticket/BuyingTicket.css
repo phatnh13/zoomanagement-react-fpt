@@ -40,6 +40,7 @@ h4 {
 }
 .cart-table{
     line-height: 1rem;
+    align-items: center;
 }
 .button-direct{
    text-align: right;

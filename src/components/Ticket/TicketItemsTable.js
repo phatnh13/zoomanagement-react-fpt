@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./BuyingTicket.css"
-import { Table } from "react-bootstrap";
+import { Table, FormLabel } from "react-bootstrap";
 import { TicketContext } from "./TicketContext/TicketContext";
 import moment from "moment/moment";
 
@@ -8,25 +8,18 @@ const TicketItemsTable = () => {
 
     const context = useContext(TicketContext)
 
-    const ticketInfo = context.ticket
-
-    const ticket1Info = {
-        image: '',
-        name: 'Day Ticket Zoo - Adult',
-        price: 2
-    }
-    const ticket2Info = {
-        image: '',
-        name: 'Day Ticket Zoo - Children (under 16)',
-        price: 1.4
-    }
-    const ticket3Info = {
-        image: '',
-        name: 'Day Ticket Zoo - Children(Lower than 1m3)',
-        price: 0
-    }
+    const decrease = context.decrease
 
     const date = moment().format("MMMM/DD/YYYY")
+
+    // Initialize the total price to 0
+    let totalPrice = 0;
+
+    // Iterate through the table and accumulate the total price
+    for (const ticket of decrease) {
+        totalPrice += ticket.quantity * ticket.ticket.price;
+    }
+
     return (
         <Table className="cart-table" bordered variant="none">
             <tbody>
@@ -40,68 +33,32 @@ const TicketItemsTable = () => {
             </tbody>
 
             <tbody>
-                {ticketInfo.map(ticket => {
-                    if (context.decrease.find(decrease => decrease.ticket.id === ticket.id)) {
-                        return (
-                            <tr>
-                                <th className="text-align">Lấy img ra</th>
-                                <th className="text-align">
-                                    <p style={{ color: '#3C5724' }}>{ticket.name} </p>
-                                    <p>Valid from: {date} </p>
-                                    <p>Valid to:</p>
-                                    <p>Item reserved for you until:</p>
-                                </th>
-                                <th>{ticket.price}</th>
-                                <th>{ticket.quantity}</th>
-                                <th>{ticket.price * ticket.quantity}</th>
-                            </tr>
-                        )
-                    }
-                })}
+                {decrease.map((data) => {
+                    return (
+                        <tr key={data.ticket.ticketId} data={data}>
+                            <th className="text-align">Lấy img ra</th>
+                            <th className="text-align">
+                                <p style={{ color: '#3C5724' }}>{data.ticket.ticketName} </p>
+                                <p>Valid from: {date} </p>
+                                <p>Valid to:</p>
+                                <p>Item reserved for you until:</p>
+                            </th>
+                            <th>{data.ticket.price}</th>
+                            <th>{data.quantity}
+                            </th>
+                            <th>{data.ticket.price * data.quantity}</th>
+                        </tr>
 
-                {/* {context.ticket1.count !== 0 ? (
-                    <tr>
-                        <th className="text-align">Lấy img ra</th>
-                        <th className="text-align">
-                            <p style={{ color: '#3C5724' }}>{ticket1Info.name} </p>
-                            <p>Valid from: {date} </p>
-                            <p>Valid to:</p>
-                            <p>Item reserved for you until:</p>
-                        </th>
-                        <th>{ticket1Info.price}</th>
-                        <th>{context.ticket1.count}</th>
-                        <th>{ticket1Info.price * context.ticket1.count}</th>
-                    </tr>
-                ) : ("")}
-                {context.ticket2.count !== 0 ? (
-                    <tr>
-                        <th className="text-align">Lấy img ra</th>
-                        <th className="text-align">
-                            <p style={{ color: '#3C5724' }}>{ticket2Info.name} </p>
-                            <p>Valid from: {date} </p>
-                            <p>Valid to:</p>
-                            <p>Item reserved for you until:</p>
-                        </th>
-                        <th>{ticket2Info.price}</th>
-                        <th>{context.ticket2.count}</th>
-                        <th>{ticket2Info.price * context.ticket2.count}</th>
-                    </tr>
-                ) : ("")}
-                {context.ticket3.count !== 0 ? (
-                    <tr>
-                        <th className="text-align">Lấy img ra</th>
-                        <th className="text-align">
-                            <p style={{ color: '#3C5724' }}>{ticket3Info.name} </p>
-                            <p>Valid from: {date} </p>
-                            <p>Valid to:</p>
-                            <p>Item reserved for you until:</p>
-                        </th>
-                        <th>Free</th>
-                        <th>{context.ticket3.count}</th>
-                        <th>{ticket3Info.price * context.ticket3.count}</th>
-                    </tr>
-                ) : ("")} */}
-
+                    )
+                }
+                )}
+                <tr>
+                    <th colSpan={4}>
+                    </th>
+                    <th>
+                        <FormLabel type='text'>{totalPrice}</FormLabel>
+                    </th>
+                </tr>
             </tbody>
         </Table>
     )
