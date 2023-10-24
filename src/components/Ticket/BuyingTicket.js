@@ -94,7 +94,6 @@ const ticketReducer = (state, action) => {
                         ...existingOrder,
                         quantity: existingOrder.quantity - 1
                     }
-
                     // Create a new orders array with the updated order object
                     var updateOrders = [...state.orders]
                     updateOrders[existingTicketIndex] = updateOrder
@@ -182,14 +181,6 @@ const BuyingTicket = () => {
                                         </tr >
                                     )
                                 })}
-                                <tr>
-                                    <th className="text-align">Total</th>
-                                    <th colSpan={2}>
-                                    </th>
-                                    <th>
-                                        <FormLabel type='text'>{context.price.count}</FormLabel>
-                                    </th>
-                                </tr>
                             </tbody >
 
                         </Table >

@@ -1,6 +1,6 @@
 
-import React, { useContext, useEffect, useState } from "react";
-import { Row, Table, Col, Button, Container, Modal } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Row, Table, Col, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
 import TicketItemsTable from "./TicketItemsTable";
