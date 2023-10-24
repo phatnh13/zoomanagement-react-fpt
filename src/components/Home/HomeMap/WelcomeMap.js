@@ -19,7 +19,7 @@ const WelcomeMap = () => {
                         <Card.Img style={{ position: 'relative' }} src={Lions} alt="lions" />
                         <Card.ImgOverlay style={{ width: '18rem' }}>
                             <Card.Body style={{
-                                position: 'relative',
+                                position: 'absolute',
                                 width: '353px',
                                 height: '226px',
                                 top: '30px',
