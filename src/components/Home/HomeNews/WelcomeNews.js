@@ -1,6 +1,6 @@
 import React from "react";
-import { CardImg, Col, Container, Row } from "react-bootstrap";
-import Card from 'react-bootstrap/Card';
+import { Card, CardImg, Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom"
 import Pan from '../../../assets/Pan.png';
 import Monke from '../../../assets/Monke.png';
 import Zebras from '../../../assets/Zebras.png';
@@ -19,17 +19,23 @@ const WelcomeNews = () => {
                         </a>
                     </div>
                     <Container>
-                        <Row style={{ width: '100%' , paddingBottom: '3rem' }} className="justify-content-center">
+                        <Row style={{ width: '100%', paddingBottom: '3rem' }} className="justify-content-center">
                             <Col md={3} style={{ width: '25rem' }} >
-                                <CardImg src={Pan} alt="Panda" />
+                                <Link to='news'>
+                                    <CardImg src={Pan} alt="Panda" />
+                                </Link>
                                 <Card.Text>Saigon Zoo’s panda twins celebrate their fourth birthday</Card.Text>
                             </Col>
                             <Col md={3} style={{ width: '25rem' }} >
-                                <CardImg src={Monke} alt="monke" />
+                                <Link to='news'>
+                                    <CardImg src={Monke} alt="monke" />
+                                </Link>
                                 <Card.Text>Nocturnal animal house welcomes rare new arrivals</Card.Text>
                             </Col>
                             <Col md={3} style={{ width: '25rem' }} >
-                                <CardImg src={Zebras} alt="zebras" />
+                                <Link to='news'>
+                                    <CardImg src={Zebras} alt="zebras" />
+                                </Link>
                                 <Card.Text>Our young white-lipped peccaries are keeping the rest of the group on their toes. The babies, the youngest of whom were born about a month ago, spend their days…</Card.Text>
                             </Col>
                         </Row>
