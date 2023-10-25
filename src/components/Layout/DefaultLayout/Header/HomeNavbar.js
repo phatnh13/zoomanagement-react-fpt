@@ -39,12 +39,12 @@ const HomeNavbar = () => {
     <>
       <Navbar fixed="top" className="justify-content-between">
         <Nav to='/' className="logo-box__ticket">
-          <Col className="header-left col-md-10">
+          <Col className="header-left col-md-8">
             <Row>
               <Link to='/' className="zoo-logo col-md-2">
                 <Image src={WebLogo} />
               </Link>
-              <Col className="col-md-3">
+              <Col className="col-md-2">
                 <Row>
                   <div className="text-black text-logo__top-right">VietNam Zoo</div>
                 </Row>
