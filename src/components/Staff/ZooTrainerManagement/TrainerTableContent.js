@@ -1,15 +1,47 @@
 import React, {useState} from "react";
 import {Button} from "react-bootstrap";
 import TrainerDeleteModal from "./TrainerDeleteModal";
+import TrainerShowAnimalModal from "./TrainerShowAnimalModal";
+import { DateHelper } from "../../DateHelper";
 
 const TrainerTableContent = ({user, index}) => {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    //#region Modal
+        //Delete Modal
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const handleCloseDeleteModal = () => setShowDeleteModal(false);
+    const handleShowDeleteModal = () => setShowDeleteModal(true);
+        //Show Animal Modal
+    const [showAnimalModal, setShowAnimalModal] = useState(false);
+    const handleCloseAnimalModal = () => setShowAnimalModal(false);
+    const handleShowAnimalModal = () => setShowAnimalModal(true);
+    //#endregion
+
+    //Variables
+    const [animalList, setAnimalList] = useState([]); //List of animal of this trainer
+
+    let handleShowAnimal = () => {
+        console.log("show animal");
+        handleShowAnimalModal();
+        fetch(`https://localhost:7193/api/AnimalUser/user/${user.userId}`, {
+            method: "GET",
+            headers: {
+                "Content-type": "text/plain; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+            },
+        })
+            .then((res) => res.json())
+            .then(data => {
+                console.log(data);
+                setAnimalList(data);
+            }).catch(rejected => {
+                console.log(rejected);
+            });
+    }
 
     let handleUpdate = () => {
         console.log({user});
     }
+
     let handleDelete = () => {
         fetch(`https://localhost:7193/api/User/${user.userId}`, {
             method: "DELETE",
@@ -24,7 +56,7 @@ const TrainerTableContent = ({user, index}) => {
             }).catch(rejected => {
                 console.log(rejected);
             });
-        handleClose();
+        handleCloseDeleteModal();
         window.location.reload(false);
     }
     return (
@@ -36,14 +68,18 @@ const TrainerTableContent = ({user, index}) => {
             <td>{user.gender}</td>
             <td>{user.phoneNumber}</td>
             <td>{user.email}</td>
-            <td>{user.dateOfBirth}</td>
+            <td>{DateHelper.formatDate(user.dateOfBirth)}</td>
+            <td className="text-center">
+                <Button variant="outline-danger" size="sm" onClick={handleShowAnimal}>Animal</Button>
+            </td>
             <td className="text-center">
                 <Button href="/staff/trainer/update" variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
             </td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleShow}>Delete</Button>
+                <Button variant="outline-primary" size="sm" onClick={handleShowDeleteModal}>Delete</Button>
             </td>
-            <TrainerDeleteModal show={show} handleClose={handleClose} handleDelete={handleDelete} user={user} />
+            <TrainerShowAnimalModal show={showAnimalModal} handleClose={handleCloseAnimalModal} animalList={animalList} user={user} />
+            <TrainerDeleteModal show={showDeleteModal} handleClose={handleCloseDeleteModal} handleDelete={handleDelete} user={user} />
         </tr>
         // <h5>row</h5>
     )

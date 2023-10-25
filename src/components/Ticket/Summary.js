@@ -15,9 +15,9 @@ const Summary = () => {
     const email = context.email;
     const phoneNumber = context.phoneNumber
     
-    const orders = tickets.map(ticket => ({
-        ...ticket.ticketId.toString(),
-        quantity: decrease.find(quantityItem => quantityItem.ticket.ticketId === ticket.ticketId).quantity
+    const orders = decrease.map(decrease => ({
+        ...decrease.ticket.ticketId.toString(),
+        quantity: decrease.quantity
     }));    
       // Initialize an empty object
       const resultObject = {};
@@ -28,9 +28,7 @@ const Summary = () => {
         const value = item.quantity; // Get the value from the 'quantity' property
         resultObject[key] = value; // Assign the value to the key in the result object
       });
-      
-      console.log(resultObject);
-
+      console.log(resultObject)
     let handleAddOrder = async () => {
         console.log("Add order");
         console.log("Customer name: " + name);
@@ -55,12 +53,12 @@ const Summary = () => {
                     alert("Add order successfully");
                 } else {
                     alert("Add order failed");
+                    window.location.reload(false);
                 }
             })
             .catch(rejected => {
                 console.log(rejected);
             });
-        window.location.reload(false);
     }
 
     const NavigationButtons = () => {

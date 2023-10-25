@@ -14,7 +14,7 @@ const StaffNavbar = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to={"/staff/trainer"} >Zoo Trainer</Nav.Link>
-                        <Nav.Link as={Link} to={"/staff/cage"} >Cages</Nav.Link>
+                        <Nav.Link as={Link} to={"/staff/area-cage"} >Areas/Cages</Nav.Link>
                     </Nav>
                     <Navbar.Text>
                         <NavDropdown title= {name} >
