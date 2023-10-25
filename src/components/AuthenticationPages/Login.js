@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 const Login = () => {
-
+    // const UserContext = useContext(UserContext);
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     let [message, setMessage] = useState("");
@@ -66,8 +66,9 @@ const Login = () => {
                 }
             ).then((res) => res.json())
                 .then(data => {
-                    console.log(data);
-                    localStorage.setItem("loginUser", JSON.stringify(data));
+                    console.log(data, "data");
+                    // UserContext.setUser(data);
+                    localStorage.setItem("loginUser", JSON.stringify(data.token));
                     console.log(JSON.parse(localStorage.getItem("loginUser")));
                 }).catch(rejected => {
                     console.log(rejected);

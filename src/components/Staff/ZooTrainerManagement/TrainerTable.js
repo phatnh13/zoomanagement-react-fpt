@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Table, Badge } from "react-bootstrap";
+import { Container, Table } from "react-bootstrap";
 import TrainerTableContent from "./TrainerTableContent";
 const TrainerTable = ({ trainerList }) => {
     return (
@@ -18,6 +18,7 @@ const TrainerTable = ({ trainerList }) => {
                         <th>phoneNumber</th>
                         <th>Email</th>
                         <th>Date of Birth</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>

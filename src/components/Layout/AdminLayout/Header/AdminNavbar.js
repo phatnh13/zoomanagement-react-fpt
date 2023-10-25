@@ -1,11 +1,17 @@
-import React from "react";
-import { NavDropdown } from "react-bootstrap";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavDropdown, Container, Nav, Navbar } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../../../UserContext";
 const AdminNavbar = () => {
-    const name = JSON.parse(localStorage.getItem("loginUser")).userName;
+    // const name = JSON.parse(localStorage.getItem("loginUser")).userName;
+    const name = "Admin";
+    // const UserContext = useContext(UserContext)
+    // const name = UserContext.user.userName;
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem("loginUser");
+        navigate("/login");
+    }
     return (
             <Navbar expand="md" className="bg-body-tertiary">
                 <Container>
@@ -18,8 +24,8 @@ const AdminNavbar = () => {
                     </Nav>
                     <Navbar.Text>
                         <NavDropdown title= {name} >
-                            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                            <NavDropdown.Item href="/login">Logout</NavDropdown.Item>
+                            <NavDropdown.Item href="/profile-admin">Profile</NavDropdown.Item>
+                            <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Navbar.Text>
                     </Navbar.Collapse>

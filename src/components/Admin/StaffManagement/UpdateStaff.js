@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Button, Row, Col, Form, Card } from "react-bootstrap";
+import { DateHelper } from "../../DateHelper";
 function UpdateStaff() {
     const location = useLocation();
     const [user, setUser] = useState({});
 
-    function formatDate(dateString) {
-        const originalDate = new Date(dateString);
-        const year = originalDate.getFullYear();
-        const month = String(originalDate.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-        const day = String(originalDate.getDate()).padStart(2, '0');
-
-        return `${year}-${month}-${day}`;
-    }
-
+    //Fetch user by id
     useEffect(() => {
         fetch(`https://localhost:7193/api/Staff/${location.state.id}`,
             {
@@ -32,20 +25,20 @@ function UpdateStaff() {
             });
     }, [location.state.id]);
 
-
     const [UserName, setUserName] = useState('');
     const [Email, setEmail] = useState('');
     const [PhoneNumber, setPhoneNumber] = useState('');
     const [FullName, setFullName] = useState('');
     const [DateOfBirth, setDateOfBirth] = useState('');
     const [Gender, setGender] = useState('');
-
+    
+    //Update user info to state in order to print to screen
     useEffect(() => {
         setUserName(user.userName || '');
         setEmail(user.email || '');
         setPhoneNumber(user.phoneNumber || '');
         setFullName(user.fullName || '');
-        setDateOfBirth(formatDate(user.dateOfBirth) || '');
+        setDateOfBirth(DateHelper.formatDate(user.dateOfBirth) || '');
         setGender(user.gender || '');
     }, [user]);
 
