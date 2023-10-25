@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button, Row, Col, Form, Pagination, Modal } from "react-bootstrap";
+import { Container, Button, Row, Col, Form, Pagination } from "react-bootstrap";
 import StaffTable from "./StaffTable";
 const StaffManaging = () => {
 

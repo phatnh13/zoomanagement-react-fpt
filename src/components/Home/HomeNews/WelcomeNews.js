@@ -20,19 +20,19 @@ const WelcomeNews = () => {
                     </div>
                     <Container>
                         <Row style={{ width: '100%', paddingBottom: '3rem' }} className="justify-content-center">
-                            <Col md={3} style={{ width: '25rem' }} >
+                            <Col md={3}  >
                                 <Link to='news'>
                                     <CardImg src={Pan} alt="Panda" />
                                 </Link>
                                 <Card.Text>Saigon Zoo’s panda twins celebrate their fourth birthday</Card.Text>
                             </Col>
-                            <Col md={3} style={{ width: '25rem' }} >
+                            <Col md={3}  >
                                 <Link to='news'>
                                     <CardImg src={Monke} alt="monke" />
                                 </Link>
                                 <Card.Text>Nocturnal animal house welcomes rare new arrivals</Card.Text>
                             </Col>
-                            <Col md={3} style={{ width: '25rem' }} >
+                            <Col md={3}  >
                                 <Link to='news'>
                                     <CardImg src={Zebras} alt="zebras" />
                                 </Link>
