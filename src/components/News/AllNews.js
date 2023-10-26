@@ -14,7 +14,8 @@ const AllNews = () => {
   const navagate = useNavigate()
 
   const handleNavigation = (item) => {
-    navagate(`/news/${item.id}`, { state: item })
+    console.log("Navigarun");
+    navagate(`/news/${item.newsId}`, { state: item })
   }
 
   let PaginationLoad = () => {
@@ -29,22 +30,23 @@ const AllNews = () => {
     setCurrentPage(e.target.text);
   }
 
+  const handleClick = (item) => {
+    console.log(item)
+    handleNavigation(item);
+  }
+
   useEffect(() => {
     fetch(`https://localhost:7193/api/News?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
       method: "GET",
       headers: {
         "content-type": "application/json; charset=UTF-8"
       }
-    })
-      .then(data => data.json())
+    }).then(data => data.json())
       .then(data => {
         console.log(data)
         setNews(data.pagingList);
         setTotalPages(data.totalPages);
-      })
-      .catch(error =>
-        console.error(error)
-      )
+      }).catch(error => console.log(error))
 
   }, [currentPage, searchBy, searchString]);
 
@@ -55,7 +57,7 @@ const AllNews = () => {
         {news.map((item, idx) => {
           return (
             <Col key={idx}>
-              <Card>
+              <Card onClick={() => handleClick(item)}>
                 <Card.Img variant="top" src={item.thumnail} />
                 <Card.Body>
                   <Card.Title>{item.title}</Card.Title>

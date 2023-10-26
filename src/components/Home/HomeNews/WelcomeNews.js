@@ -15,8 +15,8 @@ const WelcomeNews = () => {
                 <div className="news">
                     <div class="news-grid-slider__header-wrap">
                         <h2 class=" news-grid-slider__header">News</h2>
-                        <a class="justify-content-end btn-home-news btn--light news-grid-slider__all-news-link" href="/allnews">All News
-                        </a>
+                        <Link class="justify-content-end btn-home-news btn--light news-grid-slider__all-news-link" to="/allnews">All News
+                        </Link>
                     </div>
                     <Container>
                         <Row style={{ width: '100%', paddingBottom: '3rem' }} className="justify-content-center">
