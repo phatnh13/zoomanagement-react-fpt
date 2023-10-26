@@ -21,13 +21,13 @@ function OffCanvasExample({ name, ...props }) {
       <Offcanvas style={{ backgroundColor: '#f5f0d7', height: '45%', with: "100%" }} show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <Link className="navigation__link" to='/'>
+            <Link className="navigation__link" to='/' onClick={handleClose}>
               Saigon Zoo
             </Link>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <HomeMenu />
+          <HomeMenu handleClose={handleClose} />
         </Offcanvas.Body>
       </Offcanvas>
     </>
@@ -46,10 +46,10 @@ const HomeNavbar = () => {
               </Link>
               <Col className="col-md-2">
                 <Row>
-                  <div className="text-black text-logo__top-right">VietNam Zoo</div>
+                  <div className="text-logo__top-right">VietNam Zoo</div>
                 </Row>
                 <Row>
-                  <div className="text-black text-logo__down-right">Since 1864</div>
+                  <div className="text-logo__down-right">Since 1864</div>
                 </Row>
               </Col>
             </Row>
@@ -80,19 +80,6 @@ const HomeNavbar = () => {
 
         </div>
       </Navbar>
-      {/* // <Container fluid>
-    //     <Navbar expand="lg" variant="light" fixed="top" className="ps-4">
-    //     <Navbar.Brand className="" href="/"><Image src={ZooLogo} width={60} height={60} /> Sai Gon Zoo</Navbar.Brand>
-    //     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    //     <Navbar.Collapse id="basic-navbar-nav">
-    //       <Nav className="me-auto pb-1">
-    //         <Nav.Link as={Link} to={"/login"} >Login</Nav.Link>
-    //         <Nav.Link as={Link} to={"/buyingticket"} >Tickets</Nav.Link>
-    //         <Nav.Link as={Link} to={"/news"} >News</Nav.Link>
-    //       </Nav>
-    //     </Navbar.Collapse>
-    // </Navbar>
-    //   </Container> */}
     </>
   )
 };
