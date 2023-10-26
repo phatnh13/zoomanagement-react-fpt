@@ -8,43 +8,25 @@ const WelcomeMap = () => {
         <>
             <Row className="justify-content-md-center mt-4">
                 <Col md={8}>
-                    <Card style={{
+                    <Card  style={{
                         top: '40px',
-                        width: '1160px',
-                        height: '418px',
                         borderRadius: '100px',
                         flexShrink: 0,
-
                     }} >
-                        <Card.Img style={{ position: 'relative' }} src={Lions} alt="lions" />
-                        <Card.ImgOverlay style={{ width: '18rem' }}>
-                            <Card.Body style={{
-                                position: 'absolute',
-                                width: '353px',
-                                height: '226px',
-                                top: '30px',
-                                left: '700px',
-                                borderradius: '20px',
-                                opacity: '0.2px'
-                            }}>
+                        <Card.Img style={{ width: '100%' }} src={Lions} alt="lions" />
+                        <Card.ImgOverlay>
+                            <Card.Body style={{position: 'relative'}}  >
                                 <Card.Title style={{
-                                    width: '240px',
-                                    height: '54px',
                                     color: '#3C5724',
-                                    textAlign: 'right',
                                     fontfamily: 'Nunito Sans',
-                                    fontsize: '20px',
-                                    fontstyle: 'normal',
-                                    fontweight: 700,
-                                    lineheight: 'normal'
+                                    width: '30%',
+
                                 }}>We are passionate about
                                     protecting species.</Card.Title>
                                 <Card.Text style={{
                                     color: 'white',
                                     fontfamily: 'Nunito Sans',
-                                    fontstyle: 'normal',
-                                    fontweight: 700,
-                                    lineheight: 'normal'
+                                    width: '30%',
                                 }} >
                                     Over a million species worldwide are threatened with
                                     extinction. Saigon Zoo is committed to protecting
@@ -52,6 +34,7 @@ const WelcomeMap = () => {
                                     World Wild conservation programme.
                                 </Card.Text>
                                 <Button style={{
+                                    alignContent: 'left',
                                     marginLeft: '5rem',
                                 }} variant="success" href='Map' >Saigon World Wild </Button>
                             </Card.Body>
