@@ -6,18 +6,18 @@ import WelcomeNews from "./HomeNews/WelcomeNews";
 const Home = () => {
     return (
         <>
-        
         <div className="vh-100">
-            
-            <HomeView />
-            </div>
+        <HomeView />
+        </div>
             <Welcome />
+
             <div style={{
                 backgroundColor: '#F7F1DB',
             }}>
                 <WelcomeMap />
+
                 <WelcomeNews />
-        </div >
+            </div >
         </>
     );
 };

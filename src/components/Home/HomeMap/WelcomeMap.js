@@ -1,19 +1,18 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col } from "react-bootstrap";
 import Lions from '../../../assets/Lions.png';
 
 const WelcomeMap = () => {
     return (
         <>
-            <Row className="justify-content-md-center mt-4">
+            <div className="d-flex justify-content-center">
                 <Col md={8}>
                     <Card  style={{
-                        top: '40px',
                         borderRadius: '100px',
                         flexShrink: 0,
                     }} >
-                        <Card.Img style={{ width: '100%' }} src={Lions} alt="lions" />
+                        <Card.Img src={Lions} alt="lions" />
                         <Card.ImgOverlay>
                             <Card.Body style={{position: 'relative'}}  >
                                 <Card.Title style={{
@@ -41,7 +40,7 @@ const WelcomeMap = () => {
                         </Card.ImgOverlay>
                     </Card>
                 </Col>
-            </Row >
+            </div >
         </>
     );
 }

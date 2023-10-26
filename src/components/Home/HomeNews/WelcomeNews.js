@@ -11,16 +11,16 @@ import './WelcomeNews.css';
 const WelcomeNews = () => {
     return (
         <>
-            <div className="g-col-12 g-col-sm-12 g-col-md-12 g-col-lg-12 g-col-xl-12">
+            
                 <div className="news">
                     <div class="news-grid-slider__header-wrap">
-                        <h2 class=" news-grid-slider__header">News</h2>
-                        <Link class="justify-content-end btn-home-news btn--light news-grid-slider__all-news-link" to="/allnews">All News
+                        <h2 class=" news-grid-slider__header ms-5">News</h2>
+                        <Link class="justify-content-end btn-home-news btn--light news-grid-slider__all-news-link me-5" to="/allnews">All News
                         </Link>
                     </div>
                     <Container>
-                        <Row style={{ width: '100%', paddingBottom: '3rem' }} className="justify-content-center">
-                            <Col md={3}  >
+                        <Row className="justify-content-center">
+                            <Col md={3} >
                                 <Link to='news'>
                                     <CardImg src={Pan} alt="Panda" />
                                 </Link>
@@ -41,7 +41,7 @@ const WelcomeNews = () => {
                         </Row>
                     </Container>
                 </div>
-            </div>
+            
         </>
     );
 }
