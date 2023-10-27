@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import StaffDeleteModal from "./StaffDeleteModal";
+import { DateHelper } from "../../DateHelper";
 
 const StaffTableContent = ({ user, index }) => {
-    const [show, setShow] = useState(false);
+    const [showDeleteModal, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -42,7 +43,7 @@ const StaffTableContent = ({ user, index }) => {
             <td>{user.gender}</td>
             <td>{user.phoneNumber}</td>
             <td>{user.email}</td>
-            <td>{user.dateOfBirth}</td>
+            <td>{DateHelper.formatDate(user.dateOfBirth)}</td>
             <td className="text-center">
                 <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
             </td>
@@ -50,7 +51,7 @@ const StaffTableContent = ({ user, index }) => {
                 <Button variant="outline-primary" size="sm" onClick={handleShow}>Delete</Button>
             </td>
             {/* <UpdateStaff user={user} /> */}
-            <StaffDeleteModal show={show} handleClose={handleClose} handleDelete={handleDelete} user={user} />
+            <StaffDeleteModal show={showDeleteModal} handleClose={handleClose} handleDelete={handleDelete} user={user} />
         </tr>
     )
 }

@@ -30,6 +30,7 @@ import AddSpecies from '../components/Admin/Species Management/AddSpecies';
 import ZooTrainerManaging from '../components/Staff/ZooTrainerManagement/ZooTrainerManaging';
 import AddTrainer from '../components/Staff/ZooTrainerManagement/AddTrainer';
 import CageManaging from '../components/Staff/CageManagement/CageManaging';
+import AnimalManaging from '../components/Staff/AnimalManagement/AnimalManaging';
 
 //1
 
@@ -59,6 +60,7 @@ const privateRoutes = [
     { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
     { path: '/staff/trainer/add', component: AddTrainer, layout: StaffLayout},
     { path: '/staff/area-cage', component: CageManaging, layout: StaffLayout},
+    { path: '/staff/animal', component: AnimalManaging, layout: StaffLayout},
     
     //Customer
     //--Ticket--

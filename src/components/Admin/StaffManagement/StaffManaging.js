@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button, Row, Col, Form, Pagination, Modal } from "react-bootstrap";
+import { Container, Button, Row, Col, Form, Pagination } from "react-bootstrap";
 import StaffTable from "./StaffTable";
 const StaffManaging = () => {
 
@@ -30,7 +30,7 @@ const StaffManaging = () => {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             },
         })
             .then((res) => res.json())
