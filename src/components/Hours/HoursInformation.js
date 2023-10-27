@@ -11,33 +11,33 @@ const HoursInformation = () => {
     return (
         <section className="bg-white panel panel__ctas">
             <div className="wrapper">
-                <Card style={{ width: '18rem' }}>
+                <Card  >
                     <CardImg src={Iguana} alt="Iguanas" />
                     <Card.ImgOverlay style={{ color: "white" }}>
-                        <Card.Title>Lots to </Card.Title>
-                        <Card.Title >experience</Card.Title>
+                        <Card.Title>A good </Card.Title>
+                        <Card.Title >overview</Card.Title>
                         <CardFooter>
-                            <Link to="/map" style={{color: "white", position: "absolute", bottom: 5}} >An overview of the inhabitant {'>'}</Link>
+                            <Link to="/map" style={{color: "white", position: "absolute", bottom: 5, left:'40%'}} >Zoo map {'>'}</Link>
                         </CardFooter>
                     </Card.ImgOverlay>
                 </Card>
-                <Card style={{ width: '18rem' }}>
+                <Card >
                     <CardImg src={Hippo} alt="Hippo" />
-                    <Card.ImgOverlay style={{ color: "black" }}>
+                    <Card.ImgOverlay  style={{ color: "black" }}>
                         <Card.Title>Online </Card.Title>
                         <Card.Title >tickets</Card.Title>
                         <CardFooter>
-                            <Link to="/ByingTickets" style={{color: "white", position: "absolute", bottom: 5}}> Save your time! {'>'}</Link>
+                            <Link to="/buyingticket" style={{color: "white", position: "absolute", bottom: 5, left:'35%'}}> Save your time! {'>'}</Link>
                         </CardFooter>
                     </Card.ImgOverlay>
                 </Card>
-                <Card style={{ width: '18rem' }}>
+                <Card >
                     <CardImg src={Panda} alt="Panda" />
                     <Card.ImgOverlay style={{ color: "white" }}>
-                        <Card.Title>Be a </Card.Title>
-                        <Card.Title >supporter</Card.Title>
+                        <Card.Title>Lots going on </Card.Title>
+                        <Card.Title>with tons of news </Card.Title>
                         <CardFooter>
-                            <Link to="/donate" className="mx-auto" style={{color: "white", position: "absolute", bottom: 5}}> Become an animal sponsor {'>'}</Link>
+                            <Link to="/allnews" className="mx-auto" style={{color: "white", position: "absolute", bottom: 5,left:'35%'}}> News from the zoo {'>'}</Link>
                         </CardFooter>
                     </Card.ImgOverlay>
                 </Card>
