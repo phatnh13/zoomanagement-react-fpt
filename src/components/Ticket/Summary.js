@@ -9,7 +9,6 @@ import TicketItemsTable from "./TicketItemsTable";
 const Summary = () => {
 
     const context = useContext(TicketContext);
-    const tickets = context.tickets
     const decrease = context.decrease;
     const name = context.firstName;
     const email = context.email;
@@ -64,7 +63,7 @@ const Summary = () => {
     const NavigationButtons = () => {
         return (
             <div className="navigation-buttons button-direct">
-                <Link to='/viewcart'>
+                <Link to='/billingaddress'>
                     <Button className="back-button" style={{ backgroundColor: '#F07300', fontSize: '30px', marginRight: '80px' }}>
                         <svg
                             width="40"
@@ -105,8 +104,10 @@ const Summary = () => {
                                 <div className="ticket-table-information">Billing Address</div>
                                 <Table striped bordered hover size="sm">
                                     <tbody style={{ textAlign: 'left' }}>
-                                        <p>Name: {context.firstName}{' '}{context.lastName}</p>
-                                        <p>Phone Number: {context.phoneNumber}</p>
+                                        
+                                        <tr>Name: {context.firstName}{' '}{context.lastName}</tr>
+                                        <tr>Phone Number: {context.phoneNumber}</tr>
+                                        
                                     </tbody>
                                 </Table>
                             </Col>
@@ -114,19 +115,13 @@ const Summary = () => {
                                 <div className="ticket-table-information">Email</div>
                                 <Table striped bordered hover size="sm">
                                     <tbody style={{ textAlign: 'left' }}>
-                                        <p>Email: {context.email}</p>
-                                        <p></p>
+                                        <tr>
+                                        Email: {context.email}
+                                        </tr>
                                     </tbody>
                                 </Table>
                             </Col>
                             <Col>
-                                <div className="ticket-table-information">Payment Method</div>
-                                <Table striped bordered hover size="sm">
-                                    <tbody style={{ textAlign: 'left' }}>
-                                        <p>Payment Method:</p>
-                                        <p></p>
-                                    </tbody>
-                                </Table>
                             </Col>
                         </Row>
                         <div className="ticket-table-information">ITEMS</div>

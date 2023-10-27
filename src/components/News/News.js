@@ -19,7 +19,7 @@ const News = () => {
         <>
             {news.map((item, idx) => {
                 return (
-                    <Container>
+                    <Container className='vh-100'>
                         <Col md={4} key={idx}>
                             <div className="g-container">
                                 <div className="g-void">

@@ -3,7 +3,6 @@
     position: left;
     display: flex;
     font-family: "Just Another Hand";
-    color: black;
 }
 
 .header-left {
@@ -16,11 +15,15 @@
 }
 
 .text-logo__top-right {
+    font-size: 2rem;
     line-height: normal;
+    color: white;
 }
 
 .text-logo__down-right {
+    font-size: 1rem;
     line-height: normal;
+    color: white;
 }
 
 .text-logo__top-left {

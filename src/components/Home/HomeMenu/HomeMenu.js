@@ -1,7 +1,8 @@
 import { Col } from 'react-bootstrap';
 import "./HomeMenu.css"
 import { Link } from 'react-router-dom';
-const HomeMenu = () => {
+const HomeMenu = ({handleClose}) => {
+  
   return (
     <>
       <div className='navigation-wrapper'>
@@ -15,7 +16,7 @@ const HomeMenu = () => {
             </li>
             <li><h1>Ticket</h1></li>
             <li>
-            <Link className='navigation__link' to='/buyingticket'>
+            <Link className='navigation__link' to='/buyingticket' onClick={handleClose}>
               View Ticket
               </Link>
             </li>
@@ -30,7 +31,7 @@ const HomeMenu = () => {
             </li>
             <li><h1>News</h1></li>
             <li>
-            <Link className='navigation__link' to='/news'>
+            <Link className='navigation__link' to='/news' onClick={handleClose}>
               View News
               </Link>
             </li>
@@ -45,11 +46,11 @@ const HomeMenu = () => {
             </li>
             <li><h1>Map</h1></li>
             <li>
-            <Link className='navigation__link' to='/map'>
+            <Link className='navigation__link' to='/map' onClick={handleClose}>
               View Map
               </Link>
             </li>
-            <li className='navigation_comment'>//</li>
+            <li className='navigation_comment'></li>
           </ul>
           <ul>
             <li className='navigation-list__logo'>
@@ -59,7 +60,7 @@ const HomeMenu = () => {
             </li>
             <li><h1>Opening Hours</h1></li>
             <li>
-            <Link className='navigation__link' to='/hours'>
+            <Link className='navigation__link' to='/hours' onClick={handleClose}>
               View Hours
               </Link>
             </li>
@@ -69,7 +70,7 @@ const HomeMenu = () => {
         <Col className='navigation-list__right col-md-2'>
           <ul>
             <li>
-              <Link className='navigation__link' to='/login'>
+              <Link className='navigation__link' to='/login' onClick={handleClose}>
               <h1>Login</h1>
               </Link>
             </li>
