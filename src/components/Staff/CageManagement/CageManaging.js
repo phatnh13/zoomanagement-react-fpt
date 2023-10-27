@@ -20,8 +20,10 @@ function CageManaging() {
     //#region Pagination
     let PaginationLoad = () => {
         let items = [];
-        for (let page = 1; page <= totalPages; page++) {
-            items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+        if (totalPages > 1) {
+            for (let page = 1; page <= totalPages; page++) {
+                items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+            }
         }
         return items;
     }
@@ -57,8 +59,6 @@ function CageManaging() {
                 .then((res) => res.json())
                 .then(data => {
                     setAreas(data);
-                    console.log(data, "data");
-                    console.log(areas, "area");
                 }).catch(rejected => {
                     console.log(rejected);
                 });

@@ -12,7 +12,6 @@ const StaffTableContent = ({ user, index }) => {
 
     const navigate = useNavigate();
     let handleUpdate = () => {
-        // localStorage.setItem("updateStaff", JSON.stringify(user));
         navigate(`/admin/staff/update/`, {state: {id: user.userId}});
     }
 

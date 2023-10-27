@@ -1,11 +1,10 @@
-import React from "react";
-import { NavDropdown } from "react-bootstrap";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import React, {useContext} from "react";
+import { NavDropdown, Container, Nav, Navbar } from "react-bootstrap";
+import { UserContext } from "../../../../UserContext";
 import { Link, useNavigate } from "react-router-dom";
 const StaffNavbar = () => {
-    const name = "Staff";
+    const userContext = useContext(UserContext)
+    const name = userContext.user.userName;
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem("token");

@@ -3,6 +3,7 @@ import {Button} from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
 import DeleteAnimalModal from "./DeleteAnimalModal";
 import AnimalShowZooTrainerModal from "./AnimalShowZooTrainerModal";
+import AnimalShowCageModal from "./AnimalShowCageModal";
 
 const TrainerTableContent = ({animal}) => {
     //#region Modal
@@ -14,10 +15,11 @@ const TrainerTableContent = ({animal}) => {
     const [showTrainerModal, setShowTrainerModal] = useState(false);
     const handleCloseTrainerModal = () => setShowTrainerModal(false);
     const handleShowTrainerModal = () => setShowTrainerModal(true);
+        //Show cage Modal
+    const [showCageModal, setShowCageModal] = useState(false);
+    const handleCloseCageModal = () => setShowCageModal(false);
+    const handleShowCageModal = () => setShowCageModal(true);
     //#endregion
-
-    //Variables
-    const [trainerList, setTrainerList] = useState([]); //List of animal of this trainer
 
     let handleUpdate = () => {
         console.log({animal});
@@ -40,24 +42,7 @@ const TrainerTableContent = ({animal}) => {
         handleCloseDeleteModal();
         window.location.reload(false);
     }
-
-    let handleShowZooTrainer = () => {
-        handleShowTrainerModal();
-        fetch(`https://localhost:7193/api/AnimalUser/animal/${animal.animalId}`, {
-            method: "GET",
-            headers: {
-                "Content-type": "text/plain; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
-            },
-        })
-            .then((res) => res.json())
-            .then(data => {
-                console.log(data);
-                setTrainerList(data);
-            }).catch(rejected => {
-                console.log(rejected);
-            });
-    }
+ 
 
     return (
         <tr>
@@ -67,7 +52,7 @@ const TrainerTableContent = ({animal}) => {
             <td>{DateHelper.formatDate(animal.dateArrive)}</td>
             <td>{animal.status}</td>
             <td className="text-center">
-                <Button variant="outline-danger" size="sm" onClick={handleShowZooTrainer} >Zoo Trainers</Button>
+                <Button variant="outline-danger" size="sm" onClick={handleShowTrainerModal} >Zoo Trainers</Button>
             </td>
             <td className="text-center">
                 <Button href="/staff/trainer/update" variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
@@ -75,8 +60,22 @@ const TrainerTableContent = ({animal}) => {
             <td className="text-center">
                 <Button variant="outline-primary" size="sm" onClick={handleShowDeleteModal}>Delete</Button>
             </td>
-            <AnimalShowZooTrainerModal show={showTrainerModal} handleClose={handleCloseTrainerModal} animal={animal} trainerList={trainerList} />
-            <DeleteAnimalModal show={showDeleteModal} handleClose={handleCloseDeleteModal} handleDelete={handleDelete} animal={animal} />
+            <AnimalShowZooTrainerModal 
+            show={showTrainerModal} 
+            handleClose={handleCloseTrainerModal} 
+            animal={animal} 
+            />
+            <AnimalShowCageModal
+            show={showCageModal}
+            handleClose={handleCloseCageModal}
+            animal={animal}
+            />
+            <DeleteAnimalModal 
+            show={showDeleteModal} 
+            handleClose={handleCloseDeleteModal} 
+            handleDelete={handleDelete} 
+            animal={animal} 
+            />
         </tr>
     )
 }
