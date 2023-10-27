@@ -68,8 +68,8 @@ const Login = () => {
                 .then(data => {
                     console.log(data, "data");
                     // UserContext.setUser(data);
-                    localStorage.setItem("loginUser", JSON.stringify(data.token));
-                    console.log(JSON.parse(localStorage.getItem("loginUser")));
+                    localStorage.setItem("token", JSON.stringify(data.token));
+                    console.log(JSON.parse(localStorage.getItem("token")));
                 }).catch(rejected => {
                     console.log(rejected);
                 });

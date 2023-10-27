@@ -13,7 +13,7 @@ function UpdateStaff() {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
                 },
             }
         )
@@ -38,7 +38,7 @@ function UpdateStaff() {
         setEmail(user.email || '');
         setPhoneNumber(user.phoneNumber || '');
         setFullName(user.fullName || '');
-        setDateOfBirth(DateHelper.formatDate(user.dateOfBirth) || '');
+        setDateOfBirth(DateHelper.formatDateForInput(user.dateOfBirth) || '');
         setGender(user.gender || '');
     }, [user]);
 
@@ -131,7 +131,7 @@ function UpdateStaff() {
                     }),
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
                     }
                 }).then((res) => {
                     if (res.ok) {
@@ -234,8 +234,7 @@ function UpdateStaff() {
                                                 value={DateOfBirth}
                                                 onChange={(e) => {
                                                     setDateOfBirth(e.target.value);
-                                                }}
-                                                placeholder="Enter full name" />
+                                                }} />
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"

@@ -30,7 +30,7 @@ const StaffManaging = () => {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             },
         })
             .then((res) => res.json())

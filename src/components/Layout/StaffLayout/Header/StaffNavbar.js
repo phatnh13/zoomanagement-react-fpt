@@ -3,9 +3,14 @@ import { NavDropdown } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const StaffNavbar = () => {
     const name = "Staff";
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
+    }
     return (
             <Navbar expand="md" className="bg-body-tertiary">
                 <Container>
@@ -15,11 +20,12 @@ const StaffNavbar = () => {
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to={"/staff/trainer"} >Zoo Trainer</Nav.Link>
                         <Nav.Link as={Link} to={"/staff/area-cage"} >Areas/Cages</Nav.Link>
+                        <Nav.Link as={Link} to={"/staff/animal"} >Animals</Nav.Link>
                     </Nav>
                     <Navbar.Text>
                         <NavDropdown title= {name} >
-                            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                            <NavDropdown.Item href="/login">Logout</NavDropdown.Item>
+                            <NavDropdown.Item href="/profile-staff">Profile</NavDropdown.Item>
+                            <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Navbar.Text>
                     </Navbar.Collapse>

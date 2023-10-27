@@ -38,7 +38,7 @@ function SpeciesTableContent({ species, index }) {
                 <p><strong>Diet: </strong> {species.diet}</p>
                 <p><strong>Breeding and reproduction: </strong> {species.breedingAndReproduction}</p>
                 <Button variant="danger" className="me-2" onClick={handleShow}>Delete</Button>
-                <Button variant="warning">Edit</Button>
+                <Button variant="warning">Update</Button>
             </Accordion.Body>
             <SpeciesDeleteModal show={show} handleClose={handleClose} handleDelete={handleDelete} species={species} />
         </Accordion.Item>

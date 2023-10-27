@@ -273,7 +273,7 @@ function AddStaff() {
                                             <Col lg={6} md={6} sm={0}>
                                             </Col>
                                             <Col lg={6} md={6} sm={12} className="d-flex justify-content-end">
-                                                <Button size="sm" variant="secondary" className="mx-2" >
+                                                <Button href="/admin/staff" size="sm" variant="secondary" className="mx-2" >
                                                     Cancel
                                                 </Button>
                                                 <Button size="sm" variant="primary" onClick={onAddClick}>

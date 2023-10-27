@@ -9,34 +9,28 @@ function CageTableContent({index, cage}) {
     let [message, setMessage] = useState("");
 
     const [cageName, setCageName] = useState(cage.cageName);
-    // console.log(cageName);
-    const [areaName, setAreaName] = useState(cage.area.areaName);
-    // console.log(areaName);
+    
     useEffect(() => {
         setCageName(cage.cageName);
-        setAreaName(cage.area.areaName);
-      }, [cage.cageName, cage.area.areaName]);
+      }, [cage.cageName]);
 
     let handleUpdate = () => {
         fetch(`https://localhost:7193/api/Cage/`, {
             method: "PUT",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            },
             body: JSON.stringify({
                 cageId: cage.cageId,
                 cageName: cageName,
                 areaId: cage.area.areaId,
                 area: {
                     areaId: cage.area.areaId,
-                    areaName: areaName,
+                    areaName: cage.area.areaName,
                     isDelete: false
                 },
                 isDelete: false
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             }
         })
         .then((res) => {
@@ -55,7 +49,7 @@ function CageTableContent({index, cage}) {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             },
         })
             .then((res) => res.json())
@@ -82,9 +76,7 @@ function CageTableContent({index, cage}) {
                 <FormControl 
                 type='text'
                 disabled
-                value={areaName}
-                onChange={
-                (e) => setAreaName(e.target.value)} />
+                value={cage.area.areaName} />
             </td>
             <td className="text-center">
                 <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>

@@ -20,13 +20,12 @@ const TrainerTableContent = ({user, index}) => {
     const [animalList, setAnimalList] = useState([]); //List of animal of this trainer
 
     let handleShowAnimal = () => {
-        console.log("show animal");
         handleShowAnimalModal();
         fetch(`https://localhost:7193/api/AnimalUser/user/${user.userId}`, {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             },
         })
             .then((res) => res.json())
@@ -47,7 +46,7 @@ const TrainerTableContent = ({user, index}) => {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             },
         })
             .then((res) => res.json())
