@@ -131,6 +131,7 @@ const BuyingTicket = () => {
         context.setDecrease(orders)
         console.log('Add button clicked');
     };
+    console.log(tickets)
     return (
         <>
             <Container className="min-vh-100">

@@ -11,14 +11,13 @@ import './WelcomeNews.css';
 const WelcomeNews = () => {
     return (
         <>
-            
-                <div className="news">
+                    <Container>
+                    <div className="news">
                     <div class="news-grid-slider__header-wrap">
                         <h2 class=" news-grid-slider__header ms-5">News</h2>
-                        <Link class="justify-content-end btn-home-news btn--light news-grid-slider__all-news-link me-5" to="/allnews">All News
-                        </Link>
+                        <Link class="justify-content-end btn-home-news btn--light news-grid-slider__all-news-link me-5" to="/allnews">All News</Link>
                     </div>
-                    <Container>
+                    </div>
                         <Row className="justify-content-center">
                             <Col md={3} >
                                 <Link to='news'>
@@ -40,8 +39,6 @@ const WelcomeNews = () => {
                             </Col>
                         </Row>
                     </Container>
-                </div>
-            
         </>
     );
 }
