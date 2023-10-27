@@ -6,7 +6,7 @@ const StaffTable = ({ userList }) => {
     return (
         <Container>
             <div className="text-uppercase" >
-                <h3>staff's managing table</h3>
+                <h3>staffs managing table</h3>
             </div>
             <Table striped bordered hover responsive="md" >
                 <thead>

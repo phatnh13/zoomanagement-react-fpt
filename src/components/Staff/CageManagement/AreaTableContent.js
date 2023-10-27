@@ -41,7 +41,8 @@ function AreaTableContent({index, area}) {
         fetch(`https://localhost:7193/api/Areas/${area.areaId}`, {
             method: "DELETE",
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             },
         })
             .then((res) => res.json())
@@ -56,7 +57,7 @@ function AreaTableContent({index, area}) {
     
     return ( 
         <tr>
-            <td>{index+1}</td>
+            <td>{area.areaId}</td>
             <td>
                 <FormControl 
                 type='text' 

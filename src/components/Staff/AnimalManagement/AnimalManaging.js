@@ -13,8 +13,10 @@ function AnimalManaging() {
     //#region Pagination
     let PaginationLoad = () => {
         let items = [];
-        for (let page = 1; page <= totalPages; page++) {
-            items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+        if (totalPages > 1) {
+            for (let page = 1; page <= totalPages; page++) {
+                items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+            }
         }
         return items;
     }

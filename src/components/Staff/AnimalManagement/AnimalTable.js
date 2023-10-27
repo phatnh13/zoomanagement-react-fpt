@@ -5,16 +5,16 @@ const AnimalTable = ({ animalList }) => {
     return (
         <Container>
             <div className="text-uppercase" >
-                <h3>trainer's managing table</h3>
+                <h3>Animals managing table</h3>
             </div>
             <Table striped bordered hover responsive="md" >
                 <thead>
                     <tr>
-                        <th>Animal ID</th>
-                        <th>Species ID</th>
-                        <th>Animal Name</th>
-                        <th>Date Arrive</th>
-                        <th>Status</th>
+                        <th className="col-1">Animal ID</th>
+                        <th className="col-1">Species ID</th>
+                        <th className="col-1">Animal Name</th>
+                        <th className="col-1">Date Arrive</th>
+                        <th className="col-5">Status</th>
                         <th></th>
                         <th></th>
                         <th></th>
