@@ -57,7 +57,7 @@ const TrainerTableContent = ({user}) => {
                 console.log(rejected);
             });
         handleCloseDeleteModal();
-        window.location.reload(false);
+        navigate("/staff/trainer");
     }
     return (
         <tr>
