@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 const Login = () => {
     const context = useContext(UserContext);
@@ -147,6 +148,10 @@ const Login = () => {
                                             <Button variant="primary" onClick={onLoginClick}>
                                                 Login
                                             </Button>
+                                            <Link to="/staff/trainer" >
+                                                Staff
+                                            </Link>
+                                            
                                         </div>
                                         {/*Login button*/}
                                     </Form>
