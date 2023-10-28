@@ -4,6 +4,8 @@ import { Row, Table, Col, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
 import TicketItemsTable from "./TicketItemsTable";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Summary = () => {
@@ -49,9 +51,9 @@ const Summary = () => {
             })
             .then((res) => {
                 if (res.ok) {
-                    alert("Add order successfully");
+                    showSuccessToast()
                 } else {
-                    alert("Add order failed");
+                    showErrorToast();
                     window.location.reload(false);
                 }
             })
@@ -59,6 +61,24 @@ const Summary = () => {
                 console.log(rejected);
             });
     }
+    <div id="toast"></div>
+    function showSuccessToast() {
+        toast({
+          title: "Thành công!",
+          message: "Bạn đã đăng ký thành công tài khoản tại F8.",
+          type: "success",
+          duration: 5000
+        });
+      }
+    
+      function showErrorToast() {
+        toast({
+          title: "Thất bại!",
+          message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
+          type: "error",
+          duration: 5000
+        });
+      }
 
     const NavigationButtons = () => {
         return (
