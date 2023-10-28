@@ -10,12 +10,14 @@ const News = () => {
 
     useEffect(() => {
         fetch(`https://localhost:7193/api/News`, {
-            method: "POST",
+            method: "GET",
             headers: {
                 "content-type": "application/json; charset=UTF-8"
             }
         }).then(response => response.json())
-            .then(data => setNews(data.item));
+            .then(data => setNews(data.item))
+            .catch(error => { console.log(error);
+            });
     }, []);
 
 
@@ -36,7 +38,7 @@ const News = () => {
                                                             <div class=" news-details__meta">
                                                                 {/* <!-- date --> */}
                                                                 <span class="news-list-date">
-                                                                    <time itemprop="datePublished" datetime="2023-08-31">
+                                                                    <time itemprop="datePublished" datetime={item.releaseDate}>
                                                                         {item.releaseDate}
                                                                     </time>
                                                                 </span>
@@ -65,23 +67,7 @@ const News = () => {
                                                             </div>
                                                             <div className="col-md-12 text-left">
                                                                 <p>{item.Content}</p>
-                                                                <p>{item.Content}</p>
-                                                                <p>{item.Content}</p>
-                                                                <p>{item.Content}</p>
-                                                                <p>
-                                                                    <strong>{item.Content}</strong>
-                                                                    <ul>
-                                                                        <li>{item.Content}</li>
-                                                                    </ul>
-                                                                    <ul>
-                                                                        <li>{item.Content}</li>
-                                                                    </ul>
-                                                                    <ul>
-                                                                        <li>{item.Content}</li>
-                                                                    </ul>
-                                                                </p>
                                                             </div>
-
                                                             {/* link back */}
                                                             <div>
                                                                 <Link to="/allnews" className="btn btn--arrow iconfont--link-arrow iconfont__after ">
