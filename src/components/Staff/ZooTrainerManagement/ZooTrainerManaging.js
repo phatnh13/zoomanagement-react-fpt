@@ -47,7 +47,7 @@ function ZooTrainerManaging() {
 
     return (
         <Container fluid>
-            {console.log(context)}
+            {console.log(context.user, "context")}
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
             {/*Start search*/}
                 {/*Search filter */}
