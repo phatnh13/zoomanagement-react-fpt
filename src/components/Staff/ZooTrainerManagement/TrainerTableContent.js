@@ -1,10 +1,11 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import {Button} from "react-bootstrap";
 import TrainerDeleteModal from "./TrainerDeleteModal";
 import TrainerShowAnimalModal from "./TrainerShowAnimalModal";
 import { DateHelper } from "../../DateHelper";
 
-const TrainerTableContent = ({user, index}) => {
+const TrainerTableContent = ({user}) => {
     //#region Modal
         //Delete Modal
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -18,20 +19,19 @@ const TrainerTableContent = ({user, index}) => {
 
     //Variables
     const [animalList, setAnimalList] = useState([]); //List of animal of this trainer
+    const navigate = useNavigate();
 
     let handleShowAnimal = () => {
-        console.log("show animal");
         handleShowAnimalModal();
         fetch(`https://localhost:7193/api/AnimalUser/user/${user.userId}`, {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             },
         })
             .then((res) => res.json())
             .then(data => {
-                console.log(data);
                 setAnimalList(data);
             }).catch(rejected => {
                 console.log(rejected);
@@ -39,7 +39,7 @@ const TrainerTableContent = ({user, index}) => {
     }
 
     let handleUpdate = () => {
-        console.log({user});
+        navigate(`/staff/trainer/update/`, {state: {id: user.userId}});
     }
 
     let handleDelete = () => {
@@ -47,7 +47,7 @@ const TrainerTableContent = ({user, index}) => {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             },
         })
             .then((res) => res.json())
@@ -61,7 +61,6 @@ const TrainerTableContent = ({user, index}) => {
     }
     return (
         <tr>
-            <td>{index+1}</td>
             <td>{user.userId}</td>
             <td>{user.userName}</td>
             <td>{user.fullName}</td>
@@ -73,7 +72,7 @@ const TrainerTableContent = ({user, index}) => {
                 <Button variant="outline-danger" size="sm" onClick={handleShowAnimal}>Animal</Button>
             </td>
             <td className="text-center">
-                <Button href="/staff/trainer/update" variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
+                <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
             </td>
             <td className="text-center">
                 <Button variant="outline-primary" size="sm" onClick={handleShowDeleteModal}>Delete</Button>

@@ -1,15 +1,13 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import { NavDropdown, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../../UserContext";
 const AdminNavbar = () => {
-    // const name = JSON.parse(localStorage.getItem("loginUser")).userName;
-    const name = "Admin";
-    // const UserContext = useContext(UserContext)
-    // const name = UserContext.user.userName;
+    const userContext = useContext(UserContext)
+    const name = userContext.user.userName;
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem("loginUser");
+        localStorage.removeItem("token");
         navigate("/login");
     }
     return (

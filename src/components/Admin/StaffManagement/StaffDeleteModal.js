@@ -12,7 +12,7 @@ function StaffDeleteModal({show, handleClose, handleDelete, user}) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Cancel
                     </Button>
                     <Button variant="primary" onClick={handleDelete}>
                         Delete

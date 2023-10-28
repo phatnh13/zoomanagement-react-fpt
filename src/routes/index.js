@@ -29,7 +29,10 @@ import AddSpecies from '../components/Admin/Species Management/AddSpecies';
 //Staff managing
 import ZooTrainerManaging from '../components/Staff/ZooTrainerManagement/ZooTrainerManaging';
 import AddTrainer from '../components/Staff/ZooTrainerManagement/AddTrainer';
+import UpdateZooTrainer from '../components/Staff/ZooTrainerManagement/UpdateZooTrainer';
 import CageManaging from '../components/Staff/CageManagement/CageManaging';
+import AnimalManaging from '../components/Staff/AnimalManagement/AnimalManaging';
+import AddAnimal from '../components/Staff/AnimalManagement/AddAnimal';
 
 //1
 
@@ -58,7 +61,10 @@ const privateRoutes = [
     { path: '/profile-staff', component: ProfilePage, layout: StaffLayout},
     { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
     { path: '/staff/trainer/add', component: AddTrainer, layout: StaffLayout},
+    { path: '/staff/trainer/update/', component: UpdateZooTrainer, layout: StaffLayout},
     { path: '/staff/area-cage', component: CageManaging, layout: StaffLayout},
+    { path: '/staff/animal', component: AnimalManaging, layout: StaffLayout},
+    { path: '/staff/animal/add', component: AddAnimal, layout: StaffLayout},
     
     //Customer
     //--Ticket--

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Row, Col, Form, Pagination } from "react-bootstrap";
 import CageTable from "./CageTable";
 import AddCageModal from "./AddCageModal";
@@ -20,8 +20,10 @@ function CageManaging() {
     //#region Pagination
     let PaginationLoad = () => {
         let items = [];
-        for (let page = 1; page <= totalPages; page++) {
-            items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+        if (totalPages > 1) {
+            for (let page = 1; page <= totalPages; page++) {
+                items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+            }
         }
         return items;
     }
@@ -37,7 +39,7 @@ function CageManaging() {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             },
         })
             .then((res) => res.json())
@@ -47,20 +49,19 @@ function CageManaging() {
             }).catch(rejected => {
                 console.log(rejected);
             });
-            fetch(`https://localhost:7193/api/Areas?searchBy=AreaName`, {
+            fetch(`https://localhost:7193/api/Areas`, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
                 }
             })
                 .then((res) => res.json())
                 .then(data => {
-                    setAreas(data.pagingList);
+                    setAreas(data);
                 }).catch(rejected => {
                     console.log(rejected);
                 });
-        
     }, [currentPage, searchBy, searchString]);
 
     return (
@@ -106,7 +107,6 @@ function CageManaging() {
                 </Col>
                 <Col lg={7} md={12} xs={12}>
                     {/*Start Table*/}
-                    {console.log(cages, "cage")}
                     <CageTable cageList={cages} />
                     {/*Start Table*/}
                 </Col>

@@ -15,9 +15,6 @@ function AreaTableContent({index, area}) {
     let handleUpdate = () => {
         fetch(`https://localhost:7193/api/Areas/`, {
             method: "PUT",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            },
             body: JSON.stringify({
                 areaId: area.areaId,
                 areaName: areaName,
@@ -25,7 +22,7 @@ function AreaTableContent({index, area}) {
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             }
         })
         .then((res) => {
@@ -44,7 +41,8 @@ function AreaTableContent({index, area}) {
         fetch(`https://localhost:7193/api/Areas/${area.areaId}`, {
             method: "DELETE",
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             },
         })
             .then((res) => res.json())
@@ -59,7 +57,7 @@ function AreaTableContent({index, area}) {
     
     return ( 
         <tr>
-            <td>{index+1}</td>
+            <td>{area.areaId}</td>
             <td>
                 <FormControl 
                 type='text' 

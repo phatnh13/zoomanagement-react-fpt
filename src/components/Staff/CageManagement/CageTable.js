@@ -9,16 +9,17 @@ function CageTable({cageList}) {
             <Table striped bordered hover responsive="md" >
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th className="col-6">Cage Name</th>
+                        <th>Cage ID</th>
+                        <th className="col-5">Cage Name</th>
                         <th className="col-3">Area Name</th>
+                        <th className="col-1"></th>
                         <th className="col-1"></th>
                         <th className="col-1"></th>
                     </tr>
                 </thead>
                 <tbody>
                         {cageList.map((cage, index) => {
-                            return <CageTableContent key={index} index={index} cage={cage} />;
+                            return <CageTableContent key={index} cage={cage} />;
                         })}
                 </tbody>
             </Table>

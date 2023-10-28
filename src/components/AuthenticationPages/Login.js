@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
+import { UserContext } from "../../UserContext";
 const Login = () => {
-    // const UserContext = useContext(UserContext);
+    const context = useContext(UserContext);
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     let [message, setMessage] = useState("");
@@ -66,31 +67,28 @@ const Login = () => {
                 }
             ).then((res) => res.json())
                 .then(data => {
-                    console.log(data, "data");
-                    // UserContext.setUser(data);
-                    localStorage.setItem("loginUser", JSON.stringify(data.token));
-                    console.log(JSON.parse(localStorage.getItem("loginUser")));
+                    context.setUser({
+                        email: data.email,
+                        userId: data.userId,
+                        userName: data.userName,
+                        role: data.role,
+                        expiration: data.expiration,
+                        token: data.token,
+                        loggedIn: true
+                    });
+                    localStorage.setItem("token", JSON.stringify(data.token));
                 }).catch(rejected => {
                     console.log(rejected);
                 });
-                //redirect
-            // if (JSON.parse(localStorage.getItem("loginUser")).role === "Admin") {
-            //     window.location.href = "/admin/staff";
-            // }
-            // else if (JSON.parse(localStorage.getItem("loginUser")).role === "Staff") {
-            //     window.location.href = "/staff/trainer";
-            // }
-            // else {
-            //     window.location.href = "/";
-            // }
-        } else {
-            setMessage(<span className="text-danger">Login failed</span>);
+            } else {
+                setMessage(<span className="text-danger">Login failed</span>);
+            }
         }
-    }
-
-    useEffect(validate, [userName, password]);
-    return (
-        <Container fluid>
+        
+        useEffect(validate, [userName, password]);
+        return (
+            <Container fluid>
+            {console.log(context.user, "context")}
             <Row className="mt-5 py-5 d-flex justify-content-center align-items-center">
                 <Col md={8} lg={5} xs={12}>
                     <Card className="shadow">

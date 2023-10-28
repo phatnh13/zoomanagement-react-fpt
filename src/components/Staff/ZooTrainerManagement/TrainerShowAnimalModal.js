@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Modal, Table } from "react-bootstrap";
+import { DateHelper } from "../../DateHelper";
 
 function TrainerShowAnimalModal({ show, handleClose, user, animalList }) {
     return (
@@ -23,10 +24,10 @@ function TrainerShowAnimalModal({ show, handleClose, user, animalList }) {
                         {
                             return (
                             <tr key={index}>
-                                <td>{animal.animalId}</td>
-                                <td>{animal.speciesId}</td>
-                                <td>{animal.animalName}</td>
-                                <td>{animal.dateArrive}</td>
+                                <td className="col-1">{animal.animalId}</td>
+                                <td className="col-1">{animal.speciesId}</td>
+                                <td className="col-2">{animal.animalName}</td>
+                                <td className="col-2">{DateHelper.formatDate(animal.dateArrive)}</td>
                                 <td>{animal.status}</td>
                             </tr>
                             )

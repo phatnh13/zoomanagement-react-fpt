@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Modal} from "react-bootstrap";
 
-function DeleteAnimalModal({show, handleClose, handleDelete, animal}) {
+function AnimalShowCageModal({show, handleClose, animal}) {
     return ( 
         <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -14,12 +14,9 @@ function DeleteAnimalModal({show, handleClose, handleDelete, animal}) {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleDelete}>
-                        Delete
-                    </Button>
                 </Modal.Footer>
             </Modal>
      )
 }
 
-export default DeleteAnimalModal;
+export default AnimalShowCageModal;

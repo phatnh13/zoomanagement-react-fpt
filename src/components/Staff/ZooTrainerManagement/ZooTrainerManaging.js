@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TrainerTable from "./TrainerTable";
 import { Container, Button, Row, Col, Form, Pagination } from "react-bootstrap";
-
+import { UserContext } from "../../../UserContext";
 function ZooTrainerManaging() {
     const [trainer, setTrainer] = useState([]);
     const [searchBy, setSearchBy] = useState("FullName");
@@ -9,11 +9,15 @@ function ZooTrainerManaging() {
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
 
+    const context = useContext(UserContext);
+    
     //#region Pagination
     let PaginationLoad = () => {
         let items = [];
-        for (let page = 1; page <= totalPages; page++) {
-            items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+        if (totalPages > 1) {
+            for (let page = 1; page <= totalPages; page++) {
+                items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+            }
         }
         return items;
     }
@@ -29,7 +33,7 @@ function ZooTrainerManaging() {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
             },
         })
             .then((res) => res.json())
@@ -43,6 +47,7 @@ function ZooTrainerManaging() {
 
     return (
         <Container fluid>
+            {console.log(context)}
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
             {/*Start search*/}
                 {/*Search filter */}

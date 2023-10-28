@@ -1,19 +1,51 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Container, Button, Row, Col, Form, Card } from "react-bootstrap";
+import { DateHelper } from "../../DateHelper";
+function UpdateZooTrainer() {
+    const location = useLocation();
+    const [user, setUser] = useState({});
 
-function AddTrainer() {
-    const [UserName, setUserName] = useState("");
-    const [Email, setEmail] = useState("");
-    const [PhoneNumber, setPhoneNumber] = useState("");
-    const [FullName, setFullName] = useState("");
-    const [Password, setPassword] = useState("");
-    const [ConfirmPassword, setConfirmPassword] = useState("");
-    const [DateOfBirth, setDateOfBirth] = useState("");
-    const [Gender, setGender] = useState("");
+    //Fetch user by id
+    useEffect(() => {
+        fetch(`https://localhost:7193/api/ZooTrainer/${location.state.id}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                },
+            }
+        )
+            .then((res) => res.json())
+            .then(data => {
+                setUser(data);
+                console.log(data, "data");
+            }).catch(rejected => {
+                console.log(rejected);
+            });
+    }, [location.state.id]);
+
+    const [UserName, setUserName] = useState('');
+    const [Email, setEmail] = useState('');
+    const [PhoneNumber, setPhoneNumber] = useState('');
+    const [FullName, setFullName] = useState('');
+    const [DateOfBirth, setDateOfBirth] = useState('');
+    const [Gender, setGender] = useState('');
+    
+    //Update user info to state in order to print to screen
+    useEffect(() => {
+        setUserName(user.userName || '');
+        setEmail(user.email || '');
+        setPhoneNumber(user.phoneNumber || '');
+        setFullName(user.fullName || '');
+        setDateOfBirth(DateHelper.formatDateForInput(user.dateOfBirth) || '');
+        setGender(user.gender || '');
+    }, [user]);
 
     let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
-        userName: false,
+        UserName: false,
         Email: false,
         PhoneNumber: false,
         FullName: false,
@@ -22,7 +54,7 @@ function AddTrainer() {
     });
     let [errors, setErrors] = useState(
         {
-            userName: [],
+            UserName: [],
             Email: [],
             PhoneNumber: [],
             FullName: [],
@@ -33,7 +65,7 @@ function AddTrainer() {
     let validate = () => {
         let errorsData = {};
         //userName
-        errorsData.userName = [];
+        errorsData.UserName = [];
         if (UserName === "") {
             errorsData.userName.push("Username is required");
         }
@@ -60,16 +92,6 @@ function AddTrainer() {
         if (FullName === "") {
             errorsData.FullName.push("FullName is required");
         }
-        //password
-        errorsData.Password = [];
-        if (Password === "") {
-            errorsData.Password.push("Password is required");
-        }
-        //ConfirmPassword
-        errorsData.ConfirmPassword = [];
-        if (ConfirmPassword === "") {
-            errorsData.ConfirmPassword.push("Confirm Password is required");
-        }
         setErrors(errorsData);
     }
     //Check valid before submit
@@ -82,8 +104,8 @@ function AddTrainer() {
         }
         return valid;
     }
-    // Login Click event
-    let onAddClick = async () => {
+    // Update Click event
+    let onUpdateClick = async () => {
         // Set all input dirty=true
         let dirtyData = dirty;
         Object.keys(dirty).forEach((control) => {
@@ -98,22 +120,20 @@ function AddTrainer() {
         if (isValid()) {
             await fetch("https://localhost:7193/api/User",
                 {
-                    method: "POST",
+                    method: "PUT",
+                    body: JSON.stringify({
+                        userName: UserName,
+                        fullName: FullName,
+                        email: Email,
+                        gender: Gender,
+                        phoneNumber: PhoneNumber,
+                        dateOfBirth: DateOfBirth,
+
+                    }),
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
-                    },
-                    body: JSON.stringify({
-                        userName: UserName,
-                        email: Email,
-                        phoneNumber: PhoneNumber,
-                        fullName: FullName,
-                        password: Password,
-                        confirmPassword: ConfirmPassword,
-                        dateOfBirth: DateOfBirth,
-                        gender: Gender,
-                        roleId: "3",
-                    })
+                    }
                 }).then((res) => {
                     if (res.ok) {
                         console.log("Add successfully");
@@ -128,8 +148,7 @@ function AddTrainer() {
                 });
         }
     }
-
-    useEffect(validate, [UserName, Email, PhoneNumber, FullName, Password, ConfirmPassword]);
+    // useEffect(validate, [UserName, Email, PhoneNumber, FullName]);
     return (
         <Container fluid>
             <Row className="py-5 d-flex justify-content-center align-items-center">
@@ -209,40 +228,6 @@ function AddTrainer() {
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
-                                            controlId="staffAddPassword">
-                                            <Form.Label>Password</Form.Label>
-                                            <Form.Control
-                                                type="password"
-                                                value={Password}
-                                                onChange={(e) => {
-                                                    setPassword(e.target.value);
-                                                    validate();
-                                                }}
-                                                placeholder="Enter password" />
-                                            <div className="text-danger">
-                                                {dirty["Password"] && errors["Password"][0] ?
-                                                    errors["Password"][0] : ""}
-                                            </div>
-                                        </Form.Group>
-                                        <Form.Group
-                                            className="mb-3"
-                                            controlId="addConfirmPassword">
-                                            <Form.Label>Confirm Password</Form.Label>
-                                            <Form.Control
-                                                type="password"
-                                                value={ConfirmPassword}
-                                                onChange={(e) => {
-                                                    setConfirmPassword(e.target.value);
-                                                    validate();
-                                                }}
-                                                placeholder="Enter confirm password" />
-                                            <div className="text-danger">
-                                                {dirty["ConfirmPassword"] && errors["ConfirmPassword"][0] ?
-                                                    errors["ConfirmPassword"][0] : ""}
-                                            </div>
-                                        </Form.Group>
-                                        <Form.Group
-                                            className="mb-3"
                                             controlId="addDateofBirth">
                                             <Form.Label>Date Of Birth</Form.Label>
                                             <Form.Control
@@ -250,8 +235,7 @@ function AddTrainer() {
                                                 value={DateOfBirth}
                                                 onChange={(e) => {
                                                     setDateOfBirth(e.target.value);
-                                                }}
-                                                placeholder="Enter full name" />
+                                                }} />
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
@@ -276,8 +260,8 @@ function AddTrainer() {
                                                 <Button href="/staff/trainer" size="sm" variant="secondary" className="mx-2" >
                                                     Cancel
                                                 </Button>
-                                                <Button size="sm" variant="primary" onClick={onAddClick}>
-                                                    Add
+                                                <Button size="sm" variant="primary" onClick={onUpdateClick}>
+                                                    Update
                                                 </Button>
                                             </Col>
                                         </Row>
@@ -292,5 +276,4 @@ function AddTrainer() {
         </Container>
     )
 }
-
-export default AddTrainer;
+export default UpdateZooTrainer;

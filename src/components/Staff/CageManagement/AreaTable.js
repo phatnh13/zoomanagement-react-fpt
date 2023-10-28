@@ -9,7 +9,7 @@ function AreaTable({areaList}) {
             <Table striped bordered hover responsive="md" >
                 <thead>
                     <tr>
-                        <th className="col-1">No.</th>
+                        <th className="col-1">Area ID</th>
                         <th className="col-5">Area Name</th>
                         <th className="col-3"></th>
                         <th className="col-3"></th>

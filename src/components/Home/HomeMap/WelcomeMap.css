@@ -1,0 +1,27 @@
+
+.welcome-map__card{
+    margin-top: 2rem;
+    width: 100%;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    margin-bottom: 30px;
+}
+.card__video-lion{
+    position: absolute;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+}
+.card__video-text{
+    margin-top: 2rem;
+    width: 30%;
+    position: relative; 
+    margin-left: 1rem;
+    background-color: rgba(245,240,215,.8)!important;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    margin-bottom: 5rem;;
+    top:0
+}
