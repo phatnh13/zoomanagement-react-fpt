@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 const Login = () => {
     const context = useContext(UserContext);
@@ -54,7 +55,7 @@ const Login = () => {
 
         //Send response to server if valid
         if (isValid()) {
-            await fetch("https://localhost:7193/api/User/login",
+            fetch("https://localhost:7193/api/User/login",
                 {
                     method: "POST",
                     body: JSON.stringify({
@@ -76,6 +77,7 @@ const Login = () => {
                         token: data.token,
                         loggedIn: true
                     });
+                    console.log(context.user, "Login");
                     localStorage.setItem("token", JSON.stringify(data.token));
                 }).catch(rejected => {
                     console.log(rejected);
@@ -88,7 +90,7 @@ const Login = () => {
         useEffect(validate, [userName, password]);
         return (
             <Container fluid>
-            {console.log(context.user, "context")}
+            {console.log(context.user, "contextUser")}
             <Row className="mt-5 py-5 d-flex justify-content-center align-items-center">
                 <Col md={8} lg={5} xs={12}>
                     <Card className="shadow">
@@ -146,6 +148,10 @@ const Login = () => {
                                             <Button variant="primary" onClick={onLoginClick}>
                                                 Login
                                             </Button>
+                                            <Link to="/staff/trainer" >
+                                                Staff
+                                            </Link>
+                                            
                                         </div>
                                         {/*Login button*/}
                                     </Form>

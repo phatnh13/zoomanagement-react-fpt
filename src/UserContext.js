@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-export const UserContext = createContext(null);
+export const UserContext = createContext();
 export function UserProvider({ children }) {
     const [user, setUser] = useState({
         email: null,
@@ -12,7 +12,8 @@ export function UserProvider({ children }) {
         loggedIn: false,
     });
     return (
-        <UserContext.Provider value={{user, setUser}}>
+        <UserContext.Provider value={{ user, setUser }}>
+            {console.log(user, "UserContext")}
             {children}
         </UserContext.Provider>
     )
