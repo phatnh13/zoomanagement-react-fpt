@@ -1,91 +1,73 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import "./News.css";
-import { Container, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Image, Row } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
+import { DateHelper } from '../DateHelper';
 
 const News = () => {
-
-    const [news, setNews] = useState([]);
-
-    useEffect(() => {
-        fetch(`https://localhost:7193/api/News`, {
-            method: "GET",
-            headers: {
-                "content-type": "application/json; charset=UTF-8"
-            }
-        }).then(response => response.json())
-            .then(data => setNews(data.item))
-            .catch(error => { console.log(error);
-            });
-    }, []);
-
-
+    const location = useLocation();
+    const [news, setNews] = useState(location.state.item);
+    console.log(news, "News");
     return (
         <>
-            {news.map((item, idx) => {
-                return (
-                    <Container className='vh-100'>
-                        <Col md={4} key={idx}>
-                            <div className="g-container">
-                                <div className="g-void">
-                                    <section className="ce list frame frame-default frame-type-list frame-layout-0 list-type-news_pi1">
-                                        <Col>
-                                            <Col >
-                                                <div className="{item.Content}" itemScope="itemscope" itemType="http://schema.org/{item.Content}">
-                                                    <div className="g-void">
-                                                        <Col>
-                                                            <div class=" news-details__meta">
-                                                                {/* <!-- date --> */}
-                                                                <span class="news-list-date">
-                                                                    <time itemprop="datePublished" datetime={item.releaseDate}>
-                                                                        {item.releaseDate}
-                                                                    </time>
-                                                                </span>
-                                                                {/* <!-- categories --> */}
-                                                                <span class="news-list-category">{item.CategoryId}</span>
-                                                            </div>
-                                                            <div className="col-md-12 text-left">
-                                                                <h1 className="main-heading">{item.Title}</h1>
-                                                                <p>{item.Author}</p>
-                                                            </div>
-                                                            <div className="witdh">
-                                                                <Carousel >
-                                                                    <Carousel.Item>
-                                                                        <img src={item.image} alt="Pic1"></img>
-                                                                    </Carousel.Item>
-                                                                    <Carousel.Item>
-                                                                        <img src={item.image} alt="Pic2"></img>
-                                                                    </Carousel.Item>
-                                                                    <Carousel.Item>
-                                                                        <img src={item.image} alt="Pic3"></img>
-                                                                    </Carousel.Item>
-                                                                    <Carousel.Item>
-                                                                        <img src={item.image} alt="Pic4"></img>
-                                                                    </Carousel.Item>
-                                                                </Carousel>
-                                                            </div>
-                                                            <div className="col-md-12 text-left">
-                                                                <p>{item.Content}</p>
-                                                            </div>
-                                                            {/* link back */}
-                                                            <div>
-                                                                <Link to="/allnews" className="btn btn--arrow iconfont--link-arrow iconfont__after ">
-                                                                    Back {'>'}
-                                                                </Link>
-                                                            </div>
-                                                        </Col>
-                                                    </div>
-                                                </div>
-                                            </Col>
-                                        </Col>
-                                    </section>
+            {/* {console.log(newsId)} */}
+            <div style={{ backgroundColor: '#F7F1DB' }}>
+                <Container className=" col-md-6 mt-4">
+                    <div className=" g-container">
+                        <div className="">
+                            <section className="ce list frame frame-default frame-type-list frame-layout-0 list-type-news_pi1">
+                                <div newsScope="newsscope" newsType="http://schema.org/{news.Content}">
+                                    <div className="g-void">
+                                        <Row>
+                                            <div class=" news-details__meta">
+                                                {/* <!-- date --> */}
+                                                <span class="news-list-date">
+                                                    <time>
+                                                        {DateHelper.formatDate(news.releaseDate)}
+                                                    </time>
+                                                </span>
+                                                {/* <!-- categories --> */}
+                                                <span class="news-list-category">PRESS RELEASE</span>
+                                            </div>
+                                            <div className="col-md-12 text-center">
+                                                <h1 className="main-heading">{news.title}</h1>
+                                                <p>{news.author}</p>
+                                            </div>
+                                            <div className="witdh">
+                                                <Carousel >
+                                                    <Carousel.Item>
+                                                        <Image src={news.image} alt="Pic1"></Image>
+                                                    </Carousel.Item>
+                                                    <Carousel.Item>
+                                                        <Image src={news.image} alt="Pic2"></Image>
+                                                    </Carousel.Item>
+                                                    <Carousel.Item>
+                                                        <Image src={news.image} alt="Pic3"></Image>
+                                                    </Carousel.Item>
+                                                    <Carousel.Item>
+                                                        <Image src={news.image} alt="Pic4"></Image>
+                                                    </Carousel.Item>
+                                                </Carousel>
+                                            </div>
+                                            <div className="vh-100 col-md-12 text-left">
+                                                <p>{news.content}</p>
+                                            </div>
+                                            {/* link back */}
+                                            <hr></hr>
+                                            <div>
+                                                <Link to="/allnews" className="btn btn--arrow mb-3 ">
+                                                    Back {'>'}
+                                                </Link>
+                                            </div>
+                                        </Row>
+                                    </div>
                                 </div>
-                            </div>
-                        </Col>
-                    </Container>
-                )
-            })}
+                            </section>
+                        </div>
+                    </div>
+                </Container>
+            </div >
         </>
     );
 };

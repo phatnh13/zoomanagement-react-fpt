@@ -10,7 +10,7 @@ import Login from '../components/AuthenticationPages/Login';
 import Hours from '../components/Hours/Hours';
 import Map from '../components/Map/Map';
 import News from '../components/News/News';
-import AllNews from '../components/News/AllNews';
+import ZooNews from '../components/News/ZooNews';
 //Booking
 import BuyingTicket from '../components/Ticket/BuyingTicket';
 import ViewCart from "../components/Ticket/ViewCart";
@@ -40,10 +40,10 @@ import AddAnimal from '../components/Staff/AnimalManagement/AddAnimal';
 const publicRoutes = [
     { path: '/', component: Home},
     { path: '/login', component: Login},
-    { path: '/hours', component: Hours},
+    { path: '/opening-hours', component: Hours},
     { path: '/map', component: Map},
     { path: '/news', component: News},
-    { path: '/allnews', component: AllNews},
+    { path: '/zoo-news', component: ZooNews},
     { path: '*', component: NoPage},
 ]
 const privateRoutes = [

@@ -31,7 +31,7 @@ const HomeMenu = ({handleClose}) => {
             </li>
             <li><h1>News</h1></li>
             <li>
-            <Link className='navigation__link' to='/news' onClick={handleClose}>
+            <Link className='navigation__link' to='/zoo-news' onClick={handleClose}>
               View News
               </Link>
             </li>
@@ -60,7 +60,7 @@ const HomeMenu = ({handleClose}) => {
             </li>
             <li><h1>Opening Hours</h1></li>
             <li>
-            <Link className='navigation__link' to='/hours' onClick={handleClose}>
+            <Link className='navigation__link' to='/opening-hours' onClick={handleClose}>
               View Hours
               </Link>
             </li>

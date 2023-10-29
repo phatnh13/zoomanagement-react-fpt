@@ -1,44 +1,43 @@
 import React from "react";
-import { CardFooter,  CardImg } from "react-bootstrap";
+import { CardImg, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Card from 'react-bootstrap/Card';
-import Iguana from "../../assets/Iguana.png"
-import Hippo from "../../assets/Hippo.png"
+import Zwergotter from "../../assets/Zwergotter.jpg"
 import Panda from "../../assets/Panda.png"
+import ThreeTigers from "../../assets/3Tigers.jpg"
+import OnlineTicket from "../../assets/Online_Tickets_Zoo.png"
+import LotsToExperience from "../../assets/Lots_to_experience.png"
+import LotsGoingOn from "../../assets/Lots_going_on.png"
 import "./Hours.css"
 
 const HoursInformation = () => {
     return (
-        <section className="bg-white panel panel__ctas">
+        <section className="panel panel__ctas">
             <div className="wrapper">
-                <Card  >
-                    <CardImg src={Iguana} alt="Iguanas" />
-                    <Card.ImgOverlay style={{ color: "white" }}>
-                        <Card.Title>A good </Card.Title>
-                        <Card.Title >overview</Card.Title>
-                        <CardFooter>
-                            <Link to="/map" style={{color: "white", position: "absolute", bottom: 5, left:'40%'}} >Zoo map {'>'}</Link>
-                        </CardFooter>
+                <Card style={{width: '100%'}} >
+                    <CardImg src={Zwergotter} alt="Zwergotter" />
+                    <Card.ImgOverlay >
+                        <CardImg src={LotsToExperience}/>
+                        <Card.Text>
+                            <Link to="/map" style={{ color: "white", position: "absolute", bottom: 5, left: '40%' }} >Zoo map{'>'}</Link>
+                        </Card.Text>
                     </Card.ImgOverlay>
                 </Card>
-                <Card >
-                    <CardImg src={Hippo} alt="Hippo" />
-                    <Card.ImgOverlay  style={{ color: "black" }}>
-                        <Card.Title>Online </Card.Title>
-                        <Card.Title >tickets</Card.Title>
-                        <CardFooter>
-                            <Link to="/buyingticket" style={{color: "white", position: "absolute", bottom: 5, left:'35%'}}> Save your time! {'>'}</Link>
-                        </CardFooter>
+                <Card  style={{width: '100%'}}>
+                    <CardImg src={Panda} style={{ height: '100%'}}/>
+                    <Card.ImgOverlay >
+                        <CardImg style={{width: '80%'}} src={OnlineTicket} />
+                        <Card.Text>
+                            <Link to="/buyingticket" style={{ color: "white", position: "absolute", bottom: 5, left: '30%' }}> Save your time!{'>'}</Link>
+                        </Card.Text>
                     </Card.ImgOverlay>
                 </Card>
-                <Card >
-                    <CardImg src={Panda} alt="Panda" />
-                    <Card.ImgOverlay style={{ color: "white" }}>
-                        <Card.Title>Lots going on </Card.Title>
-                        <Card.Title>with tons of news </Card.Title>
-                        <CardFooter>
-                            <Link to="/allnews" className="mx-auto" style={{color: "white", position: "absolute", bottom: 5,left:'35%'}}> News from the zoo {'>'}</Link>
-                        </CardFooter>
+                <Card  style={{width: '100%'}}>
+                    <CardImg src={ThreeTigers} style={{ height: '100%'}} />
+                    <Card.ImgOverlay >
+                        <Card.Img style={{width: '70%'}} src={LotsGoingOn}/>
+                        <Card.Text>
+                            <Link to="/zoo-news" className="mx-auto" style={{ color: "white", position: "absolute", bottom: 5, left: '25%' }}> News from the zoo{'>'}</Link>
+                        </Card.Text>
                     </Card.ImgOverlay>
                 </Card>
             </div>
