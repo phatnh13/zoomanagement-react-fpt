@@ -32,7 +32,7 @@ const HomeView = () => {
                             <h2> 9:00 - 18:30</h2>
                             <p>Last admission: 17:00</p>
                             <div className="home-view-bottom__btn">
-                                <Link to="/hours">
+                                <Link to="/opening-hours">
                                     <Button className="home-view-bottom__btn-bottom btn btn-light">
                                         All Opening hours
                                     </Button>

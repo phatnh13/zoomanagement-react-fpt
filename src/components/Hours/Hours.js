@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, ListGroup, Col} from "react-bootstrap";
+import { Card, ListGroup, Col } from "react-bootstrap";
 import "./Hours.css"
 import Gate from "../../assets/gate.JPG"
 import HoursInformation from "./HoursInformation";
@@ -8,9 +8,7 @@ const Hours = () => {
     return (
         <>
             <div style={{ backgroundColor: '#F7F1DB' }}>
-                <Card className="bg-dark text-black">
-                    <Card.Img src={Gate} alt="gate-background" height={500} />
-                </Card>
+                <Card.Img src={Gate} alt="gate-background" style={{height: '40rem'}} />
                 <div className="text-center" style={{ marginTop: '2rem' }}>
                     <h1 className="page-headline" >OPENING HOURS</h1>
                     <p style={{ fontSize: '1.375rem', lineHeightt: '1.75rem' }}>Saigon Zoo is open 365 days a year!</p>

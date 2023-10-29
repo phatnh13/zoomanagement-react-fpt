@@ -1,8 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
-import { Card, Container, Row, Col, Form, Pagination, Button } from "react-bootstrap";
+import { Card, Container, Row, Col, Form, Pagination, Button, CardImg } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import { DateHelper } from '../DateHelper';
+import NewsPanda from '../../assets/NewsPan.jpg'
 
 
 const AllNews = () => {
@@ -54,35 +55,36 @@ const AllNews = () => {
   return (
     <>
       <div style={{ backgroundColor: '#F7F1DB' }}>
-        <div className="text-center" style={{ marginTop: '10rem' }}>
-          <h1 style={{ fontSize: '3.375rem', color: '#3c5724', textTransform: 'uppercase' }}> Zoo News</h1>
-          <div style={{ fontSize: '1.5rem' }}>Here you can find all the latest news about Zoo Berlin and its animals – new babies,</div>
-          <div style={{ fontSize: '1.5rem' }}>new conservation projects, progress on building projects, etc.</div>
-        </div>
-        <Container xs={3} md={4} className="col-md-6 mt-4">
+          <Card.Img fluid  src={NewsPanda} style={{height: '30rem'}}   />
+      <div className="text-center" style={{marginTop: '5rem'}}>
+        <h1 style={{ fontSize: '3.375rem', color: '#3c5724', textTransform: 'uppercase' }}> Zoo News</h1>
+        <div style={{ fontSize: '1.5rem' }}>Here you can find all the latest news about Zoo Berlin and its animals – new babies,</div>
+        <div style={{ fontSize: '1.5rem' }}>new conservation projects, progress on building projects, etc.</div>
+      </div>
+      <Container xs={3} md={4} className="col-md-6 mt-4">
 
-          {news.map((item, idx) => {
-            return (
-              <Col key={idx}>
-                <Card onClick={() => handleClick(item)}>
-                  <Card.Img variant="top" src={item.thumnail} />
-                  <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                    <Card.Title>{DateHelper.formatDate(item.releaseDate)}</Card.Title>
-                    <Card.Text>
-                      {item.content}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            )
-          })}
-        </Container>
-        <Container fluid>
-          <Row className="vh-20 d-flex justify-content-flex-end align-items-right m-3 pb-1 border-bottom">
-            {/*Start search*/}
-            {/*Search filter */}
-            <Col  md={3} >
+        {news.map((item, idx) => {
+          return (
+            <Col key={idx}>
+              <Card onClick={() => handleClick(item)}>
+                <Card.Img variant="top" src={item.thumnail} />
+                <Card.Body>
+                  <Card.Title>{item.title}</Card.Title>
+                  <Card.Title>{DateHelper.formatDate(item.releaseDate)}</Card.Title>
+                  <Card.Text>
+                    {item.content}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          )
+        })}
+      </Container>
+      <Container fluid>
+        <Row className="vh-20 d-flex justify-content-flex-end align-items-right m-3 pb-1 border-bottom">
+          {/*Start search*/}
+          {/*Search filter */}
+          <Col md={3} >
             <Form.Group className="mb-3" controlId="search">
               <Form.Select
                 value={searchBy}
@@ -94,38 +96,38 @@ const AllNews = () => {
               </Form.Select>
             </Form.Group>
           </Col>
-            {/*Search filter */}
-            {/*Search bar */}
-            <Col >
-              <Form.Group className="mb-3" controlId="search">
-                <Form.Control
-                  type="text"
-                  placeholder="Search"
-                  value={searchString}
-                  onChange={(e) => { setSearchString(e.target.value) }}>
-                </Form.Control>
-              </Form.Group>
-            </Col>
-            {/*Search bar */}
-            {/*End search*/}
-            <Col  >
-              <Button style={{
-                backgroundColor: '#3c5724',
-                color: '#fff'
-              }}
-                className="news-filter__reset-button btn btn--variant" title="Reset" href="/allnews">Clear </Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              {/*Start Table*/}
-              <Pagination size="md" className="d-flex justify-content-center">
-                {PaginationLoad()}
-              </Pagination>
-              {/*Start Table*/}
-            </Col>
-          </Row>
-        </Container >
+          {/*Search filter */}
+          {/*Search bar */}
+          <Col >
+            <Form.Group className="mb-3" controlId="search">
+              <Form.Control
+                type="text"
+                placeholder="Search"
+                value={searchString}
+                onChange={(e) => { setSearchString(e.target.value) }}>
+              </Form.Control>
+            </Form.Group>
+          </Col>
+          {/*Search bar */}
+          {/*End search*/}
+          <Col  >
+            <Button style={{
+              backgroundColor: '#3c5724',
+              color: '#fff'
+            }}
+              className="news-filter__reset-button btn btn--variant" title="Reset" href="/allnews">Clear </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {/*Start Table*/}
+            <Pagination size="md" className="d-flex justify-content-center">
+              {PaginationLoad()}
+            </Pagination>
+            {/*Start Table*/}
+          </Col>
+        </Row>
+      </Container >
       </div>
     </>
   );

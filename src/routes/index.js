@@ -40,10 +40,10 @@ import AddAnimal from '../components/Staff/AnimalManagement/AddAnimal';
 const publicRoutes = [
     
     { path: '/login', component: Login},
-    { path: '/opening-hours', component: Hours},
-    { path: '/map', component: Map},
+    { path: '/opening-hours', component: Hours, layout: HomeLayout},
+    { path: '/map', component: Map, layout: HomeLayout},
     { path: '/news', component: News},
-    { path: '/zoo-news', component: ZooNews},
+    { path: '/zoo-news', component: ZooNews, layout: HomeLayout},
     { path: '*', component: NoPage},
 ]
 const privateRoutes = [
