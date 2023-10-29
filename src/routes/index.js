@@ -2,7 +2,7 @@
 import { AdminLayout } from '../components/Layout/';
 import { StaffLayout } from '../components/Layout/';
 import { TicketLayout } from '../components/Layout/';
-
+import { HomeLayout } from '../components/Layout/';
 //Customer
 import Home from '../components/Home/Home';
 import NoPage from '../components/NoPage';
@@ -38,7 +38,7 @@ import AddAnimal from '../components/Staff/AnimalManagement/AddAnimal';
 
 //2
 const publicRoutes = [
-    { path: '/', component: Home},
+    
     { path: '/login', component: Login},
     { path: '/opening-hours', component: Hours},
     { path: '/map', component: Map},
@@ -73,6 +73,8 @@ const privateRoutes = [
     { path: '/billingaddress', component: BillingAddress, layout: TicketLayout},
     { path: '/paymentmethod', component: PaymentMethod, layout: TicketLayout},
     { path: '/summary', component: Summary, layout: TicketLayout},
+    //--Home--
+    { path: '/', component: Home, layout: HomeLayout},
 ]
 
 export { publicRoutes, privateRoutes }

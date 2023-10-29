@@ -39,6 +39,7 @@ h2{
     justify-content: center;
     display: flex;
     margin-bottom: 5px;
+    z-index: 2;
 }
 .home-view-bottom__logo{
     justify-content: center;
@@ -53,6 +54,7 @@ h2{
     font-weight: bold;
     border: none;
     outline:none;
+    z-index: 2;
     
 }
 .home-view-bottom__table{

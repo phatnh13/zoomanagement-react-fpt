@@ -18,7 +18,7 @@ const HomeMenu = ({handleClose}) => {
             <li>
             <Link className='navigation__link' to='/buyingticket' onClick={handleClose}>
               View Ticket
-              </Link>
+            </Link>
             </li>
             <li>Ticket Cart</li>
           </ul>
@@ -33,7 +33,7 @@ const HomeMenu = ({handleClose}) => {
             <li>
             <Link className='navigation__link' to='/zoo-news' onClick={handleClose}>
               View News
-              </Link>
+            </Link>
             </li>
           </ul>
         </Col>
@@ -48,7 +48,7 @@ const HomeMenu = ({handleClose}) => {
             <li>
             <Link className='navigation__link' to='/map' onClick={handleClose}>
               View Map
-              </Link>
+            </Link>
             </li>
             <li className='navigation_comment'></li>
           </ul>
