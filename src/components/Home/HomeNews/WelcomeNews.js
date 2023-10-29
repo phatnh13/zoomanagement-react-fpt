@@ -15,7 +15,7 @@ const WelcomeNews = () => {
                     <div className="news">
                     <div className="news-grid-slider__header-wrap">
                         <h2 className=" news-grid-slider__header">News</h2>
-                        <Link className="justify-content-end btn-home-news btn--light news-grid-slider__all-news-link" to="/allnews">All News</Link>
+                        <Link className="justify-content-end btn-home-news btn--light news-grid-slider__all-news-link" to="/zoo-news">All News</Link>
                     </div>
                     </div>
                         <Row className="justify-content-center">
