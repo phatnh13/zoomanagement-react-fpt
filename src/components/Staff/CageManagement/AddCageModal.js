@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 
-function AddCageModal({ show, handleClose }) {
+function AddCageModal({ show, handleClose, reloadState }) {
     const [cageName, setCageName] = useState("");
     const [areaId, setAreaId] = useState("");
 
@@ -14,6 +14,7 @@ function AddCageModal({ show, handleClose }) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token")),
             },
             body: JSON.stringify({
                 cageName: cageName,
@@ -24,6 +25,7 @@ function AddCageModal({ show, handleClose }) {
             .then((res) => {
                 if (res.ok) {
                     alert("Add cage successfully");
+                    reloadState.setReload(!reloadState.reload);
                     handleClose();
                 } else {
                     alert("Add cage failed");
@@ -32,7 +34,7 @@ function AddCageModal({ show, handleClose }) {
             .catch(rejected => {
                 console.log(rejected);
             });    
-            window.location.reload(false);
+            reloadState.setReload(!reloadState.reload);
     }
 
     return (

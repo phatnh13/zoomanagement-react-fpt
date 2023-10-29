@@ -39,7 +39,7 @@ const TrainerTableContent = ({user}) => {
     }
 
     let handleUpdate = () => {
-        navigate(`/staff/trainer/update/`, {state: {id: user.userId}});
+        navigate(`/staff/trainer/update/`, {state: {user: user}});
     }
 
     let handleDelete = () => {

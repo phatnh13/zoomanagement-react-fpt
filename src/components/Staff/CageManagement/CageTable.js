@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Table } from 'react-bootstrap';
 import CageTableContent from './CageTableContent';
 
-function CageTable({cageList}) {
+function CageTable({cageList, reloadState}) {
     return (
         <Container>
                 <h5 className='text-uppercase'>cages</h5>
@@ -19,7 +19,7 @@ function CageTable({cageList}) {
                 </thead>
                 <tbody>
                         {cageList.map((cage, index) => {
-                            return <CageTableContent key={index} cage={cage} />;
+                            return <CageTableContent key={index} reloadState={reloadState} cage={cage} />;
                         })}
                 </tbody>
             </Table>

@@ -71,9 +71,6 @@ const AllNews = () => {
                 <Card.Body>
                   <Card.Title>{item.title}</Card.Title>
                   <Card.Title>{DateHelper.formatDate(item.releaseDate)}</Card.Title>
-                  <Card.Text>
-                    {item.content}
-                  </Card.Text>
                 </Card.Body>
               </Card>
             </Col>

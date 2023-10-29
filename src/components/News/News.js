@@ -49,13 +49,13 @@ const News = () => {
                                                     </Carousel.Item>
                                                 </Carousel>
                                             </div>
-                                            <div className="vh-100 col-md-12 text-left">
+                                            <div className=" col-md-12 text-left">
                                                 <p>{news.content}</p>
                                             </div>
                                             {/* link back */}
                                             <hr></hr>
                                             <div>
-                                                <Link to="/allnews" className="btn btn--arrow mb-3 ">
+                                                <Link to="/zoo-news" className="btn btn--arrow mb-3 ">
                                                     Back {'>'}
                                                 </Link>
                                             </div>
