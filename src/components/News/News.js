@@ -12,8 +12,8 @@ const News = () => {
     return (
         <>
             {/* {console.log(newsId)} */}
-            <div style={{ backgroundColor: '#F7F1DB' }}>
-                <Container className=" col-md-6 mt-4">
+            <div style={{ backgroundColor: '#F7F1DB', paddingTop: '10rem' }}>
+                <Container className=" col-md-6 ">
                     <div className=" g-container">
                         <div className="">
                             <section className="ce list frame frame-default frame-type-list frame-layout-0 list-type-news_pi1">
@@ -28,11 +28,10 @@ const News = () => {
                                                     </time>
                                                 </span>
                                                 {/* <!-- categories --> */}
-                                                <span class="news-list-category">PRESS RELEASE</span>
+                                                <span class="news-list-category">{news.author}</span>
                                             </div>
                                             <div className="col-md-12 text-center">
                                                 <h1 className="main-heading">{news.title}</h1>
-                                                <p>{news.author}</p>
                                             </div>
                                             <div className="witdh">
                                                 <Carousel >
@@ -67,7 +66,7 @@ const News = () => {
                         </div>
                     </div>
                 </Container>
-            </div >
+            </div>
         </>
     );
 };

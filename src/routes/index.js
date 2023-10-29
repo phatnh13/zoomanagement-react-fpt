@@ -42,7 +42,7 @@ const publicRoutes = [
     { path: '/login', component: Login},
     { path: '/opening-hours', component: Hours, layout: HomeLayout},
     { path: '/map', component: Map, layout: HomeLayout},
-    { path: '/news', component: News},
+    { path: '/news', component: News, layout: HomeLayout},
     { path: '/zoo-news', component: ZooNews, layout: HomeLayout},
     { path: '*', component: NoPage},
 ]
