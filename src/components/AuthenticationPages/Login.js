@@ -80,7 +80,7 @@ const Login = () => {
         
         useEffect(validate, [userName, password]);
         return (
-            <Container fluid>
+            <Container className='vh-100' fluid>
             {console.log(context.user, "contextUser")}
             <Row className="mt-5 py-5 d-flex justify-content-center align-items-center">
                 <Col md={8} lg={5} xs={12}>

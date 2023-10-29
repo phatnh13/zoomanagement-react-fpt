@@ -49,7 +49,7 @@ const ViewCart = () => {
     };
     return (
         <>
-            <div className="vh-100">
+            <div>
                 <Container className="zoo-information">
                     <h4>View Cart</h4>
                     <div className="box-alert">

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./BuyingTicket.css"
-import { Table, FormLabel } from "react-bootstrap";
+import { Table, FormLabel, Image } from "react-bootstrap";
 import { TicketContext } from "./TicketContext/TicketContext";
 import moment from "moment/moment";
 
@@ -33,10 +33,10 @@ const TicketItemsTable = () => {
             </tbody>
 
             <tbody>
-                {decrease.map((data) => {
+                {/* {decrease.map((data) => {
                     return (
                         <tr key={data.ticket.ticketId} data={data}>
-                            <th className="text-align">Lấy img ra</th>
+                            <th className="image-align"><Image className="image-table-cart img-fluid" src={data.ticket.image}></Image></th>
                             <th className="text-align">
                                 <p style={{ color: '#3C5724' }}>{data.ticket.ticketName} </p>
                                 <p>Valid from: {date} </p>
@@ -58,7 +58,7 @@ const TicketItemsTable = () => {
                     <th>
                         <FormLabel type='text'>{totalPrice}</FormLabel>
                     </th>
-                </tr>
+                </tr> */}
             </tbody>
         </Table>
     )

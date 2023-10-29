@@ -2,7 +2,7 @@
 import { AdminLayout } from '../components/Layout/';
 import { StaffLayout } from '../components/Layout/';
 import { TicketLayout } from '../components/Layout/';
-
+import { HomeLayout } from '../components/Layout/';
 //Customer
 import Home from '../components/Home/Home';
 import NoPage from '../components/NoPage';
@@ -10,7 +10,7 @@ import Login from '../components/AuthenticationPages/Login';
 import Hours from '../components/Hours/Hours';
 import Map from '../components/Map/Map';
 import News from '../components/News/News';
-import AllNews from '../components/News/AllNews';
+import ZooNews from '../components/News/ZooNews';
 //Booking
 import BuyingTicket from '../components/Ticket/BuyingTicket';
 import ViewCart from "../components/Ticket/ViewCart";
@@ -38,12 +38,12 @@ import AddAnimal from '../components/Staff/AnimalManagement/AddAnimal';
 
 //2
 const publicRoutes = [
-    { path: '/', component: Home},
+    
     { path: '/login', component: Login},
-    { path: '/hours', component: Hours},
-    { path: '/map', component: Map},
-    { path: '/news', component: News},
-    { path: '/allnews', component: AllNews},
+    { path: '/opening-hours', component: Hours, layout: HomeLayout},
+    { path: '/map', component: Map, layout: HomeLayout},
+    { path: '/news', component: News, layout: HomeLayout},
+    { path: '/zoo-news', component: ZooNews, layout: HomeLayout},
     { path: '*', component: NoPage},
 ]
 const privateRoutes = [
@@ -73,6 +73,8 @@ const privateRoutes = [
     { path: '/billingaddress', component: BillingAddress, layout: TicketLayout},
     { path: '/paymentmethod', component: PaymentMethod, layout: TicketLayout},
     { path: '/summary', component: Summary, layout: TicketLayout},
+    //--Home--
+    { path: '/', component: Home, layout: HomeLayout},
 ]
 
 export { publicRoutes, privateRoutes }

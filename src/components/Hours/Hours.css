@@ -11,6 +11,12 @@
 
 }
 
+.page-headline{
+    font-size: 3.125rem;
+    line-height: 3.4375rem;
+    text-transform: uppercase;
+    color: #3c5724;
+}
 .list-title {
     background-color: #F5F1DF;
 }
@@ -25,17 +31,16 @@
 
 .panel__ctas {
     position: relative;
-    background: #e3e3df;
+    background: '#F7F1DB';
 }
 
 .panel__ctas .wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 40px;
-    padding: 50px 15px;
+    display: flex;
+    grid-gap: 10%;
+    padding: 1rem 15px;
 }
 
 .wrapper {
-    max-width: 1300px;
+    width: 70%;
     margin: 0 auto;
 }

@@ -44,3 +44,8 @@
     background-color: #EDE4BB;
     transition: background-color .2s ease;
 }
+.news-grid__image{
+    border-radius: 10%;
+    -moz-border-radius: 10%;
+    -webkit-border-radius: 10%;
+}
