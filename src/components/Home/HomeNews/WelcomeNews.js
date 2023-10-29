@@ -11,7 +11,7 @@ import './WelcomeNews.css';
 const WelcomeNews = () => {
     return (
         <>
-                    <Container className='mb-5'>
+                    <Container className='pb-5'>
                     <div className="news">
                     <div className="news-grid-slider__header-wrap">
                         <h2 className=" news-grid-slider__header">News</h2>
