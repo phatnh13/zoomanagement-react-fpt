@@ -68,16 +68,7 @@ const Login = () => {
                 }
             ).then((res) => res.json())
                 .then(data => {
-                    context.setUser({
-                        email: data.email,
-                        userId: data.userId,
-                        userName: data.userName,
-                        role: data.role,
-                        expiration: data.expiration,
-                        token: data.token,
-                        loggedIn: true
-                    });
-                    console.log(context.user, "Login");
+                    localStorage.setItem("loginUser", JSON.stringify(data));
                     localStorage.setItem("token", JSON.stringify(data.token));
                 }).catch(rejected => {
                     console.log(rejected);

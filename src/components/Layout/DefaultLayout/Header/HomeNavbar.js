@@ -40,12 +40,12 @@ const HomeNavbar = () => {
 
       <Navbar fixed="top" className="justify-content-between">
         <Nav className="logo-box__ticket">
-            <Col className="homeview__left col-md-9 d-flex">
+            <Col className="homeview__left col-md-8 d-flex">
             
                 <Link to='/' className="zoo-logo col-md-2">
                   <Image src={WebLogo} />
                 </Link>
-                <Col className="ms-3 col-md-10">
+                <Col className="ms-3 col-md-5">
                   <Row>
                     <div className="text-logo__top-right">SaiGon Zoo</div>
                   </Row>
@@ -53,9 +53,8 @@ const HomeNavbar = () => {
                     <div className="text-logo__down-right">Since 1864</div>
                   </Row>
                 </Col>
-            
             </Col>
-            <Col className="home-view__right col-md-3">
+            <Col className="home-view__right col-md-4 m-auto">
               <Link to="/news">
                 <Button className="btn btn-success btn-news__homeview">
                   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="47" fill="currentColor" className="bi bi-newspaper" viewBox="0 1 16 16">

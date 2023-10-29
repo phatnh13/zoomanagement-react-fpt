@@ -5,7 +5,7 @@ import DeleteAnimalModal from "./DeleteAnimalModal";
 import AnimalShowZooTrainerModal from "./AnimalShowZooTrainerModal";
 import AnimalShowCageModal from "./AnimalShowCageModal";
 
-const TrainerTableContent = ({animal}) => {
+const TrainerTableContent = ({animal, reloadState}) => {
     //#region Modal
         //Delete Modal
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -47,28 +47,32 @@ const TrainerTableContent = ({animal}) => {
     return (
         <tr>
             <td>{animal.animalId}</td>
-            <td>{animal.speciesId}</td>
+            <td>{animal.species.speciesName}</td>
             <td>{animal.animalName}</td>
             <td>{DateHelper.formatDate(animal.dateArrive)}</td>
             <td>{animal.status}</td>
             <td className="text-center">
+                <Button variant="outline-danger" size="sm" onClick={handleShowCageModal} >Cages</Button>
+            </td>
+            <td className="text-center">
                 <Button variant="outline-danger" size="sm" onClick={handleShowTrainerModal} >Zoo Trainers</Button>
             </td>
             <td className="text-center">
-                <Button href="/staff/trainer/update" variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
+                <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
             </td>
             <td className="text-center">
                 <Button variant="outline-primary" size="sm" onClick={handleShowDeleteModal}>Delete</Button>
             </td>
-            <AnimalShowZooTrainerModal 
-            show={showTrainerModal} 
-            handleClose={handleCloseTrainerModal} 
-            animal={animal} 
-            />
             <AnimalShowCageModal
             show={showCageModal}
             handleClose={handleCloseCageModal}
             animal={animal}
+            />
+            <AnimalShowZooTrainerModal 
+            show={showTrainerModal} 
+            handleClose={handleCloseTrainerModal} 
+            animal={animal}
+            reloadState={reloadState}
             />
             <DeleteAnimalModal 
             show={showDeleteModal} 

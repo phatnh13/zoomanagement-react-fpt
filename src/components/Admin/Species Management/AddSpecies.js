@@ -105,7 +105,7 @@ function AddSpecies() {
 
         formData.append("SpeciesName", speciesName);
         formData.append("Family", family);
-        formData.append("Infomation", information);
+        formData.append("Information", information);
         formData.append("Characteristic", characteristic);
         formData.append("Allocation", allocation);
         formData.append("Ecological", ecological);
@@ -120,7 +120,7 @@ function AddSpecies() {
                 {
                     method: "POST",
                     headers: {
-                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
                     },
                     body: formData
 

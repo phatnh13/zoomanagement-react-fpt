@@ -26,11 +26,6 @@ function SpeciesManaging() {
             
         ]
         ); 
-    var [searchString, setsearchString] = useState("");
-    var [totalPages, setTotalPages] = useState(0);
-    var [currentPage, setCurrentPage] = useState(1);
-    var [searchBy, setSearchBy] = useState("SpeciesName");
-
 
     useEffect(() => {
         fetch(`https://localhost:7193/api/Species/GetAllSpecies`, {
@@ -46,7 +41,7 @@ function SpeciesManaging() {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }, [currentPage, searchBy, searchString]);
+    }, []);
 
     return (
         <Container fluid>
