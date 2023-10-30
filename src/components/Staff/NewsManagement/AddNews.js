@@ -34,24 +34,24 @@ function AddNews() {
     let validate = () => {
         let errorsData = {};
         //speciesName
-        // errorsData.title = [];
-        // if (title === "") {
-        //     errorsData.title.push("Title is required");
-        // }
-        // //family
-        // errorsData.content = [];
-        // if (content === "") {
-        //     errorsData.content.push("Content box is required");
-        // }
-        // //information
-        // errorsData.author = [];
-        // if (author === "") {
-        //     errorsData.author.push("Author is required");
-        // }
+        errorsData.title = [];
+        if (title === "") {
+            errorsData.title.push("Title is required");
+        }
+        //family
+        errorsData.content = [];
+        if (content === "") {
+            errorsData.content.push("Content box is required");
+        }
+        //information
+        errorsData.author = [];
+        if (author === "") {
+            errorsData.author.push("Author is required");
+        }
         //characteristic
         errorsData.categoryId = [];
         if (categoryId === "") {
-            errorsData.categoryId.push("CategoryId box is required");
+            errorsData.categoryId.push("Characteristic box is required");
         }
         //allocation
         errorsData.userId = [];
@@ -81,8 +81,8 @@ function AddNews() {
         });
         setDirty(dirtyData);
 
-        //Validate all input
-        validate();
+        // //Validate all input
+        // validate();
         let formData = new FormData();
 
         formData.append("Title", title);
@@ -120,6 +120,7 @@ function AddNews() {
                 });
         }
     }
+    console.log(title)
     useEffect(validate, [title, content, author, categoryId, releaseDate, userId]);
     return (
         <Container fluid>
@@ -142,10 +143,10 @@ function AddNews() {
                                                     validate();
                                                 }}
                                                 placeholder="Enter Title" />
-                                            {/* <div className="text-danger">
+                                            <div className="text-danger">
                                                 {dirty["title"] && errors["title"][0] ?
                                                     errors["title"][0] : ""}
-                                            </div> */}
+                                            </div>
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
@@ -160,10 +161,10 @@ function AddNews() {
                                                     validate();
                                                 }}
                                                 placeholder="Enter content" />
-                                            {/*<div className="text-danger">
+                                            <div className="text-danger">
                                                 {dirty["content"] && errors["content"][0] ?
                                                     errors["content"][0] : ""}
-                                            </div> */}
+                                            </div>
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
@@ -176,10 +177,10 @@ function AddNews() {
                                                     validate();
                                                 }}
                                                 placeholder="Enter author" />
-                                            {/* <div className="text-danger">
+                                            <div className="text-danger">
                                                 {dirty["author"] && errors["author"][0] ?
                                                     errors["author"][0] : ""}
-                                            </div> */}
+                                            </div>
                                         </Form.Group>
                                         <Form.Group
                                             className="mb-3"
@@ -257,7 +258,7 @@ function AddNews() {
                                             <Col lg={6} md={6} sm={0}>
                                             </Col>
                                             <Col lg={6} md={6} sm={12} className="d-flex justify-content-end">
-                                                <Button href="/admin/species/" size="sm" variant="secondary" className="mx-2" >
+                                                <Button href="/admin/news/" size="sm" variant="secondary" className="mx-2" >
                                                     Cancel
                                                 </Button>
                                                 <Button size="sm" variant="primary" onClick={onAddClick} >
@@ -275,7 +276,6 @@ function AddNews() {
             </Row>
         </Container>
     )
-    console.log(title)
 }
 
 export default AddNews;

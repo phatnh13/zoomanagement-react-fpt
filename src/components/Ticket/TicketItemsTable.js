@@ -36,14 +36,18 @@ const TicketItemsTable = () => {
                 {decrease.map((data) => {
                     return (
                         <tr key={data.ticket.ticketId} data={data}>
-                            <th className="image-align"><Image className="image-table-cart img-fluid" src={data.ticket.image}></Image></th>
+                            <th className="image-align__th">
+                                <div>
+                                    <Image className="image-table-cart img-fluid" src={data.ticket.image}></Image>
+                                </div>
+                            </th>
                             <th className="text-align">
                                 <p style={{ color: '#3C5724' }}>{data.ticket.ticketName} </p>
                                 <p>Valid from: {date} </p>
                                 <p>Valid to:</p>
                                 <p>Item reserved for you until:</p>
                             </th>
-                            <th>{data.ticket.price}</th>
+                            <th><div className="">{data.ticket.price}</div></th>
                             <th>{data.quantity}
                             </th>
                             <th>{data.ticket.price * data.quantity}</th>
