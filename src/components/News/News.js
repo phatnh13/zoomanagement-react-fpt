@@ -17,7 +17,7 @@ const News = () => {
                     <div className=" g-container">
                         <div className="">
                             <section className="ce list frame frame-default frame-type-list frame-layout-0 list-type-news_pi1">
-                                <div newsScope="newsscope" newsType="http://schema.org/{news.Content}">
+                                <div newsScope="newsscope">
                                     <div className="g-void">
                                         <Row>
                                             <div class=" news-details__meta">
@@ -31,31 +31,21 @@ const News = () => {
                                                 <span class="news-list-category">{news.author}</span>
                                             </div>
                                             <div className="col-md-12 text-center">
-                                                <h1 className="main-heading">{news.title}</h1>
+                                                <h1 className="main-heading mb-5">{news.title}</h1>
                                             </div>
-                                            <div className="witdh">
+                                            
                                                 <Carousel >
                                                     <Carousel.Item>
-                                                        <Image src={news.image} alt="Pic1"></Image>
-                                                    </Carousel.Item>
-                                                    <Carousel.Item>
-                                                        <Image src={news.image} alt="Pic2"></Image>
-                                                    </Carousel.Item>
-                                                    <Carousel.Item>
-                                                        <Image src={news.image} alt="Pic3"></Image>
-                                                    </Carousel.Item>
-                                                    <Carousel.Item>
-                                                        <Image src={news.image} alt="Pic4"></Image>
+                                                        <Image fluid src={news.image} alt="Pic1"></Image>
                                                     </Carousel.Item>
                                                 </Carousel>
-                                            </div>
-                                            <div className=" col-md-12 text-left">
+                                            <div className=" col-md-12 text-left mt-4">
                                                 <p>{news.content}</p>
                                             </div>
                                             {/* link back */}
                                             <hr></hr>
                                             <div>
-                                                <Link to="/zoo-news" className="btn btn--arrow mb-3 ">
+                                                <Link to="/zoo-news" className="text-align-end btn mb-3  ">
                                                     Back {'>'}
                                                 </Link>
                                             </div>
