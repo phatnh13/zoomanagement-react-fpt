@@ -33,6 +33,7 @@ import UpdateZooTrainer from '../components/Staff/ZooTrainerManagement/UpdateZoo
 import CageManaging from '../components/Staff/CageManagement/CageManaging';
 import AnimalManaging from '../components/Staff/AnimalManagement/AnimalManaging';
 import AddAnimal from '../components/Staff/AnimalManagement/AddAnimal';
+import AddNews from '../components/Staff/NewsManagement/AddNews';
 
 //1
 
@@ -74,6 +75,9 @@ const privateRoutes = [
     { path: '/staff/area-cage', component: CageManaging, layout: StaffLayout},
     { path: '/staff/animal', component: AnimalManaging, layout: StaffLayout},
     { path: '/staff/animal/add', component: AddAnimal, layout: StaffLayout},
+    { path: '/staff/news/add', component: AddNews, layout: StaffLayout},
+    
+    
 ]
 
 export { publicRoutes, privateRoutes }

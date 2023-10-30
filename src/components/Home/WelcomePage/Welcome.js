@@ -11,7 +11,7 @@ const Welcome = () => {
             <div className="welcome-text__top">
                 <div style={{ backgroundColor: '#8b9472' }}>
                     <div className="d-flex justify-content-end">
-                        <Button className="btn-view-all-price mt-3 me-5 btn btn-success"><Link className="link-underline-opacity-0 link-underline link-light" to="/buyingticket">View all price</Link></Button>
+                        <Button className="btn-view-all-price mt-3 me-5 mb-3 btn btn-success"><Link className="link-underline-opacity-0 link-underline link-light" to="/buyingticket">View all price</Link></Button>
                     </div>
                     <Row className="view-price__welcome mt-1">
                         <Card className="view-price__card mx-5">
