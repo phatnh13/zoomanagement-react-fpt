@@ -12,7 +12,7 @@ export function TicketProvider({ children }) {
     // })
 
     useEffect(() => {
-        fetch('https://localhost:7193/api/Ticket', {
+        fetch('https://vietnamzoo.azurewebsites.net/api/ticket', {
             method: "GET",
             headers: {
                 "content-type": "application/json; charset=UTF-8"
