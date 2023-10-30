@@ -10,7 +10,7 @@ function ProfilePage() {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
                 },
             }
         )
@@ -28,34 +28,29 @@ function ProfilePage() {
             <Row>
                 <Col lg={4} md={3} sx={0}>
                     <h2 className="my-5">Profile Management</h2>
-                    <Nav defaultActiveKey="/home" className="flex-column">
-                        <Nav.Link href="/home">Account</Nav.Link>
-                        <Nav.Link eventKey="link-2">Password</Nav.Link>
-                        <Nav.Link eventKey="link-1">Logout</Nav.Link>
-                    </Nav>
                 </Col>
-                <Col lg={8} md={9} sx={12}>
-                    <Card className="mt-5 mb-1">
-                        <Card.Body>
-                            <Card.Title>Account Information</Card.Title>
-                            <Card.Text>
-                                With supporting text below as a natural lead-in to additional content.
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <Card className="mb-1">
-                        <Card.Body>
-                            <Card.Title>Change Password</Card.Title>
-                            <Card.Text>
-                                With supporting text below as a natural lead-in to additional content.
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <Card className="mb-1" border="0">
-                        <Card.Body>
-                            <Button size="lg" variant="dark">Logout</Button>
-                        </Card.Body>
-                    </Card>
+                <Col lg={8} md={9} sx={12} >
+                        <Card className="mt-5 mb-3">
+                            <Card.Body>
+                                <Card.Title>Account Information</Card.Title>
+                                <Card.Text>
+                                    With supporting text below as a natural lead-in to additional content.
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                        <Card className="mb-3">
+                            <Card.Body>
+                                <Card.Title>Change Password</Card.Title>
+                                <Card.Text>
+                                    With supporting text below as a natural lead-in to additional content.
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                        <Card className="mb-3" border="0">
+                            <Card.Body className="">
+                                <Button size="lg" variant="dark">Logout</Button>
+                            </Card.Body>
+                        </Card>
                 </Col>
 
             </Row>
