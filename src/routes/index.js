@@ -75,6 +75,7 @@ const privateRoutes = [
     { path: '/staff/area-cage', component: CageManaging, layout: StaffLayout},
     { path: '/staff/animal', component: AnimalManaging, layout: StaffLayout},
     { path: '/staff/animal/add', component: AddAnimal, layout: StaffLayout},
+    { path: '/staff/news/add', component: AddNews, layout: StaffLayout},
     
     
 ]

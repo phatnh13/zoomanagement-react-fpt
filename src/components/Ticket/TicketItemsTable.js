@@ -33,7 +33,7 @@ const TicketItemsTable = () => {
             </tbody>
 
             <tbody>
-                {/* {decrease.map((data) => {
+                {decrease.map((data) => {
                     return (
                         <tr key={data.ticket.ticketId} data={data}>
                             <th className="image-align"><Image className="image-table-cart img-fluid" src={data.ticket.image}></Image></th>
@@ -58,7 +58,7 @@ const TicketItemsTable = () => {
                     <th>
                         <FormLabel type='text'>{totalPrice}</FormLabel>
                     </th>
-                </tr> */}
+                </tr>
             </tbody>
         </Table>
     )
