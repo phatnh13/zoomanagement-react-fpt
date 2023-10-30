@@ -45,6 +45,15 @@ const publicRoutes = [
     { path: '/news', component: News, layout: HomeLayout},
     { path: '/zoo-news', component: ZooNews, layout: HomeLayout},
     { path: '*', component: NoPage},
+    //Customer
+    //--Ticket--
+    { path: '/buyingticket', component: BuyingTicket, layout: TicketLayout},
+    { path: '/viewcart', component: ViewCart, layout: TicketLayout},
+    { path: '/billingaddress', component: BillingAddress, layout: TicketLayout},
+    { path: '/paymentmethod', component: PaymentMethod, layout: TicketLayout},
+    { path: '/summary', component: Summary, layout: TicketLayout},
+    //--Home--
+    { path: '/', component: Home, layout: HomeLayout},
 ]
 const privateRoutes = [
     //UserOverall
@@ -66,15 +75,7 @@ const privateRoutes = [
     { path: '/staff/animal', component: AnimalManaging, layout: StaffLayout},
     { path: '/staff/animal/add', component: AddAnimal, layout: StaffLayout},
     
-    //Customer
-    //--Ticket--
-    { path: '/buyingticket', component: BuyingTicket, layout: TicketLayout},
-    { path: '/viewcart', component: ViewCart, layout: TicketLayout},
-    { path: '/billingaddress', component: BillingAddress, layout: TicketLayout},
-    { path: '/paymentmethod', component: PaymentMethod, layout: TicketLayout},
-    { path: '/summary', component: Summary, layout: TicketLayout},
-    //--Home--
-    { path: '/', component: Home, layout: HomeLayout},
+    
 ]
 
 export { publicRoutes, privateRoutes }

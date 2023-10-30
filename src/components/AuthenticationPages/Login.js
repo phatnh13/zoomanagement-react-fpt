@@ -1,12 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { UserContext } from "../../UserContext";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
-    const context = useContext(UserContext);
+    
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     let [message, setMessage] = useState("");
+    let isLoggedIn = localStorage.getItem("isLoggedIn");
+    let user = JSON.parse(localStorage.getItem("loginUser"));
+    //#region validate
     let [dirty, setDirty] = useState({
         userName: false,
         password: false
@@ -16,22 +18,22 @@ const Login = () => {
             userName: [],
             password: []
         });
-    //Validation
+        //Validation
     let validate = () => {
         let errorsData = {};
-        //userName
+            //userName
         errorsData.userName = [];
         if (userName === "") {
             errorsData.userName.push("Username is required");
         }
-        //password
+            //password
         errorsData.password = [];
         if (password === "") {
             errorsData.password.push("Password is required");
         }
         setErrors(errorsData);
     }
-    //Check valid before submit
+        //Check valid before submit
     let isValid = () => {
         let valid = true;
         for (let control in errors) {
@@ -41,8 +43,29 @@ const Login = () => {
         }
         return valid;
     }
+    //#endregion
+
+    //Handle Redirect
+    const navigate = useNavigate();
+    let handleRedirectManagement = () => {
+        switch(user.role) {
+            case "Admin":
+                navigate("/admin/staff");
+                break;
+            case "OfficeStaff":
+                navigate("/staff/trainer");
+                break;
+            case "ZooTrainner":
+                navigate("/trainer/meal");
+                break;
+        }
+    }
+    let handleLogout = () => {
+        localStorage.clear();
+    }
     //Login Click event
     let onLoginClick = async () => {
+        localStorage.setItem("isLoggedIn", "false");
         // Set all input dirty=true
         let dirtyData = dirty;
         Object.keys(dirty).forEach((control) => {
@@ -70,6 +93,8 @@ const Login = () => {
                 .then(data => {
                     localStorage.setItem("loginUser", JSON.stringify(data));
                     localStorage.setItem("token", JSON.stringify(data.token));
+                    localStorage.setItem("isLoggedIn", "true");
+                    console.log(JSON.parse(localStorage.getItem("loginUser")));
                 }).catch(rejected => {
                     console.log(rejected);
                 });
@@ -81,9 +106,11 @@ const Login = () => {
         useEffect(validate, [userName, password]);
         return (
             <Container className='vh-100' fluid>
-            {console.log(context.user, "contextUser")}
+                {console.log(user)}
             <Row className="mt-5 py-5 d-flex justify-content-center align-items-center">
+                {isLoggedIn = false ? (
                 <Col md={8} lg={5} xs={12}>
+                    {console.log(user)}
                     <Card className="shadow">
                         <Card.Body>
                             <div className="mb-2 mt-md-4">
@@ -150,7 +177,29 @@ const Login = () => {
                             </div>
                         </Card.Body>
                     </Card>
-                </Col>
+                </Col>) : (
+                    <Col md={8} lg={5} xs={12}>
+                        <Card className="shadow">
+                            <Card.Header as={"h5"} >Welcome back <span className="text-warning text-uppercase">{user.userName}</span></Card.Header>
+                            <Card.Body>
+                            <Card.Text>
+                                <p><strong>Email: </strong>{user.email}</p>
+                                <p><strong>Role: </strong>{user.role}</p>
+                            </Card.Text>
+                            </Card.Body>
+                            <Card.Footer>
+                                <Row>
+                                    <Col md={12} lg={7} xs={12}>
+                                        <Button size="sm" variant="outline-success" onClick={handleRedirectManagement}>Management page</Button>
+                                    </Col>
+                                    <Col md={12} lg={5} xs={12} className="d-flex justify-content-right">
+                                        <Button size="sm" variant="outline-primary" onClick={handleLogout}>Log out</Button>
+                                    </Col>
+                                </Row>
+                            </Card.Footer>
+                        </Card>
+                    </Col>
+                )}
             </Row>
         </Container>
     )
