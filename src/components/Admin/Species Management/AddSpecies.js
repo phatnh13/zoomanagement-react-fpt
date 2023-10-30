@@ -120,7 +120,7 @@ function AddSpecies() {
                 {
                     method: "POST",
                     headers: {
-                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
                     },
                     body: formData
 

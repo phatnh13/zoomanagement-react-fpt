@@ -10,7 +10,7 @@ function AnimalShowCageModal({show, handleClose, animal}) {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             }
         })
             .then((res) => res.json())

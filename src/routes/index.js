@@ -57,9 +57,9 @@ const publicRoutes = [
 ]
 const privateRoutes = [
     //UserOverall
-    { path: '/profile-trainer', component: ProfilePage, layout: AdminLayout},
+    { path: '/profile', component: ProfilePage, layout: AdminLayout},
     //Admin
-    { path: '/profile-admin', component: ProfilePage, layout: AdminLayout},
+    { path: '/profile', component: ProfilePage, layout: AdminLayout},
     { path: '/admin/staff', component: StaffManaging, layout: AdminLayout},
     { path: '/admin/staff/update/', component: UpdateStaff, layout: AdminLayout},
     { path: '/admin/staff/add', component: AddStaff, layout: AdminLayout},
@@ -67,15 +67,13 @@ const privateRoutes = [
     { path: '/admin/species/add', component: AddSpecies, layout: AdminLayout},
     
     //Staff
-    { path: '/profile-staff', component: ProfilePage, layout: StaffLayout},
+    { path: '/profile', component: ProfilePage, layout: StaffLayout},
     { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
     { path: '/staff/trainer/add', component: AddTrainer, layout: StaffLayout},
     { path: '/staff/trainer/update/', component: UpdateZooTrainer, layout: StaffLayout},
     { path: '/staff/area-cage', component: CageManaging, layout: StaffLayout},
     { path: '/staff/animal', component: AnimalManaging, layout: StaffLayout},
     { path: '/staff/animal/add', component: AddAnimal, layout: StaffLayout},
-    
-    
 ]
 
 export { publicRoutes, privateRoutes }
