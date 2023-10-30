@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 import { Pagination, Col, Row, Container, Form, Button } from "react-bootstrap";
 import AnimalTable from "./AnimalTable";
 
@@ -9,6 +10,10 @@ function AnimalManaging() {
     const [searchString, setSearchString] = useState("");
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
+    
+    const navigate = useNavigate();
+    //Dummy state to force re-render
+    const [reload, setReload] = useState(false);
 
     //#region Pagination
     let PaginationLoad = () => {
@@ -26,12 +31,15 @@ function AnimalManaging() {
     }
     //#endregion
 
+    let handleAdd = () => {
+        navigate("/staff/animal/add");
+    }
     useEffect(() => {
         fetch(`https://localhost:7193/api/Animal?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`,{
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())
@@ -56,7 +64,7 @@ function AnimalManaging() {
                                 setSearchBy(e.target.value)
                             }}
                         >
-                            <option value={"FullName"}>Full Name</option>
+                            <option value={"FullName"}>Animal Name</option>
                             <option>Name</option>
                         </Form.Select>
                     </Form.Group>
@@ -78,7 +86,7 @@ function AnimalManaging() {
                 {/*Start add button*/}
                 <Col lg={1} md={1} xs={1}>
                     <div className="mb-3 d-grid">
-                        <Button href="/staff/trainer/add" variant="outline-primary" size="sm">Add</Button>
+                        <Button onClick={handleAdd} variant="outline-primary" size="sm">Add</Button>
                     </div>
                 </Col>
                 {/*End add button*/}
@@ -86,7 +94,7 @@ function AnimalManaging() {
             <Row>
                 <Col>
                     {/*Start Table*/}
-                    <AnimalTable animalList={animalList} />
+                    <AnimalTable animalList={animalList} reloadState={{reload, setReload}} />
                     {/*Start Table*/}
                     <Pagination size="md" className="d-flex justify-content-center">
                         {PaginationLoad()}

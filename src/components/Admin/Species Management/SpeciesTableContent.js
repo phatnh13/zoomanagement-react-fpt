@@ -37,6 +37,7 @@ function SpeciesTableContent({ species, index }) {
                 <p><strong>Ecological: </strong> {species.ecological}</p>
                 <p><strong>Diet: </strong> {species.diet}</p>
                 <p><strong>Breeding and reproduction: </strong> {species.breedingAndReproduction}</p>
+                <img src={species.image} alt="species" width="100%" height="auto" />
                 <Button variant="danger" className="me-2" onClick={handleShow}>Delete</Button>
                 <Button variant="warning">Update</Button>
             </Accordion.Body>

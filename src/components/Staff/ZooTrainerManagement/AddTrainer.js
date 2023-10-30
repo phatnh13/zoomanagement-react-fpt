@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Button, Row, Col, Form, Card } from "react-bootstrap";
 
 function AddTrainer() {
@@ -10,6 +11,8 @@ function AddTrainer() {
     const [ConfirmPassword, setConfirmPassword] = useState("");
     const [DateOfBirth, setDateOfBirth] = useState("");
     const [Gender, setGender] = useState("");
+    
+    const navigate = useNavigate();
 
     let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
@@ -101,7 +104,7 @@ function AddTrainer() {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
                     },
                     body: JSON.stringify({
                         userName: UserName,
@@ -127,6 +130,18 @@ function AddTrainer() {
                     console.log(rejected);
                 });
         }
+    }
+
+    let handleCancel = () => {
+        setUserName("");
+        setEmail("");
+        setPhoneNumber("");
+        setFullName("");
+        setPassword("");
+        setConfirmPassword("");
+        setDateOfBirth("");
+        setGender("");
+        navigate("/staff/trainer");
     }
 
     useEffect(validate, [UserName, Email, PhoneNumber, FullName, Password, ConfirmPassword]);
@@ -273,7 +288,7 @@ function AddTrainer() {
                                             <Col lg={6} md={6} sm={0}>
                                             </Col>
                                             <Col lg={6} md={6} sm={12} className="d-flex justify-content-end">
-                                                <Button href="/staff/trainer" size="sm" variant="secondary" className="mx-2" >
+                                                <Button size="sm" variant="secondary" className="mx-2" onClick={handleCancel} >
                                                     Cancel
                                                 </Button>
                                                 <Button size="sm" variant="primary" onClick={onAddClick}>

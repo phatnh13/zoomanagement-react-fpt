@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Table } from 'react-bootstrap';
 import AreaTableContent from './AreaTableContent';
 
-function AreaTable({areaList}) {
+function AreaTable({areaList, reloadState}) {
     return (
         <Container>
             <h5 className='text-uppercase'>Areas</h5>
@@ -17,7 +17,7 @@ function AreaTable({areaList}) {
                 </thead>
                 <tbody>
                         {areaList.map((control, index) => {
-                            return <AreaTableContent key={index} index={index} area={control} />;
+                            return <AreaTableContent key={index} index={index} reloadState={reloadState} area={control} />;
                         })}
                 </tbody>
             </Table>

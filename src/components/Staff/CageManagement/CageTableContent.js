@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Redirect} from 'react';
 import { Button, FormControl, Row } from 'react-bootstrap';
 import DeleteCageModal from './DeleteCageModal';
 
-function CageTableContent({cage}) {
+function CageTableContent({cage, reloadState}) {
     //#region Modal
         //Delete Modal
     const [showDeleteModal, setShowDelete] = useState(false);
@@ -12,14 +12,15 @@ function CageTableContent({cage}) {
     const [showAnimalModal, setShowAnimal] = useState(false);
     const handleCloseAnimalModal = () => setShowAnimal(false);
     const handleShowAnimalModal = () => setShowAnimal(true);
-    let [message, setMessage] = useState("");
-
+    //#endregion
     const [cageName, setCageName] = useState(cage.cageName);
+    const [areaName, setAreaName] = useState(cage.area.areaName);
     const [animalList, setAnimalList] = useState([]);
     
     useEffect(() => {
         setCageName(cage.cageName);
-      }, [cage.cageName]);
+        setAreaName(cage.area.areaName);
+      }, [cage.cageName, cage.area.areaName]);
 
     let handleUpdate = () => {
         fetch(`https://localhost:7193/api/Cage/`, {
@@ -37,15 +38,15 @@ function CageTableContent({cage}) {
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             }
         })
         .then((res) => {
             if (res.ok) {
-                setMessage("Update successfully");
-                window.location.reload(false);
+                alert("Update successfully");
+                reloadState.setReload(!reloadState.reload);
             } else {
-                setMessage("Update failed");
+                alert("Update failed");
             }
         }).catch(rejected => {
             console.log(rejected);
@@ -56,24 +57,29 @@ function CageTableContent({cage}) {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
-            .then((res) => res.json())
-            .then(data => {
-                console.log(data);
-            }).catch(rejected => {
+            .then((res) => {
+                if (res.ok) {
+                    alert("Delete successfully");
+                    reloadState.setReload(!reloadState.reload);
+                } else {
+                    alert("Delete failed");
+                }
+            })
+            .catch(rejected => {
                 console.log(rejected);
             });
         handleCloseDeleteModal();
-        window.location.reload(false);
+        reloadState.setReload(!reloadState.reload);
     }
     let handleShowAnimal = () => {
         fetch(`https://localhost:7193/api/AnimalCage/cage/${cage.cageId}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())
@@ -83,7 +89,6 @@ function CageTableContent({cage}) {
                 console.log(rejected);
             });
     }
-
     return ( 
         <tr>
             <td>{cage.area.areaName}{cage.cageId}</td>
@@ -93,13 +98,12 @@ function CageTableContent({cage}) {
                 value={cageName}
                 onChange={
                 (e) => setCageName(e.target.value)} />
-                <Row className="justify-content-md-center text-warning">{message}</Row>
             </td>
             <td>
                 <FormControl 
                 type='text'
                 disabled
-                value={cage.area.areaName} />
+                value={areaName} />
             </td>
             <td className="text-center">
                 <Button variant="outline-success" size="sm" onClick={handleShowAnimal}>Animals</Button>

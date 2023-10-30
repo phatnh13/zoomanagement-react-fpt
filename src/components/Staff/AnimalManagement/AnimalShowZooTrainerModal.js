@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal, Table, Form, Pagination, Row, Col } from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
 
-function AnimalShowZooTrainerModal({ show, handleClose, animal }) {
+function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
     const [user, setUser] = useState({
         userId: 0,
         fullName: "",
@@ -33,7 +33,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal }) {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
             body: JSON.stringify(
                 {
@@ -43,8 +43,9 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal }) {
             )
         })
             .then((res) => res.json())
-            .then(data => {
-                console.log(data);
+            .then(() => {
+                alert("Assign zoo trainer successfully");
+                reloadState.setReload(!reloadState.reload);
             }).catch(rejected => {
                 console.log(rejected);
             });
@@ -52,21 +53,37 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal }) {
     let createTrainerList = () => {
         let list = [];
         {trainerList.map((trainer, index) => {
+            let handleDelete = () => {
+                fetch(`https://localhost:7193/api/AnimalUser/animal-trainer?animalId=${animal.animalId}&userId=${trainer.userId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-type": "text/plain; charset=UTF-8",
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                    },
+                })
+                    .then((res) => res.json())
+                    .then(data => {
+                        console.log(data);
+                        reloadState.setReload(!reloadState.reload);
+                    }).catch(rejected => {
+                        console.log(rejected);
+                    });
+            }
             list.push(<tr key={index}>
                 <td>{trainer.fullName}</td>
-                <td><Button variant="danger" size="sm">Delete</Button></td>
+                <td><Button onClick={handleDelete} variant="danger" size="sm">Delete</Button></td>
                 </tr>);
         }
         )
         return list;
-    }
-    }
+    }}
+    
     useEffect(() => {
         fetch(`https://localhost:7193/api/ZooTrainer?pageNumber=${currentPage1}&searchBy=FullName&searchString=${searchString}`, {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())
@@ -76,14 +93,11 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal }) {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }, [currentPage1, searchString]);
-    
-    useEffect(() => {
         fetch(`https://localhost:7193/api/AnimalUser/animal/${animal.animalId}`, {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())
@@ -92,7 +106,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal }) {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }, []);
+    }, [reloadState.reload, currentPage1, searchString]);
 
     return (
         <Modal size="lg" show={show} onHide={handleClose} >

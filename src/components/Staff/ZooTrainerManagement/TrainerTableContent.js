@@ -27,7 +27,7 @@ const TrainerTableContent = ({user}) => {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())
@@ -39,7 +39,7 @@ const TrainerTableContent = ({user}) => {
     }
 
     let handleUpdate = () => {
-        navigate(`/staff/trainer/update/`, {state: {id: user.userId}});
+        navigate(`/staff/trainer/update/`, {state: {user: user}});
     }
 
     let handleDelete = () => {
@@ -47,7 +47,7 @@ const TrainerTableContent = ({user}) => {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())

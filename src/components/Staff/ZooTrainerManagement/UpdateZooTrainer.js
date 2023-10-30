@@ -1,30 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Button, Row, Col, Form, Card } from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
 function UpdateZooTrainer() {
     const location = useLocation();
     const [user, setUser] = useState({});
-
-    //Fetch user by id
-    useEffect(() => {
-        fetch(`https://localhost:7193/api/ZooTrainer/${location.state.id}`,
-            {
-                method: "GET",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
-                },
-            }
-        )
-            .then((res) => res.json())
-            .then(data => {
-                setUser(data);
-                console.log(data, "data");
-            }).catch(rejected => {
-                console.log(rejected);
-            });
-    }, [location.state.id]);
 
     const [UserName, setUserName] = useState('');
     const [Email, setEmail] = useState('');
@@ -32,9 +12,9 @@ function UpdateZooTrainer() {
     const [FullName, setFullName] = useState('');
     const [DateOfBirth, setDateOfBirth] = useState('');
     const [Gender, setGender] = useState('');
-    
-    //Update user info to state in order to print to screen
+    // //Update user info to state in order to print to screen
     useEffect(() => {
+        setUser(location.state.user);
         setUserName(user.userName || '');
         setEmail(user.email || '');
         setPhoneNumber(user.phoneNumber || '');
@@ -42,6 +22,7 @@ function UpdateZooTrainer() {
         setDateOfBirth(DateHelper.formatDateForInput(user.dateOfBirth) || '');
         setGender(user.gender || '');
     }, [user]);
+    
 
     let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
@@ -67,7 +48,7 @@ function UpdateZooTrainer() {
         //userName
         errorsData.UserName = [];
         if (UserName === "") {
-            errorsData.userName.push("Username is required");
+            errorsData.UserName.push("Username is required");
         }
         //Email
         errorsData.Email = [];
@@ -128,11 +109,11 @@ function UpdateZooTrainer() {
                         gender: Gender,
                         phoneNumber: PhoneNumber,
                         dateOfBirth: DateOfBirth,
-
+                        userId: user.userId
                     }),
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
                     }
                 }).then((res) => {
                     if (res.ok) {
@@ -148,7 +129,13 @@ function UpdateZooTrainer() {
                 });
         }
     }
-    // useEffect(validate, [UserName, Email, PhoneNumber, FullName]);
+    useEffect(validate, [UserName, Email, PhoneNumber, FullName]);
+    
+    const navigate = useNavigate();
+    let handleBack = () => {
+        navigate("/staff/trainer");
+    }
+
     return (
         <Container fluid>
             <Row className="py-5 d-flex justify-content-center align-items-center">
@@ -257,8 +244,8 @@ function UpdateZooTrainer() {
                                             <Col lg={6} md={6} sm={0}>
                                             </Col>
                                             <Col lg={6} md={6} sm={12} className="d-flex justify-content-end">
-                                                <Button href="/staff/trainer" size="sm" variant="secondary" className="mx-2" >
-                                                    Cancel
+                                                <Button size="sm" variant="secondary" className="mx-2" onClick={handleBack} >
+                                                    Back
                                                 </Button>
                                                 <Button size="sm" variant="primary" onClick={onUpdateClick}>
                                                     Update

@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState, Redirect} from 'react';
 import { Button, FormControl, Row } from 'react-bootstrap';
 import DeleteAreaModal from './DeleteAreaModal';
 
-function AreaTableContent({index, area}) {
+function AreaTableContent({area, reloadState}) {
     //Modal Handling
     const [showState, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -22,15 +22,15 @@ function AreaTableContent({index, area}) {
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             }
         })
         .then((res) => {
             if (res.ok) {
-                setMessage("Update successfully");
-                window.location.reload(false);
+                alert("Update successfully");
+                reloadState.setReload(!reloadState.reload);
             } else {
-                setMessage("Update failed");
+                alert("Update failed");
             }
         }).catch(rejected => {
             console.log(rejected);
@@ -42,7 +42,7 @@ function AreaTableContent({index, area}) {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())
@@ -52,7 +52,7 @@ function AreaTableContent({index, area}) {
                 console.log(rejected);
             });
         handleClose();
-        window.location.reload(false);
+        reloadState.setReload(!reloadState.reload);
     }
     
     return ( 
@@ -64,7 +64,6 @@ function AreaTableContent({index, area}) {
                 value={areaName}
                 onChange={
                 (e) => setAreaName(e.target.value)} />
-                <Row className="justify-content-md-center text-warning">{message}</Row>
             </td>
             <td className="text-center">
                 <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>

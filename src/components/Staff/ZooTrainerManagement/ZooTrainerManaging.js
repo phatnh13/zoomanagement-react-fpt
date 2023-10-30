@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import TrainerTable from "./TrainerTable";
 import { Container, Button, Row, Col, Form, Pagination } from "react-bootstrap";
-import { UserContext } from "../../../UserContext";
 function ZooTrainerManaging() {
     const [trainer, setTrainer] = useState([]);
     const [searchBy, setSearchBy] = useState("FullName");
@@ -9,7 +9,7 @@ function ZooTrainerManaging() {
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
 
-    const context = useContext(UserContext);
+    const navigate = useNavigate();
     
     //#region Pagination
     let PaginationLoad = () => {
@@ -27,13 +27,16 @@ function ZooTrainerManaging() {
     }
     //#endregion
 
+    let handleAdd = () => {
+        navigate("/staff/trainer/add");
+    }
     useEffect(() => {
 
         fetch(`https://localhost:7193/api/ZooTrainer?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())
@@ -47,7 +50,6 @@ function ZooTrainerManaging() {
 
     return (
         <Container fluid>
-            {console.log(context.user, "context")}
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
             {/*Start search*/}
                 {/*Search filter */}
@@ -81,7 +83,7 @@ function ZooTrainerManaging() {
                 {/*Start add button*/}
                 <Col lg={1} md={1} xs={1}>
                     <div className="mb-3 d-grid">
-                        <Button href="/staff/trainer/add" variant="outline-primary" size="sm">Add</Button>
+                        <Button onClick={handleAdd} variant="outline-primary" size="sm">Add</Button>
                     </div>
                 </Col>
                 {/*End add button*/}

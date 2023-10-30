@@ -1,13 +1,21 @@
-import React, {useContext} from "react";
+import React from "react";
 import { NavDropdown, Container, Nav, Navbar } from "react-bootstrap";
-import { UserContext } from "../../../../UserContext";
 import { Link, useNavigate } from "react-router-dom";
 const StaffNavbar = () => {
-    const userContext = useContext(UserContext)
-    const name = userContext.user.userName;
+    const name = JSON.parse(localStorage.getItem("loginUser")).userName;
+    
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        const emptyUser = {
+            userId: 0,
+            userName: "",
+            email: "",
+            role: "",
+            token: "",
+            expiration: ""
+        };
+        localStorage.setItem("loginUser", JSON.stringify(emptyUser));
+        localStorage.setItem("isLoggedIn", "false");
         navigate("/login");
     }
     return (
@@ -23,7 +31,7 @@ const StaffNavbar = () => {
                     </Nav>
                     <Navbar.Text>
                         <NavDropdown title= {name} >
-                            <NavDropdown.Item href="/profile-staff">Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Navbar.Text>

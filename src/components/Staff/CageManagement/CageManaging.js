@@ -16,6 +16,7 @@ function CageManaging() {
     
     const [cages, setCages] = useState([]);
     const [areas, setAreas] = useState([]);
+    const [reload, setReload] = useState(false);
 
     //#region Pagination
     let PaginationLoad = () => {
@@ -39,7 +40,7 @@ function CageManaging() {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())
@@ -53,7 +54,7 @@ function CageManaging() {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
                 }
             })
                 .then((res) => res.json())
@@ -62,7 +63,7 @@ function CageManaging() {
                 }).catch(rejected => {
                     console.log(rejected);
                 });
-    }, [currentPage, searchBy, searchString]);
+    }, [reload, currentPage, searchBy, searchString]);
 
     return (
         <Container fluid>
@@ -103,11 +104,11 @@ function CageManaging() {
             </Row>
             <Row className="">
                 <Col lg={5} md={12} xs={12}>
-                    <AreaTable areaList={areas} />
+                    <AreaTable areaList={areas} reloadState={{reload, setReload}} />
                 </Col>
                 <Col lg={7} md={12} xs={12}>
                     {/*Start Table*/}
-                    <CageTable cageList={cages} />
+                    <CageTable cageList={cages} reloadState={{reload, setReload}} />
                     {/*Start Table*/}
                 </Col>
             </Row>
@@ -120,7 +121,7 @@ function CageManaging() {
                 </Col>
             </Row>
             {/*Start modal*/}
-            <AddCageModal show={showState} handleClose={handleClose} />
+            <AddCageModal show={showState} handleClose={handleClose} reloadState={{reload, setReload}} />
             {/*End modal*/}
             {/* {console.log(cages, "cage")} */}
         </Container>

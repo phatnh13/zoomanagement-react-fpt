@@ -33,6 +33,7 @@ import UpdateZooTrainer from '../components/Staff/ZooTrainerManagement/UpdateZoo
 import CageManaging from '../components/Staff/CageManagement/CageManaging';
 import AnimalManaging from '../components/Staff/AnimalManagement/AnimalManaging';
 import AddAnimal from '../components/Staff/AnimalManagement/AddAnimal';
+import AddNews from '../components/Staff/NewsManagement/AddNews';
 
 //1
 
@@ -45,27 +46,6 @@ const publicRoutes = [
     { path: '/news', component: News, layout: HomeLayout},
     { path: '/zoo-news', component: ZooNews, layout: HomeLayout},
     { path: '*', component: NoPage},
-]
-const privateRoutes = [
-    //UserOverall
-    { path: '/profile-trainer', component: ProfilePage, layout: AdminLayout},
-    //Admin
-    { path: '/profile-admin', component: ProfilePage, layout: AdminLayout},
-    { path: '/admin/staff', component: StaffManaging, layout: AdminLayout},
-    { path: '/admin/staff/update/', component: UpdateStaff, layout: AdminLayout},
-    { path: '/admin/staff/add', component: AddStaff, layout: AdminLayout},
-    { path: '/admin/species', component: SpeciesManaging, layout: AdminLayout},
-    { path: '/admin/species/add', component: AddSpecies, layout: AdminLayout},
-    
-    //Staff
-    { path: '/profile-staff', component: ProfilePage, layout: StaffLayout},
-    { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
-    { path: '/staff/trainer/add', component: AddTrainer, layout: StaffLayout},
-    { path: '/staff/trainer/update/', component: UpdateZooTrainer, layout: StaffLayout},
-    { path: '/staff/area-cage', component: CageManaging, layout: StaffLayout},
-    { path: '/staff/animal', component: AnimalManaging, layout: StaffLayout},
-    { path: '/staff/animal/add', component: AddAnimal, layout: StaffLayout},
-    
     //Customer
     //--Ticket--
     { path: '/buyingticket', component: BuyingTicket, layout: TicketLayout},
@@ -75,6 +55,29 @@ const privateRoutes = [
     { path: '/summary', component: Summary, layout: TicketLayout},
     //--Home--
     { path: '/', component: Home, layout: HomeLayout},
+]
+const privateRoutes = [
+    //UserOverall
+    { path: '/profile', component: ProfilePage, layout: AdminLayout},
+    //Admin
+    { path: '/profile', component: ProfilePage, layout: AdminLayout},
+    { path: '/admin/staff', component: StaffManaging, layout: AdminLayout},
+    { path: '/admin/staff/update/', component: UpdateStaff, layout: AdminLayout},
+    { path: '/admin/staff/add', component: AddStaff, layout: AdminLayout},
+    { path: '/admin/species', component: SpeciesManaging, layout: AdminLayout},
+    { path: '/admin/species/add', component: AddSpecies, layout: AdminLayout},
+    
+    //Staff
+    { path: '/profile', component: ProfilePage, layout: StaffLayout},
+    { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
+    { path: '/staff/trainer/add', component: AddTrainer, layout: StaffLayout},
+    { path: '/staff/trainer/update/', component: UpdateZooTrainer, layout: StaffLayout},
+    { path: '/staff/area-cage', component: CageManaging, layout: StaffLayout},
+    { path: '/staff/animal', component: AnimalManaging, layout: StaffLayout},
+    { path: '/staff/animal/add', component: AddAnimal, layout: StaffLayout},
+    { path: '/staff/news/add', component: AddNews, layout: StaffLayout},
+    
+    
 ]
 
 export { publicRoutes, privateRoutes }

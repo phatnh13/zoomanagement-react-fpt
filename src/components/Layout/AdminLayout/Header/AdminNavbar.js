@@ -1,13 +1,21 @@
-import React, {useContext} from "react";
+import React from "react";
 import { NavDropdown, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../../../UserContext";
 const AdminNavbar = () => {
-    const userContext = useContext(UserContext)
-    const name = userContext.user.userName;
+    const name = JSON.parse(localStorage.getItem("loginUser")).userName;
+    
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        const emptyUser = {
+            userId: 0,
+            userName: "",
+            email: "",
+            role: "",
+            token: "",
+            expiration: ""
+        };
+        localStorage.setItem("loginUser", JSON.stringify(emptyUser));
+        localStorage.setItem("isLoggedIn", "false");
         navigate("/login");
     }
     return (
@@ -22,7 +30,7 @@ const AdminNavbar = () => {
                     </Nav>
                     <Navbar.Text>
                         <NavDropdown title= {name} >
-                            <NavDropdown.Item href="/profile-admin">Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Navbar.Text>
