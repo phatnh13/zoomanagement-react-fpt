@@ -23,11 +23,11 @@ const Species = () => {
 
     return (
         <>
-            <div style={{ backgroundColor: '#F7F1DB', paddingBottom: '2rem' }}>
+            <div style={{ backgroundColor: '#F7F1DB', paddingBottom: '5rem' }}>
                 {species.map((item, idx) => {
                     return (
                         <Accordion className="mt-5 " key={idx}>
-                            <Accordion.Item style={{ margin: '3rem 7rem 0 7rem' }} eventKey="0" >
+                            <Accordion.Item style={{ marginLeft: '10em', marginRight: '10rem' }} eventKey="0" >
                                 <Accordion.Header >{item.speciesName}</Accordion.Header>
                                 <Accordion.Body >
                                     <Card style={{border: 'none'}}>
