@@ -7,6 +7,7 @@ export function TicketProvider({ children }) {
 
     const [tickets, setTickets] = useState([])
     const [decrease, setDecrease] = useState([])
+    const [submitted, setSubmitted] = useState(false);
     // decrease.map(() => {
     //     if (decrease.)
     // })
@@ -33,6 +34,7 @@ export function TicketProvider({ children }) {
     const [email, setEmail] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     const value = {
+        submitted, setSubmitted,
         tickets, setTickets,
         decrease, setDecrease,
         price, setPrice,

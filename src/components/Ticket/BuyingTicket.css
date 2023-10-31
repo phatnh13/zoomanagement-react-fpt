@@ -32,7 +32,6 @@ h4 {
 .text-align{
     text-align: left;
     width: auto !important;
-    
 }
 .table{
     text-align: center;
@@ -71,6 +70,14 @@ h4 {
 .image-align__th{
     width: 20%;
 }
+.summary__inform{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    align-items: center;
+    height: 100%;
+}
+
 
  /* tablet */
 @media (min-width: 46.25em) and (max-width: 63.9375em) {
