@@ -104,7 +104,7 @@ function AddTrainer() {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
                     },
                     body: JSON.stringify({
                         userName: UserName,

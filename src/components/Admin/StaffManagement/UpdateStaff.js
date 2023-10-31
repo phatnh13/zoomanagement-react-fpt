@@ -13,7 +13,7 @@ function UpdateStaff() {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
                 },
             }
         )
@@ -131,7 +131,7 @@ function UpdateStaff() {
                     }),
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
                     }
                 }).then((res) => {
                     if (res.ok) {

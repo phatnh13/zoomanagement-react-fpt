@@ -6,7 +6,16 @@ const StaffNavbar = () => {
     
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        const emptyUser = {
+            userId: 0,
+            userName: "",
+            email: "",
+            role: "",
+            token: "",
+            expiration: ""
+        };
+        localStorage.setItem("loginUser", JSON.stringify(emptyUser));
+        localStorage.setItem("isLoggedIn", "false");
         navigate("/login");
     }
     return (
@@ -22,7 +31,7 @@ const StaffNavbar = () => {
                     </Nav>
                     <Navbar.Text>
                         <NavDropdown title= {name} >
-                            <NavDropdown.Item href="/profile-staff">Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Navbar.Text>

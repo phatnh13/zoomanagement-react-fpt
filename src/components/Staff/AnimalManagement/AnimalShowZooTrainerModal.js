@@ -33,7 +33,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
             body: JSON.stringify(
                 {
@@ -58,7 +58,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
                     method: "DELETE",
                     headers: {
                         "Content-type": "text/plain; charset=UTF-8",
-                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
                     },
                 })
                     .then((res) => res.json())
@@ -83,7 +83,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())
@@ -97,7 +97,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
             .then((res) => res.json())
