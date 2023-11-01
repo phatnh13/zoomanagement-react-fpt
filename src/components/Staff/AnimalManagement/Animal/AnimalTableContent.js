@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Button} from "react-bootstrap";
-import { DateHelper } from "../../DateHelper";
-import DeleteAnimalModal from "./DeleteAnimalModal";
-import AnimalShowZooTrainerModal from "./AnimalShowZooTrainerModal";
-import AnimalShowCageModal from "./AnimalShowCageModal";
+import { DateHelper } from "../../../DateHelper";
+import DeleteAnimalModal from "./Modal/DeleteAnimalModal";
+import AnimalShowZooTrainerModal from "./Modal/AnimalShowZooTrainerModal";
+import AnimalShowCageModal from "./Modal/AnimalShowCageModal";
 
 const TrainerTableContent = ({animal, reloadState}) => {
     //#region Modal
@@ -21,8 +21,43 @@ const TrainerTableContent = ({animal, reloadState}) => {
     const handleShowCageModal = () => setShowCageModal(true);
     //#endregion
 
+    const [CageList, setCageList] = useState([]);
+    const [currentCage, setCurrentCage] = useState({});
+
     let handleUpdate = () => {
         console.log({animal});
+    }
+
+    let handleShowCage = () => {
+        handleShowCageModal();
+        fetch(`https://localhost:7193/api/AnimalCage/present/${animal.animalId}`, {
+            method: "GET",
+            headers: {
+                "Content-type": "text/plain; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+            }
+        })
+            .then((res) => res.json())
+            .then(data => {
+                setCurrentCage(data);
+            }
+            ).catch(rejected => {
+                console.log(rejected);
+            });
+        fetch(`https://localhost:7193/api/AnimalCage/animal/${animal.animalId}`, {
+            method: "GET",
+            headers: {
+                "Content-type": "text/plain; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+            }
+        })
+            .then((res) => res.json())
+            .then(data => {
+                setCageList(data);
+            }
+            ).catch(rejected => {
+                console.log(rejected);
+            });
     }
 
     let handleDelete = () => {
@@ -36,11 +71,12 @@ const TrainerTableContent = ({animal, reloadState}) => {
             .then((res) => res.json())
             .then(data => {
                 console.log(data);
+                alert("Delete successfully");
+                reloadState.setReload(!reloadState.reload);
             }).catch(rejected => {
                 console.log(rejected);
             });
         handleCloseDeleteModal();
-        window.location.reload(false);
     }
  
 
@@ -52,7 +88,7 @@ const TrainerTableContent = ({animal, reloadState}) => {
             <td>{DateHelper.formatDate(animal.dateArrive)}</td>
             <td>{animal.status}</td>
             <td className="text-center">
-                <Button variant="outline-danger" size="sm" onClick={handleShowCageModal} >Cages</Button>
+                <Button variant="outline-danger" size="sm" onClick={handleShowCage} >Cages</Button>
             </td>
             <td className="text-center">
                 <Button variant="outline-danger" size="sm" onClick={handleShowTrainerModal} >Zoo Trainers</Button>
@@ -67,6 +103,8 @@ const TrainerTableContent = ({animal, reloadState}) => {
             show={showCageModal}
             handleClose={handleCloseCageModal}
             animal={animal}
+            CageList={CageList}
+            currentCage={currentCage}
             />
             <AnimalShowZooTrainerModal 
             show={showTrainerModal} 

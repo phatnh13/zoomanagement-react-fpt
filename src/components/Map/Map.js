@@ -1,26 +1,74 @@
-import React from "react";
-import { Image, Card } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Image, Col, Row } from "react-bootstrap";
+import { Link, useNavigate } from 'react-router-dom';
 import ZooMap from "../../assets/ZooMap.jpg";
-import Gate from "../../assets/gate.JPG"
-import Species from "./Species";
-
-
 
 const Map = () => {
+
+    const [species, setSpecies] = useState([])
+    const [searchString,] = useState('')
+    const [searchBy,] = useState('speciesName')
+    const [currentPage,] = useState(1);
+    const [, setTotalPages] = useState(0);
+    const navigate = useNavigate()
+
+    const handleNavigation = (item) => {
+        console.log("Navigarun");
+        navigate(`/species`, { state: { item: item } })
+    }
+
+    const handleClick = (item) => {
+        console.log(item)
+        handleNavigation(item);
+    }
+
+    useEffect(() => {
+        fetch(`https://localhost:7193/api/Species?searchBy=${searchBy}`, {
+            method: "GET",
+            headers: {
+                "content-type": "application/json; charset=UTF-8"
+            }
+        }).then(data => data.json())
+            .then(data => {
+                console.log(data)
+                setSpecies(data.pagingList);
+                setTotalPages(data.totalPages);
+            }).catch(error => console.log(error))
+
+    }, [currentPage, searchBy, searchString]);
+
     return (
         <>
-            <div style={{ backgroundColor: '#F7F1DB' }}>
-                <Card.Img src={Gate} alt="gate-background" style={{ height: '15rem' }} />
+            <div style={{ backgroundColor: '#F7F1DB', paddingTop: '10rem' }}>
                 <div className="text-center" >
-                    <h1 style={{ fontSize: 150, fontFamily: "Just Another Hand" }}>Saigon Zoo Map</h1>
+                    <h1 style={{ fontSize: 150, fontFamily: "Just Another Hand", color: '#3c5724' }}>Saigon Zoo Map</h1>
                     <p style={{ marginTop: '2rem', fontSize: '2rem' }}>Want to know what awaits you? Check out the overview here for a taste of what to </p>
                     <p style={{ fontSize: '2rem' }}>expect on your visit to Saigon Zoo.</p>
                 </div>
                 <center><Image style={{ borderWidth: 60 }} src={ZooMap} alt="zoo-map" fluid ></Image></center>
-                <Species />
+                <div className="text-center" >
+                    <h1 style={{ fontSize: '3.125rem', color: '#3c5724', paddingTop: '5rem' }}>ANIMALS</h1>
+                    <p style={{ marginTop: '2rem', fontSize: '1.375rem' }}>Visit your favourite animals and discover previously unknown species – the </p>
+                    <p style={{ fontSize: '1.375rem' }}>exciting world of Saigon Zoo never ceases to amaze! .</p>
+                </div>
+                <Row xs={1} md={5} style={{ justifyContent: 'flex-start', padding: '2rem 16rem 2rem 16rem' }}>
+
+                    {species?.map((item, idx) => {
+                        return (
+                            <Col className="" key={idx}>
+                                <center>
+                                    <Image onClick={() => handleClick(item)} roundedCircle fluid style={{ width: '148px', height: '148px' }} variant="top" src={item.image} />
+                                    <div onClick={() => handleClick(item)}>
+                                        <Link style={{ color: 'inherit', justifyContent: 'center' }}>{item.speciesName} </Link>
+                                    </div>
+                                </center>
+                            </Col>
+                        )
+                    })}
+                </Row>
             </div>
         </>
     );
-};
+}
 
 export default Map;

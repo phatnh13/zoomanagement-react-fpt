@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useMemo} from "react";
 import { Link } from "react-router-dom";
 import "./BuyingTicket.css"
 import { Button, Alert, Container } from "react-bootstrap";
 import TicketItemsTable from "./TicketItemsTable";
 
 const ViewCart = () => {
+    useMemo(() => {
+        window.scrollTo({top: 0})
+      },)
     const NavigationButtons = ({ onBackClick, onNextClick }) => {
         return (
             <div className="button-direct">

@@ -1,9 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { Button, Col, Row, Form, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
 
 const BillingAddress = () => {
+    useMemo(() => {
+        window.scrollTo({top: 0})
+      },)
     const NavigationButtons = ({ onBackClick, onNextClick }) => {
         return (
             <div className="navigation-buttons button-direct">
@@ -45,13 +48,10 @@ const BillingAddress = () => {
         // Implement your logic for going next
         console.log(context);
     };
-    const context = useContext(TicketContext)
-
-
+    const context = useContext(TicketContext);
     return (
         <>
-            <div className="vh-100">
-                <Container>
+                <Container className="pb-2">
                     <div className="zoo-information">
                         <h4>BILLING ADDRESS</h4>
                     </div>
@@ -111,7 +111,6 @@ const BillingAddress = () => {
                         </Form>
                     </div>
                 </Container>
-            </div>
         </>
 
     );

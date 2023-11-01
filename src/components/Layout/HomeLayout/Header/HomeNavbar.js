@@ -18,7 +18,7 @@ function OffCanvasExample({ name, ...props }) {
           <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
         </svg>
       </Button>
-      <Offcanvas style={{ backgroundColor: '#f5f0d7', height: '45%', with: "100%" }} show={show} onHide={handleClose} {...props}>
+      <Offcanvas style={{ backgroundColor: '#f5f0d7', height: '55%', with: "100%" }} show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
             <Link className="navigation__link" to='/' onClick={handleClose}>
@@ -65,7 +65,7 @@ const HomeNavbar = () => {
                   News
                 </Button>
               </Link>
-              <Link to="/buyingticket">
+              <Link to="/viewticket">
                 <Button className="btn btn-secondary btn-ticket__homeview">
                   <svg width="50" height="47" viewBox="0 5 30 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.86619 16.3642C0.825263 16.2942 0.82592 16.1152 1.02197 16.0006L26.7689 0.948466C26.965 0.833854 27.1212 0.921052 27.1621 0.991058L29.7473 5.41299C29.4078 5.81094 29.2948 6.38434 29.5843 6.87952C29.8737 7.3747 30.4289 7.55751 30.9422 7.4569L33.5559 11.9276C33.5968 11.9977 33.5961 12.1766 33.4001 12.2912L7.65315 27.3434C7.4571 27.458 7.30086 27.3708 7.25994 27.3008L4.6565 22.8476C5.02983 22.4487 5.16524 21.8477 4.86357 21.3317C4.56189 20.8157 3.97177 20.6389 3.44108 20.7686L0.86619 16.3642Z" fill="white" stroke="black" />

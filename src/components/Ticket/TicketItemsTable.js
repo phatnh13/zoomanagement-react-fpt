@@ -11,6 +11,7 @@ const TicketItemsTable = () => {
     const decrease = context.decrease
 
     const date = moment().format("MMMM/DD/YYYY")
+    const dateValid = moment().add(7, "days").format("MMMM/DD/YYYY")
 
     // Initialize the total price to 0
     let totalPrice = 0;
@@ -43,14 +44,12 @@ const TicketItemsTable = () => {
                             </th>
                             <th className="text-align">
                                 <p style={{ color: '#3C5724' }}>{data.ticket.ticketName} </p>
-                                <p>Valid from: {date} </p>
-                                <p>Valid to:</p>
-                                <p>Item reserved for you until:</p>
+                                <p className="pt-3">Valid from: {date} </p>
+                                <p>Valid to: {dateValid}</p>
                             </th>
-                            <th><div className="">{data.ticket.price}</div></th>
-                            <th>{data.quantity}
-                            </th>
-                            <th>{data.ticket.price * data.quantity}</th>
+                            <th><div className="mt-5">{data.ticket.price}</div></th>
+                            <th><div className="mt-5">{data.quantity}</div></th>
+                            <th><div className="mt-5">{data.ticket.price * data.quantity}</div></th>
                         </tr>
 
                     )
