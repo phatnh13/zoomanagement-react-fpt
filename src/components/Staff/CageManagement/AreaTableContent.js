@@ -1,6 +1,6 @@
-import React, {useEffect, useState, Redirect} from 'react';
-import { Button, FormControl, Row } from 'react-bootstrap';
-import DeleteAreaModal from './DeleteAreaModal';
+import React, {useState} from 'react';
+import { Button, FormControl } from 'react-bootstrap';
+import DeleteAreaModal from './Modal/DeleteAreaModal';
 
 function AreaTableContent({area, reloadState}) {
     //Modal Handling

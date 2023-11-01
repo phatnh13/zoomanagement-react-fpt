@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import TrainerTable from "./TrainerTable";
-import { Container, Button, Row, Col, Form, Pagination } from "react-bootstrap";
-function ZooTrainerManaging() {
-    const [trainer, setTrainer] = useState([]);
-    const [searchBy, setSearchBy] = useState("FullName");
+import {useNavigate} from "react-router-dom";
+import { Pagination, Col, Row, Container, Form, Button } from "react-bootstrap";
+import AnimalStatusTable from "./AnimalStatusTable";
+
+function AnimalStatusManaging() {
+
+    const [animalList, setAnimalList] = useState([]);
+    const [searchBy, setSearchBy] = useState("AnimalName");
     const [searchString, setSearchString] = useState("");
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-
+    const trainerId = JSON.parse(localStorage.getItem("loginUser")).userId;
     const navigate = useNavigate();
-    
+    //Dummy state to force re-render
+    const [reload, setReload] = useState(false);
+
     //#region Pagination
     let PaginationLoad = () => {
         let items = [];
@@ -27,12 +31,8 @@ function ZooTrainerManaging() {
     }
     //#endregion
 
-    let handleAdd = () => {
-        navigate("/staff/trainer/add");
-    }
     useEffect(() => {
-
-        fetch(`https://localhost:7193/api/ZooTrainer?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+        fetch(`https://localhost:7193/api/AnimalUser/user/${trainerId}`,{
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -41,14 +41,16 @@ function ZooTrainerManaging() {
         })
             .then((res) => res.json())
             .then(data => {
-                setTrainer(data.pagingList);
-                setTotalPages(data.totalPages);
+                setAnimalList(data);
+                console.log(data, "data");
+                console.log(animalList, "animalList");
+                console.log(trainerId, "id");
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }, [currentPage, searchBy, searchString]);
+    }, [reload, currentPage, searchBy, searchString]);
 
-    return (
+    return ( 
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
             {/*Start search*/}
@@ -61,7 +63,8 @@ function ZooTrainerManaging() {
                                 setSearchBy(e.target.value)
                             }}
                         >
-                            <option value={"FullName"}>Full Name</option>
+                            <option value={"FullName"}>Animal Name</option>
+                            <option>Name</option>
                         </Form.Select>
                     </Form.Group>
                 </Col>
@@ -79,26 +82,18 @@ function ZooTrainerManaging() {
                 </Col>
                 {/*Search bar */}
             {/*End search*/}
-                {/*Start add button*/}
-                <Col lg={1} md={1} xs={1}>
-                    <div className="mb-3 d-grid">
-                        <Button onClick={handleAdd} variant="outline-primary" size="sm">Add</Button>
-                    </div>
-                </Col>
-                {/*End add button*/}
             </Row>
             <Row>
                 <Col>
                     {/*Start Table*/}
-                    <TrainerTable trainerList={trainer} />
-                    {/*Start Table*/}
-                    <Pagination size="md" className="d-flex justify-content-center">
+                    <AnimalStatusTable animalList={animalList} reloadState={{reload, setReload}} />
+                    <Pagination>
                         {PaginationLoad()}
                     </Pagination>
                 </Col>
             </Row>
         </Container>
-    )
+     )
 }
 
-export default ZooTrainerManaging;
+export default AnimalStatusManaging;

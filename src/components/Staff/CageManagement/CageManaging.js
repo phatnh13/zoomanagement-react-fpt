@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Row, Col, Form, Pagination } from "react-bootstrap";
 import CageTable from "./CageTable";
-import AddCageModal from "./AddCageModal";
+import AddCageModal from "./Modal/AddCageModal";
 import AreaTable from "./AreaTable";
 
 function CageManaging() {

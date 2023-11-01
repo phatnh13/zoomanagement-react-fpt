@@ -1,5 +1,5 @@
 import StaffNavbar from "./Header/StaffNavbar";
-function AdminLayout({children}) {
+function StaffLayout({children}) {
     return (
         <div>
             <StaffNavbar />
@@ -10,4 +10,4 @@ function AdminLayout({children}) {
     )
 }
 
-export default AdminLayout;
+export default StaffLayout;

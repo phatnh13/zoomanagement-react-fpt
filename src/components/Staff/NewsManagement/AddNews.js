@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button, Row, Col, Form, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { DateHelper } from "../../DateHelper";
 
 function AddNews() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [author, setAuthor] = useState("");
     const [categoryId, setCategoryId] = useState("");
-    const [releaseDate, setReleaseDate] = useState("");
-    const [userId, setUserId] = useState("");
+    const [releaseDate, setReleaseDate] = useState(DateHelper.getToday());
+    const [userId, setUserId] = useState(JSON.parse(localStorage.getItem("loginUser")).userId);
     const [imageFile, setImageFile] = useState(null);
     const [thumbnailFile, setThumbnailFile] = useState(null);
+
+    const [newsCategories, setNewsCategories] = useState([]);
+
 
     let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
@@ -18,7 +23,6 @@ function AddNews() {
         author: false,
         categoryId: false,
         realeaseDate: false,
-        userId: false,
     });
     let [errors, setErrors] = useState(
         {
@@ -27,7 +31,6 @@ function AddNews() {
             author: [],
             categoryId: [],
             releaseDate: [],
-            userId: [],
         });
         //Validation
     let validate = () => {
@@ -52,12 +55,6 @@ function AddNews() {
         if (categoryId === "") {
             errorsData.categoryId.push("CategoryId box is required");
         }
-        //allocation
-        errorsData.userId = [];
-        if (userId === "") {
-            errorsData.userId.push("UserId box is required");
-        }
-
         setErrors(errorsData);
     }
     //Check valid before submit
@@ -70,9 +67,9 @@ function AddNews() {
         }
         return valid;
     }
-    //Species Add event
+    // News Add event
     let onAddClick = async () => {
-        
+
         // Set all input dirty=true
         let dirtyData = dirty;
         Object.keys(dirty).forEach((control) => {
@@ -89,19 +86,18 @@ function AddNews() {
         formData.append("Author", author);
         formData.append("CategoryId", categoryId);
         formData.append("ReleaseDate", releaseDate);
-        formData.append("userId", userId);
+        formData.append("UserId", userId);
         formData.append("ImageFile", imageFile);
-        formData.append("Thumbnail Image File", thumbnailFile);
-        formData.append("IsDeleted", false);
+        formData.append("ThumnailFile", thumbnailFile);
+        // formData.append("IsDeleted", false);
 
         //Send response to server if valid
         if (isValid()) {
-            await fetch("https://localhost:7193/api/News",
+            fetch(`https://localhost:7193/api/News`,
                 {
                     method: "POST",
                     headers: {
-                        "content-type": "application/json; charset=UTF-8",
-                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token,
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
                     },
                     body: formData
 
@@ -119,11 +115,25 @@ function AddNews() {
                 });
         }
     }
-    console.log(title)
-    console.log(author)
-    console.log(content)
-
-    
+    const navigate = useNavigate();
+    let handleBack = () => {
+        navigate("/staff/news");
+    }
+    useEffect(() => {
+        fetch(`https://localhost:7193/api/NewsCategories`, {
+            method: "GET",
+            headers: {
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+            },
+        })
+            .then((res) =>  res.json())
+            .then(data => {
+                setNewsCategories(data);
+                console.log(data, "dataaaa");
+                console.log(newsCategories, "newssssss");
+            })
+            .catch((rejected) => console.log(rejected));
+    }, []);
     useEffect(validate, [title, content, author, categoryId, releaseDate, userId]);
     return (
         <Container fluid>
@@ -151,62 +161,81 @@ function AddNews() {
                                                     errors["title"][0] : ""}
                                             </div>
                                         </Form.Group>
-                                        <Form.Group
-                                            className="mb-3"
-                                            controlId="newsAddContent">
-                                            <Form.Label>Content</Form.Label>
-                                            <Form.Control
-                                                as="textarea"
-                                                row ={8}
-                                                value={content}
-                                                onChange={(e) => {
-                                                    setContent(e.target.value);
-                                                    validate();
-                                                }}
-                                                placeholder="Enter content" />
-                                            <div className="text-danger">
-                                                {dirty["content"] && errors["content"][0] ?
-                                                    errors["content"][0] : ""}
-                                            </div>
-                                        </Form.Group>
-                                        <Form.Group
-                                            className="mb-3"
-                                            controlId="newsAddAuthor">
-                                            <Form.Label>Author</Form.Label>
-                                            <Form.Control
-                                                value={author}
-                                                onChange={(e) => {
-                                                    setAuthor(e.target.value);
-                                                    validate();
-                                                }}
-                                                placeholder="Enter author" />
-                                            <div className="text-danger">
-                                                {dirty["author"] && errors["author"][0] ?
-                                                    errors["author"][0] : ""}
-                                            </div>
-                                        </Form.Group>
-                                        <Form.Group
-                                            className="mb-3"
-                                            controlId="newsAddUserId">
-                                            <Form.Label>CategoryId</Form.Label>
-                                            <Form.Control
-                                                value={categoryId}
-                                                onChange={(e) => {
-                                                    setCategoryId(e.target.value);
-                                                    validate();
-                                                }}
-                                                placeholder="Enter category Id" />
-                                            <div className="text-danger">
-                                                {dirty["categoryId"] && errors["categoryId"][0] ?
-                                                    errors["categoryId"][0] : ""}
-                                            </div>
-                                        </Form.Group>
+                                        <Row>
+                                            <Col>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="newsAddImageFile">
+                                                    <Form.Label>Image</Form.Label>
+                                                    <Form.Control
+                                                        type="file"
+                                                        onChange={(e) => {
+                                                            setImageFile(e.target.files[0]);
+                                                        }}
+                                                    />
+                                                </Form.Group>
+                                            </Col>
+                                            <Col>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="newsAddThumbnailFile">
+                                                    <Form.Label>Thumbnail</Form.Label>
+                                                    <Form.Control
+                                                        type="file"
+                                                        onChange={(e) => {
+                                                            setThumbnailFile(e.target.files[0]);
+                                                        }}
+                                                    />
+                                                </Form.Group>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col lg={6} md={6} sm={12}>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="newsAddAuthor">
+                                                    <Form.Label>Author</Form.Label>
+                                                    <Form.Control
+                                                        value={author}
+                                                        onChange={(e) => {
+                                                            setAuthor(e.target.value);
+                                                            validate();
+                                                        }}
+                                                        placeholder="Enter author" />
+                                                    <div className="text-danger">
+                                                        {dirty["author"] && errors["author"][0] ?
+                                                            errors["author"][0] : ""}
+                                                    </div>
+                                                </Form.Group>
+                                            </Col>
+                                            <Col>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="newsCategoryId">
+                                                    <Form.Label>Category</Form.Label>
+                                                    <Form.Select value={categoryId}>
+                                                        <option value="">Select category</option>
+                                                        {newsCategories.map((item) => (
+                                                            <option
+                                                                key={item.categoryId}
+                                                                value={item.categoryId}
+                                                                onChange={(e) => {
+                                                                    setCategoryId(e.target.value);
+                                                                }}
+                                                            >
+                                                                {item.categoryName}
+                                                            </option>
+                                                        ))}
+                                                    </Form.Select>
+                                                </Form.Group>
+                                            </Col>
+                                        </Row>
                                         <Form.Group
                                             className="mb-3"
                                             controlId="newsAddReleaseDate">
                                             <Form.Label>ReleaseDate</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                type="date"
                                                 value={releaseDate}
                                                 onChange={(e) => {
                                                     setReleaseDate(e.target.value);
@@ -219,53 +248,33 @@ function AddNews() {
                                             </div>
                                         </Form.Group>
                                         <Form.Group
-                                            className="mb-3"
-                                            controlId="newsAddUserId">
-                                            <Form.Label>UserId</Form.Label>
+                                            className="mb-3 vh-50"
+                                            controlId="newsAddContent">
+                                            <Form.Label>Content</Form.Label>
                                             <Form.Control
-                                                value={userId}
+                                                as="textarea"
+                                                rows={7}
+                                                value={content}
                                                 onChange={(e) => {
-                                                    setUserId(e.target.value);
+                                                    setContent(e.target.value);
                                                     validate();
                                                 }}
-                                                placeholder="Enter user Id" />
+                                                placeholder="Enter content" />
                                             <div className="text-danger">
-                                                {dirty["userId"] && errors["userId"][0] ?
-                                                    errors["userId"][0] : ""}
+                                                {dirty["content"] && errors["content"][0] ?
+                                                    errors["content"][0] : ""}
                                             </div>
-                                        </Form.Group>
-                                        <Form.Group
-                                            className="mb-3"
-                                            controlId="newsAddImageFile">
-                                            <Form.Label>Image</Form.Label>
-                                            <Form.Control
-                                                type="file"
-                                                onChange={(e) => {
-                                                    setImageFile(e.target.files[0]);
-                                                }}
-                                            />
-                                        </Form.Group>
-                                        <Form.Group
-                                            className="mb-3"
-                                            controlId="newsAddThumbnailFile">
-                                            <Form.Label>Thumbnail</Form.Label>
-                                            <Form.Control
-                                                type="file"
-                                                onChange={(e) => {
-                                                    setThumbnailFile(e.target.files[0]);
-                                                }}
-                                            />
                                         </Form.Group>
 
                                         <Row>
                                             <Col lg={6} md={6} sm={0}>
                                             </Col>
                                             <Col lg={6} md={6} sm={12} className="d-flex justify-content-end">
-                                                <Button href="/admin/news/" size="sm" variant="secondary" className="mx-2" >
-                                                    Cancel
+                                                <Button onClick={handleBack} size="sm" variant="secondary" className="mx-2" >
+                                                    Back
                                                 </Button>
                                                 <Button size="sm" variant="primary" onClick={onAddClick} >
-                                                    Add
+                                                    Add News
                                                 </Button>
                                             </Col>
                                         </Row>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
-import {  useNavigate } from "react-router-dom";
+import { Form, Button, Container, Row, Col, Card, Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
 
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    let [message, setMessage] = useState("");
+    const [message, setMessage] = useState("");
     let [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
+    const [loading, setLoading] = useState(false);
     // let [user, setUser] = useState(JSON.parse(localStorage.getItem("loginUser")))
 
     //Dummy state to force re-render
@@ -61,15 +62,15 @@ const Login = () => {
     let handleRedirectManagement = () => {
         switch (JSON.parse(localStorage.getItem("loginUser")).role) {
             case "Admin":
-                return("/admin/staff")
-                
+                return ("/admin/staff")
+
             case "OfficeStaff":
                 return("/staff/trainer");
                 
-            case "ZooTrainner":
-                return("/trainer/meal");
+            case "ZooTrainer":
+                return("/trainer/animal");
             default:
-                return("/");
+                return("/login");
         }
     }
     let handleLogout = () => {
@@ -88,6 +89,7 @@ const Login = () => {
     }
     //Login Click event
     let onLoginClick = async () => {
+        setLoading(true);
         localStorage.setItem("isLoggedIn", false);
         // Set all input dirty=true
         let dirtyData = dirty;
@@ -101,7 +103,7 @@ const Login = () => {
 
         //Send response to server if valid
         if (isValid()) {
-            fetch("https://localhost:7193/api/User/login",
+            fetch("https://vietnamzoo.azurewebsites.net/api/User/login",
                 {
                     method: "POST",
                     body: JSON.stringify({
@@ -117,23 +119,28 @@ const Login = () => {
                     localStorage.setItem("loginUser", JSON.stringify(data));
                     localStorage.setItem("isLoggedIn", "true");
                     setIsLoggedIn(localStorage.getItem("isLoggedIn"));
+                    setLoading(false);
                 })
                 .catch(rejected => {
                     console.log(rejected);
+                    setMessage(<span className="text-danger">Login failed</span>);
+                    setLoading(false);
                 });
-                
+
         } else {
             setMessage(<span className="text-danger">Login failed</span>);
+            setLoading(false);
         }
     }
     useEffect(() => {
+        window.scrollTo(0, 0);
         setReload(!reload);
-    },[]);
+    }, []);
     useEffect(validate, [userName, password, reload]);
     return (
         <Container className='vh-100' fluid>
             <Row className="mt-5 py-5 d-flex justify-content-center align-items-center">
-                {isLoggedIn != "true" ? (
+                {isLoggedIn !== "true" ? (
                     <Col md={8} lg={5} xs={12}>
                         <Card className="shadow">
                             <Card.Body>
@@ -187,8 +194,9 @@ const Login = () => {
                                             {/*Login button*/}
                                             <div className="m-1 text-center">{message}</div>
                                             <div className="d-grid">
-                                                <Button variant="primary" onClick={onLoginClick}>
-                                                    Login
+                                                <Button variant="primary" onClick={onLoginClick}
+                                                    disabled={loading}>
+                                                    {loading ? <Spinner animation="border" size="sm" /> : 'Login'}
                                                 </Button>
                                             </div>
                                             {/*Login button*/}

@@ -1,7 +1,7 @@
-import React, {useState, useEffect, Redirect} from 'react';
-import { Button, FormControl, Row } from 'react-bootstrap';
-import DeleteCageModal from './DeleteCageModal';
-
+import React, {useState, useEffect} from 'react';
+import { Button, FormControl } from 'react-bootstrap';
+import DeleteCageModal from './Modal/DeleteCageModal';
+import ShowAnimalModal from './Modal/ShowAnimalModal';
 function CageTableContent({cage, reloadState}) {
     //#region Modal
         //Delete Modal
@@ -15,7 +15,6 @@ function CageTableContent({cage, reloadState}) {
     //#endregion
     const [cageName, setCageName] = useState(cage.cageName);
     const [areaName, setAreaName] = useState(cage.area.areaName);
-    const [animalList, setAnimalList] = useState([]);
     
     useEffect(() => {
         setCageName(cage.cageName);
@@ -75,19 +74,7 @@ function CageTableContent({cage, reloadState}) {
         reloadState.setReload(!reloadState.reload);
     }
     let handleShowAnimal = () => {
-        fetch(`https://localhost:7193/api/AnimalCage/cage/${cage.cageId}`, {
-            method: "GET",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
-            },
-        })
-            .then((res) => res.json())
-            .then(data => {
-                setAnimalList(data);
-            }).catch(rejected => {
-                console.log(rejected);
-            });
+        handleShowAnimalModal();
     }
     return ( 
         <tr>
@@ -114,8 +101,16 @@ function CageTableContent({cage, reloadState}) {
             <td className="text-center">
                 <Button variant="outline-primary" size="sm" onClick={handleShowDeleteModal}>Delete</Button>
             </td>
-
-            <DeleteCageModal cage={cage} show={showDeleteModal} handleClose={handleCloseDeleteModal} handleDelete={handleDelete} />
+            <ShowAnimalModal 
+            show={showAnimalModal} 
+            handleClose={handleCloseAnimalModal} 
+            reloadState={reloadState}
+            cage={cage} />
+            <DeleteCageModal 
+            show={showDeleteModal} 
+            handleClose={handleCloseDeleteModal} 
+            handleDelete={handleDelete} 
+            cage={cage} />
         </tr>
      )
 }
