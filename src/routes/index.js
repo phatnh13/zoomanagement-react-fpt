@@ -1,6 +1,7 @@
 //layout
 import { AdminLayout } from '../components/Layout/';
 import { StaffLayout } from '../components/Layout/';
+import { TrainerLayout } from '../components/Layout/';
 import { TicketLayout } from '../components/Layout/';
 import { HomeLayout } from '../components/Layout/';
 //Customer
@@ -34,7 +35,8 @@ import CageManaging from '../components/Staff/CageManagement/CageManaging';
 import AnimalManaging from '../components/Staff/AnimalManagement/AnimalManaging';
 import AddAnimal from '../components/Staff/AnimalManagement/AddAnimal';
 import AddNews from '../components/Staff/NewsManagement/AddNews';
-
+//Trainer managing
+import AnimalStatusManaging from '../components/ZooTrainer/AnimalManagement/AnimalStatusManaging';
 //1
 
 //2
@@ -76,7 +78,9 @@ const privateRoutes = [
     { path: '/staff/animal', component: AnimalManaging, layout: StaffLayout},
     { path: '/staff/animal/add', component: AddAnimal, layout: StaffLayout},
     { path: '/staff/news/add', component: AddNews, layout: StaffLayout},
-    
+    //Trainer
+    { path: '/profile', component: ProfilePage, layout: AdminLayout},
+    { path: '/trainer/animal', component: AnimalStatusManaging, layout: TrainerLayout},
     
 ]
 

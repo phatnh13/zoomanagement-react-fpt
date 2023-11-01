@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Table, Form, Pagination, Row, Col } from "react-bootstrap";
-import { DateHelper } from "../../DateHelper";
+import { DateHelper } from "../../../../DateHelper";
 
 function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
     const [user, setUser] = useState({

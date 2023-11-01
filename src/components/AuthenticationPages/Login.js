@@ -66,10 +66,10 @@ const Login = () => {
             case "OfficeStaff":
                 return("/staff/trainer");
                 
-            case "ZooTrainner":
-                return("/trainer/meal");
+            case "ZooTrainer":
+                return("/trainer/animal");
             default:
-                return("/");
+                return("/login");
         }
     }
     let handleLogout = () => {
