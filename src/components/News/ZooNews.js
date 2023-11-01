@@ -54,7 +54,7 @@ const AllNews = () => {
             return (
               <Col className="md-3" key={idx}>
                 <Card style={{ backgroundColor: '#3c5724' }} onClick={() => handleClick(item)}>
-                  <Card.Img style={{ width: '100%', height: '100%' }} variant="top" src={item.thumnail} />
+                  <Card.Img style={{ width: '100%', height: '343.15px' }} variant="top" src={item.thumnail} />
                   <Card.Body style={{ color: '#FFFFFF' }}>
                     <Card.Title >{item.title}</Card.Title>
                     <Card.Title >{DateHelper.formatDate(item.releaseDate)}</Card.Title>
