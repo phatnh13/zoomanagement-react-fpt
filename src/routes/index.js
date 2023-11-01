@@ -10,6 +10,7 @@ import NoPage from '../components/NoPage';
 import Login from '../components/AuthenticationPages/Login';
 import Hours from '../components/Hours/Hours';
 import Map from '../components/Map/Map';
+import Species from '../components/Map/Species';
 import News from '../components/News/News';
 import ZooNews from '../components/News/ZooNews';
 import ViewTicket from '../components/Ticket/ViewTicket/ViewTicket';
@@ -46,6 +47,7 @@ const publicRoutes = [
     { path: '/login', component: Login},
     { path: '/opening-hours', component: Hours, layout: HomeLayout},
     { path: '/map', component: Map, layout: HomeLayout},
+    { path: '/species', component: Species, layout: HomeLayout},
     { path: '/news', component: News, layout: HomeLayout},
     { path: '/zoo-news', component: ZooNews, layout: HomeLayout},
     { path: '*', component: NoPage},

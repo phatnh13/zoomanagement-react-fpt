@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Card, Container, Col, Row } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import { DateHelper } from '../DateHelper';
 import NewsPanda from '../../assets/NewsPan.jpg'
@@ -19,8 +18,6 @@ const AllNews = () => {
     console.log("Navigarun");
     navigate(`/news`, { state: { item: item } })
   }
-
-
 
   const handleClick = (item) => {
     console.log(item)
@@ -51,13 +48,13 @@ const AllNews = () => {
           <div style={{ fontSize: '1.5rem' }}>Here you can find all the latest news about Zoo Berlin and its animals – new babies,</div>
           <div style={{ fontSize: '1.5rem' }}>new conservation projects, progress on building projects, etc.</div>
         </div>
-        <Row md={3} className="justify-content-center p-5">
+        <Row xs={1} md={3} className="g-4 p-5">
 
           {news.map((item, idx) => {
             return (
               <Col className="md-3" key={idx}>
                 <Card style={{ backgroundColor: '#3c5724' }} onClick={() => handleClick(item)}>
-                  <Card.Img variant="top" src={item.thumnail} />
+                  <Card.Img style={{ width: '100%', height: '100%' }} variant="top" src={item.thumnail} />
                   <Card.Body style={{ color: '#FFFFFF' }}>
                     <Card.Title >{item.title}</Card.Title>
                     <Card.Title >{DateHelper.formatDate(item.releaseDate)}</Card.Title>
