@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardImg, Col, Container, Row, Pagination } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom"
 import './WelcomeNews.css';
 
@@ -49,36 +49,16 @@ const WelcomeNews = () => {
                     {news.map((item, idx) => {
                         return (
                             <Col key={idx} >
-                                <Card style={{border: 'none'}} onClick={() => handleClick(item)}>
-                                    <Card.Img variant="top" src={item.thumnail} />
-                                    <Card.Body style={{backgroundColor: '#F7F1DB'}}>
-                                        <Card.Title style={{fontSize: '1rem'}}>{item.title}</Card.Title>
+                                <Card style={{ border: 'none', borderRadius: '50px' }} onClick={() => handleClick(item)}>
+                                    <Card.Img  style={{height: '197.52px', width: 'auto'}} src={item.thumnail} />
+                                    <Card.Body style={{ backgroundColor: '#F7F1DB' }}>
+                                        <Card.Title style={{ fontSize: '1rem' }}>{item.title}</Card.Title>
                                     </Card.Body>
                                 </Card>
                             </Col>
                         )
                     })}
                 </Row>
-                {/* <Row className="justify-content-center">
-                    <Col md={4} >
-                        <Link to='news'>
-                            <CardImg className="news-grid__image" src={Pan} alt="Panda" />
-                        </Link>
-                        <Card.Text>Saigon Zoo’s panda twins celebrate their fourth birthday</Card.Text>
-                    </Col>
-                    <Col md={4}  >
-                        <Link to='news'>
-                            <CardImg className="news-grid__image" src={Monke} alt="monke" />
-                        </Link>
-                        <Card.Text>Nocturnal animal house welcomes rare new arrivals</Card.Text>
-                    </Col>
-                    <Col md={4}  >
-                        <Link to='news'>
-                            <CardImg className="news-grid__image" src={Zebras} alt="zebras" />
-                        </Link>
-                        <Card.Text>Our young white-lipped peccaries are keeping the rest of the group on their toes. The babies, the youngest of whom were born about a month ago, spend their days…</Card.Text>
-                    </Col>
-                </Row> */}
             </Container >
         </>
     );
