@@ -12,6 +12,7 @@ import Map from '../components/Map/Map';
 import News from '../components/News/News';
 import ZooNews from '../components/News/ZooNews';
 import ViewTicket from '../components/Ticket/ViewTicket/ViewTicket';
+import SearchOrder from '../components/Ticket/SearchOrder/SearchOrder';
 //Booking
 import BuyingTicket from '../components/Ticket/BuyingTicket';
 import ViewCart from "../components/Ticket/ViewCart";
@@ -47,6 +48,7 @@ const publicRoutes = [
     { path: '/news', component: News, layout: HomeLayout},
     { path: '/zoo-news', component: ZooNews, layout: HomeLayout},
     { path: '*', component: NoPage},
+
     //Customer
     //--Ticket--
     { path: '/buyingticket', component: BuyingTicket, layout: TicketLayout},
@@ -57,10 +59,13 @@ const publicRoutes = [
     { path: '/viewticket', component: ViewTicket, layout: TicketLayout},
     //--Home--
     { path: '/', component: Home, layout: HomeLayout},
+    { path: '/searchorder', component: SearchOrder, layout: HomeLayout},
+
 ]
 const privateRoutes = [
     //UserOverall
     { path: '/profile', component: ProfilePage, layout: AdminLayout},
+
     //Admin
     { path: '/profile', component: ProfilePage, layout: AdminLayout},
     { path: '/admin/staff', component: StaffManaging, layout: AdminLayout},

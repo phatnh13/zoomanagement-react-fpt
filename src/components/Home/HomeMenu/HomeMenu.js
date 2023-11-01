@@ -16,13 +16,18 @@ const HomeMenu = ({handleClose}) => {
             </li>
             <li><h1>Ticket</h1></li>
             <li>
-            <Link className='navigation__link' to='viewticket' onClick={handleClose}>
+            <Link className='navigation__link' to='/viewticket' onClick={handleClose}>
               View Ticket
             </Link>
             </li>
             <li>
             <Link className='navigation__link' to='/buyingticket' onClick={handleClose}>
               Ticket Cart
+            </Link>
+            </li>
+            <li>
+            <Link className='navigation__link' to='/searchorder' onClick={handleClose}>
+              Check Order
             </Link>
             </li>
           </ul>

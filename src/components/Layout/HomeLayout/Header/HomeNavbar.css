@@ -2,7 +2,6 @@
     width: 100%;
     display: flex;
     font-family: "Just Another Hand";
-    padding-top: 1rem;
 }
 .zoo-logo {
     justify-content: right;
@@ -33,6 +32,7 @@
     position: absolute;
     top: 0;
     z-index: -1;
+    display: flex;
 }
 
 

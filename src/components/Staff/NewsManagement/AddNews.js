@@ -11,7 +11,6 @@ function AddNews() {
     const [imageFile, setImageFile] = useState(null);
     const [thumbnailFile, setThumbnailFile] = useState(null);
 
-
     let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
         title: false,
@@ -30,20 +29,20 @@ function AddNews() {
             releaseDate: [],
             userId: [],
         });
-    //Validation
+        //Validation
     let validate = () => {
         let errorsData = {};
-        //speciesName
+        //title
         errorsData.title = [];
         if (title === "") {
             errorsData.title.push("Title is required");
         }
-        //family
+        //content
         errorsData.content = [];
         if (content === "") {
             errorsData.content.push("Content box is required");
         }
-        //information
+        //author
         errorsData.author = [];
         if (author === "") {
             errorsData.author.push("Author is required");
@@ -51,12 +50,12 @@ function AddNews() {
         //characteristic
         errorsData.categoryId = [];
         if (categoryId === "") {
-            errorsData.categoryId.push("Characteristic box is required");
+            errorsData.categoryId.push("CategoryId box is required");
         }
         //allocation
         errorsData.userId = [];
         if (userId === "") {
-            errorsData.userId.push("Allocation box is required");
+            errorsData.userId.push("UserId box is required");
         }
 
         setErrors(errorsData);
@@ -71,7 +70,7 @@ function AddNews() {
         }
         return valid;
     }
-    // Species Add event
+    //Species Add event
     let onAddClick = async () => {
         
         // Set all input dirty=true
@@ -82,7 +81,7 @@ function AddNews() {
         setDirty(dirtyData);
 
         // //Validate all input
-        // validate();
+        validate();
         let formData = new FormData();
 
         formData.append("Title", title);
@@ -102,7 +101,7 @@ function AddNews() {
                     method: "POST",
                     headers: {
                         "content-type": "application/json; charset=UTF-8",
-                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("token"))
+                        "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token,
                     },
                     body: formData
 
@@ -121,6 +120,10 @@ function AddNews() {
         }
     }
     console.log(title)
+    console.log(author)
+    console.log(content)
+
+    
     useEffect(validate, [title, content, author, categoryId, releaseDate, userId]);
     return (
         <Container fluid>
@@ -275,6 +278,7 @@ function AddNews() {
                 </Col>
             </Row>
         </Container>
+        
     )
 }
 
