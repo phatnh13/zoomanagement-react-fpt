@@ -13,6 +13,7 @@ function AnimalManaging() {
     const [currentAnimalPage, setCurrentAnimalPage] = useState(1);
 
     const [foodList, setFoodList] = useState([]);
+    const [foodName, setFoodName] = useState("");
     const [searchFoodString, setSearchFoodString] = useState("");
     const [totalFoodPages, setTotalFoodPages] = useState(0);
     const [currentFoodPage, setCurrentFoodPage] = useState(1);
@@ -53,7 +54,27 @@ function AnimalManaging() {
         navigate("/staff/animal/add");
     }
     let handleAddFood = () => {
-        console.log("Add food");
+        fetch(`https://localhost:7193/api/Food`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+            },
+            body: JSON.stringify({
+                foodName: foodName
+            })
+        })
+            .then((res) => {
+                if (res.ok) {
+                    alert("Add food successfully");
+                    setReload(!reload);
+                } else {
+                    alert("Add food failed");
+                }
+            })
+            .catch(rejected => {
+                console.log(rejected);
+            });
     }
     useEffect(() => {
         fetch(`https://localhost:7193/api/Animal?pageNumber=${currentAnimalPage}&searchBy=${searchAnimalBy}&searchString=${searchAnimalString}`, {
@@ -70,7 +91,7 @@ function AnimalManaging() {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }, [currentAnimalPage, searchAnimalBy, searchAnimalString]);
+    }, [reload, currentAnimalPage, searchAnimalBy, searchAnimalString]);
     useEffect(() => {
         fetch(`https://localhost:7193/api/Food?pageNumber=${currentFoodPage}&searchBy=FoodName&searchString=${searchFoodString}`, {
             method: "GET",
@@ -86,7 +107,7 @@ function AnimalManaging() {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }, [currentFoodPage, searchFoodString]);
+    }, [reload, currentFoodPage, searchFoodString]);
 
     return (
         <Container fluid>
@@ -150,7 +171,11 @@ function AnimalManaging() {
                             <Card.Text>
                                 <Row>
                                     <Col>
-                                        <Form.Control type="text" placeholder="Food name" />
+                                        <Form.Control 
+                                        type="text" 
+                                        value={foodName}
+                                        onChange={(e) => {setFoodName(e.target.value)}}
+                                        placeholder="Food name" />
                                     </Col>
                                     <Col lg={4} md={4} sm={4}>
                                         <Button variant="primary" onClick={handleAddFood}>Add</Button>

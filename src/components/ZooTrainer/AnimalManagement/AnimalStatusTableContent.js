@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Button} from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
 import UpdateAnimalStatusModal from "./UpdateAnimalStatusModal";
+import { useNavigate } from "react-router-dom";
 
 const AnimalStatusTableContent = ({animal, reloadState}) => {
     //#region Modal
@@ -13,6 +14,11 @@ const AnimalStatusTableContent = ({animal, reloadState}) => {
 
     const [updatedStatus, setUpdatedStatus] = useState(animal.status);
     
+    const navigate = useNavigate();
+    let handleShowMeal = () => {
+        navigate(`/trainer/meals/${animal.animalId}`)
+    }
+    
     return (
         <tr>
             <td>{animal.animalId}</td>
@@ -20,7 +26,10 @@ const AnimalStatusTableContent = ({animal, reloadState}) => {
             <td>{DateHelper.formatDate(animal.dateArrive)}</td>
             <td>{animal.status}</td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleShowUpdateModal}>Update</Button>
+                <Button variant="outline-warning" size="" onClick={handleShowMeal}>Meals</Button>
+            </td>
+            <td className="text-center">
+                <Button variant="outline-primary" size="" onClick={handleShowUpdateModal}>Update</Button>
             </td>
             <UpdateAnimalStatusModal 
             show={showUpdateModal} 

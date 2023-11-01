@@ -27,7 +27,8 @@ const StaffNavbar = () => {
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to={"/staff/trainer"} >Zoo Trainer</Nav.Link>
                         <Nav.Link as={Link} to={"/staff/area-cage"} >Areas/Cages</Nav.Link>
-                        <Nav.Link as={Link} to={"/staff/animal"} >Animals</Nav.Link>
+                        <Nav.Link as={Link} to={"/staff/animal"} >Animals/Food</Nav.Link>
+                        <Nav.Link as={Link} to={"/staff/news"} >News</Nav.Link>
                     </Nav>
                     <Navbar.Text>
                         <NavDropdown title= {name} >

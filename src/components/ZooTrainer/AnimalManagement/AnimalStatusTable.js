@@ -5,16 +5,17 @@ const AnimalStatusTable = ({ animalList, reloadState }) => {
     return (
         <Container>
             <div className="text-uppercase" >
-                <h3>Animals managing table</h3>
+                <h3>Animals managing</h3>
             </div>
             <Table striped bordered hover responsive="md" >
                 <thead>
                     <tr>
                         <th className="col-1">Animal ID</th>
-                        <th className="col-1">Animal Name</th>
-                        <th className="col-1">Date Arrive</th>
-                        <th className="col-8">Status</th>
-                        <th></th>
+                        <th className="col-2">Animal Name</th>
+                        <th className="col-2">Date Arrive</th>
+                        <th className="col-5">Status</th>
+                        <th className="col-2"></th>
+                        <th className="col-2"></th>
                     </tr>
                 </thead>
                 <tbody>
