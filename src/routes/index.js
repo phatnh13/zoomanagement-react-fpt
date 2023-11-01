@@ -12,6 +12,7 @@ import Hours from '../components/Hours/Hours';
 import Map from '../components/Map/Map';
 import News from '../components/News/News';
 import ZooNews from '../components/News/ZooNews';
+import ViewTicket from '../components/Ticket/ViewTicket/ViewTicket';
 //Booking
 import BuyingTicket from '../components/Ticket/BuyingTicket';
 import ViewCart from "../components/Ticket/ViewCart";
@@ -55,6 +56,7 @@ const publicRoutes = [
     { path: '/billingaddress', component: BillingAddress, layout: TicketLayout},
     { path: '/paymentmethod', component: PaymentMethod, layout: TicketLayout},
     { path: '/summary', component: Summary, layout: TicketLayout},
+    { path: '/viewticket', component: ViewTicket, layout: TicketLayout},
     //--Home--
     { path: '/', component: Home, layout: HomeLayout},
 ]

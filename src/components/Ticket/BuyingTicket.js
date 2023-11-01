@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useMemo } from "react";
 import { Button, FormLabel, Table, Alert, Container } from "react-bootstrap";
 import { FaCalendarDay } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -113,6 +113,9 @@ const ticketReducer = (state, action) => {
 }
 
 const BuyingTicket = () => {
+    useMemo(() => {
+        window.scrollTo({top: 0})
+      },)
     const context = useContext(TicketContext)
     const tickets = context.tickets
     const [state, dispatch] = useReducer(ticketReducer, initialState)
@@ -131,7 +134,6 @@ const BuyingTicket = () => {
         context.setDecrease(orders)
         console.log('Add button clicked');
     };
-    console.log(tickets)
     return (
         <>
             <Container className="min-vh-100">
@@ -154,7 +156,7 @@ const BuyingTicket = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th className="text-align">Please select a day</th>
+                                    <th style={{color: '#198754'}} className="text-align fs-5">Please select a day</th>
                                     <th colSpan={2}><FaCalendarDay /></th>
                                     <th>Cost</th>
                                 </tr>
