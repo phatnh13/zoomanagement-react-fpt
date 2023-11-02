@@ -8,7 +8,8 @@ import Carousel from 'react-bootstrap/Carousel';
 const Species = () => {
     const location = useLocation();
     const [species] = useState(location.state.item);
-    console.log(species, "Species");
+
+
 
     return (
         <>
@@ -49,7 +50,7 @@ const Species = () => {
                     </Card>
                     <Col md={6} className="g-container">
                         <div className="">
-                            <Link to="/map" className=" justify-content-start btn mb-3 mt-3  ">
+                            <Link to="/map" className="justify-content-start btn mb-3 mt-3">
                                 Back to the overview {'>'}
                             </Link>
                         </div>
