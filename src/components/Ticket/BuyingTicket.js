@@ -180,7 +180,11 @@ const BuyingTicket = () => {
 
                                                 <Button variant="outline-dark" onClick={() => dispatch(addTicket(ticket))}>+</Button>
                                             </th >
-                                            <th>{ticket.price}$</th>
+                                            <th>{ticket.price === 0 ? (
+                                                <p>Free</p>
+                                            ) : (
+                                                <p>{ticket.price}$</p>
+                                            )}</th>
                                         </tr >
                                     )
                                 })}

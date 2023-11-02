@@ -32,20 +32,20 @@ function AddNews() {
             categoryId: [],
             releaseDate: [],
         });
-    //Validation
+        //Validation
     let validate = () => {
         let errorsData = {};
-        //speciesName
+        //title
         errorsData.title = [];
         if (title === "") {
             errorsData.title.push("Title is required");
         }
-        //family
+        //content
         errorsData.content = [];
         if (content === "") {
             errorsData.content.push("Content box is required");
         }
-        //information
+        //author
         errorsData.author = [];
         if (author === "") {
             errorsData.author.push("Author is required");
@@ -53,7 +53,7 @@ function AddNews() {
         //characteristic
         errorsData.categoryId = [];
         if (categoryId === "") {
-            errorsData.categoryId.push("Characteristic box is required");
+            errorsData.categoryId.push("CategoryId box is required");
         }
         setErrors(errorsData);
     }
@@ -78,7 +78,7 @@ function AddNews() {
         setDirty(dirtyData);
 
         // //Validate all input
-        // validate();
+        validate();
         let formData = new FormData();
 
         formData.append("Title", title);
@@ -287,6 +287,7 @@ function AddNews() {
                 </Col>
             </Row>
         </Container>
+        
     )
 }
 

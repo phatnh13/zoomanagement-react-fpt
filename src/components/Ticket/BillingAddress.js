@@ -6,7 +6,7 @@ import { TicketContext } from "./TicketContext/TicketContext";
 const BillingAddress = () => {
     useMemo(() => {
         window.scrollTo({top: 0})
-      },)
+      },[])
     const NavigationButtons = ({ onBackClick, onNextClick }) => {
         return (
             <div className="navigation-buttons button-direct">

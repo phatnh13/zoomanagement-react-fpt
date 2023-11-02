@@ -7,7 +7,7 @@ import TicketItemsTable from "./TicketItemsTable";
 const ViewCart = () => {
     useMemo(() => {
         window.scrollTo({top: 0})
-      },)
+      },[])
     const NavigationButtons = ({ onBackClick, onNextClick }) => {
         return (
             <div className="button-direct">

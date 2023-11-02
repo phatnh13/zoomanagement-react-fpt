@@ -40,8 +40,8 @@ const HomeNavbar = () => {
 
       <Navbar fixed="top" className="justify-content-between">
         <Nav className="logo-box__ticket">
-            <Col className="homeview__left col-md-8 d-flex">
-            
+            <Col className="homeview__left d-flex col-md-8">
+              
                 <Link to='/' className="zoo-logo col-md-2">
                   <Image src={WebLogo} />
                 </Link>
