@@ -8,7 +8,7 @@ function DeleteFoodModal({show, handleClose, handleDelete, food}) {
                     <Modal.Title>Delete</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Do you want to delete <span className="text-danger">{food.animalName}</span> ?
+                    Do you want to delete <span className="text-danger">{food.foodName}</span> ?
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

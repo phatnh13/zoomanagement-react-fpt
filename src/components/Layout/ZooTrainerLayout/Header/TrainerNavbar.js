@@ -26,12 +26,11 @@ const TrainerNavbar = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to={"/trainer/animal"} >Animal</Nav.Link>
-                        <Nav.Link as={Link} to={"/trainer/meals"} >Meals</Nav.Link>
                         <Nav.Link as={Link} to={"/trainer/skills"} >Skills</Nav.Link>
                     </Nav>
                     <Navbar.Text>
                         <NavDropdown title= {name} >
-                            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/trainer/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Navbar.Text>

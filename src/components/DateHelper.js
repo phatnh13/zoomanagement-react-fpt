@@ -20,4 +20,20 @@ export const DateHelper = {
         const day = String(today.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
     },
+    getNowTime() {
+        const today = new Date();
+        const hour = String(today.getHours()).padStart(2, '0');
+        const minute = String(today.getMinutes()).padStart(2, '0');
+        return `${hour}:${minute}`;
+    },
+    formatTime(time) {
+        const [hour, minute] = time.split(':');
+        return `${hour}:${minute}:00`;
+    },
+    isExpired(expirationDate) {
+        const now = new Date();
+        const expiry = new Date(expirationDate);
+    
+        return now > expiry;
+    }
 };

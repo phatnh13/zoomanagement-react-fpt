@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Col, Row, Form, Card, Button } from "react-bootstrap";
 import { DateHelper } from "../DateHelper";
+import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
     const userId = JSON.parse(localStorage.getItem('loginUser')).userId;
@@ -89,6 +90,21 @@ function ProfilePage() {
         } else {
             setMessage(<span className="text-danger">Unable to change password</span>);
         }
+    }
+
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        const emptyUser = {
+            userId: 0,
+            userName: "",
+            email: "",
+            role: "",
+            token: "",
+            expiration: ""
+        };
+        localStorage.setItem("loginUser", JSON.stringify(emptyUser));
+        localStorage.setItem("isLoggedIn", "false");
+        navigate("/login");
     }
 
     useEffect(() => {
@@ -193,7 +209,7 @@ function ProfilePage() {
                         </Card>
                         <Card className="mb-3" border="0">
                             <Card.Body className="">
-                                <Button size="lg" variant="dark">Logout</Button>
+                                <Button size="lg" variant="dark" onClick={handleLogout}>Logout</Button>
                             </Card.Body>
                         </Card>
                 </Col>
