@@ -27,17 +27,17 @@ const HeaderCart = () => {
                     </Row>
                 </Col>
                 <Col className="header-left col-md-2">
-                    <Row className="text-logo__top-left">
+                    <div className="text-logo__top-left">
                         <Link className="link-underline-hover" style={{ color: 'white', textDecoration: 'none' }} to="/">
                         Back to home
                         </Link>
-                    </Row>
-                    <Row className="text-logo__down-left">
+                    </div>
+                    <div className="text-logo__down-left">
                         <FaFacebook className="footer-icon" />
                         <FaGoogle className="footer-icon" />
                         <FaInstagram className="footer-icon" />
                         <FaYoutube className="footer-icon" />
-                    </Row>
+                    </div>
                 </Col>
             </div>
         </div>

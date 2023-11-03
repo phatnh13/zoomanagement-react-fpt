@@ -7,12 +7,15 @@ import './SearchOrder.css';
 const SearchOrder = () => {
 
     useMemo(() => {
-        window.scrollTo({top: 0})
-      },[])
+        window.scrollTo({ top: 0 })
+    }, [])
 
     const [orderId, setOrderId] = useState('');
     const [orderDetail, setOrderDetail] = useState(null);
+
     const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const onChange = (event) => {
         setOrderId(event.target.value);
@@ -20,8 +23,10 @@ const SearchOrder = () => {
 
     const onSearch = () => {
         setIsLoading(true);
+        setIsError(false); // Reset the error state
+        setErrorMessage(''); // Reset the error message
 
-        fetch(`https://localhost:7193/api/Order/${orderId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Order/${orderId}`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json; charset=UTF-8',
@@ -34,6 +39,8 @@ const SearchOrder = () => {
             })
             .catch((error) => {
                 console.error(error);
+                setIsError(true); // Set isError to true
+                setErrorMessage('Order ID does not exist.'); // Set the error message
                 setIsLoading(false);
             });
     };
@@ -43,7 +50,7 @@ const SearchOrder = () => {
             <div className="search-page__video-overlay vh-100"></div>
             <video src={GiraffeRun} autoPlay loop muted></video>
             <div className="search-page__box">
-                <Container style={{width: '60rem'}}>
+                <Container style={{ width: '60rem' }}>
                     <Row>
                         <h1 className="search-welcom-text">Check your Order by ID</h1>
                     </Row>
@@ -58,8 +65,11 @@ const SearchOrder = () => {
                         />
                     </Row>
                     {isLoading ? (
-                        <p>Loading...</p>
+                        <p style={{ color: 'white', fontSize: '2rem' }}>Loading...</p>
+                    ) : isError ? (
+                        <p style={{ color: 'red', fontSize: '2rem' }}>{errorMessage}</p>
                     ) : orderDetail ? (
+                        // Render order details as before
                         <Row className="search-result-table">
                             <div className='mx-auto'>
                                 <p style={{ fontWeight: 'bold' }}>Customer information: </p>
@@ -93,7 +103,7 @@ const SearchOrder = () => {
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>{orderDetail.totalPrice}</td>
+                                                <td>{orderDetail.totalPrice}$</td>
 
                                             </tr>
                                         </tbody>
