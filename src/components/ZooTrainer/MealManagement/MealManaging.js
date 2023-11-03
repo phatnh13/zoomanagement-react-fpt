@@ -1,18 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import React, { useEffect, useState, useLayoutEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
+import { DateHelper } from "../../DateHelper";
+import MealTable from "./MealTable";
 function MealManaging() {
-    const {animalId} = useParams();
+    //Get animalId from url
+    const { animalId } = useParams();
+    //Get animal object
+    const [animal, setAnimal] = useState({});
+
     const userId = JSON.parse(localStorage.getItem("loginUser")).userId;
-    const [userAnimalRelationship, setUserAnimalRelationship] = useState({});
+    const [animalUserId, setAnimalUserId] = useState(0);
 
-    const [searchBy, setSearchBy] = useState("AnimalName");
-    const [searchString, setSearchString] = useState("");
-    const [totalPages, setTotalPages] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
+    //Dummy state to force re-render
+    const [reload, setReload] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [time, setTime] = useState(DateHelper.getNowTime());
 
-    useEffect(() => {
-        fetch(`https://localhost:7193/api/AnimalUser/animal-trainer-relationship?animalId=${animalId}&userId=${userId}`,{
+    const navigate = useNavigate();
+    let handleAddMeal = () => {
+        navigate("/trainer/meals/add", {state: {animalUserId: animalUserId, animal: animal}});
+    }
+
+    useLayoutEffect(() => {
+        // //get animal object
+        fetch(`https://localhost:7193/api/Animal/${animalId}`, {
             method: "GET",
             headers: {
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
@@ -20,54 +32,63 @@ function MealManaging() {
         })
             .then((res) => res.json())
             .then(data => {
-                setUserAnimalRelationship(data);
+                setAnimal(data);
             }).catch(rejected => {
                 console.log(rejected);
             });
-        fetch(`https://localhost:7193/api/Meal/${userAnimalRelationship.animalUserId}`)
-    }, []);
-    return ( 
+        //Get user animal relationship
+        fetch(`https://localhost:7193/api/AnimalUser/animal-trainer-relationship?animalId=${animalId}&userId=${userId}`, {
+            method: "GET",
+            headers: {
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+            },
+        })
+            .then((res) => res.json())
+            .then(data => {
+                setAnimalUserId(data.animalUserId);
+                setIsLoading(false);
+            }).catch(rejected => {
+                console.log(rejected);
+            });
+    }, [animalId, animalUserId, reload]);
+    return (
         <Container fluid>
-            <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
-            {/*Start search*/}
-                {/*Search filter */}
-                <Col lg={3} md={3} xs={12}>
-                    <Form.Group className="mb-3" controlId="search">
-                        <Form.Select
-                            value={searchBy}
-                            onChange={(e) => {
-                                setSearchBy(e.target.value)
-                            }}
-                        >
-                            <option value={"FullName"}>Animal Name</option>
-                            <option>Name</option>
-                        </Form.Select>
-                    </Form.Group>
-                </Col>
-                {/*Search filter */}
-                {/*Search bar */}
-                <Col lg={8} md={8} xs={11}>
-                    <Form.Group className="mb-3" controlId="search">
-                        <Form.Control
-                            type="text"
-                            placeholder="Search"
-                            value={searchString}
-                            onChange={(e) => { setSearchString(e.target.value) }}>
-                        </Form.Control>
-                    </Form.Group>
-                </Col>
-                {/*Search bar */}
-            {/*End search*/}
-            </Row>
-            <Row>
-                <Col>
-                    {/*Start Table*/}
-                    
-                    {/*Start Table*/}
-                </Col>
-            </Row>
+            {isLoading ? (
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            ) : (
+                <>
+                    <h2 className="text-center"><span className="text-danger">
+                        {animal.animalName}</span>'s meal Management
+                    </h2>
+                    <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
+                        <Col lg={4} md={4} xs={12}>
+                            <Form.Group className="mb-3" controlId="search">
+                                <Form.Control
+                                    type="time"
+                                    placeholder="Search"
+                                    value={time}
+                                    onChange={(e) => setTime(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Button variant="primary" className="mb-3" onClick={handleAddMeal}>Add Meal</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            {/*Start Table*/}
+                            <MealTable animalUserId={animalUserId} reloadState={{ reload, setReload }} />
+                            {/*Start Table*/}
+                        </Col>
+                    </Row>
+                </>
+            )}
         </Container>
-     )
+    )
 }
 
 export default MealManaging;

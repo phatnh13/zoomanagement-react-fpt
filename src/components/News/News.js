@@ -45,7 +45,7 @@ const News = () => {
                                             {/* link back */}
                                             <hr></hr>
                                             <div>
-                                                <Link to="/zoo-news" className="text-align-end btn mb-3  ">
+                                                <Link to="/zoo-news" className=" justify-content-start text-align-end btn mb-3  ">
                                                     Back {'>'}
                                                 </Link>
                                             </div>

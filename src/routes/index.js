@@ -44,6 +44,8 @@ import ViewNews from '../components/Staff/NewsManagement/ViewNews';
 //Trainer managing
 import AnimalStatusManaging from '../components/ZooTrainer/AnimalManagement/AnimalStatusManaging';
 import MealManaging from '../components/ZooTrainer/MealManagement/MealManaging';
+import AddMeal from '../components/ZooTrainer/MealManagement/AddMeal';
+import SkillManaging from '../components/ZooTrainer/SkillManagement/SkillManaging';
 
 const publicRoutes = [
     
@@ -69,7 +71,7 @@ const publicRoutes = [
 
 ]
 const adminRoutes = [
-    { path: '/profile', component: ProfilePage, layout: AdminLayout},
+    { path: '/admin/profile', component: ProfilePage, layout: AdminLayout},
     { path: '/admin/staff', component: StaffManaging, layout: AdminLayout},
     { path: '/admin/staff/update/', component: UpdateStaff, layout: AdminLayout},
     { path: '/admin/staff/add', component: AddStaff, layout: AdminLayout},
@@ -77,7 +79,7 @@ const adminRoutes = [
     { path: '/admin/species/add', component: AddSpecies, layout: AdminLayout},
 ]
 const staffRoutes = [
-    { path: '/profile', component: ProfilePage, layout: StaffLayout},
+    { path: '/staff/profile', component: ProfilePage, layout: StaffLayout},
     { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
     { path: '/staff/trainer/add', component: AddTrainer, layout: StaffLayout},
     { path: '/staff/trainer/update/', component: UpdateZooTrainer, layout: StaffLayout},
@@ -90,9 +92,11 @@ const staffRoutes = [
     { path: '/staff/news/view/:newsId', component: ViewNews, layout: StaffLayout},
 ]
 const trainerRoutes = [
-    { path: '/profile', component: ProfilePage, layout: AdminLayout},
+    { path: '/trainer/profile', component: ProfilePage, layout: TrainerLayout},
     { path: '/trainer/animal', component: AnimalStatusManaging, layout: TrainerLayout},
     { path: '/trainer/meals/:animalId', component: MealManaging, layout: TrainerLayout},
+    { path: '/trainer/meals/add', component: AddMeal, layout: TrainerLayout},
+    { path: '/trainer/skills', component: SkillManaging, layout: TrainerLayout},
 ]
 
 export { publicRoutes, adminRoutes, staffRoutes, trainerRoutes }

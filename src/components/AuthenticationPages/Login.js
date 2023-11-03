@@ -12,14 +12,6 @@ const Login = () => {
 
     //Dummy state to force re-render
     const [reload, setReload] = useState(false);
-    let user = {
-        userId: 2,
-        userName: "staff",
-        email: "staff@ex.com",
-        role: "OfficeStaff",
-        token: "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwianRpIjoiNzgzYjhjZGQtMzVjZC00ZDA4LWFiODEtMjMzM2ZmMGM4MzRlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiT2ZmaWNlU3RhZmYiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6InN0YWZmIiwiZXhwIjoxNjk4NzI0Njg3LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTkzLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxOTMvIn0.Cs2D6DRppdWUjwwRcTOyO7Sft1S6s5kA4QbzMq_mnyQ",
-        expiration: "2023-10-31T10:58:07.7632757+07:00"
-    }
     //#region validate
     let [dirty, setDirty] = useState({
         userName: false,
@@ -103,7 +95,7 @@ const Login = () => {
 
         //Send response to server if valid
         if (isValid()) {
-            fetch("https://vietnamzoo.azurewebsites.net/api/User/login",
+            fetch("https://localhost:7193/api/User/login",
                 {
                     method: "POST",
                     body: JSON.stringify({
