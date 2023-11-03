@@ -11,7 +11,7 @@ const TicketItemsTable = () => {
     const decrease = context.decrease
 
     const date = moment().format("MMMM/DD/YYYY")
-    const dateValid = moment().add(7, "days").format("MMMM/DD/YYYY")
+    const dateValid = moment().add(15, "days").format("MMMM/DD/YYYY")
 
     // Initialize the total price to 0
     let totalPrice = 0;
