@@ -9,7 +9,7 @@ function SpeciesManaging() {
     const [reload, setReload] = useState(false);
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Species/GetAllSpecies`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Species/GetAllSpecies`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

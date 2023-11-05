@@ -16,7 +16,7 @@ const StaffTableContent = ({ user }) => {
     }
 
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/User/${user.userId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/User/${user.userId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

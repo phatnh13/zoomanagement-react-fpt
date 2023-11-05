@@ -15,7 +15,7 @@ function SpeciesTableContent({ species, index, reloadState }) {
     }
 
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/Species/${species.speciesId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Species/${species.speciesId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

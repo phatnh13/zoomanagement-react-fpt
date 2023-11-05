@@ -101,7 +101,7 @@ function UpdateStaff() {
 
         //Send response to server if valid
         if (isValid()) {
-            await fetch("https://localhost:7193/api/User",
+            await fetch("https://vietnamzoo.azurewebsites.net/api/User",
                 {
                     method: "PUT",
                     body: JSON.stringify({
@@ -137,7 +137,7 @@ function UpdateStaff() {
     }    
     //Fetch user by id
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Staff/${location.state.id}`,
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Staff/${location.state.id}`,
             {
                 method: "GET",
                 headers: {

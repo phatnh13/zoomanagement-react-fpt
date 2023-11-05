@@ -125,7 +125,7 @@ function UpdateSpecies() {
 
         //Send response to server if valid
         if (isValid()) {
-            fetch("https://localhost:7193/api/Species",
+            fetch("https://vietnamzoo.azurewebsites.net/api/Species",
                 {
                     method: "PUT",
                     headers: {
