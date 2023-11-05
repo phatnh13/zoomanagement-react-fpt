@@ -22,7 +22,7 @@ const WelcomeNews = () => {
     }
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/News/get-top-news`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/News/get-top-news`, {
             method: "GET",
             headers: {
                 "content-type": "application/json; charset=UTF-8"
