@@ -37,6 +37,7 @@ import UpdateZooTrainer from '../components/Staff/ZooTrainerManagement/UpdateZoo
 import CageManaging from '../components/Staff/CageManagement/CageManaging';
 import AnimalManaging from '../components/Staff/AnimalManagement/AnimalManaging';
 import AddAnimal from '../components/Staff/AnimalManagement/AddAnimal';
+import FoodManaging from '../components/Staff/AnimalManagement/FoodManaging';
 import NewsManaging from '../components/Staff/NewsManagement/NewsManaging';
 import AddNews from '../components/Staff/NewsManagement/AddNews';
 import UpdateNews from '../components/Staff/NewsManagement/UpdateNews';
@@ -86,6 +87,7 @@ const staffRoutes = [
     { path: '/staff/area-cage', component: CageManaging, layout: StaffLayout},
     { path: '/staff/animal', component: AnimalManaging, layout: StaffLayout},
     { path: '/staff/animal/add', component: AddAnimal, layout: StaffLayout},
+    { path: '/staff/food', component: FoodManaging, layout: StaffLayout},
     { path: '/staff/news', component: NewsManaging, layout: StaffLayout},
     { path: '/staff/news/add', component: AddNews, layout: StaffLayout},
     { path: '/staff/news/update/', component: UpdateNews, layout: StaffLayout},

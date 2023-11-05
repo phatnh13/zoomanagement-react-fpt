@@ -7,8 +7,6 @@ function AreaTableContent({area, reloadState}) {
     const [showState, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    //Message Handling
-    let [message, setMessage] = useState("");
     //Variables
     const [areaName, setAreaName] = useState(area.areaName);
 

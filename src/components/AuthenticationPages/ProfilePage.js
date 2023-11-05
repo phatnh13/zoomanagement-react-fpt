@@ -108,7 +108,7 @@ function ProfilePage() {
     }
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Staff/${userId}`,
+        fetch(`https://localhost:7193/api/User/${userId}`,
             {
                 method: "GET",
                 headers: {
