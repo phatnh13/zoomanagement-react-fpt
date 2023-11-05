@@ -45,7 +45,7 @@ const HomeView = () => {
                             </svg>
                         </Col>
                         <Col className="col-md-4">
-                            <h1 style={{display: 'flex', justifyContent: 'center', color: '#3C5724'}}>MAP</h1>
+                            <h1 style={{display: 'flex', justifyContent: 'center', color: '#3C5724', fontSize: '1.4rem'}}>MAP</h1>
                             <div className="home-view-bottom__logo">
                                 <Image src={MapLogo} />
                             </div>

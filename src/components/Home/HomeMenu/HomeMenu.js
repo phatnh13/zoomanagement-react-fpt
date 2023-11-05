@@ -14,7 +14,7 @@ const HomeMenu = ({handleClose}) => {
                 </path>
               </svg>
             </li>
-            <li><h1>Ticket</h1></li>
+            <li><h1 className='navigation__title'>Ticket</h1></li>
             <li>
             <Link className='navigation__link' to='/viewticket' onClick={handleClose}>
               View Ticket
@@ -33,12 +33,12 @@ const HomeMenu = ({handleClose}) => {
           </ul>
           <ul>
             <li className='navigation-list__logo'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="47" fill="currentColor" class="bi bi-newspaper" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="47" fill="currentColor" className="bi bi-newspaper" viewBox="0 0 16 16">
                 <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5v-11zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5H12z" />
                 <path d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z" />
               </svg>
             </li>
-            <li><h1>News</h1></li>
+            <li><h1 className='navigation__title'>News</h1></li>
             <li>
             <Link className='navigation__link' to='/zoo-news' onClick={handleClose}>
               View News
@@ -49,11 +49,11 @@ const HomeMenu = ({handleClose}) => {
         <Col className='navigation-list__right col-md-3'>
           <ul>
             <li className='navigation-list__logo'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="47" fill="currentColor" class="bi bi-map-fill" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="47" fill="currentColor" className="bi bi-map-fill" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.502.502 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5V.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.498.498 0 0 0-.196 0L5 14.09zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1-.5-.1z" />
               </svg>
             </li>
-            <li><h1>Map</h1></li>
+            <li><h1 className='navigation__title'>Map</h1></li>
             <li>
             <Link className='navigation__link' to='/map' onClick={handleClose}>
               View Map
@@ -63,11 +63,11 @@ const HomeMenu = ({handleClose}) => {
           </ul>
           <ul>
             <li className='navigation-list__logo'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="47" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="47" fill="currentColor" className="bi bi-clock-fill" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
               </svg>
             </li>
-            <li><h1>Opening Hours</h1></li>
+            <li><h1 className='navigation__title'>Opening Hours</h1></li>
             <li>
             <Link className='navigation__link' to='/opening-hours' onClick={handleClose}>
               View Hours
@@ -80,7 +80,7 @@ const HomeMenu = ({handleClose}) => {
           <ul>
             <li>
               <Link className='navigation__link' to='/login' onClick={handleClose}>
-              <h1>Login</h1>
+              <h1 className='navigation__title'>Login</h1>
               </Link>
             </li>
           </ul>
