@@ -2,7 +2,7 @@ import { Col } from 'react-bootstrap';
 import "./HomeMenu.css"
 import { Link } from 'react-router-dom';
 const HomeMenu = ({handleClose}) => {
-  
+  const userName = JSON.parse(localStorage.getItem("loginUser")).userName;
   return (
     <>
       <div className='navigation-wrapper'>
@@ -80,7 +80,7 @@ const HomeMenu = ({handleClose}) => {
           <ul>
             <li>
               <Link className='navigation__link' to='/login' onClick={handleClose}>
-              <h1>Login</h1>
+              {userName === "" ? (<h1>Login</h1>) : (<h1>{userName}</h1>)}
               </Link>
             </li>
           </ul>

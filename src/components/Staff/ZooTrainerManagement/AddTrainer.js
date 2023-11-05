@@ -11,7 +11,7 @@ function AddTrainer() {
     const [ConfirmPassword, setConfirmPassword] = useState("");
     const [DateOfBirth, setDateOfBirth] = useState("");
     const [Gender, setGender] = useState("");
-    
+
     const navigate = useNavigate();
 
     let [message, setMessage] = useState("");
@@ -119,8 +119,8 @@ function AddTrainer() {
                     })
                 }).then((res) => {
                     if (res.ok) {
-                        console.log("Add successfully");
-                        setMessage(<span className="text-success">Add successfully</span>);
+                        alert("Add successfully");
+                        navigate("/staff/trainer");
                     } else {
                         console.log("Add failed");
                         console.log(res);

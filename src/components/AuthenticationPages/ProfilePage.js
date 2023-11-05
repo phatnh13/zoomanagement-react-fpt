@@ -108,7 +108,7 @@ function ProfilePage() {
     }
 
     useEffect(() => {
-        fetch(`https://vietnamzoo.azurewebsites.net/api/User/${userId}`,
+        fetch(`https://vietnamzoo.azurewebsites.net/api/user/${userId}`,
             {
                 method: "GET",
                 headers: {
