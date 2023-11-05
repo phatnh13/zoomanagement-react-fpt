@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button, Row, Col, Form, Pagination } from "react-bootstrap";
 import StaffTable from "./StaffTable";
+import { useNavigate } from "react-router-dom";
 const StaffManaging = () => {
 
-    var [users, setUsers] = useState([]);
-    var [searchString, setsearchString] = useState("");
-    var [totalPages, setTotalPages] = useState(0);
-    var [currentPage, setCurrentPage] = useState(1);
-    var [searchBy, setSearchBy] = useState("FullName");
+    const [users, setUsers] = useState([]);
+    const [searchString, setsearchString] = useState("");
+    const [totalPages, setTotalPages] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchBy, setSearchBy] = useState("FullName");
+
+    const navigate = useNavigate();
 
     //#region Pagination
     let PaginationLoad = () => {
         let items = [];
-        for (let page = 1; page <= totalPages; page++) {
-            items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+        if (totalPages > 1) {
+            for (let page = 1; page <= totalPages; page++) {
+                items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+            }
         }
         return items;
     }
@@ -23,6 +28,9 @@ const StaffManaging = () => {
     }
     //#endregion
     
+    let handleAddStaff = () => {
+        navigate("/admin/staff/add");
+    }
 
     useEffect(() => {
         
@@ -41,24 +49,6 @@ const StaffManaging = () => {
                 console.log(rejected);
             });
     }, [currentPage, searchBy, searchString]);
-
-    // useEffect(() => {
-    //     fetch("https://localhost:7193/api/Staff?searchBy=FullName", {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-type": "application/json; charset=UTF-8",
-    //             "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
-    //         },
-    //     })
-    //         .then((res) => res.json())
-    //         .then(data => {
-    //             setUsers(data.pagingList);
-    //             setTotalPages(data.totalPages);
-    //         }).catch(rejected => {
-    //             console.log(rejected);
-    //         });
-    // }, []);
-
     return (
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center my-3 pb-1 border-bottom">
@@ -74,6 +64,8 @@ const StaffManaging = () => {
                         >
                             <option value={"FullName"}>Full Name</option>
                             <option value={"Email"}>Email</option>
+                            <option value={"PhoneNumber"}>PhoneNumber</option>
+                            
                         </Form.Select>
                     </Form.Group>
                 </Col>
@@ -88,21 +80,15 @@ const StaffManaging = () => {
                             onChange={(e) => {
                                 setCurrentPage(1);
                                 setsearchString(e.target.value)
-                                console.log(searchString);
-                                // searchStaff();
-
                             }}
                         >
                         </Form.Control>
                     </Form.Group>
                 </Col>
-                {/*Search bar */}
-                {/*End search*/}
                 {/*Start add button*/}
                 <Col lg={1} md={1} xs={1}>
-                    <Button href="/admin/staff/add" variant="outline-primary">Add</Button>
+                    <Button variant="outline-primary" onClick={handleAddStaff}>Add</Button>
                 </Col>
-                {/*End add button*/}
             </Row>
             <Row>
                 <Col>

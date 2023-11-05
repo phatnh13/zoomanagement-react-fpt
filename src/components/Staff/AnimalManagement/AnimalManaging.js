@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Pagination, Col, Row, Container, Form, Button, Card } from "react-bootstrap";
-import AnimalTable from "./Animal/AnimalTable";
-import FoodTable from "./Food/FoodTable";
+import { Pagination, Col, Row, Container, Form, Button } from "react-bootstrap";
+import AnimalTable from "./AnimalTable";
 
 function AnimalManaging() {
 
@@ -65,7 +64,7 @@ function AnimalManaging() {
                             }}
                         >
                             <option value={"FullName"}>Animal Name</option>
-                            <option>Name</option>
+                            <option value={"Status"}>Status</option>
                         </Form.Select>
                     </Form.Group>
                 </Col>

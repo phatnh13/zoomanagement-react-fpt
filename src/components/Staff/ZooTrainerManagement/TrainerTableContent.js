@@ -5,7 +5,7 @@ import TrainerDeleteModal from "./TrainerDeleteModal";
 import TrainerShowAnimalModal from "./TrainerShowAnimalModal";
 import { DateHelper } from "../../DateHelper";
 
-const TrainerTableContent = ({user}) => {
+const TrainerTableContent = ({user, reloadState}) => {
     //#region Modal
         //Delete Modal
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -50,10 +50,15 @@ const TrainerTableContent = ({user}) => {
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
-            .then((res) => res.json())
-            .then(data => {
-                console.log(data);
-            }).catch(rejected => {
+            .then((res) => {
+                if (res.ok) {
+                    reloadState.setReload(!reloadState.reload);
+                } else {
+                    alert("Delete trainer failed");
+                }
+            
+            })
+            .catch(rejected => {
                 console.log(rejected);
             });
         handleCloseDeleteModal();

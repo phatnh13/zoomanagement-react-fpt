@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 
-function AddCageModal({ show, handleClose, reloadState }) {
+function AddCageModal({ show, handleClose, reloadState, areasList }) {
     const [cageName, setCageName] = useState("");
     const [areaId, setAreaId] = useState("");
-
-    let handleAddCage = async () => {
-        console.log("Add cage");
-        console.log("Cage name: " + cageName);
-        console.log("Area name: " + areaId);
-        await fetch("https://localhost:7193/api/Cage", 
+    let handleAddCage = () => {
+        fetch("https://localhost:7193/api/Cage", 
         {
             method: "POST",
             headers: {
@@ -40,7 +36,7 @@ function AddCageModal({ show, handleClose, reloadState }) {
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Delete</Modal.Title>
+                <Modal.Title>Add Cage</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -55,14 +51,15 @@ function AddCageModal({ show, handleClose, reloadState }) {
                             }} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="areaId">
-                        <Form.Label>Area ID</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="enter area name"
-                            value={areaId}
-                            onChange={(e) => {
-                                setAreaId(e.target.value);
-                            }} />
+                        <Form.Label>Area</Form.Label>
+                        <Form.Select value={areaId} onChange={(e) => {setAreaId(e.target.value)}}>
+                            <option value={""}>Select an area</option>
+                            {areasList.map((area, index) => {
+                                return (
+                                    <option index={index} value={area.areaId}>{area.areaName}</option>
+                                )
+                            })}
+                        </Form.Select>
                     </Form.Group>
                 </Form>
             </Modal.Body>

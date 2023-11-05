@@ -61,7 +61,6 @@ function CageTableContent({cage, reloadState}) {
         })
             .then((res) => {
                 if (res.ok) {
-                    alert("Delete successfully");
                     reloadState.setReload(!reloadState.reload);
                 } else {
                     alert("Delete failed");

@@ -49,7 +49,6 @@ const TrainerTableContent = ({food, reloadState}) => {
             .then((res) => res.json())
             .then(data => {
                 console.log(data);
-                alert("Delete successfully");
                 reloadState.setReload(!reloadState.reload);
             }).catch(rejected => {
                 console.log(rejected);

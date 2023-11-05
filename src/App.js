@@ -2,16 +2,13 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { publicRoutes, adminRoutes, staffRoutes, trainerRoutes } from './routes';
 import { DefaultLayout } from './components/Layout';
-import { UserProvider } from './UserContext';
 import { ProtectedAdminRoute, ProtectedStaffRoute, ProtectedTrainerRoute } from './routes/ProtectedRoutes';
 
 function App() {
-  const isLoggedIn = localStorage.getItem("loginUser") ? true : false;
   return (
-    <UserProvider>
       <div className='app'>
         <Routes>
           {publicRoutes.map((route, index) => {
@@ -83,7 +80,6 @@ function App() {
           })}
         </Routes>
       </div>
-    </UserProvider>
   );
 }
 

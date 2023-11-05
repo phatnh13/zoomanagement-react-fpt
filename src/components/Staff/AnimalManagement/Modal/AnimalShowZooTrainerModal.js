@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Table, Form, Pagination, Row, Col } from "react-bootstrap";
-import { DateHelper } from "../../../../DateHelper";
+import { DateHelper } from "../../../DateHelper";
 
 function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
     const [user, setUser] = useState({
@@ -44,7 +44,6 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
         })
             .then((res) => res.json())
             .then(() => {
-                alert("Assign zoo trainer successfully");
                 reloadState.setReload(!reloadState.reload);
             }).catch(rejected => {
                 console.log(rejected);
@@ -52,7 +51,8 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
     }
     let createTrainerList = () => {
         let list = [];
-        {trainerList.map((trainer, index) => {
+        {trainerList.map((trainer, index) => 
+            {
             let handleDelete = () => {
                 fetch(`https://localhost:7193/api/AnimalUser/animal-trainer?animalId=${animal.animalId}&userId=${trainer.userId}`, {
                     method: "DELETE",
@@ -69,7 +69,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
                         console.log(rejected);
                     });
             }
-            list.push(<tr key={index}>
+            return list.push(<tr key={index}>
                 <td>{trainer.fullName}</td>
                 <td><Button onClick={handleDelete} variant="danger" size="sm">Delete</Button></td>
                 </tr>);
@@ -106,7 +106,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }, [reloadState.reload, currentPage1, searchString]);
+    }, [reloadState.reload, currentPage1, searchString, animal.animalId]);
 
     return (
         <Modal size="lg" show={show} onHide={handleClose} >

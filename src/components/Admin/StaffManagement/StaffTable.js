@@ -11,7 +11,6 @@ const StaffTable = ({ userList }) => {
             <Table striped bordered hover responsive="md" >
                 <thead>
                     <tr>
-                        <th>No.</th>
                         <th>User ID</th>
                         <th>User Name</th>
                         <th>Full Name</th>
@@ -25,7 +24,7 @@ const StaffTable = ({ userList }) => {
                 </thead>
                 <tbody>
                     {userList.map((control, index) => {
-                        return <StaffTableContent key={index} index={index} user={control} />;
+                        return <StaffTableContent key={index} user={control} />;
                     })}
                 </tbody>
             </Table>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Table, Row, Col, Form, Card, Button } from "react-bootstrap";
+import { Container, Table, Row, Col, Form, Button } from "react-bootstrap";
 import FoodTableContent from "./FoodTableContent";
 const FoodTable = ({ foodList, reloadState, searchFood }) => {
     const [foodNameAdd, setfoodNameAdd] = useState("");
@@ -16,7 +16,7 @@ const FoodTable = ({ foodList, reloadState, searchFood }) => {
         })
             .then((res) => {
                 if (res.ok) {
-                    alert("Add food successfully");
+                    setfoodNameAdd("");
                     reloadState.setReload(!reloadState.reload);
                 } else {
                     alert("Add food failed");

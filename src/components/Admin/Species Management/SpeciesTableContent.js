@@ -1,29 +1,38 @@
 import React, {useState} from "react";
 import { Accordion, Button } from "react-bootstrap";
 import SpeciesDeleteModal from "./SpeciesDeleteModal";
+import { useNavigate } from "react-router-dom";
 
-function SpeciesTableContent({ species, index }) {
+function SpeciesTableContent({ species, index, reloadState }) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const navigate = useNavigate();
+
+    let handleUpdateSpecies = () => {
+        navigate("/admin/species/update/", { state: { species: species } });
+    }
+
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/Species/${species.SpeciesId}`, {
+        fetch(`https://localhost:7193/api/Species/${species.speciesId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
-            .then((res) => res.json())
-            .then(data => {
-                console.log(data);
-
-            }).catch(rejected => {
+            .then((res) => {
+                if (res.ok) {
+                    reloadState.setReload(!reloadState.reload); 
+                } else {
+                    alert("Delete species failed");
+                }
+            })
+            .catch(rejected => {
                 console.log(rejected);
             });
         handleClose();
-        window.location.reload(false);
     }
 
     return (
@@ -39,7 +48,7 @@ function SpeciesTableContent({ species, index }) {
                 <p><strong>Breeding and reproduction: </strong> {species.breedingAndReproduction}</p>
                 <img src={species.image} alt="species" width="100%" height="auto" />
                 <Button variant="danger" className="me-2" onClick={handleShow}>Delete</Button>
-                <Button variant="warning">Update</Button>
+                <Button variant="warning" onClick={handleUpdateSpecies}>Update</Button>
             </Accordion.Body>
             <SpeciesDeleteModal show={show} handleClose={handleClose} handleDelete={handleDelete} species={species} />
         </Accordion.Item>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Table, Pagination, Button, Card, Form } from "react-bootstrap";
-import FoodAddListContent from "./FoodAddListContent";
+import FoodAddListContent from "./Modal/FoodAddListContent";
 import { DateHelper } from "../../DateHelper";
 import { Link, useLocation } from "react-router-dom";
 function AddMeal() {

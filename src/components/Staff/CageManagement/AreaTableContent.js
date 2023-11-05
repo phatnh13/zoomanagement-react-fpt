@@ -43,10 +43,14 @@ function AreaTableContent({area, reloadState}) {
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
-            .then((res) => res.json())
-            .then(data => {
-                console.log(data);
-            }).catch(rejected => {
+            .then((res) => {
+                if (res.ok) {
+                    reloadState.setReload(!reloadState.reload);
+                } else {
+                    alert("Delete failed");
+                }
+            })
+            .catch(rejected => {
                 console.log(rejected);
             });
         handleClose();

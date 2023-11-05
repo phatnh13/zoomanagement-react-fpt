@@ -130,7 +130,7 @@ const Login = () => {
     }, []);
     useEffect(validate, [userName, password, reload]);
     return (
-        <Container className='vh-100' fluid>
+        <Container className='vh-70' fluid>
             <Row className="mt-5 py-5 d-flex justify-content-center align-items-center">
                 {isLoggedIn !== "true" ? (
                     <Col md={8} lg={5} xs={12}>

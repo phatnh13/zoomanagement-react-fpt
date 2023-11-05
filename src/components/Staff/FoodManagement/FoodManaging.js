@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Pagination, Col, Row, Container, Form, Button, Card } from "react-bootstrap";
-import FoodTable from "./Food/FoodTable";
+import { Pagination, Col, Row, Container } from "react-bootstrap";
+import FoodTable from "./FoodTable";
 
 function FoodManaging() {
     const [foodList, setFoodList] = useState([]);
-    const [foodName, setFoodName] = useState("");
     const [searchFoodString, setSearchFoodString] = useState("");
     const [totalFoodPages, setTotalFoodPages] = useState(0);
     const [currentFoodPage, setCurrentFoodPage] = useState(1);

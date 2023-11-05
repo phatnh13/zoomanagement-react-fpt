@@ -1,40 +1,34 @@
 import React, {useState} from "react";
-import { Button, Form } from "react-bootstrap";
-import DeleteMealFoodModal from "./Modal/DeleteMealFoodModal";
+import { Button } from "react-bootstrap";
 import DeleteMealModal from "./Modal/DeleteMealModal";
+import ViewFood from "./Modal/ViewFood";
 function MealTableContent({ meal, reloadState }) {
     //#region Control Modal
-        //Delete Food Meal
-    const [showDeleteMealFoodModal, setShowDeleteMealFoodModal] = useState(false);
-    const handleShowDeleteMealFoodModal = () => setShowDeleteMealFoodModal(true);
-    const handleCloseDeleteMealFoodModal = () => setShowDeleteMealFoodModal(false);
         //Delete Meal
     const [showDeleteMealModal, setShowDeleteMealModal] = useState(false);
     const handleShowDeleteMealModal = () => setShowDeleteMealModal(true);
     const handleCloseDeleteMealModal = () => setShowDeleteMealModal(false);
+        //View Food
+    const [showViewFoodModal, setShowViewFoodModal] = useState(false);
+    const handleShowViewFoodModal = () => setShowViewFoodModal(true);
+    const handleCloseViewFoodModal = () => setShowViewFoodModal(false);
     //#endregion
     return (
         <tr>
             <td>{meal.note}</td>
             <td>{meal.feedingTime}</td>
             <td>
-                <Form.Select className="my-auto">
-                    <option>Click to see assigned food</option>
-                    {meal.food.map((food, index) => {
-                        return <option key={index}>{food.foodName}</option>
-                    })}
-                </Form.Select>
+                <Button variant="outline-info" onClick={handleShowViewFoodModal}>View Food</Button>
             </td>
-            <td><Button variant="outline-warning" onClick={handleShowDeleteMealFoodModal}>Delete Food</Button></td>
             <td><Button variant="outline-danger" onClick={handleShowDeleteMealModal}>Delete Meal</Button></td>
-            <DeleteMealFoodModal 
-            show={showDeleteMealFoodModal} 
-            handleClose={handleCloseDeleteMealFoodModal}
-            reloadState={reloadState}
-            meal={meal} />
             <DeleteMealModal 
             show={showDeleteMealModal}
             handleClose={handleCloseDeleteMealModal}
+            reloadState={reloadState}
+            meal={meal} />
+            <ViewFood 
+            show={showViewFoodModal}
+            handleClose={handleCloseViewFoodModal}
             reloadState={reloadState}
             meal={meal} />
         </tr>

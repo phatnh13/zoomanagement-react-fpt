@@ -10,6 +10,8 @@ function ZooTrainerManaging() {
     const [currentPage, setCurrentPage] = useState(1);
 
     const navigate = useNavigate();
+    //Dummy state for re-rendering
+    const [reload, setReload] = useState(false);
     
     //#region Pagination
     let PaginationLoad = () => {
@@ -31,7 +33,6 @@ function ZooTrainerManaging() {
         navigate("/staff/trainer/add");
     }
     useEffect(() => {
-
         fetch(`https://localhost:7193/api/ZooTrainer?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
             method: "GET",
             headers: {
@@ -46,7 +47,7 @@ function ZooTrainerManaging() {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }, [currentPage, searchBy, searchString]);
+    }, [reload, currentPage, searchBy, searchString]);
 
     return (
         <Container fluid>
@@ -62,6 +63,8 @@ function ZooTrainerManaging() {
                             }}
                         >
                             <option value={"FullName"}>Full Name</option>
+                            <option value={"Email"}>Email</option>
+                            <option value={"PhoneNumber"}>Phone Number</option>
                         </Form.Select>
                     </Form.Group>
                 </Col>
@@ -90,7 +93,7 @@ function ZooTrainerManaging() {
             <Row>
                 <Col>
                     {/*Start Table*/}
-                    <TrainerTable trainerList={trainer} />
+                    <TrainerTable trainerList={trainer} reloadState={{reload, setReload}} />
                     {/*Start Table*/}
                     <Pagination size="md" className="d-flex justify-content-center">
                         {PaginationLoad()}

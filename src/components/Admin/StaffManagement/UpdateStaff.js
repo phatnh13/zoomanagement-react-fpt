@@ -1,29 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Button, Row, Col, Form, Card } from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
 function UpdateStaff() {
     const location = useLocation();
     const [user, setUser] = useState({});
+    const navigate = useNavigate();
 
-    //Fetch user by id
-    useEffect(() => {
-        fetch(`https://localhost:7193/api/Staff/${location.state.id}`,
-            {
-                method: "GET",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
-                },
-            }
-        )
-            .then((res) => res.json())
-            .then(data => {
-                setUser(data);
-            }).catch(rejected => {
-                console.log(rejected);
-            });
-    }, [location.state.id]);
+    
 
     const [UserName, setUserName] = useState('');
     const [Email, setEmail] = useState('');
@@ -66,7 +50,7 @@ function UpdateStaff() {
         //userName
         errorsData.UserName = [];
         if (UserName === "") {
-            errorsData.userName.push("Username is required");
+            errorsData.UserName.push("Username is required");
         }
         //Email
         errorsData.Email = [];
@@ -121,6 +105,7 @@ function UpdateStaff() {
                 {
                     method: "PUT",
                     body: JSON.stringify({
+                        userId: user.userId,
                         userName: UserName,
                         fullName: FullName,
                         email: Email,
@@ -147,7 +132,29 @@ function UpdateStaff() {
                 });
         }
     }
-    // useEffect(validate, [UserName, Email, PhoneNumber, FullName]);
+    let handleCancel = () => {
+        navigate("/admin/staff");
+    }    
+    //Fetch user by id
+    useEffect(() => {
+        fetch(`https://localhost:7193/api/Staff/${location.state.id}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+                },
+            }
+        )
+            .then((res) => res.json())
+            .then(data => {
+                setUser(data);
+            }).catch(rejected => {
+                console.log(rejected);
+            });
+    }, [location.state.id]);
+    //Validate when input change
+    useEffect(validate, [UserName, Email, PhoneNumber, FullName]);
     return (
         <Container fluid>
             <Row className="py-5 d-flex justify-content-center align-items-center">
@@ -256,7 +263,7 @@ function UpdateStaff() {
                                             <Col lg={6} md={6} sm={0}>
                                             </Col>
                                             <Col lg={6} md={6} sm={12} className="d-flex justify-content-end">
-                                                <Button href="/admin/staff" size="sm" variant="secondary" className="mx-2" >
+                                                <Button size="sm" variant="secondary" className="mx-2" onClick={handleCancel} >
                                                     Cancel
                                                 </Button>
                                                 <Button size="sm" variant="primary" onClick={onUpdateClick}>

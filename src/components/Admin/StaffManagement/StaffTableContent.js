@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import StaffDeleteModal from "./StaffDeleteModal";
 import { DateHelper } from "../../DateHelper";
 
-const StaffTableContent = ({ user, index }) => {
+const StaffTableContent = ({ user }) => {
     const [showDeleteModal, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -35,7 +35,6 @@ const StaffTableContent = ({ user, index }) => {
     }
     return (
         <tr>
-            <td>{index + 1}</td>
             <td>{user.userId}</td>
             <td>{user.userName}</td>
             <td>{user.fullName}</td>

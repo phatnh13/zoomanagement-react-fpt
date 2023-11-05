@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {Button} from "react-bootstrap";
-import { DateHelper } from "../../../DateHelper";
+import { DateHelper } from "../../DateHelper";
 import DeleteAnimalModal from "./Modal/DeleteAnimalModal";
 import AnimalShowZooTrainerModal from "./Modal/AnimalShowZooTrainerModal";
 import AnimalShowCageModal from "./Modal/AnimalShowCageModal";
+import AnimalUpdateModal from "./Modal/AnimalUpdateModal";
 
 const TrainerTableContent = ({animal, reloadState}) => {
     //#region Modal
@@ -11,6 +12,10 @@ const TrainerTableContent = ({animal, reloadState}) => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const handleCloseDeleteModal = () => setShowDeleteModal(false);
     const handleShowDeleteModal = () => setShowDeleteModal(true);
+        //Update Modal
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const handleCloseUpdateModal = () => setShowUpdateModal(false);
+    const handleShowUpdateModal = () => setShowUpdateModal(true);
         //Show Animal Modal
     const [showTrainerModal, setShowTrainerModal] = useState(false);
     const handleCloseTrainerModal = () => setShowTrainerModal(false);
@@ -24,9 +29,7 @@ const TrainerTableContent = ({animal, reloadState}) => {
     const [CageList, setCageList] = useState([]);
     const [currentCage, setCurrentCage] = useState({});
 
-    let handleUpdate = () => {
-        console.log({animal});
-    }
+    
 
     let handleShowCage = () => {
         handleShowCageModal();
@@ -94,7 +97,7 @@ const TrainerTableContent = ({animal, reloadState}) => {
                 <Button variant="outline-danger" size="sm" onClick={handleShowTrainerModal} >Zoo Trainers</Button>
             </td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
+                <Button variant="outline-primary" size="sm" onClick={handleShowUpdateModal}>Update</Button>
             </td>
             <td className="text-center">
                 <Button variant="outline-primary" size="sm" onClick={handleShowDeleteModal}>Delete</Button>
@@ -109,6 +112,12 @@ const TrainerTableContent = ({animal, reloadState}) => {
             <AnimalShowZooTrainerModal 
             show={showTrainerModal} 
             handleClose={handleCloseTrainerModal} 
+            animal={animal}
+            reloadState={reloadState}
+            />
+            <AnimalUpdateModal
+            show={showUpdateModal}
+            handleClose={handleCloseUpdateModal}
             animal={animal}
             reloadState={reloadState}
             />
