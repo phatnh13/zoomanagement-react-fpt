@@ -6,7 +6,7 @@ import React from 'react';
 import { publicRoutes, adminRoutes, staffRoutes, trainerRoutes } from './routes';
 import { DefaultLayout } from './components/Layout';
 import { ProtectedAdminRoute, ProtectedStaffRoute, ProtectedTrainerRoute } from './routes/ProtectedRoutes';
-
+import Login from './components/AuthenticationPages/Login';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -33,6 +33,10 @@ function App() {
   return (
       <div className='app'>
         <Routes>
+          <Route
+            path='/login'
+            element={<Login />}
+          />
           {publicRoutes.map((route, index) => {
             const Layout = route.layout || DefaultLayout;
             const Page = route.component;
