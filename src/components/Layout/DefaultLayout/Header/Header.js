@@ -14,7 +14,7 @@ const Header = () => {
           <Nav className="me-auto">
             <Link style={{textDecoration: 'none', color: 'black'}} className='ms-4' to ='/zoo-news'>News</Link>
             <Link style={{textDecoration: 'none', color: 'black'}} className='ms-4' to ='/viewticket'>Tickets</Link>
-            <Link style={{textDecoration: 'none', color: 'black'}} className='ms-4' to ='/hours'>Opening Hours</Link>
+            <Link style={{textDecoration: 'none', color: 'black'}} className='ms-4' to ='/opening-hours'>Opening Hours</Link>
             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
