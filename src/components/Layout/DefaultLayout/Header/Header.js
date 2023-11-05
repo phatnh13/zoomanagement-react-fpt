@@ -7,7 +7,7 @@ const Header = () => {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand>
-          <Link to='/'>Home</Link>
+          <Link lassName="link-underline-hover" to='/'>Home</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
