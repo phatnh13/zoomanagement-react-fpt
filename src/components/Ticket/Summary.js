@@ -11,8 +11,14 @@ function OffCanvasExample({ onClick, name, ...props }) {
     const [show, setShow] = useState(false);
     const showRef = useRef(show);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = () => {
+        showRef.current = false;
+        setShow(false);
+      };
+    const handleShow = () => {
+        showRef.current = true;
+        setShow(true);
+      };
 
     const context = useContext(TicketContext);
     const submitted = context.submitted;

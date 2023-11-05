@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { Container, Row, Table } from 'react-bootstrap';
-import { Input } from 'antd';
+import { Input, Spin } from 'antd';
 import GiraffeRun from '../../../assets/Giraffe-Run.mp4';
 import './SearchOrder.css';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const SearchOrder = () => {
 
@@ -65,7 +66,7 @@ const SearchOrder = () => {
                         />
                     </Row>
                     {isLoading ? (
-                        <p style={{ color: 'white', fontSize: '2rem' }}>Loading...</p>
+                        <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
                     ) : isError ? (
                         <p style={{ color: 'red', fontSize: '2rem' }}>{errorMessage}</p>
                     ) : orderDetail ? (

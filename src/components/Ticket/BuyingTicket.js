@@ -113,9 +113,11 @@ const ticketReducer = (state, action) => {
 }
 
 const BuyingTicket = () => {
+
     useMemo(() => {
-        window.scrollTo({top: 0})
-      },)
+        window.scrollTo({ top: 0 })
+    }, [])
+
     const context = useContext(TicketContext)
     const tickets = context.tickets
     const [state, dispatch] = useReducer(ticketReducer, initialState)
@@ -156,28 +158,24 @@ const BuyingTicket = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th style={{color: '#198754'}} className="text-align fs-5">Please select a day</th>
+                                    <th style={{ color: '#198754' }} className="text-align fs-5">Please select a day</th>
                                     <th colSpan={2}><FaCalendarDay /></th>
                                     <th>Cost</th>
                                 </tr>
                             </tbody>
                             <tbody>
                                 {tickets.map((ticket) => {
+                                    const order = orders.find((order) => order.ticket.ticketId === ticket.ticketId);
+                                    const quantity = order ? order.quantity : 0;
+
                                     return (
                                         <tr key={ticket.ticketId}>
                                             <th className="text-align">{ticket.ticketName}</th>
                                             <th colSpan={2}>
-
                                                 <Button variant="outline-dark" onClick={() => dispatch(removeTicket(ticket))}>-</Button> {' '}
                                                 <FormLabel type='text'>
-                                                    {orders.map(order => {
-                                                        if (order.ticket.ticketId === ticket.ticketId) {
-                                                            return order.quantity
-                                                        }
-                                                        return null;
-                                                    })}{' '}
+                                                    {quantity}
                                                 </FormLabel>
-
                                                 <Button variant="outline-dark" onClick={() => dispatch(addTicket(ticket))}>+</Button>
                                             </th >
                                             <th>{ticket.price === 0 ? (
@@ -185,8 +183,8 @@ const BuyingTicket = () => {
                                             ) : (
                                                 <p>{ticket.price}$</p>
                                             )}</th>
-                                        </tr >
-                                    )
+                                        </tr>
+                                    );
                                 })}
                             </tbody >
 

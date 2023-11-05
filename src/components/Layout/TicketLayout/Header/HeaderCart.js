@@ -18,25 +18,19 @@ const HeaderCart = () => {
                     </Col>
                     <Col className="col-md-3">
                         <Row>
-                            <div className="text-logo__top-right">VietNam Zoo</div>
+                            <div className="text-logo__top--right">VietNam Zoo</div>
                         </Row>
                         <Row>
-                            <div className="text-logo__down-right">Since 1864</div>
+                            <div className="text-logo__down--right">Since 1864</div>
                         </Row>
                     </Col>
                     </Row>
                 </Col>
                 <Col className="header-left col-md-2">
-                    <div className="text-logo__top-left">
+                    <div className="text-logo__top--left">
                         <Link className="link-underline-hover" style={{ color: 'white', textDecoration: 'none' }} to="/">
-                        Back to home
+                        Back to home{" >"}
                         </Link>
-                    </div>
-                    <div className="text-logo__down-left">
-                        <FaFacebook className="footer-icon" />
-                        <FaGoogle className="footer-icon" />
-                        <FaInstagram className="footer-icon" />
-                        <FaYoutube className="footer-icon" />
                     </div>
                 </Col>
             </div>

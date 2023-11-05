@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { Card, CardGroup, Container, Button } from "react-bootstrap";
 import { TicketContext } from "../TicketContext/TicketContext";
 import { Link } from "react-router-dom";
@@ -8,6 +8,10 @@ const ViewTicket = () => {
     const context = useContext(TicketContext)
 
     const tickets = context.tickets
+
+    useMemo(() => {
+        window.scrollTo({top: 0})
+      },[])
 
     return (
         <>

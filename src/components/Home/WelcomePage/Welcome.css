@@ -63,6 +63,8 @@
     border: none;
     outline:none;
     z-index: 2;
+    font-size: 2rem; /* Reduce the font size to make the buttons thinner */
+    padding: 10px 20px; /* Adjust padding for more space */
 }
 .view-price__btn-direct-ticket{
     background-color: #F07300;
