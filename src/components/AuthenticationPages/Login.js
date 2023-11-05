@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button, Container, Row, Col, Card, Spinner } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
 
     const [userName, setUserName] = useState("");
@@ -130,8 +130,8 @@ const Login = () => {
     }, []);
     useEffect(validate, [userName, password, reload]);
     return (
-        <Container className='vh-100' fluid>
-            <Row className="mt-5 py-5 d-flex justify-content-center align-items-center">
+        <Container className='vh-95' fluid>
+            <Row className="mt-5 d-flex justify-content-center align-items-center">
                 {isLoggedIn !== "true" ? (
                     <Col md={8} lg={5} xs={12}>
                         <Card className="shadow">
@@ -191,6 +191,7 @@ const Login = () => {
                                                     {loading ? <Spinner animation="border" size="sm" /> : 'Login'}
                                                 </Button>
                                             </div>
+                                            <Link className="d-block text-center mt-2 btn border" to="/">Back to home</Link>
                                             {/*Login button*/}
                                         </Form>
                                     </div>

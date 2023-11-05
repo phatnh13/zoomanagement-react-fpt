@@ -117,9 +117,8 @@ function UpdateZooTrainer() {
                     }
                 }).then((res) => {
                     if (res.ok) {
-                        setTimeout(() => {
-                            setMessage(<span className="text-success">Add successfully</span>);
-                        }, 2000);
+                        alert("Update successfully");
+                        navigate("/staff/trainer");
                     } else {
                         console.log("Add failed");
                         console.log(res);

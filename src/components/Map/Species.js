@@ -17,7 +17,7 @@ const Species = () => {
                 <Container fluid>
                     <Col md={6} className="g-container pb-5">
                         <header className="col-md-12 ce-header">
-                            <h1 className="ce-headline-left" style={{ fontSize: '3.125rem', color: '#3c5724' }}>{species.speciesName}</h1>
+                            <h1 className="ce-headline-left text-uppercase" style={{ fontSize: '3.125rem', color: '#3c5724' }}>{species.speciesName}</h1>
                         </header>
                         <div className="rte">
                             <p className="big" style={{ fontSize: '1.375rem' }}><em>{species.family}</em></p>

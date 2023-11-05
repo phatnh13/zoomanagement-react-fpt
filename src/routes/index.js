@@ -67,7 +67,6 @@ const publicRoutes = [
     //--Home--
     { path: '/', component: Home, layout: HomeLayout},
     { path: '/searchorder', component: SearchOrder, layout: HomeLayout},
-    { path: '/login', component: Login},
     { path: '/opening-hours', component: Hours, layout: HomeLayout},
     { path: '/map', component: Map, layout: HomeLayout},
     { path: '/species', component: Species, layout: HomeLayout},

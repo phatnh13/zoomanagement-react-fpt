@@ -39,7 +39,7 @@ import { DateHelper } from '../components/DateHelper';
     if (DateHelper.isExpired(expirationDate)) {
       localStorage.setItem("isLoggedIn", "false");
     }
-    if (isLoggedIn === "false" || role !== "ZooTrainer" ) {
+    if (isLoggedIn === "false" || role !== "ZooTrainner" ) {
       return <Navigate to="/login" replace />;
     }
   

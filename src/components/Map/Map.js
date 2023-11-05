@@ -49,7 +49,7 @@ const Map = () => {
                 <div className="text-center" >
                     <h1 style={{ fontSize: '3.125rem', color: '#3c5724', paddingTop: '5rem' }}>ANIMALS</h1>
                     <p style={{ marginTop: '2rem', fontSize: '1.375rem' }}>Visit your favourite animals and discover previously unknown species – the </p>
-                    <p style={{ fontSize: '1.375rem' }}>exciting world of Saigon Zoo never ceases to amaze! .</p>
+                    <p style={{ fontSize: '1.375rem' }}>exciting world of Saigon Zoo never ceases to amaze!</p>
                 </div>
                     <Row xs={1} md={4} style={{ justifyContent: 'flex-start', padding: '2rem 16rem 2rem 16rem' }}>
 
@@ -59,7 +59,7 @@ const Map = () => {
                                     <center>
                                         <Image onClick={() => handleClick(item)} roundedCircle fluid style={{ width: '148px', height: '148px' }} variant="top" src={item.image} />
                                         <div style={{ padding: '5px 5px 50px ', justifyContent: 'start' }} onClick={() => handleClick(item)}>
-                                            <Link style={{ color: 'inherit', justifyContent: 'center', textDecoration: 'none', fontSize: '1rem', fontWeight: 'bolder' }}>{item.speciesName} </Link>
+                                            <Link className="text-uppercase" style={{ color: 'inherit', justifyContent: 'center', textDecoration: 'none', fontSize: '1rem', fontWeight: 'bolder' }}>{item.speciesName} </Link>
                                         </div>
                                     </center>
                                 </Col>
