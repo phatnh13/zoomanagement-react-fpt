@@ -10,7 +10,7 @@ function AnimalUpdateModal({ show, handleClose, animal, reloadState }) {
     const [speciesList, setSpeciesList] = useState([]);
 
     let handleUpdate = () => {
-        fetch(`https://localhost:7193/api/Animal`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Animal`, {
             method: "PUT",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -36,7 +36,7 @@ function AnimalUpdateModal({ show, handleClose, animal, reloadState }) {
             });
     }
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Species/GetAllSpecies`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Species/GetAllSpecies`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

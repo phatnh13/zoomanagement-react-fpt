@@ -29,7 +29,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
     //#endregion
 
     let handleAssignTrainer = () => {
-        fetch(`https://localhost:7193/api/AnimalUser`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalUser`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -54,7 +54,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
         {trainerList.map((trainer, index) => 
             {
             let handleDelete = () => {
-                fetch(`https://localhost:7193/api/AnimalUser/animal-trainer?animalId=${animal.animalId}&userId=${trainer.userId}`, {
+                fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalUser/animal-trainer?animalId=${animal.animalId}&userId=${trainer.userId}`, {
                     method: "DELETE",
                     headers: {
                         "Content-type": "text/plain; charset=UTF-8",
@@ -79,7 +79,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
     }}
     
     useEffect(() => {
-        fetch(`https://localhost:7193/api/ZooTrainer?pageNumber=${currentPage1}&searchBy=FullName&searchString=${searchString}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/ZooTrainer?pageNumber=${currentPage1}&searchBy=FullName&searchString=${searchString}`, {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
@@ -93,7 +93,7 @@ function AnimalShowZooTrainerModal({ show, handleClose, animal, reloadState }) {
             }).catch(rejected => {
                 console.log(rejected);
             });
-        fetch(`https://localhost:7193/api/AnimalUser/animal/${animal.animalId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalUser/animal/${animal.animalId}`, {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",

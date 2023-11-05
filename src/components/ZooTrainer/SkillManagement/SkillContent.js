@@ -15,7 +15,7 @@ function SkillContent({skill, reloadState, updateSkill}) {
     //#endregion
 
     let handleDeleteSkill = () => {
-        fetch(`https://localhost:7193/api/Skill/${skill.skillId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Skill/${skill.skillId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

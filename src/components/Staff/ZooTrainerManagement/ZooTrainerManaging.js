@@ -33,7 +33,7 @@ function ZooTrainerManaging() {
         navigate("/staff/trainer/add");
     }
     useEffect(() => {
-        fetch(`https://localhost:7193/api/ZooTrainer?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/ZooTrainer?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

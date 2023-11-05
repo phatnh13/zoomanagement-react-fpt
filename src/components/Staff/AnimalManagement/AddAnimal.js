@@ -43,7 +43,7 @@ function AddAnimal() {
     }
     let handleAddAnimal = () => {
         console.log(speciesId);
-        fetch(`https://localhost:7193/api/Animal`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Animal`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -70,7 +70,7 @@ function AddAnimal() {
             });
     }
     useEffect(() => {
-        fetch(`https://localhost:7193/api/ZooTrainer?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/ZooTrainer?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -87,7 +87,7 @@ function AddAnimal() {
     }, [currentPage, searchBy, searchString]);
     useEffect(() => {
         //Set AreaList
-        fetch(`https://localhost:7193/api/Areas`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Areas`, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -101,7 +101,7 @@ function AddAnimal() {
                     console.log(rejected);
                 });
         //Set CageList
-        fetch(`https://localhost:7193/api/Cage/area/${selectedArea}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Cage/area/${selectedArea}`, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -116,7 +116,7 @@ function AddAnimal() {
                 });   
     }, [selectedArea]);
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Species/GetAllSpecies`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Species/GetAllSpecies`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

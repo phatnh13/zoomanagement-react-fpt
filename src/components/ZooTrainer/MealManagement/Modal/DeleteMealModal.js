@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 function DeleteMealModal({ show, handleClose, reloadState, meal }) {
 
     let handleDeleteMeal = () => {
-        fetch(`https://localhost:7193/api/Meal/AllMeal`,{
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Meal/AllMeal`,{
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

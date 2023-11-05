@@ -99,7 +99,7 @@ function AddTrainer() {
 
         //Send response to server if valid
         if (isValid()) {
-            await fetch("https://localhost:7193/api/User",
+            await fetch("https://vietnamzoo.azurewebsites.net/api/User",
                 {
                     method: "POST",
                     headers: {

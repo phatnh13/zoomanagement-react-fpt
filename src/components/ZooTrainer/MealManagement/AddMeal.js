@@ -42,7 +42,7 @@ function AddMeal() {
         ));
         setMealList(prevMealList => { return [...prevMealList, ...newMeals]});
         console.log(mealList, "mealList");
-            fetch(`https://localhost:7193/api/Meal`, {
+            fetch(`https://vietnamzoo.azurewebsites.net/api/Meal`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -70,7 +70,7 @@ function AddMeal() {
         console.log(foodAddList);
     }, [foodAddList]);
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Food?pageNumber=${currentPage}&searchBy=FoodName`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Food?pageNumber=${currentPage}&searchBy=FoodName`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

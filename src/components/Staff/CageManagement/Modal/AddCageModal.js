@@ -5,7 +5,7 @@ function AddCageModal({ show, handleClose, reloadState, areasList }) {
     const [cageName, setCageName] = useState("");
     const [areaId, setAreaId] = useState("");
     let handleAddCage = () => {
-        fetch("https://localhost:7193/api/Cage", 
+        fetch("https://vietnamzoo.azurewebsites.net/api/Cage", 
         {
             method: "POST",
             headers: {

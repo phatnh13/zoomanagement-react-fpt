@@ -27,7 +27,7 @@ function FoodManaging() {
     //#endregion
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Food?pageNumber=${currentFoodPage}&searchBy=FoodName&searchString=${searchFoodString}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Food?pageNumber=${currentFoodPage}&searchBy=FoodName&searchString=${searchFoodString}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

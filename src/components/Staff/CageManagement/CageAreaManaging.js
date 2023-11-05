@@ -44,7 +44,7 @@ function CageAreaManaging() {
     //#endregion
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Cage?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Cage?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -58,7 +58,7 @@ function CageAreaManaging() {
             }).catch(rejected => {
                 console.log(rejected);
             });
-            fetch(`https://localhost:7193/api/Areas`, {
+            fetch(`https://vietnamzoo.azurewebsites.net/api/Areas`, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",

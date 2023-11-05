@@ -5,7 +5,7 @@ function MealTable({animalUserId, reloadState}) {
     const [meals, setMeals] = useState([]);
     useEffect(() => {
         //Call Meal list
-        fetch(`https://localhost:7193/api/Meal/${animalUserId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Meal/${animalUserId}`, {
             method: "GET",
             headers: {
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token

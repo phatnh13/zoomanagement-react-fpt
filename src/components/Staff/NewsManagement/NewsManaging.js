@@ -33,7 +33,7 @@ function NewsManaging() {
         navigate("/staff/news/add");
     }
     useEffect(() => {
-        fetch(`https://localhost:7193/api/News?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`)
+        fetch(`https://vietnamzoo.azurewebsites.net/api/News?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`)
         .then(res => res.json())
         .then(data => {
             setNewsList(data.pagingList);

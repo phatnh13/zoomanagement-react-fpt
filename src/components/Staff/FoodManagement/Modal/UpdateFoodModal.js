@@ -11,7 +11,7 @@ function UpdateFoodModal({show, handleClose, food, reloadState}) {
     }, [food]);
 
     let handleUpdate = () => {
-        fetch(`https://localhost:7193/api/Food`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Food`, {
             method: "PUT",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

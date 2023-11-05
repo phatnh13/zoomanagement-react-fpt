@@ -44,7 +44,7 @@ function UpdateAnimalStatusModal({ show, handleClose, animal, reloadState, updat
         //Validate all input
         validate();
         if (isValid()) {
-            fetch(`https://localhost:7193/api/Animal`, {
+            fetch(`https://vietnamzoo.azurewebsites.net/api/Animal`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

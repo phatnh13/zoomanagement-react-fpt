@@ -33,7 +33,7 @@ const TrainerTableContent = ({animal, reloadState}) => {
 
     let handleShowCage = () => {
         handleShowCageModal();
-        fetch(`https://localhost:7193/api/AnimalCage/present/${animal.animalId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalCage/present/${animal.animalId}`, {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
@@ -47,7 +47,7 @@ const TrainerTableContent = ({animal, reloadState}) => {
             ).catch(rejected => {
                 console.log(rejected);
             });
-        fetch(`https://localhost:7193/api/AnimalCage/animal/${animal.animalId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalCage/animal/${animal.animalId}`, {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
@@ -64,7 +64,7 @@ const TrainerTableContent = ({animal, reloadState}) => {
     }
 
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/Animal/${animal.animalId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Animal/${animal.animalId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

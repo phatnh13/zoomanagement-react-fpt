@@ -8,7 +8,7 @@ function AddAreaModal({show, handleClose, reloadState}) {
             setMessage("Please enter area name");
             return;
         }
-        fetch("https://localhost:7193/api/Areas", {
+        fetch("https://vietnamzoo.azurewebsites.net/api/Areas", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

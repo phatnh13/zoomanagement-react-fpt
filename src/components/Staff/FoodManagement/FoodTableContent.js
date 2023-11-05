@@ -16,7 +16,7 @@ const TrainerTableContent = ({food, reloadState}) => {
         setLocalFoodName(food.foodName);
     }, [food.foodId, food.foodName]);
     let handleUpdate = () => {
-        fetch(`https://localhost:7193/api/Food`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Food`, {
             method: "PUT",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -39,7 +39,7 @@ const TrainerTableContent = ({food, reloadState}) => {
             });
     }
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/Food/${food.foodId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Food/${food.foodId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

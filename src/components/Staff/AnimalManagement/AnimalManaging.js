@@ -34,7 +34,7 @@ function AnimalManaging() {
         navigate("/staff/animal/add");
     }
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Animal?pageNumber=${currentAnimalPage}&searchBy=${searchAnimalBy}&searchString=${searchAnimalString}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Animal?pageNumber=${currentAnimalPage}&searchBy=${searchAnimalBy}&searchString=${searchAnimalString}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

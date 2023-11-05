@@ -23,7 +23,7 @@ const TrainerTableContent = ({user, reloadState}) => {
 
     let handleShowAnimal = () => {
         handleShowAnimalModal();
-        fetch(`https://localhost:7193/api/AnimalUser/user/${user.userId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalUser/user/${user.userId}`, {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
@@ -43,7 +43,7 @@ const TrainerTableContent = ({user, reloadState}) => {
     }
 
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/User/${user.userId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/User/${user.userId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

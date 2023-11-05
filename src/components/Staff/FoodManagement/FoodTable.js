@@ -4,7 +4,7 @@ import FoodTableContent from "./FoodTableContent";
 const FoodTable = ({ foodList, reloadState, searchFood }) => {
     const [foodNameAdd, setfoodNameAdd] = useState("");
     let handleAddFood = () => {
-        fetch(`https://localhost:7193/api/Food`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Food`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

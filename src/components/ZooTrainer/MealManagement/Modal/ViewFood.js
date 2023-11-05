@@ -10,7 +10,7 @@ function ViewFood({ show, handleClose, meal, reloadState}) {
         <Modal.Body>
             {foodsList.map((food, index) => {
                 let handleDeleteMealFood = () => {
-                    fetch(`https://localhost:7193/api/Meal/Meal`, {
+                    fetch(`https://vietnamzoo.azurewebsites.net/api/Meal/Meal`, {
                         method: "DELETE",
                         headers: {
                             "Content-Type": "application/json",

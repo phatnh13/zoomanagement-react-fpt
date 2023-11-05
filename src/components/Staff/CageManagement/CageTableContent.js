@@ -22,7 +22,7 @@ function CageTableContent({cage, reloadState}) {
       }, [cage.cageName, cage.area.areaName]);
 
     let handleUpdate = () => {
-        fetch(`https://localhost:7193/api/Cage/`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Cage/`, {
             method: "PUT",
             body: JSON.stringify({
                 cageId: cage.cageId,
@@ -52,7 +52,7 @@ function CageTableContent({cage, reloadState}) {
         });
     }
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/Cage/${cage.cageId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Cage/${cage.cageId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

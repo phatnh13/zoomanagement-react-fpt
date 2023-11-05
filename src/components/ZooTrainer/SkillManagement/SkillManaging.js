@@ -10,7 +10,7 @@ function SkillManaging() {
     //Dummy state for rendering
     const [reload, setReload] = useState(false);
     let handleAddSkill = () => {
-        fetch(`https://localhost:7193/api/User`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/User`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -40,7 +40,7 @@ function SkillManaging() {
             })
     }
     let handleUpdateSkill = (skillID, updatedSkill) => {
-        fetch(`https://localhost:7193/api/User`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/User`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -73,7 +73,7 @@ function SkillManaging() {
     useLayoutEffect(() => {
         document.title = "Skill Managing";
         //Get user
-        fetch(`https://localhost:7193/api/User/${userId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/User/${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

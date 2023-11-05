@@ -11,7 +11,7 @@ function AreaTableContent({area, reloadState}) {
     const [areaName, setAreaName] = useState(area.areaName);
 
     let handleUpdate = () => {
-        fetch(`https://localhost:7193/api/Areas/`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Areas/`, {
             method: "PUT",
             body: JSON.stringify({
                 areaId: area.areaId,
@@ -36,7 +36,7 @@ function AreaTableContent({area, reloadState}) {
     }
 
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/Areas/${area.areaId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Areas/${area.areaId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
