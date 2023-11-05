@@ -46,11 +46,15 @@ const TrainerTableContent = ({food, reloadState}) => {
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
-            .then((res) => res.json())
-            .then(data => {
-                console.log(data);
-                reloadState.setReload(!reloadState.reload);
-            }).catch(rejected => {
+            .then((res) => {
+                if (res.ok) {
+                    alert("Delete food successfully");
+                    reloadState.setReload(!reloadState.reload);
+                } else {
+                    alert("Delete food failed");
+                }
+            })
+            .catch(rejected => {
                 console.log(rejected);
             });
         handleCloseDeleteModal();

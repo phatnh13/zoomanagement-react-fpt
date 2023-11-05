@@ -22,6 +22,8 @@ function AddCageModal({ show, handleClose, reloadState, areasList }) {
                 if (res.ok) {
                     alert("Add cage successfully");
                     reloadState.setReload(!reloadState.reload);
+                    setAreaId("");
+                    setCageName("");
                     handleClose();
                 } else {
                     alert("Add cage failed");
@@ -30,7 +32,6 @@ function AddCageModal({ show, handleClose, reloadState, areasList }) {
             .catch(rejected => {
                 console.log(rejected);
             });    
-            reloadState.setReload(!reloadState.reload);
     }
 
     return (
