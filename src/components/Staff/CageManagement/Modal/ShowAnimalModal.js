@@ -5,7 +5,7 @@ function ShowAnimalModal({ show, handleClose, reloadState, cage }) {
     const [animalList, setAnimalList] = useState([]);
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/AnimalCage/cage/${cage.cageId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalCage/cage/${cage.cageId}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

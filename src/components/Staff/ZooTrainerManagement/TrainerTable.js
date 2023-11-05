@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Table } from "react-bootstrap";
 import TrainerTableContent from "./TrainerTableContent";
-const TrainerTable = ({ trainerList }) => {
+const TrainerTable = ({ trainerList, reloadState }) => {
     return (
         <Container>
             <div className="text-uppercase" >
@@ -24,7 +24,7 @@ const TrainerTable = ({ trainerList }) => {
                 </thead>
                 <tbody>
                     {trainerList.map((control, index) => {
-                        return <TrainerTableContent key={index} user={control} />;
+                        return <TrainerTableContent key={index} user={control} reloadState={reloadState} />;
                     })}
                 </tbody>
             </Table>

@@ -1,20 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Container, Button, Row, Col, Form, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function AddSpecies() {
-    const [speciesName, setSpeciesName] = useState("");
-    const [family, setFamily] = useState("");
-    const [information, setInformation] = useState("");
-    const [characteristic, setCharacteristic] = useState("");
-    const [allocation, setAllocation] = useState("");
-    const [ecological, setEcological] = useState("");
-    const [reproduction, setReproduction] = useState("");
-    const [diet, setDiet] = useState("");
+function UpdateSpecies() {
+    //Get species that need to update
+    const location = useLocation();
+    const species = location.state.species;
+    //State for input
+    const [speciesName, setSpeciesName] = useState(species.speciesName);
+    const [family, setFamily] = useState(species.family);
+    const [information, setInformation] = useState(species.information);
+    const [characteristic, setCharacteristic] = useState(species.characteristic);
+    const [allocation, setAllocation] = useState(species.allocation);
+    const [ecological, setEcological] = useState(species.ecological);
+    const [reproduction, setReproduction] = useState(species.breedingAndReproduction);
+    const [diet, setDiet] = useState(species.diet);
     const [image, setImage] = useState(null);
 
     const navigate = useNavigate();
 
+    //#region Validation
     let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
         speciesName: false,
@@ -92,8 +97,9 @@ function AddSpecies() {
         }
         return valid;
     }
+    //#endregion
     // Species Add event
-    let onAddClick = () => {
+    let onUpdateClick = () => {
         // Set all input dirty=true
         let dirtyData = dirty;
         Object.keys(dirty).forEach((control) => {
@@ -105,6 +111,7 @@ function AddSpecies() {
         validate();
         let formData = new FormData();
 
+        formData.append("SpeciesId", species.speciesId);
         formData.append("SpeciesName", speciesName);
         formData.append("Family", family);
         formData.append("Information", information);
@@ -120,7 +127,7 @@ function AddSpecies() {
         if (isValid()) {
             fetch("https://vietnamzoo.azurewebsites.net/api/Species",
                 {
-                    method: "POST",
+                    method: "PUT",
                     headers: {
                         "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
                     },
@@ -128,14 +135,13 @@ function AddSpecies() {
 
                 }).then((res) => {
                     if (res.ok) {
-                        setMessage(<span className="text-success">Add successfully</span>);
+                        setMessage(<span className="text-success">Update successfully</span>);
                         setTimeout(() => {
                             navigate("/admin/species");
                         }, 1000);
                     } else {
-                        console.log("Add failed");
                         console.log(res);
-                        setMessage(<span className="text-danger">Add failed</span>);
+                        setMessage(<span className="text-danger">Update failed</span>);
                     }
                 }).catch(rejected => {
                     console.log(rejected);
@@ -146,6 +152,17 @@ function AddSpecies() {
     let handleCancel = () => {
         navigate("/admin/species");
     }
+
+    useLayoutEffect(() => {
+        setSpeciesName(species.speciesName);
+        setFamily(species.family);
+        setInformation(species.information);
+        setCharacteristic(species.characteristic);
+        setAllocation(species.allocation);
+        setEcological(species.ecological);
+        setReproduction(species.breedingAndReproduction);
+        setDiet(species.diet);
+    }, [species]);
     useEffect(validate, [speciesName, family, information, characteristic, allocation, ecological, reproduction, diet]);
     return (
         <Container fluid>
@@ -317,8 +334,8 @@ function AddSpecies() {
                                                 <Button size="sm" variant="secondary" className="mx-2" onClick={handleCancel}>
                                                     Cancel
                                                 </Button>
-                                                <Button size="sm" variant="primary" onClick={onAddClick} >
-                                                    Add
+                                                <Button size="sm" variant="primary" onClick={onUpdateClick} >
+                                                    Update Species
                                                 </Button>
                                             </Col>
                                         </Row>
@@ -334,4 +351,4 @@ function AddSpecies() {
     )
 }
 
-export default AddSpecies;
+export default UpdateSpecies;

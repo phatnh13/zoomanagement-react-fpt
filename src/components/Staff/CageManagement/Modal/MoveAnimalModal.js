@@ -10,7 +10,7 @@ function MoveAnimalModal({ show, handleClose, animal, reloadState}) {
     
     const toDay = DateHelper.getToday();
     let onMoveClick = () => {
-        fetch(`https://localhost:7193/api/AnimalCage/move-animal/`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalCage/move-animal/`, {
             method: "PUT",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -38,7 +38,7 @@ function MoveAnimalModal({ show, handleClose, animal, reloadState}) {
     }
     //Select Cage, using area to narrow down the list
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Areas`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Areas`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -51,7 +51,7 @@ function MoveAnimalModal({ show, handleClose, animal, reloadState}) {
             }).catch(rejected => {
                 console.log(rejected);
             });
-        fetch(`https://localhost:7193/api/Cage/area/${areaId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Cage/area/${areaId}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

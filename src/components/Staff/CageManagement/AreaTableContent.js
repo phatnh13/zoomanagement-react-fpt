@@ -7,13 +7,11 @@ function AreaTableContent({area, reloadState}) {
     const [showState, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    //Message Handling
-    let [message, setMessage] = useState("");
     //Variables
     const [areaName, setAreaName] = useState(area.areaName);
 
     let handleUpdate = () => {
-        fetch(`https://localhost:7193/api/Areas/`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Areas/`, {
             method: "PUT",
             body: JSON.stringify({
                 areaId: area.areaId,
@@ -38,17 +36,21 @@ function AreaTableContent({area, reloadState}) {
     }
 
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/Areas/${area.areaId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Areas/${area.areaId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
-            .then((res) => res.json())
-            .then(data => {
-                console.log(data);
-            }).catch(rejected => {
+            .then((res) => {
+                if (res.ok) {
+                    reloadState.setReload(!reloadState.reload);
+                } else {
+                    alert("Delete failed");
+                }
+            })
+            .catch(rejected => {
                 console.log(rejected);
             });
         handleClose();

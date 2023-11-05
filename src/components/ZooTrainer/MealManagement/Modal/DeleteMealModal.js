@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 function DeleteMealModal({ show, handleClose, reloadState, meal }) {
 
     let handleDeleteMeal = () => {
-        fetch(`https://localhost:7193/api/Meal/AllMeal`,{
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Meal/AllMeal`,{
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -16,7 +16,6 @@ function DeleteMealModal({ show, handleClose, reloadState, meal }) {
         })
             .then((res) => {
                 if (res.ok) {
-                    alert("Delete meal successfully!");
                     reloadState.setReload(!reloadState.reload);
                     handleClose();
                 } else {
@@ -32,11 +31,11 @@ function DeleteMealModal({ show, handleClose, reloadState, meal }) {
                 <Modal.Title>Delete Meal</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <p>Are you sure you want to delete this {meal.feedingTime} meal?</p>
-                <Button variant="danger" onClick={handleDeleteMeal}>Delete</Button>
+                <p>Are you sure you want to delete meal at <span className="text-danger">{meal.feedingTime}</span> ?</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+                <Button variant="danger" onClick={handleDeleteMeal}>Delete</Button>
             </Modal.Footer>
         </Modal>
      )

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Button, Row, Col, Form, Card } from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
 function UpdateZooTrainer() {
     const location = useLocation();
-    const [user, setUser] = useState({});
+    const user = location.state.user;
 
     const [UserName, setUserName] = useState('');
     const [Email, setEmail] = useState('');
@@ -13,8 +13,7 @@ function UpdateZooTrainer() {
     const [DateOfBirth, setDateOfBirth] = useState('');
     const [Gender, setGender] = useState('');
     // //Update user info to state in order to print to screen
-    useEffect(() => {
-        setUser(location.state.user);
+    useLayoutEffect(() => {
         setUserName(user.userName || '');
         setEmail(user.email || '');
         setPhoneNumber(user.phoneNumber || '');
@@ -23,7 +22,7 @@ function UpdateZooTrainer() {
         setGender(user.gender || '');
     }, [user]);
     
-
+    //#region Validation
     let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
         UserName: false,
@@ -85,6 +84,7 @@ function UpdateZooTrainer() {
         }
         return valid;
     }
+    //#endregion
     // Update Click event
     let onUpdateClick = async () => {
         // Set all input dirty=true
@@ -99,7 +99,7 @@ function UpdateZooTrainer() {
 
         //Send response to server if valid
         if (isValid()) {
-            await fetch("https://localhost:7193/api/User",
+            await fetch("https://vietnamzoo.azurewebsites.net/api/User",
                 {
                     method: "PUT",
                     body: JSON.stringify({
@@ -117,8 +117,9 @@ function UpdateZooTrainer() {
                     }
                 }).then((res) => {
                     if (res.ok) {
-                        console.log("Add successfully");
-                        setMessage(<span className="text-success">Add successfully</span>);
+                        setTimeout(() => {
+                            setMessage(<span className="text-success">Add successfully</span>);
+                        }, 2000);
                     } else {
                         console.log("Add failed");
                         console.log(res);

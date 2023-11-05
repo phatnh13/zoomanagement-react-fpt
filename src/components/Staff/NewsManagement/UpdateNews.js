@@ -104,7 +104,7 @@ function UpdateNews() {
 
         //Send response to server if valid
         if (isValid()) {
-            fetch(`https://localhost:7193/api/News`,
+            fetch(`https://vietnamzoo.azurewebsites.net/api/News`,
                 {
                     method: "PUT",
                     headers: {
@@ -130,7 +130,7 @@ function UpdateNews() {
         navigate("/staff/news");
     }
     useEffect(() => {
-        fetch(`https://localhost:7193/api/NewsCategories`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/NewsCategories`, {
             method: "GET",
             headers: {
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token

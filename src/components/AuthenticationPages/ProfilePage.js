@@ -69,7 +69,7 @@ function ProfilePage() {
         //Validate all input
         validate();
         if (isValid()) {
-            fetch(`https://localhost:7193/api/User/password?userId=${user.userId}&oldPassword=${currPass}&newPassword=${newPass}&confirmPassword=${confirmPass}`, {
+            fetch(`https://vietnamzoo.azurewebsites.net/api/User/password?userId=${user.userId}&oldPassword=${currPass}&newPassword=${newPass}&confirmPassword=${confirmPass}`, {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -108,7 +108,7 @@ function ProfilePage() {
     }
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Staff/${userId}`,
+        fetch(`https://vietnamzoo.azurewebsites.net/api/User/${userId}`,
             {
                 method: "GET",
                 headers: {

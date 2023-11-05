@@ -23,7 +23,7 @@ const Map = () => {
     }
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Species?searchBy=${searchBy}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Species?searchBy=${searchBy}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json; charset=UTF-8"

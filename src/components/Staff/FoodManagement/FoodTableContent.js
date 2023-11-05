@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {Button} from "react-bootstrap";
+import React, {useState, useEffect} from "react";
+import {Button, Form} from "react-bootstrap";
 import DeleteFoodModal from "./Modal/DeleteFoodModal";
 
 const TrainerTableContent = ({food, reloadState}) => {
@@ -9,14 +9,37 @@ const TrainerTableContent = ({food, reloadState}) => {
     const handleCloseDeleteModal = () => setShowDeleteModal(false);
     const handleShowDeleteModal = () => setShowDeleteModal(true);
     //#endregion
-
-
+    const [foodId, setFoodId] = useState(food.foodId);
+    const [localFoodName, setLocalFoodName] = useState(food.foodName);
+    useEffect(() => {
+        setFoodId(food.foodId);
+        setLocalFoodName(food.foodName);
+    }, [food.foodId, food.foodName]);
     let handleUpdate = () => {
-        console.log({food});
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Food`, {
+            method: "PUT",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+            },
+            body: JSON.stringify({
+                foodId: foodId,
+                foodName: localFoodName
+            })
+        })
+            .then((res) => {
+                if (res.ok) {
+                    alert("Update food successfully");
+                    reloadState.setReload(!reloadState.reload);
+                } else {
+                    alert("Update food failed");
+                }
+            }).catch(rejected => {
+                console.log(rejected);
+            });
     }
-
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/Food/${food.foodId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Food/${food.foodId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -26,7 +49,6 @@ const TrainerTableContent = ({food, reloadState}) => {
             .then((res) => res.json())
             .then(data => {
                 console.log(data);
-                alert("Delete successfully");
                 reloadState.setReload(!reloadState.reload);
             }).catch(rejected => {
                 console.log(rejected);
@@ -36,7 +58,12 @@ const TrainerTableContent = ({food, reloadState}) => {
     return (
         <tr>
             <td>{food.foodId}</td>
-            <td>{food.foodName}</td>
+            <td>
+                <Form.Control
+                type="text"
+                value={localFoodName}
+                onChange={(e) => {setLocalFoodName(e.target.value)}}/>
+            </td>
             <td className="text-center">
                 <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
             </td>

@@ -3,8 +3,9 @@ import { Container, Table } from "react-bootstrap";
 import MealTableContent from "./MealTableContent";
 function MealTable({animalUserId, reloadState}) {
     const [meals, setMeals] = useState([]);
-    const callMealsList = () => {
-        fetch(`https://localhost:7193/api/Meal/${animalUserId}`, {
+    useEffect(() => {
+        //Call Meal list
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Meal/${animalUserId}`, {
             method: "GET",
             headers: {
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
@@ -16,19 +17,15 @@ function MealTable({animalUserId, reloadState}) {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }
-    useEffect(() => {
-        callMealsList();
-    }, [])
+    }, [reloadState.reload])
     return ( 
         <Container fluid>
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th className="col-4">Note</th>
-                        <th className="col-1">Time</th>
-                        <th className="col-3">Food</th>
-                        <th className="col-2"></th>
+                        <th className="col-6">Note</th>
+                        <th className="col-2">Time</th>
+                        <th className="col-2">Food</th>
                         <th className="col-2"></th>
                     </tr>
                 </thead>

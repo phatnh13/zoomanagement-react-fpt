@@ -2,11 +2,15 @@ import { Navigate } from 'react-router-dom';
 import { DateHelper } from '../components/DateHelper';
   
   const ProtectedAdminRoute = ({ children }) => {
-    const isLoggedIn = localStorage.getItem("loginUser") ? true : false;
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
     const role = JSON.parse(localStorage.getItem("loginUser")).role;
     const expirationDate = JSON.parse(localStorage.getItem("loginUser")).expiration;
+    
   
-    if (!isLoggedIn || role !== "Admin" || DateHelper.isExpired(expirationDate)) {
+    if (DateHelper.isExpired(expirationDate)) {
+      localStorage.setItem("isLoggedIn", "false");
+    }
+    if (isLoggedIn === "false" || role !== "Admin" ) {
       return <Navigate to="/login" replace />;
     }
   
@@ -14,22 +18,28 @@ import { DateHelper } from '../components/DateHelper';
   };
   
   const ProtectedStaffRoute = ({ children }) => {
-    const isLoggedIn = localStorage.getItem("loginUser") ? true : false;
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
     const role = JSON.parse(localStorage.getItem("loginUser")).role;
     const expirationDate = JSON.parse(localStorage.getItem("loginUser")).expiration;
   
-    if (!isLoggedIn || role !== "OfficeStaff" || DateHelper.isExpired(expirationDate)) {
+    if (DateHelper.isExpired(expirationDate)) {
+      localStorage.setItem("isLoggedIn", "false");
+    }
+    if (isLoggedIn === "false" || role !== "OfficeStaff" ) {
       return <Navigate to="/login" replace />;
     }
   
     return children;
   };
   const ProtectedTrainerRoute = ({ children }) => {
-    const isLoggedIn = localStorage.getItem("loginUser") ? true : false;
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
     const role = JSON.parse(localStorage.getItem("loginUser")).role;
     const expirationDate = JSON.parse(localStorage.getItem("loginUser")).expiration;
   
-    if (!isLoggedIn || role !== "ZooTrainer" || DateHelper.isExpired(expirationDate)) {
+    if (DateHelper.isExpired(expirationDate)) {
+      localStorage.setItem("isLoggedIn", "false");
+    }
+    if (isLoggedIn === "false" || role !== "ZooTrainer" ) {
       return <Navigate to="/login" replace />;
     }
   

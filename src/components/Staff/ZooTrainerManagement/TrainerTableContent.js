@@ -5,7 +5,7 @@ import TrainerDeleteModal from "./TrainerDeleteModal";
 import TrainerShowAnimalModal from "./TrainerShowAnimalModal";
 import { DateHelper } from "../../DateHelper";
 
-const TrainerTableContent = ({user}) => {
+const TrainerTableContent = ({user, reloadState}) => {
     //#region Modal
         //Delete Modal
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -23,7 +23,7 @@ const TrainerTableContent = ({user}) => {
 
     let handleShowAnimal = () => {
         handleShowAnimalModal();
-        fetch(`https://localhost:7193/api/AnimalUser/user/${user.userId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalUser/user/${user.userId}`, {
             method: "GET",
             headers: {
                 "Content-type": "text/plain; charset=UTF-8",
@@ -43,17 +43,22 @@ const TrainerTableContent = ({user}) => {
     }
 
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/User/${user.userId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/User/${user.userId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
-            .then((res) => res.json())
-            .then(data => {
-                console.log(data);
-            }).catch(rejected => {
+            .then((res) => {
+                if (res.ok) {
+                    reloadState.setReload(!reloadState.reload);
+                } else {
+                    alert("Delete trainer failed");
+                }
+            
+            })
+            .catch(rejected => {
                 console.log(rejected);
             });
         handleCloseDeleteModal();

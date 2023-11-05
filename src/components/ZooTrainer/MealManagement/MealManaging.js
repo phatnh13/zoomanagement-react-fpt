@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
@@ -24,7 +24,7 @@ function MealManaging() {
 
     useLayoutEffect(() => {
         // //get animal object
-        fetch(`https://localhost:7193/api/Animal/${animalId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Animal/${animalId}`, {
             method: "GET",
             headers: {
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
@@ -37,7 +37,7 @@ function MealManaging() {
                 console.log(rejected);
             });
         //Get user animal relationship
-        fetch(`https://localhost:7193/api/AnimalUser/animal-trainer-relationship?animalId=${animalId}&userId=${userId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalUser/animal-trainer-relationship?animalId=${animalId}&userId=${userId}`, {
             method: "GET",
             headers: {
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token

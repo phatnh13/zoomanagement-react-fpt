@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button, Modal, Table, Container } from "react-bootstrap";
 
 function AnimalShowCageModal({ show, handleClose, animal, currentCage, CageList }) {

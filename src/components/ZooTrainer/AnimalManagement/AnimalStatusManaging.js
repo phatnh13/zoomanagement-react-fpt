@@ -32,7 +32,7 @@ function AnimalStatusManaging() {
     //#endregion
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/AnimalUser/user/${trainerId}`,{
+        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalUser/user/${trainerId}`,{
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

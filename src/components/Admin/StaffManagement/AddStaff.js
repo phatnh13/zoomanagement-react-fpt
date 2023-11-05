@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button, Row, Col, Form, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function AddStaff() {
     const [UserName, setUserName] = useState("");
@@ -10,6 +11,8 @@ function AddStaff() {
     const [ConfirmPassword, setConfirmPassword] = useState("");
     const [DateOfBirth, setDateOfBirth] = useState("");
     const [Gender, setGender] = useState("");
+
+    const navigate = useNavigate();
 
     let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
@@ -96,7 +99,7 @@ function AddStaff() {
 
         //Send response to server if valid
         if (isValid()) {
-            await fetch("https://localhost:7193/api/User",
+            await fetch("https://vietnamzoo.azurewebsites.net/api/User",
                 {
                     method: "POST",
                     headers: {
@@ -116,10 +119,8 @@ function AddStaff() {
                     })
                 }).then((res) => {
                     if (res.ok) {
-                        console.log("Add successfully");
-                        setMessage(<span className="text-success">Add successfully</span>);
+                        navigate("/admin/staff");
                     } else {
-                        console.log("Add failed");
                         console.log(res);
                         setMessage(<span className="text-danger">Add failed</span>);
                     }
@@ -127,6 +128,10 @@ function AddStaff() {
                     console.log(rejected);
                 });
         }
+    }
+
+    let handleCancel = () => {
+        navigate("/admin/staff");
     }
 
     useEffect(validate, [UserName, Email, PhoneNumber, FullName, Password, ConfirmPassword]);
@@ -273,11 +278,11 @@ function AddStaff() {
                                             <Col lg={6} md={6} sm={0}>
                                             </Col>
                                             <Col lg={6} md={6} sm={12} className="d-flex justify-content-end">
-                                                <Button href="/admin/staff" size="sm" variant="secondary" className="mx-2" >
+                                                <Button size="sm" variant="secondary" className="mx-2" onClick={handleCancel}>
                                                     Cancel
                                                 </Button>
                                                 <Button size="sm" variant="primary" onClick={onAddClick}>
-                                                    Add
+                                                    Add Staff
                                                 </Button>
                                             </Col>
                                         </Row>

@@ -17,7 +17,7 @@ function NewsTableContent({news}) {
         navigate(`/staff/news/update/`, {state: news});
     }
     let handleDelete = () => {
-        fetch(`https://localhost:7193/api/News/${news.newsId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/News/${news.newsId}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

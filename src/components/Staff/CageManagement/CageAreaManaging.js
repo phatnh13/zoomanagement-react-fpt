@@ -3,11 +3,19 @@ import { Button, Container, Row, Col, Form, Pagination } from "react-bootstrap";
 import CageTable from "./CageTable";
 import AddCageModal from "./Modal/AddCageModal";
 import AreaTable from "./AreaTable";
+import AddAreaModal from "./Modal/AddAreaModal";
 
-function CageManaging() {
-    const [showState, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+function CageAreaManaging() {
+    //#region Modal
+        //Add cage modal
+    const [showAddCage, setShowAddCage] = useState(false);
+    const handleCloseAddCage = () => setShowAddCage(false);
+    const handleShowAddCage = () => setShowAddCage(true);
+        //Add area modal
+    const [showAddArea, setShowAddArea] = useState(false);
+    const handleCloseAddArea = () => setShowAddArea(false);
+    const handleShowAddArea = () => setShowAddArea(true);
+    //#endregion
 
     const [searchString, setsearchString] = useState("");
     const [currentPage, setCurrentPage] = useState(1); //page number
@@ -36,7 +44,7 @@ function CageManaging() {
     //#endregion
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Cage?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Cage?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -50,7 +58,7 @@ function CageManaging() {
             }).catch(rejected => {
                 console.log(rejected);
             });
-            fetch(`https://localhost:7193/api/Areas`, {
+            fetch(`https://vietnamzoo.azurewebsites.net/api/Areas`, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -69,7 +77,6 @@ function CageManaging() {
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
                 {/*Start search*/}
-                {/*Search filter */}
                 <Col lg={3} md={3} xs={12}>
                     <Form.Group className="mb-3" controlId="search">
                         <Form.Select
@@ -79,11 +86,12 @@ function CageManaging() {
                             }}
                         >
                             <option value={"CageName"}>Cage Name</option>
+                            <option value={"AreaName"}>Area Name</option>
                         </Form.Select>
                     </Form.Group>
                 </Col>
-                {/*Search filter */}
-                <Col lg={8} md={8} xs={11}>
+                {/* Search bar */}
+                <Col lg={5} md={5} xs={12}>
                     <Form.Group className="mb-3" controlId="search">
                         <Form.Control
                             type="text"
@@ -93,14 +101,15 @@ function CageManaging() {
                         </Form.Control>
                     </Form.Group>
                 </Col>
-                {/*End search*/}
                 {/*Start add button*/}
-                <Col lg={1} md={1} xs={1}>
-                    <div className="mb-3 d-grid">
-                        <Button variant="outline-primary" size="sm" onClick={handleShow}>Add</Button>
+                <Col className="d-flex flex-row">
+                    <div className="col-6 mb-3 m-1 d-grid">
+                        <Button variant="outline-primary" size="sm" onClick={handleShowAddArea}>Add Area</Button>
+                    </div>
+                    <div className="col-6 mb-3 m-1 d-grid">
+                        <Button variant="outline-primary" size="sm" onClick={handleShowAddCage}>Add Cage</Button>
                     </div>
                 </Col>
-                {/*End add button*/}
             </Row>
             <Row className="">
                 <Col lg={5} md={12} xs={12}>
@@ -120,12 +129,18 @@ function CageManaging() {
                     </Pagination>
                 </Col>
             </Row>
-            {/*Start modal*/}
-            <AddCageModal show={showState} handleClose={handleClose} reloadState={{reload, setReload}} />
-            {/*End modal*/}
-            {/* {console.log(cages, "cage")} */}
+            <AddCageModal 
+            show={showAddCage} 
+            handleClose={handleCloseAddCage} 
+            areasList={areas}
+            reloadState={{reload, setReload}} />
+            <AddAreaModal
+            show={showAddArea}
+            handleClose={handleCloseAddArea}
+            reloadState={{reload, setReload}} />            
+
         </Container>
     )
 }
 
-export default CageManaging;
+export default CageAreaManaging;

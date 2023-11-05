@@ -25,8 +25,9 @@ const AdminNavbar = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to={"/admin/staff"} >Staff</Nav.Link>
+                        <Nav.Link as={Link} to={"/admin/staff"} >Staffs</Nav.Link>
                         <Nav.Link as={Link} to={"/admin/species"} >Species</Nav.Link>
+                        <Nav.Link as={Link} to={"/admin/ticket"} >Tickets</Nav.Link>
                     </Nav>
                     <Navbar.Text>
                         <NavDropdown title= {name} >

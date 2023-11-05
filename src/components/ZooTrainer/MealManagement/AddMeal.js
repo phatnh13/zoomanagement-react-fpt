@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Table, Pagination, Button, Card, Form } from "react-bootstrap";
-import FoodAddListContent from "./FoodAddListContent";
+import FoodAddListContent from "./Modal/FoodAddListContent";
 import { DateHelper } from "../../DateHelper";
 import { Link, useLocation } from "react-router-dom";
 function AddMeal() {
@@ -42,7 +42,7 @@ function AddMeal() {
         ));
         setMealList(prevMealList => { return [...prevMealList, ...newMeals]});
         console.log(mealList, "mealList");
-            fetch(`https://localhost:7193/api/Meal`, {
+            fetch(`https://vietnamzoo.azurewebsites.net/api/Meal`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -70,7 +70,7 @@ function AddMeal() {
         console.log(foodAddList);
     }, [foodAddList]);
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Food?pageNumber=${currentPage}&searchBy=FoodName`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Food?pageNumber=${currentPage}&searchBy=FoodName`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

@@ -3,32 +3,13 @@ import { Container, Row, Col, Form, Button,Pagination } from 'react-bootstrap';
 import SpeciesTable from './SpeciesTable';
 
 function SpeciesManaging() {
-    const [species, setSpecies] = useState(
-        [
-            {
-                "id": 1,
-                "name": "Cat",
-                "description": "A cat is a small, usually furry, domesticated, carnivorous mammal.",
-                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
-            },
-            {
-                "id": 2,
-                "name": "Dog",
-                "description": "A cat is a small, usually furry, domesticated, carnivorous mammal.",
-                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
-            },
-            {
-                "id": 3,
-                "name": "Bird",
-                "description": "A cat is a small, usually furry, domesticated, carnivorous mammal.",
-                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
-            },
-            
-        ]
-        ); 
+    const [species, setSpecies] = useState([]); 
+    
+    //Dummy state to re-rendering
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
-        fetch(`https://localhost:7193/api/Species/GetAllSpecies`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Species/GetAllSpecies`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -41,23 +22,20 @@ function SpeciesManaging() {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }, []);
+    }, [reload]);
 
     return (
         <Container fluid>
-            <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
+            <Row className="vh-20 d-flex justify-content-center mt-3 pb-1 border-bottom">
                 {/*Start add button*/}
-                <Col>
-                    <div className="mb-3 d-grid">
-                        <Button href='/admin/species/add' variant="outline-primary" size="sm">Add new Species</Button>
-                    </div>
+                <Col lg={6} md={6} sm={12} className="mb-3 d-grid">
+                    <Button href='/admin/species/add' variant="outline-primary" size="lg">Add new Species</Button>
                 </Col>
-                {/*End add button*/}
             </Row>
             <Row>
                 <Col>
                     {/*Start Table*/}
-                    <SpeciesTable speciesList={species} />
+                    <SpeciesTable speciesList={species} reloadState={{reload, setReload}} />
                     {/*Start Table*/}
                 </Col>
             </Row>
