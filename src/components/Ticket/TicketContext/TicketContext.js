@@ -8,6 +8,7 @@ export function TicketProvider({ children }) {
     const [tickets, setTickets] = useState([])
     const [decrease, setDecrease] = useState([])
     const [submitted, setSubmitted] = useState(false);
+    const [orderId, setOrderId] = useState('')
     // decrease.map(() => {
     //     if (decrease.)
     // })
@@ -42,6 +43,7 @@ export function TicketProvider({ children }) {
         firstName, setFirstName,
         email, setEmail,
         phoneNumber, setPhoneNumber,
+        orderId, setOrderId
     }
     return (
         <TicketContext.Provider value={value}>

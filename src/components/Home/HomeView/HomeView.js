@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import TigerVideoHome from "../../../assets/Tiger-Video-Home.mp4"
 import { Row, Button, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -27,9 +27,9 @@ const HomeView = () => {
                 <div className="home-view__bottom d-flex">
                     <Row className="home-view-bottom__table d-flex">
                         <Col className="col-md-5">
-                            <h1 style={{display: 'flex', justifyContent: 'center', color: '#3C5724'}}>OPENING HOURS</h1>
-                            <h2>Today, {date} </h2>
-                            <h2> 9:00 - 18:30</h2>
+                            <h1 style={{display: 'flex', justifyContent: 'center', color: '#3C5724', fontSize: '1.4rem'}}>OPENING HOURS</h1>
+                            <h2 style={{fontSize: '1.5rem'}}>Today, {date} </h2>
+                            <h2 style={{fontSize: '1.5rem'}}> 9:00 - 18:30</h2>
                             <p>Last admission: 17:00</p>
                             <div className="home-view-bottom__btn">
                                 <Link to="/opening-hours">

@@ -1,5 +1,5 @@
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Row, Table, Col, Button, Container, Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { TicketContext } from "./TicketContext/TicketContext";
@@ -9,12 +9,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function OffCanvasExample({ onClick, name, ...props }) {
     const [show, setShow] = useState(false);
+    const showRef = useRef(show);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const context = useContext(TicketContext);
     const submitted = context.submitted;
+    const order = context.orderId
 
     return (
         <>
@@ -51,7 +53,9 @@ function OffCanvasExample({ onClick, name, ...props }) {
                                     </svg>
                                     <div style={{color: '#3C5724'}}>
                                     <p>You have bought successfully</p>
+                                    <p>Your OrderId: {order.orderId}</p>
                                     <p>Please check your email</p>
+                                    <p></p>
                                     </div>
                                 </div>
 
@@ -80,7 +84,7 @@ const Summary = () => {
     const name = context.firstName + context.lastName;
     const email = context.email;
     const phoneNumber = context.phoneNumber;
-
+    const orderId = context.orderId
     const orders = decrease.map(decrease => ({
         ...decrease.ticket.ticketId.toString(),
         quantity: decrease.quantity
@@ -95,13 +99,14 @@ const Summary = () => {
         resultObject[key] = value; // Assign the value to the key in the result object
     });
     console.log(resultObject)
+    console.log(orderId, "orderId")
     let handleAddOrder = async () => {
         console.log("Add order");
         console.log("Customer name: " + name);
         console.log("Email: " + email);
         console.log("Phone Number: " + phoneNumber);
         console.log("Tickets: " + resultObject);
-        await fetch("https://localhost:7193/api/Order",
+        await fetch("https://vietnamzoo.azurewebsites.net/api/Order",
             {
                 method: "POST",
                 headers: {
@@ -116,7 +121,12 @@ const Summary = () => {
             })
             .then((res) => {
                 if (res.ok) {
-                    context.setSubmitted(true)
+                    res.json()
+                    .then((data) => {
+                        // Use 'data' for further processing
+                        context.setOrderId(data);
+                        context.setSubmitted(true);
+                    })
                 } else {
                     context.setSubmitted(false);
 
