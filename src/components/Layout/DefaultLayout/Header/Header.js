@@ -1,17 +1,20 @@
 import React from "react";
 import {Navbar, Container, Nav, NavDropdown} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">Home</Navbar.Brand>
+        <Navbar.Brand>
+          <Link style={{textDecoration: 'none', color: 'black'}} to='/'>Home</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/zoo-news">News</Nav.Link>
-            <Nav.Link href="/buyingticket">Tickets</Nav.Link>
-            <Nav.Link href="/opening-hours">Opening Hours</Nav.Link>
+            <Link style={{textDecoration: 'none', color: 'black'}} className='ms-4' to ='/zoo-news'>News</Link>
+            <Link style={{textDecoration: 'none', color: 'black'}} className='ms-4' to ='/viewticket'>Tickets</Link>
+            <Link style={{textDecoration: 'none', color: 'black'}} className='ms-4' to ='/opening-hours'>Opening Hours</Link>
             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

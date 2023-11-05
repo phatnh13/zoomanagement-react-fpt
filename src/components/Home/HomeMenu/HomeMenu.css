@@ -24,3 +24,6 @@ ul li{
     text-decoration: none;
     color: #000;
 }
+.navigation__title{
+    font-size: 1.3rem;
+}
