@@ -1,0 +1,6 @@
+.card-title-2-rows {
+    max-height: 2.5em; /* Adjust the height as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}

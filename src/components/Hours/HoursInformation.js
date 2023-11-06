@@ -13,30 +13,30 @@ const HoursInformation = () => {
     return (
         <section className="panel panel__ctas">
             <div className="wrapper">
-                <Card style={{width: '100%'}} >
+                <Card style={{ width: '100%' }} >
                     <CardImg src={Zwergotter} alt="Zwergotter" />
                     <Card.ImgOverlay >
-                        <CardImg src={LotsToExperience}/>
+                        <CardImg src={LotsToExperience} />
                         <Card.Text>
-                            <Link to="/map" style={{ color: "white", position: "absolute", bottom: 5, left: '40%' }} >Zoo map{'>'}</Link>
+                            <Link to="/map" style={{ color: "white", position: "absolute", bottom: 5, left: '40%', textDecoration: 'none' }} >Zoo map &#62;</Link>
                         </Card.Text>
                     </Card.ImgOverlay>
                 </Card>
-                <Card  style={{width: '100%'}}>
-                    <CardImg src={Panda} style={{ height: '100%'}}/>
+                <Card style={{ width: '100%' }}>
+                    <CardImg src={Panda} style={{ height: '100%' }} />
                     <Card.ImgOverlay >
-                        <CardImg style={{width: '80%'}} src={OnlineTicket} />
+                        <CardImg style={{ width: '80%' }} src={OnlineTicket} />
                         <Card.Text>
-                            <Link to="/buyingticket" style={{ color: "white", position: "absolute", bottom: 5, left: '30%' }}> Save your time!{'>'}</Link>
+                            <Link to="/buyingticket" style={{ color: "white", position: "absolute", bottom: 5, left: '30%', textDecoration: 'none' }}> Save your time! &#62;</Link>
                         </Card.Text>
                     </Card.ImgOverlay>
                 </Card>
-                <Card  style={{width: '100%'}}>
-                    <CardImg src={ThreeTigers} style={{ height: '100%'}} />
+                <Card style={{ width: '100%' }}>
+                    <CardImg src={ThreeTigers} style={{ height: '100%' }} />
                     <Card.ImgOverlay >
-                        <Card.Img style={{width: '70%'}} src={LotsGoingOn}/>
+                        <Card.Img style={{ width: '70%' }} src={LotsGoingOn} />
                         <Card.Text>
-                            <Link to="/zoo-news" className="mx-auto" style={{ color: "white", position: "absolute", bottom: 5, left: '25%' }}> News from the zoo{'>'}</Link>
+                            <Link to="/zoo-news" className="mx-auto" style={{ color: "white", position: "absolute", bottom: 5, left: '25%', textDecoration: 'none' }}> News from the zoo &#62;</Link>
                         </Card.Text>
                     </Card.ImgOverlay>
                 </Card>

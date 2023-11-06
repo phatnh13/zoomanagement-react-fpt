@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, Col, Row } from "react-bootstrap";
+import { Image, Col, Row, Container } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom';
 import ZooMap from "../../assets/ZooMap.jpg";
 
@@ -51,6 +51,7 @@ const Map = () => {
                     <p style={{ marginTop: '2rem', fontSize: '1.375rem' }}>Visit your favourite animals and discover previously unknown species – the </p>
                     <p style={{ fontSize: '1.375rem' }}>exciting world of Saigon Zoo never ceases to amaze!</p>
                 </div>
+                <Container fluid>
                     <Row xs={1} md={4} style={{ justifyContent: 'flex-start', padding: '2rem 16rem 2rem 16rem' }}>
 
                         {species?.map((item, idx) => {
@@ -66,6 +67,7 @@ const Map = () => {
                             )
                         })}
                     </Row>
+                </Container>
             </div>
         </>
     );

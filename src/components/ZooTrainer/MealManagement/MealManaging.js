@@ -23,7 +23,7 @@ function MealManaging() {
     }
 
     useLayoutEffect(() => {
-        // //get animal object
+            //get animal attributes
         fetch(`https://vietnamzoo.azurewebsites.net/api/Animal/${animalId}`, {
             method: "GET",
             headers: {
