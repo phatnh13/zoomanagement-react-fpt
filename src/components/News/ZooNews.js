@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Col, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import { DateHelper } from '../DateHelper';
 import NewsPanda from '../../assets/NewsPan.jpg'
@@ -48,22 +48,24 @@ const AllNews = () => {
           <div style={{ fontSize: '1.5rem' }}>Here you can find all the latest news about Zoo Berlin and its animals – new babies,</div>
           <div style={{ fontSize: '1.5rem' }}>new conservation projects, progress on building projects, etc.</div>
         </div>
-        <Row xs={1} md={3} className="g-4 p-5">
+        <Container fluid>
+          <Row xs={1} md={3} className="g-4 p-4">
 
-          {news.map((item, idx) => {
-            return (
-              <Col className="md-3" key={idx}>
-                <Card style={{ backgroundColor: '#3c5724', justifyContent: 'start' }} onClick={() => handleClick(item)}>
-                  <Card.Img style={{ width: '100%', height: '343.15px' }} variant="top" src={item.thumnail} />
-                  <Card.Body style={{ color: '#FFFFFF' }}>
-                    <Card.Title >{item.title}</Card.Title>
-                    <Card.Title >{DateHelper.formatDate(item.releaseDate)}</Card.Title>
-                  </Card.Body>
-                </Card>
-              </Col>
-            )
-          })}
-        </Row>
+            {news.map((item, idx) => {
+              return (
+                <Col className="md-3" key={idx}>
+                  <Card style={{ backgroundColor: '#3c5724', justifyContent: 'start' }} onClick={() => handleClick(item)}>
+                    <Card.Img style={{ width: '100%', height: '343.15px' }} variant="top" src={item.thumnail} />
+                    <Card.Body style={{ color: '#FFFFFF' }}>
+                      <Card.Title >{item.title}</Card.Title>
+                      <Card.Title >{DateHelper.formatDate(item.releaseDate)}</Card.Title>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              )
+            })}
+          </Row>
+        </Container>
       </div>
     </>
   );
