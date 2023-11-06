@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import { Button, Col, Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import LionVideo from "../../../assets/Lion-Video.mp4"
 import "./WelcomeMap.css"
 
@@ -30,7 +31,7 @@ const WelcomeMap = () => {
                                 <Button style={{
                                     alignContent: 'left',
                                     fontWeight: 'bold',
-                                }} variant="success" href='Map' >Saigon World Wild </Button>
+                                }} variant="success"><Link className="link-underline-hover" style={{ color: 'white', textDecoration: 'none' }} to='Map'>Saigon World Wild</Link></Button>
                             </Card.Body>
                             </Card>
             </Container >
