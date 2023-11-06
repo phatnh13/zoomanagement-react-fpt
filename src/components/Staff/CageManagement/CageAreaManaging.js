@@ -7,11 +7,11 @@ import AddAreaModal from "./Modal/AddAreaModal";
 
 function CageAreaManaging() {
     //#region Modal
-        //Add cage modal
+    //Add cage modal
     const [showAddCage, setShowAddCage] = useState(false);
     const handleCloseAddCage = () => setShowAddCage(false);
     const handleShowAddCage = () => setShowAddCage(true);
-        //Add area modal
+    //Add area modal
     const [showAddArea, setShowAddArea] = useState(false);
     const handleCloseAddArea = () => setShowAddArea(false);
     const handleShowAddArea = () => setShowAddArea(true);
@@ -21,10 +21,11 @@ function CageAreaManaging() {
     const [currentPage, setCurrentPage] = useState(1); //page number
     const [totalPages, setTotalPages] = useState(0);
     const [searchBy, setSearchBy] = useState("CageName"); //search by column name
-    
+
     const [cages, setCages] = useState([]);
     const [areas, setAreas] = useState([]);
     const [reload, setReload] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     //#region Pagination
     let PaginationLoad = () => {
@@ -58,19 +59,20 @@ function CageAreaManaging() {
             }).catch(rejected => {
                 console.log(rejected);
             });
-            fetch(`https://vietnamzoo.azurewebsites.net/api/Areas`, {
-                method: "GET",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
-                }
-            })
-                .then((res) => res.json())
-                .then(data => {
-                    setAreas(data);
-                }).catch(rejected => {
-                    console.log(rejected);
-                });
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Areas`, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+            }
+        })
+            .then((res) => res.json())
+            .then(data => {
+                setAreas(data);
+                setIsLoading(false);
+            }).catch(rejected => {
+                console.log(rejected);
+            });
     }, [reload, currentPage, searchBy, searchString]);
 
     return (
@@ -111,33 +113,37 @@ function CageAreaManaging() {
                     </div>
                 </Col>
             </Row>
-            <Row className="">
-                <Col lg={5} md={12} xs={12}>
-                    <AreaTable areaList={areas} reloadState={{reload, setReload}} />
-                </Col>
-                <Col lg={7} md={12} xs={12}>
-                    {/*Start Table*/}
-                    <CageTable cageList={cages} reloadState={{reload, setReload}} />
-                    {/*Start Table*/}
-                </Col>
-            </Row>
+            {isLoading === true ? (
+                <Row>
+                    <h1>Is Loading ...</h1>
+                </Row>
+            ) : (
+                <Row className="">
+                    <Col lg={5} md={12} xs={12}>
+                        <AreaTable areaList={areas} reloadState={{ reload, setReload }} />
+                    </Col>
+                    <Col lg={7} md={12} xs={12}>
+                        <CageTable cageList={cages} reloadState={{ reload, setReload }} />
+                    </Col>
+                </Row>
+            )}
             <Row>
                 <Col lg={5} md={12} xs={12}></Col>
                 <Col>
-                <Pagination size="md" className="d-flex justify-content-center">
+                    <Pagination size="md" className="d-flex justify-content-center">
                         {PaginationLoad()}
                     </Pagination>
                 </Col>
             </Row>
-            <AddCageModal 
-            show={showAddCage} 
-            handleClose={handleCloseAddCage} 
-            areasList={areas}
-            reloadState={{reload, setReload}} />
+            <AddCageModal
+                show={showAddCage}
+                handleClose={handleCloseAddCage}
+                areasList={areas}
+                reloadState={{ reload, setReload }} />
             <AddAreaModal
-            show={showAddArea}
-            handleClose={handleCloseAddArea}
-            reloadState={{reload, setReload}} />            
+                show={showAddArea}
+                handleClose={handleCloseAddArea}
+                reloadState={{ reload, setReload }} />
 
         </Container>
     )

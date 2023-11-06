@@ -11,6 +11,7 @@ const StaffManaging = () => {
     const [searchBy, setSearchBy] = useState("FullName");
 
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
 
     //#region Pagination
     let PaginationLoad = () => {
@@ -27,13 +28,13 @@ const StaffManaging = () => {
         setCurrentPage(e.target.text);
     }
     //#endregion
-    
+
     let handleAddStaff = () => {
         navigate("/admin/staff/add");
     }
 
     useEffect(() => {
-        
+
         fetch(`https://vietnamzoo.azurewebsites.net/api/Staff?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
             method: "GET",
             headers: {
@@ -45,6 +46,7 @@ const StaffManaging = () => {
             .then(data => {
                 setUsers(data.pagingList);
                 setTotalPages(data.totalPages);
+                setIsLoading(false);
             }).catch(rejected => {
                 console.log(rejected);
             });
@@ -65,7 +67,7 @@ const StaffManaging = () => {
                             <option value={"FullName"}>Full Name</option>
                             <option value={"Email"}>Email</option>
                             <option value={"PhoneNumber"}>PhoneNumber</option>
-                            
+
                         </Form.Select>
                     </Form.Group>
                 </Col>
@@ -91,17 +93,22 @@ const StaffManaging = () => {
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    {/*Start Table*/}
-                    <StaffTable userList={users} />
-                    {/*End Table*/}
-                    <Pagination size="md" className="d-flex justify-content-center">
-                        {PaginationLoad()}
-                    </Pagination>
-                </Col>
+                {isLoading ? (
+                    <Col>
+                        <h1>Loading...</h1>
+                    </Col>
+                ) : (
+                    <Col>
+                        {/*Start Table*/}
+                        <StaffTable userList={users} />
+                        <Pagination size="md" className="d-flex justify-content-center">
+                            {PaginationLoad()}
+                        </Pagination>
+                    </Col>
+                )}
             </Row>
 
-            
+
         </Container>
     )
 }
