@@ -12,7 +12,7 @@ function ZooTrainerManaging() {
     const navigate = useNavigate();
     //Dummy state for re-rendering
     const [reload, setReload] = useState(false);
-    
+    const [isLoading, setIsLoading] = useState(true);
     //#region Pagination
     let PaginationLoad = () => {
         let items = [];
@@ -44,6 +44,7 @@ function ZooTrainerManaging() {
             .then(data => {
                 setTrainer(data.pagingList);
                 setTotalPages(data.totalPages);
+                setIsLoading(false);
             }).catch(rejected => {
                 console.log(rejected);
             });
@@ -91,14 +92,18 @@ function ZooTrainerManaging() {
                 {/*End add button*/}
             </Row>
             <Row>
-                <Col>
-                    {/*Start Table*/}
+                {isLoading === true ? (
+                    <Col>
+                        <h1>Is Loading ...</h1>
+                    </Col>
+                ) : (
+                    <Col>
                     <TrainerTable trainerList={trainer} reloadState={{reload, setReload}} />
-                    {/*Start Table*/}
                     <Pagination size="md" className="d-flex justify-content-center">
                         {PaginationLoad()}
                     </Pagination>
                 </Col>
+                )}
             </Row>
         </Container>
     )

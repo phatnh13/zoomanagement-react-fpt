@@ -9,6 +9,7 @@ function SkillManaging() {
 
     //Dummy state for rendering
     const [reload, setReload] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     let handleAddSkill = () => {
         fetch(`https://vietnamzoo.azurewebsites.net/api/User`, {
             method: "PUT",
@@ -83,6 +84,7 @@ function SkillManaging() {
             .then((data) => {
                 setUser(data);
                 setSkills(data.skills);
+                setIsLoading(false);
             }).catch((rejected) => {
                 console.log(rejected);
             });
@@ -92,7 +94,12 @@ function SkillManaging() {
             <Row className="d-flex justify-content-center mt-5">
                 <Col lg={8} md={8} sm={12}>
                     <Card>
-                        <Card.Body>
+                        {isLoading === true ? ( 
+                            <Card.Body>
+                                <div>Is Loading ...</div>
+                            </Card.Body>
+                        ) : (
+                            <Card.Body>
                             <Card.Title as={"h2"} className="mb-4">Your Skills</Card.Title>
                             {skills.map((skill, index) => {
                                 return (
@@ -104,6 +111,7 @@ function SkillManaging() {
                                 )
                             })}
                         </Card.Body>
+                        )}
                     </Card>
                     <Card className="mt-4">
                         <Card.Body>

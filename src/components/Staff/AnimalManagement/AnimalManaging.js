@@ -14,6 +14,7 @@ function AnimalManaging() {
     const navigate = useNavigate();
     //Dummy state to force re-render
     const [reload, setReload] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     //#region Pagination
     let PaginationAnimalLoad = () => {
@@ -45,6 +46,7 @@ function AnimalManaging() {
             .then(data => {
                 setAnimalList(data.pagingList);
                 setTotalAnimalPages(data.totalPages);
+                setIsLoading(false);
             }).catch(rejected => {
                 console.log(rejected);
             });
@@ -89,14 +91,18 @@ function AnimalManaging() {
                 {/*End add button*/}
             </Row>
             <Row>
-                <Col>
-                    {/*Start Table*/}
-                    <AnimalTable animalList={animalList} reloadState={{ reload, setReload }} />
-                    {/*Start Table*/}
-                    <Pagination size="md" className="d-flex justify-content-center">
-                        {PaginationAnimalLoad()}
-                    </Pagination>
-                </Col>
+                {isLoading === true ? (
+                    <Col>
+                        <h1>Is Loading ...</h1>
+                    </Col>
+                ) : (
+                    <Col>
+                        <AnimalTable animalList={animalList} reloadState={{ reload, setReload }} />
+                        <Pagination size="md" className="d-flex justify-content-center">
+                            {PaginationAnimalLoad()}
+                        </Pagination>
+                    </Col>
+                )}
             </Row>
         </Container>
     )

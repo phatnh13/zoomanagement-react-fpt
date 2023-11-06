@@ -10,16 +10,16 @@ const TrainerTable = ({ trainerList, reloadState }) => {
             <Table striped bordered hover responsive="md" >
                 <thead>
                     <tr>
-                        <th>User ID</th>
-                        <th>User Name</th>
-                        <th>Full Name</th>
-                        <th>Gender</th>
+                        <th className="col-1">User ID</th>
+                        <th className="col-2">User Name</th>
+                        <th className="col-2">Full Name</th>
+                        <th className="col-1">Gender</th>
                         <th>phoneNumber</th>
                         <th>Email</th>
                         <th>Date of Birth</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th className="col-1"></th>
+                        <th className="col-1"></th>
+                        <th className="col-1"></th>
                     </tr>
                 </thead>
                 <tbody>

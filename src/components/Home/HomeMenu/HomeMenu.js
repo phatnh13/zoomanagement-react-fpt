@@ -80,7 +80,7 @@ const HomeMenu = ({handleClose}) => {
           <ul>
             <li>
               <Link className='navigation__link' to='/login' onClick={handleClose}>
-              {userName === "" ? (<h1>Login</h1>) : (<h1>{userName}</h1>)}
+              {userName === "" ? (<h1 className='navigation__title'>Login</h1>) : (<h1 className='navigation__title'>{userName}</h1>)}
               </Link>
             </li>
           </ul>

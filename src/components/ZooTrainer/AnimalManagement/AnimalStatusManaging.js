@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Pagination, Col, Row, Container, Form, Button } from "react-bootstrap";
 import AnimalStatusTable from "./AnimalStatusTable";
 
@@ -11,9 +11,9 @@ function AnimalStatusManaging() {
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const trainerId = JSON.parse(localStorage.getItem("loginUser")).userId;
-    const navigate = useNavigate();
     //Dummy state to force re-render
     const [reload, setReload] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     //#region Pagination
     let PaginationLoad = () => {
@@ -32,7 +32,7 @@ function AnimalStatusManaging() {
     //#endregion
 
     useEffect(() => {
-        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalUser/user/${trainerId}`,{
+        fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalUser/user/${trainerId}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -42,18 +42,16 @@ function AnimalStatusManaging() {
             .then((res) => res.json())
             .then(data => {
                 setAnimalList(data);
-                console.log(data, "data");
-                console.log(animalList, "animalList");
-                console.log(trainerId, "id");
+                setIsLoading(false);
             }).catch(rejected => {
                 console.log(rejected);
             });
     }, [reload, currentPage, searchBy, searchString]);
 
-    return ( 
+    return (
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
-            {/*Start search*/}
+                {/*Start search*/}
                 {/*Search filter */}
                 <Col lg={3} md={3} xs={12}>
                     <Form.Group className="mb-3" controlId="search">
@@ -81,19 +79,24 @@ function AnimalStatusManaging() {
                     </Form.Group>
                 </Col>
                 {/*Search bar */}
-            {/*End search*/}
+                {/*End search*/}
             </Row>
             <Row>
-                <Col>
-                    {/*Start Table*/}
-                    <AnimalStatusTable animalList={animalList} reloadState={{reload, setReload}} />
-                    <Pagination>
-                        {PaginationLoad()}
-                    </Pagination>
-                </Col>
+                {isLoading === true ? (
+                    <Col>
+                        <h1>Is Loading ...</h1>
+                    </Col>
+                ) : (
+                    <Col>
+                        <AnimalStatusTable animalList={animalList} reloadState={{ reload, setReload }} />
+                        <Pagination>
+                            {PaginationLoad()}
+                        </Pagination>
+                    </Col>
+                )}
             </Row>
         </Container>
-     )
+    )
 }
 
 export default AnimalStatusManaging;

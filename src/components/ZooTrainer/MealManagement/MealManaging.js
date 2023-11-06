@@ -55,7 +55,7 @@ function MealManaging() {
         <Container fluid>
             {isLoading ? (
                 <Spinner animation="border" role="status">
-                    <span className="sr-only">Loading...</span>
+                    <span className="sr-only">Is Loading ...</span>
                 </Spinner>
             ) : (
                 <>

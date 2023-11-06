@@ -59,7 +59,7 @@ const Login = () => {
             case "OfficeStaff":
                 return("/staff/trainer");
                 
-            case "ZooTrainer":
+            case "ZooTrainner":
                 return("/trainer/animal");
             default:
                 return("/login");

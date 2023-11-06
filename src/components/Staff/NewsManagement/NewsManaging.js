@@ -10,6 +10,8 @@ function NewsManaging() {
     const [currentPage, setCurrentPage] = useState(1);
     const [newsList, setNewsList] = useState([]);
 
+    const [isLoading, setIsLoading] = useState(true);
+
     //#region Pagination
     let PaginationLoad = () => {
         let items = [];
@@ -34,16 +36,17 @@ function NewsManaging() {
     }
     useEffect(() => {
         fetch(`https://vietnamzoo.azurewebsites.net/api/News?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`)
-        .then(res => res.json())
-        .then(data => {
-            setNewsList(data.pagingList);
-            setTotalPages(data.totalPages);
-        })
+            .then(res => res.json())
+            .then(data => {
+                setNewsList(data.pagingList);
+                setTotalPages(data.totalPages);
+                setIsLoading(false);
+            })
     }, []);
-    return ( 
+    return (
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
-            <Col lg={3} md={3} xs={12}>
+                <Col lg={3} md={3} xs={12}>
                     <Form.Group className="mb-3" controlId="search">
                         <Form.Select
                             value={searchBy}
@@ -81,16 +84,21 @@ function NewsManaging() {
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    {/*Start Table*/}
-                    <NewsTable newsList={newsList}/>
-                    <Pagination size="md" className="d-flex justify-content-center">
-                        {PaginationLoad()}
-                    </Pagination>
-                </Col>
+                {isLoading === true ? (
+                    <Col>
+                        <h1>Is Loading ...</h1>
+                    </Col>
+                ) : (
+                    <Col>
+                        <NewsTable newsList={newsList} />
+                        <Pagination size="md" className="d-flex justify-content-center">
+                            {PaginationLoad()}
+                        </Pagination>
+                    </Col>
+                )}
             </Row>
         </Container>
-     )
+    )
 }
 
 export default NewsManaging;
