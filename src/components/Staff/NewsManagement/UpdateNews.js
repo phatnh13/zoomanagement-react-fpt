@@ -26,7 +26,6 @@ function UpdateNews() {
         }
     }, [news]);
 
-    let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
         title: false,
         content: false,
@@ -117,7 +116,6 @@ function UpdateNews() {
                         alert("Update successfully");
                         navigate("/staff/news");
                     } else {
-                        console.log(res);
                         alert("Update failed");
                     }
                 }).catch(rejected => {
@@ -221,7 +219,9 @@ function UpdateNews() {
                                                     className="mb-3"
                                                     controlId="newsCategoryId">
                                                     <Form.Label>Category</Form.Label>
-                                                    <Form.Select value={categoryId}>
+                                                    <Form.Select value={categoryId}
+                                                    onChange={(e) => {setCategoryId(e.target.value)}}
+                                                    >
                                                         <option value="">Select category</option>
                                                         {newsCategories.map((item) => (
                                                             <option
@@ -286,7 +286,6 @@ function UpdateNews() {
                                                 </Button>
                                             </Col>
                                         </Row>
-                                        <Row>{message}</Row>
                                     </Form>
                                 </div>
                             </div>

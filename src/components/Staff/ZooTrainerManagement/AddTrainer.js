@@ -14,7 +14,6 @@ function AddTrainer() {
 
     const navigate = useNavigate();
 
-    let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
         userName: false,
         Email: false,
@@ -122,9 +121,7 @@ function AddTrainer() {
                         alert("Add successfully");
                         navigate("/staff/trainer");
                     } else {
-                        console.log("Add failed");
-                        console.log(res);
-                        setMessage(<span className="text-danger">Add failed</span>);
+                        alert("Add failed");
                     }
                 }).catch(rejected => {
                     console.log(rejected);
@@ -296,7 +293,6 @@ function AddTrainer() {
                                                 </Button>
                                             </Col>
                                         </Row>
-                                        <Row>{message}</Row>
                                     </Form>
                                 </div>
                             </div>

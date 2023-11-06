@@ -54,6 +54,7 @@ function AddMeal() {
                 if (res.ok) {
                     alert("Add meal success!");
                     setMealList([]);
+                    setNote("");
                 }
                 else {
                     alert("Add meal failed!");
