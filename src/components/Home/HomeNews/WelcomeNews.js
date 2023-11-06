@@ -49,7 +49,7 @@ const WelcomeNews = () => {
                     {news.map((item, idx) => {
                         return (
                             <Col key={idx} >
-                                <Card style={{ border: 'none', borderRadius: '50px' }} onClick={() => handleClick(item)}>
+                                <Card style={{ border: 'none', borderRadius: '50px', cursor: 'pointer' }} onClick={() => handleClick(item)}>
                                     <Card.Img  style={{height: '197.52px', width: 'auto'}} src={item.thumnail} />
                                     <Card.Body style={{ backgroundColor: '#F7F1DB' }}>
                                         <Card.Title style={{ fontSize: '1rem' }}>{item.title}</Card.Title>
@@ -64,4 +64,4 @@ const WelcomeNews = () => {
     );
 }
 
-export default WelcomeNews;
+export default WelcomeNews
