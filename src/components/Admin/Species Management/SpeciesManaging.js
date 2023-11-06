@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { Container, Row, Col, Form, Button,Pagination } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button,Pagination, Spinner } from 'react-bootstrap';
 import SpeciesTable from './SpeciesTable';
 
 function SpeciesManaging() {
@@ -7,7 +7,7 @@ function SpeciesManaging() {
     
     //Dummy state to re-rendering
     const [reload, setReload] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         fetch(`https://vietnamzoo.azurewebsites.net/api/Species/GetAllSpecies`, {
             method: "GET",
@@ -19,6 +19,7 @@ function SpeciesManaging() {
             .then((res) => res.json())
             .then(data => {
                 setSpecies(data);
+                setIsLoading(false);
             }).catch(rejected => {
                 console.log(rejected);
             });
@@ -33,11 +34,16 @@ function SpeciesManaging() {
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    {/*Start Table*/}
-                    <SpeciesTable speciesList={species} reloadState={{reload, setReload}} />
-                    {/*Start Table*/}
-                </Col>
+                {isLoading == true ? (
+                    <Col>
+                    <Spinner>Is Loading ...</Spinner>
+                    </Col>
+                ) : (
+                    <Col>
+                        <SpeciesTable speciesList={species} reloadState={{reload, setReload}} />
+                    </Col>
+                )
+                }
             </Row>
         </Container>
     )

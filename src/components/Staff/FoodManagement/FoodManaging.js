@@ -10,7 +10,7 @@ function FoodManaging() {
 
     //Dummy state to force re-render
     const [reload, setReload] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(true);
     //#region Pagination
     let PaginationFoodLoad = () => {
         let items = [];
@@ -38,6 +38,7 @@ function FoodManaging() {
             .then(data => {
                 setFoodList(data.pagingList);
                 setTotalFoodPages(data.totalPages);
+                setIsLoading(false);
             }).catch(rejected => {
                 console.log(rejected);
             });
@@ -46,12 +47,18 @@ function FoodManaging() {
         <Container fluid>
             <Row className="d-flex justify-content-center mt-2">
                 <Col lg={10} md={10} sm={12}>
-                    <Row>
-                        <FoodTable foodList={foodList} reloadState={{ reload, setReload }} searchFood={{ searchFoodString, setSearchFoodString }} />
-                        <Pagination size="md" className="d-flex justify-content-center">
-                            {PaginationFoodLoad()}
-                        </Pagination>
-                    </Row>
+                    {isLoading === true ? (
+                        <Row>
+                            <h1>Is Loading ...</h1>
+                        </Row>
+                    ) : (
+                        <Row>
+                            <FoodTable foodList={foodList} reloadState={{ reload, setReload }} searchFood={{ searchFoodString, setSearchFoodString }} />
+                            <Pagination size="md" className="d-flex justify-content-center">
+                                {PaginationFoodLoad()}
+                            </Pagination>
+                        </Row>
+                    )}
                 </Col>
             </Row>
         </Container>
