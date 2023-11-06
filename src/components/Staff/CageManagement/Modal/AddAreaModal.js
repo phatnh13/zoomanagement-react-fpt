@@ -20,6 +20,7 @@ function AddAreaModal({show, handleClose, reloadState}) {
         })
             .then((res) => {
                 if (res.ok) {
+                    alert("Add area successfully");
                     reloadState.setReload(!reloadState.reload);
                     setAreaNameAdd("");
                     handleClose();

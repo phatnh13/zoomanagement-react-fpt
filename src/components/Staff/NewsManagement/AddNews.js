@@ -16,7 +16,6 @@ function AddNews() {
     const [newsCategories, setNewsCategories] = useState([]);
 
 
-    let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
         title: false,
         content: false,
@@ -103,12 +102,10 @@ function AddNews() {
 
                 }).then((res) => {
                     if (res.ok) {
-                        console.log("Add successfully");
-                        setMessage(<span className="text-success">Add successfully</span>);
+                        alert("Add successfully");
                     } else {
-                        console.log("Add failed");
                         console.log(res);
-                        setMessage(<span className="text-danger">Add failed</span>);
+                        alert("Add failed");
                     }
                 }).catch(rejected => {
                     console.log(rejected);
@@ -213,7 +210,10 @@ function AddNews() {
                                                     className="mb-3"
                                                     controlId="newsCategoryId">
                                                     <Form.Label>Category</Form.Label>
-                                                    <Form.Select value={categoryId}>
+                                                    <Form.Select 
+                                                    value={categoryId}
+                                                    onChange={(e) => {setCategoryId(e.target.value);}}
+                                                    >
                                                         <option value="">Select category</option>
                                                         {newsCategories.map((item) => (
                                                             <option
@@ -278,7 +278,6 @@ function AddNews() {
                                                 </Button>
                                             </Col>
                                         </Row>
-                                        <Row>{message}</Row>
                                     </Form>
                                 </div>
                             </div>

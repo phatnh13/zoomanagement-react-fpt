@@ -60,6 +60,7 @@ function AddAnimal() {
         })  .then((res) => {
                 if (res.ok) {
                     alert("Add animal successfully!");
+                    navigate("/staff/animal");
                 }
                 else {
                     alert("Add animal failed!");

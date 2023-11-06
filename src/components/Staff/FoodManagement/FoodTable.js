@@ -4,6 +4,10 @@ import FoodTableContent from "./FoodTableContent";
 const FoodTable = ({ foodList, reloadState, searchFood }) => {
     const [foodNameAdd, setfoodNameAdd] = useState("");
     let handleAddFood = () => {
+        if(foodNameAdd === ""){
+            alert("Food name is required");
+            return;
+        }
         fetch(`https://vietnamzoo.azurewebsites.net/api/Food`, {
             method: "POST",
             headers: {
@@ -17,6 +21,7 @@ const FoodTable = ({ foodList, reloadState, searchFood }) => {
             .then((res) => {
                 if (res.ok) {
                     setfoodNameAdd("");
+                    alert("Add food successfully");
                     reloadState.setReload(!reloadState.reload);
                 } else {
                     alert("Add food failed");

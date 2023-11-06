@@ -23,7 +23,6 @@ function UpdateZooTrainer() {
     }, [user]);
     
     //#region Validation
-    let [message, setMessage] = useState("");
     let [dirty, setDirty] = useState({
         UserName: false,
         Email: false,
@@ -120,9 +119,7 @@ function UpdateZooTrainer() {
                         alert("Update successfully");
                         navigate("/staff/trainer");
                     } else {
-                        console.log("Add failed");
-                        console.log(res);
-                        setMessage(<span className="text-danger">Add failed</span>);
+                        alert("Update failed");
                     }
                 }).catch(rejected => {
                     console.log(rejected);
@@ -252,7 +249,6 @@ function UpdateZooTrainer() {
                                                 </Button>
                                             </Col>
                                         </Row>
-                                        <Row>{message}</Row>
                                     </Form>
                                 </div>
                             </div>
