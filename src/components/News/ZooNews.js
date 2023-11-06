@@ -53,10 +53,16 @@ const AllNews = () => {
           {news.map((item, idx) => {
             return (
               <Col className="md-3" key={idx}>
-                <Card style={{ backgroundColor: '#3c5724', justifyContent: 'start' }} onClick={() => handleClick(item)}>
+                <Card style={{ backgroundColor: '#3c5724', justifyContent: 'start', cursor: 'pointer' }} onClick={() => handleClick(item)}>
                   <Card.Img style={{ width: '100%', height: '343.15px' }} variant="top" src={item.thumnail} />
                   <Card.Body style={{ color: '#FFFFFF' }}>
-                    <Card.Title >{item.title}</Card.Title>
+                    <Card.Title style={{
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      display: '-webkit-box',
+                      WebkitLineClamp: '2', // Number of rows
+                      WebkitBoxOrient: 'vertical',
+                    }} >{item.title}</Card.Title>
                     <Card.Title >{DateHelper.formatDate(item.releaseDate)}</Card.Title>
                   </Card.Body>
                 </Card>
