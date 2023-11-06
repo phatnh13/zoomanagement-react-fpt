@@ -45,18 +45,6 @@ const HomeView = () => {
                             </svg>
                         </Col>
                         <Col className="col-md-4">
-                            <div className="d-flex justify-content-between"> {/* Add this container */}
-                                <Link to="/map">
-                                    <Button className="btn btn-light home-view-bottom__btn-bottom">
-                                        View Map
-                                    </Button>
-                                </Link>
-                                <Link to="/opening-hours">
-                                    <Button className="btn btn-light home-view-bottom__btn-bottom">
-                                        View Hours
-                                    </Button>
-                                </Link>
-                            </div> {/* Close the container */}
                             <h1 style={{ display: 'flex', justifyContent: 'center', color: '#3C5724', fontSize: '1.4rem' }}>MAP</h1>
                             <div className="home-view-bottom__logo">
                                 <Image src={MapLogo} />

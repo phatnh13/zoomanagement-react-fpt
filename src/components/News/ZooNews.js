@@ -57,11 +57,7 @@ const AllNews = () => {
                   <Card.Img style={{ width: '100%', height: '343.15px' }} variant="top" src={item.thumnail} />
                   <Card.Body style={{ color: '#FFFFFF' }}>
                     <Card.Title style={{
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      display: '-webkit-box',
-                      WebkitLineClamp: '2', // Number of rows
-                      WebkitBoxOrient: 'vertical',
+                      height: '2.5rem'
                     }} >{item.title}</Card.Title>
                     <Card.Title >{DateHelper.formatDate(item.releaseDate)}</Card.Title>
                   </Card.Body>
