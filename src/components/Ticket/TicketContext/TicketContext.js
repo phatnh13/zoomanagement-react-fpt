@@ -23,7 +23,6 @@ export function TicketProvider({ children }) {
             .then(data => data.json())
             .then(data => {
                 setTickets(data)
-                console.log(data)
             })
             .catch(error => {
                 console.error(error);

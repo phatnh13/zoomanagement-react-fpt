@@ -94,9 +94,22 @@ const HomeMenu = ({handleClose}) => {
         <Col className='navigation-list__right col-md-2'>
           <ul>
             <li>
+              
+              {userName === "" ? (
               <Link className='navigation__link' to='/login' onClick={handleClose}>
-              {userName === "" ? (<h1 className='navigation__title'>Login</h1>) : (<h1 className='navigation__title'>{userName}</h1>)}
+              <h1 className='navigation__title'>Login</h1>
               </Link>
+              ) : (
+              <>
+              <Link className='navigation__link' to='/user/profile' onClick={handleClose}>
+              <h1 className='navigation__title'>{userName}</h1>
+              </Link>
+              <Link className='navigation__link' to='/login'>
+              <h1 style={{fontWeight: 'normal', fontSize: '1rem'}} className='navigation__title'>Return to management</h1>
+              </Link>
+              </>
+              )}
+        
             </li>
           </ul>
         </Col>
