@@ -11,13 +11,11 @@ const WelcomeNews = () => {
     const navigate = useNavigate()
 
     const handleNavigation = (item) => {
-        console.log("Navigarun");
         navigate(`/news`, { state: { item: item } })
     }
 
 
     const handleClick = (item) => {
-        console.log(item)
         handleNavigation(item);
     }
 
