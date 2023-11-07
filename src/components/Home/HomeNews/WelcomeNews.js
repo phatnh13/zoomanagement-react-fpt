@@ -29,7 +29,6 @@ const WelcomeNews = () => {
             }
         }).then(data => data.json())
             .then(data => {
-                console.log(data)
                 setNews(data);
             }).catch(error => console.log(error))
 
