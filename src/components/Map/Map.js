@@ -13,12 +13,10 @@ const Map = () => {
     const navigate = useNavigate()
 
     const handleNavigation = (item) => {
-        console.log("Navigarun");
         navigate(`/species`, { state: { item: item } })
     }
 
     const handleClick = (item) => {
-        console.log(item)
         handleNavigation(item);
     }
 
@@ -34,7 +32,6 @@ const Map = () => {
             }
         }).then(data => data.json())
             .then(data => {
-                console.log(data)
                 setSpecies(data.pagingList);
                 setTotalPages(data.totalPages);
             }).catch(error => console.log(error))
