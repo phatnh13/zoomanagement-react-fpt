@@ -2,7 +2,22 @@ import { Col } from 'react-bootstrap';
 import "./HomeMenu.css"
 import { Link } from 'react-router-dom';
 const HomeMenu = ({handleClose}) => {
-  const userName = JSON.parse(localStorage.getItem("loginUser")).userName;
+  const emptyUser = {
+    userId: 0,
+    userName: "",
+    email: "",
+    role: "",
+    token: "",
+    expiration: ""
+  };
+  let userName = "";
+  if (!localStorage.getItem("loginUser")) {
+    localStorage.setItem("loginUser", JSON.stringify(emptyUser));
+    localStorage.setItem("isLoggedIn", "false");
+  } else {
+    userName = JSON.parse(localStorage.getItem("loginUser")).userName;
+  }
+
   return (
     <>
       <div className='navigation-wrapper'>

@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, ListGroup, Col } from "react-bootstrap";
 import "./Hours.css"
 import Gate from "../../assets/gate.JPG"
 import HoursInformation from "./HoursInformation";
 
 const Hours = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     return (
         <>
             <div style={{ backgroundColor: '#F7F1DB' }}>
