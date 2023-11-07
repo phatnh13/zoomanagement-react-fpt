@@ -21,7 +21,12 @@ const TrainerNavbar = () => {
     return (
             <Navbar expand="md" className="bg-body-tertiary">
                 <Container>
-                    <Navbar.Brand href="/">Sài Gòn Zoo</Navbar.Brand>
+                    {/* <Navbar.Brand href="/">Sài Gòn Zoo</Navbar.Brand> */}
+                    <Navbar.Brand>
+                        <Link style={{textDecoration: 'none', color: 'black'}} to='/'>
+                        Sài Gòn Zoo
+                        </Link>
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
