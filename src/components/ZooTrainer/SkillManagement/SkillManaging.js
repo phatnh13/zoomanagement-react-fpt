@@ -72,7 +72,6 @@ function SkillManaging() {
     }
 
     useLayoutEffect(() => {
-        document.title = "Skill Managing";
         //Get user
         fetch(`https://vietnamzoo.azurewebsites.net/api/User/${userId}`, {
             method: "GET",
