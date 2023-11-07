@@ -18,7 +18,7 @@ const HoursInformation = () => {
                     <Card.ImgOverlay >
                         <CardImg src={LotsToExperience} />
                         <Card.Text>
-                            <Link to="/map" style={{ color: "white", position: "absolute", bottom: 5, left: '40%', textDecoration: 'none' }} >Zoo map &#62;</Link>
+                            <Link to="/map" style={{ color: "white", fontWeight: 'bold' , position: "absolute", bottom: 5, left: '40%', textDecoration: 'none' }} >Zoo map &#62;</Link>
                         </Card.Text>
                     </Card.ImgOverlay>
                 </Card>
@@ -27,7 +27,7 @@ const HoursInformation = () => {
                     <Card.ImgOverlay >
                         <CardImg style={{ width: '80%' }} src={OnlineTicket} />
                         <Card.Text>
-                            <Link to="/buyingticket" style={{ color: "white", position: "absolute", bottom: 5, left: '30%', textDecoration: 'none' }}> Save your time! &#62;</Link>
+                            <Link to="/buyingticket" style={{ color: "white", fontWeight: 'bold', position: "absolute", bottom: 5, left: '30%', textDecoration: 'none' }}> Save your time! &#62;</Link>
                         </Card.Text>
                     </Card.ImgOverlay>
                 </Card>
@@ -36,7 +36,7 @@ const HoursInformation = () => {
                     <Card.ImgOverlay >
                         <Card.Img style={{ width: '70%' }} src={LotsGoingOn} />
                         <Card.Text>
-                            <Link to="/zoo-news" className="mx-auto" style={{ color: "white", position: "absolute", bottom: 5, left: '25%', textDecoration: 'none' }}> News from the zoo &#62;</Link>
+                            <Link to="/zoo-news" className="mx-auto" style={{ color: "white",fontWeight: 'bold', position: "absolute", bottom: 5, left: '25%', textDecoration: 'none' }}> News from the zoo &#62;</Link>
                         </Card.Text>
                     </Card.ImgOverlay>
                 </Card>

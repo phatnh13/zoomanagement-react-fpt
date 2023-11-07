@@ -23,6 +23,10 @@ const Map = () => {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
+    useEffect(() => {
         fetch(`https://vietnamzoo.azurewebsites.net/api/Species?searchBy=${searchBy}`, {
             method: "GET",
             headers: {
@@ -39,7 +43,7 @@ const Map = () => {
 
     return (
         <>
-            <div style={{ backgroundColor: '#F7F1DB', paddingTop: '10rem' }}>
+            <div style={{ backgroundColor: '#F7F1DB', paddingTop: '5rem' }}>
                 <div className="text-center" >
                     <h1 style={{ fontSize: 150, fontFamily: "Just Another Hand", color: '#3c5724' }}>Saigon Zoo Map</h1>
                     <p style={{ marginTop: '2rem', fontSize: '2rem' }}>Want to know what awaits you? Check out the overview here for a taste of what to </p>
@@ -59,7 +63,7 @@ const Map = () => {
                                 <Col key={idx}>
                                     <center>
                                         <Image onClick={() => handleClick(item)} roundedCircle fluid style={{ width: '148px', height: '148px' }} variant="top" src={item.image} />
-                                        <div style={{ padding: '5px 5px 50px ', justifyContent: 'start' }} onClick={() => handleClick(item)}>
+                                        <div style={{ padding: '5px 5px 50px 5px ', justifyContent: 'start' }} onClick={() => handleClick(item)}>
                                             <Link className="text-uppercase" style={{ color: 'inherit', justifyContent: 'center', textDecoration: 'none', fontSize: '1rem', fontWeight: 'bolder' }}>{item.speciesName} </Link>
                                         </div>
                                     </center>

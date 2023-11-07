@@ -25,6 +25,10 @@ const AllNews = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
+  useEffect(() => {
     fetch(`https://vietnamzoo.azurewebsites.net/api/News?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
       method: "GET",
       headers: {
@@ -55,10 +59,8 @@ const AllNews = () => {
               <Col className="md-3" key={idx}>
                 <Card style={{ backgroundColor: '#3c5724', justifyContent: 'start', cursor: 'pointer' }} onClick={() => handleClick(item)}>
                   <Card.Img style={{ width: '100%', height: '343.15px' }} variant="top" src={item.thumnail} />
-                  <Card.Body style={{ color: '#FFFFFF' }}>
-                    <Card.Title style={{
-                      height: '2.5rem'
-                    }} >{item.title}</Card.Title>
+                  <Card.Body style={{ color: '#FFFFFF',flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
+                    <Card.Title style={{  height: '5rem'}} >{item.title}</Card.Title>
                     <Card.Title >{DateHelper.formatDate(item.releaseDate)}</Card.Title>
                   </Card.Body>
                 </Card>

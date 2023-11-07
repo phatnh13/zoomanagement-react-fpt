@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Image, Card, Col, Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import Carousel from 'react-bootstrap/Carousel';
 
 
 
@@ -9,11 +8,14 @@ const Species = () => {
     const location = useLocation();
     const [species] = useState(location.state.item);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
 
     return (
         <>
-            <div style={{ backgroundColor: '#F7F1DB', paddingTop: '13.75rem' }}>
+            <div style={{ backgroundColor: '#F7F1DB', paddingTop: '10rem' }}>
                 <Container fluid>
                     <Col md={6} className="g-container pb-5">
                         <header className="col-md-12 ce-header">
@@ -38,11 +40,7 @@ const Species = () => {
                             <Col md={6} >
                                 <center>
                                     <div>
-                                        <Carousel >
-                                            <Carousel.Item >
-                                                <Image style={{ width: '460px', height: '503px' }} src={species.image} alt={species.speciesName} />
-                                            </Carousel.Item>
-                                        </Carousel>
+                                        <Image style={{ width: '460px', height: '503px' }} src={species.image} alt={species.speciesName} />
                                     </div>
                                 </center>
                             </Col>
