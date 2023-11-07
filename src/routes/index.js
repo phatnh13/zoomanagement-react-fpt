@@ -84,7 +84,6 @@ const publicRoutes = [
 
 ]
 const adminRoutes = [
-    { path: '/admin/profile', component: ProfilePage, layout: AdminLayout},
     { path: '/admin/staff', component: StaffManaging, layout: AdminLayout},
     { path: '/admin/staff/update/', component: UpdateStaff, layout: AdminLayout},
     { path: '/admin/staff/add', component: AddStaff, layout: AdminLayout},
@@ -95,7 +94,6 @@ const adminRoutes = [
     { path: '/admin/ticket/add', component: AddTicket, layout: AdminLayout},
 ]
 const staffRoutes = [
-    { path: '/staff/profile', component: ProfilePage, layout: StaffLayout},
     { path: '/staff/trainer', component: ZooTrainerManaging, layout: StaffLayout},
     { path: '/staff/trainer/add', component: AddTrainer, layout: StaffLayout},
     { path: '/staff/trainer/update/', component: UpdateZooTrainer, layout: StaffLayout},
@@ -109,7 +107,6 @@ const staffRoutes = [
     { path: '/staff/news/view/:newsId', component: ViewNews, layout: StaffLayout},
 ]
 const trainerRoutes = [
-    { path: '/trainer/profile', component: ProfilePage, layout: TrainerLayout},
     { path: '/trainer/animal', component: AnimalStatusManaging, layout: TrainerLayout},
     { path: '/trainer/meals/:animalId', component: MealManaging, layout: TrainerLayout},
     { path: '/trainer/meals/add', component: AddMeal, layout: TrainerLayout},

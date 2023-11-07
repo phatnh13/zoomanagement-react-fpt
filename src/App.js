@@ -5,8 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { publicRoutes, adminRoutes, staffRoutes, trainerRoutes } from './routes';
 import { DefaultLayout } from './components/Layout';
-import { ProtectedAdminRoute, ProtectedStaffRoute, ProtectedTrainerRoute } from './routes/ProtectedRoutes';
+import { ProtectedAdminRoute, ProtectedStaffRoute, ProtectedTrainerRoute, ProtectedRoute } from './routes/ProtectedRoutes';
 import Login from './components/AuthenticationPages/Login';
+import ProfilePage from './components/AuthenticationPages/ProfilePage';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -36,6 +37,10 @@ function App() {
           <Route
             path='/login'
             element={<Login />}
+          />
+          <Route
+            path='/user/profile'
+            element={<ProtectedRoute><ProfilePage /></ProtectedRoute>}
           />
           {publicRoutes.map((route, index) => {
             const Layout = route.layout || DefaultLayout;

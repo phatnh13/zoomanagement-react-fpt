@@ -106,6 +106,12 @@ function ProfilePage() {
         localStorage.setItem("isLoggedIn", "false");
         navigate("/login");
     }
+    const handleHome = () => {
+        navigate("/");
+    }
+    const handleManage = () => {
+        navigate("/login");
+    }
 
     useEffect(() => {
         fetch(`https://vietnamzoo.azurewebsites.net/api/user/${userId}`,
@@ -150,7 +156,7 @@ function ProfilePage() {
                                 </Card.Text>
                             </Card.Body>
                         </Card>
-                        <Card className="mb-3">
+                        <Card className="mb-1">
                             <Card.Body>
                                 <Card.Text>
                                     <Row>
@@ -208,8 +214,10 @@ function ProfilePage() {
                             </Card.Body>
                         </Card>
                         <Card className="mb-3" border="0">
-                            <Card.Body className="">
-                                <Button size="lg" variant="dark" onClick={handleLogout}>Logout</Button>
+                            <Card.Body className="d-flex justify-content-center">
+                                <Button size="lg" variant="dark" className="m-3" onClick={handleLogout}>Logout</Button>
+                                <Button size="lg" variant="outline-dark" className="m-3" onClick={handleHome}>Back to Home</Button>
+                                <Button size="lg" variant="outline-dark" className="m-3" onClick={handleManage}>Go to Management</Button>
                             </Card.Body>
                         </Card>
                 </Col>
