@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
+import React, { useState, useEffect } from 'react';
 import "./News.css";
 import { Container, Image, Row } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
@@ -8,6 +7,10 @@ import { DateHelper } from '../DateHelper';
 const News = () => {
     const location = useLocation();
     const [news, setNews] = useState(location.state.item);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     const onMouseEnter = (e) => {
         e.target.style.color = '#CCCCCC';
@@ -30,7 +33,7 @@ const News = () => {
                         <div className="">
                             <section className="ce list frame frame-default frame-type-list frame-layout-0 list-type-news_pi1">
                                 <div newsScope="newsscope">
-                                    <div className="g-void">
+                                    <Container className="g-void">
                                         <Row>
                                             <div class=" news-details__meta">
                                                 {/* <!-- date --> */}
@@ -42,32 +45,27 @@ const News = () => {
                                                 {/* <!-- categories --> */}
                                                 <span class="news-list-category">{news.author}</span>
                                             </div>
-                                            <div className="col-md-12 text-center">
+                                            <div className=" text-left">
                                                 <h1 className="main-heading mb-5">{news.title}</h1>
                                             </div>
-                                            
-                                                <Carousel >
-                                                    <Carousel.Item>
-                                                        <Image fluid src={news.image} alt="Pic1"></Image>
-                                                    </Carousel.Item>
-                                                </Carousel>
-                                            <div className=" col-md-12 text-left mt-4">
+                                            <Image fluid src={news.image} alt="Pic1"></Image>
+                                            <div className="col-md-12 text-left mt-4">
                                                 <p>{news.content}</p>
                                             </div>
                                             {/* link back */}
                                             <hr></hr>
                                             <div>
-                                                <Link 
-                                                to="/zoo-news" 
-                                                className=" justify-content-start text-align-end btn mb-3 border"
-                                                onMouseEnter={(e) => onMouseEnter(e)}
-                                                onMouseLeave={(e) => onMouseLeave(e)}
+                                                <Link
+                                                    to="/zoo-news"
+                                                    className=" justify-content-start text-align-end btn mb-3 border"
+                                                    onMouseEnter={(e) => onMouseEnter(e)}
+                                                    onMouseLeave={(e) => onMouseLeave(e)}
                                                 >
-                                                    {'< '}Back
+                                                    &#60; Back
                                                 </Link>
                                             </div>
                                         </Row>
-                                    </div>
+                                    </Container>
                                 </div>
                             </section>
                         </div>
