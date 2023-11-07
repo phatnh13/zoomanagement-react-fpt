@@ -62,7 +62,7 @@ const Map = () => {
                             return (
                                 <Col key={idx}>
                                     <center>
-                                        <Image onClick={() => handleClick(item)} roundedCircle fluid style={{ width: '148px', height: '148px' }} variant="top" src={item.image} />
+                                        <Image onClick={() => handleClick(item)} roundedCircle fluid style={{ width: '148px', height: '148px', cursor: 'pointer' }} variant="top" src={item.image} />
                                         <div style={{ padding: '5px 5px 50px 5px ', justifyContent: 'start' }} onClick={() => handleClick(item)}>
                                             <Link className="text-uppercase" style={{ color: 'inherit', justifyContent: 'center', textDecoration: 'none', fontSize: '1rem', fontWeight: 'bolder' }}>{item.speciesName} </Link>
                                         </div>

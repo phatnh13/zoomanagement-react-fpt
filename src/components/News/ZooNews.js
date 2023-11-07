@@ -60,7 +60,7 @@ const AllNews = () => {
                 <Card style={{ backgroundColor: '#3c5724', justifyContent: 'start', cursor: 'pointer' }} onClick={() => handleClick(item)}>
                   <Card.Img style={{ width: '100%', height: '343.15px' }} variant="top" src={item.thumnail} />
                   <Card.Body style={{ color: '#FFFFFF',flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
-                    <Card.Title style={{  height: '5rem', overflow:'hidden', textOverflow: 'inherit'}} >{item.title}</Card.Title>
+                    <Card.Title style={{  height: '4rem', overflow:'hidden', textOverflow: 'inherit'}} >{item.title}</Card.Title>
                     <Card.Title style={{lineHeight: '1.875rem'}} >{DateHelper.formatDate(item.releaseDate)}</Card.Title>
                   </Card.Body>
                 </Card>
