@@ -14,7 +14,7 @@ const HomeView = () => {
                 <div className="video-overlay vh-100"></div>
                 <video src={TigerVideoHome} autoPlay loop muted></video>
 
-                <div className="home-view__center">
+                <div xs={1} className="home-view__center">
                     <div style={{ marginLeft: '5rem' }}>
                         <svg width="408" height="247" viewBox="0 0 408 258" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="273.703" height="75.9329" transform="matrix(0.961177 -0.275934 0.22965 0.973273 0.0643311 76.0339)" fill="#3C5724" />
@@ -27,10 +27,12 @@ const HomeView = () => {
                 <div className="home-view__bottom d-flex">
                     <Row className="home-view-bottom__table d-flex">
                         <Col className="col-md-5">
-                            <h1 style={{ display: 'flex', justifyContent: 'center', color: '#3C5724', fontSize: '1.4rem' }}>OPENING HOURS</h1>
-                            <h2 style={{ fontSize: '1.5rem' }}>Today, {date} </h2>
-                            <h2 style={{ fontSize: '1.5rem' }}> 9:00 - 18:30</h2>
-                            <p>Last admission: 17:00</p>
+                            <Row style={{height: '4rem'}}>
+                                <h1 style={{ display: 'flex', justifyContent: 'center', color: '#3C5724', fontSize: '1.4rem' }}>OPENING HOURS</h1>
+                                <h2 style={{ fontSize: '1.5rem' }}>Today, {date} </h2>
+                                <h2 style={{ fontSize: '1.5rem' }}> 9:00 - 18:30</h2>
+                                <p>Last admission: 17:00</p>
+                            </Row>
                             <div className="home-view-bottom__btn">
                                 <Link to="/opening-hours">
                                     <Button className="home-view-bottom__btn-bottom btn btn-light">
@@ -38,6 +40,7 @@ const HomeView = () => {
                                     </Button>
                                 </Link>
                             </div>
+
                         </Col>
                         <Col className="col-md-2 text-center">
                             <svg width="2" height="160" viewBox="0 0 1 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,10 +48,12 @@ const HomeView = () => {
                             </svg>
                         </Col>
                         <Col className="col-md-4">
-                            <h1 style={{ display: 'flex', justifyContent: 'center', color: '#3C5724', fontSize: '1.4rem' }}>MAP</h1>
-                            <div className="home-view-bottom__logo">
-                                <Image src={MapLogo} />
-                            </div>
+                            <Row style={{height: '4rem'}}>
+                                <h1 style={{ display: 'flex', justifyContent: 'center', color: '#3C5724', fontSize: '1.4rem' }}>MAP</h1>
+                                <div className="home-view-bottom__logo">
+                                    <Image src={MapLogo} />
+                                </div>
+                            </Row>
                             <div className="home-view-bottom__btn">
                                 <Link to="/map">
                                     <Button className="btn btn-light home-view-bottom__btn-bottom">
@@ -56,6 +61,7 @@ const HomeView = () => {
                                     </Button>
                                 </Link>
                             </div>
+
                         </Col>
                     </Row>
                 </div>
