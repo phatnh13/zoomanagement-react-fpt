@@ -35,7 +35,9 @@ const AdminNavbar = () => {
                     </Nav>
                     <Navbar.Text>
                         <NavDropdown title={name} >
-                            <NavDropdown.Item href="/admin/profile">Profile</NavDropdown.Item>
+                            <NavDropdown.Item>
+                                <Link to='user/profile'>Profile</Link>
+                            </NavDropdown.Item>
                             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Navbar.Text>

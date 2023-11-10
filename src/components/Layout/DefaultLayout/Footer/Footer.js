@@ -16,26 +16,26 @@ const Footer = () => {
                             <FaInstagram className="footer-icon" />
                             <FaYoutube className="footer-icon" />
                             <p>Công Ty TNHH MTV</p>
-                            <p>Thảo Cầm Viên Sài Gòn</p>
+                            <p>VK3P</p>
                         </Col>
                         <Col className="footer-location-icon">
                             <p>
                                 <BiLogoGmail className="contact-icon" />
-                                cskh.kdttsaigonzoo@gmail.com
+                                saigonzoo.vk3p@gmail.com
                             </p>
                             <p>
                                 <FaLocationDot className="contact-icon" />
-                                2 Nguyễn Bỉnh Khiêm, Bến Nghé, Quận 1, Hồ Chí Minh 700000
+                                Lô Èa-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, TP HCM
                             </p>
                             <p>
                                 <FaPhoneFlip className="contact-icon" />
-                                028 38291425
+                                0949 769 812
                             </p>
                         </Col>
                         <Col className="opening-hour-footer">
                             <p>OPENING DAY</p>
                             <p>MONDAY - SUNDAY</p>
-                            <p>7:00 AM - 5:30 PM</p>
+                            <p>9:00 AM - 6:30 PM</p>
                         </Col>
                     </Row>
                 </Container>

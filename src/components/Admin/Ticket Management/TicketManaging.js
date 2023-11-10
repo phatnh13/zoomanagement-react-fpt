@@ -16,7 +16,6 @@ function TicketManaging() {
     }
 
     useEffect(() => {
-        document.title = "Ticket Managing";
         fetch(`https://vietnamzoo.azurewebsites.net/api/ticket`, {
             method: "GET",
             headers: {
