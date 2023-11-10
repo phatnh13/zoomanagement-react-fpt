@@ -11,6 +11,7 @@ const HomeMenu = ({handleClose}) => {
     expiration: ""
   };
   let userName = "";
+  let isLoggedIn = localStorage.getItem("isLoggedIn");
   if (!localStorage.getItem("loginUser")) {
     localStorage.setItem("loginUser", JSON.stringify(emptyUser));
     localStorage.setItem("isLoggedIn", "false");
@@ -95,7 +96,7 @@ const HomeMenu = ({handleClose}) => {
           <ul>
             <li>
               
-              {userName === "" ? (
+              {isLoggedIn === "false" ? (
               <Link className='navigation__link' to='/login' onClick={handleClose}>
               <h1 className='navigation__title'>Login</h1>
               </Link>

@@ -11,6 +11,7 @@ import ProfilePage from './components/AuthenticationPages/ProfilePage';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { DateHelper } from './components/DateHelper';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -31,6 +32,12 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 function App() {
+  const expirationDate = JSON.parse(localStorage.getItem("loginUser")).expiration;
+    
+  
+    if (DateHelper.isExpired(expirationDate)) {
+      localStorage.setItem("isLoggedIn", "false");
+    }
   return (
       <div className='app'>
         <Routes>
