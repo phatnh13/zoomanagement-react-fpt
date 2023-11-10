@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import TicketTypeTable from "./TicketType/TicketTypeTable";
 import { useNavigate } from "react-router-dom";
+import RevenueTable from "./Revenue/RevenueTable";
 function TicketManaging() {
     const [ticketsList, setTicketsList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -40,22 +41,25 @@ function TicketManaging() {
                         </Col>
                     ) :
                     (
-                        <Col lg={6} md={12} sm={12}>
-                            <Row className="my-2">
-                                <Col lg={8} md={10} sm={10}>
-                                    <h3>Ticket Type</h3>
-                                </Col>
-                                <Col className="d-grid">
-                                    <Button variant="outline-primary" onClick={handleAddTicketType}>Add more ticket</Button>
-                                </Col>
-                            </Row>
-                            <TicketTypeTable ticketsList={ticketsList} reloadState={{reload, setReload}}/>
-                        </Col>
+                        <>
+                            <Col lg={6} md={12} sm={12}>
+                                <Row className="my-2">
+                                    <Col lg={8} md={10} sm={10}>
+                                        <h3>Ticket Type</h3>
+                                    </Col>
+                                    <Col className="d-grid">
+                                        <Button variant="outline-primary" onClick={handleAddTicketType}>Add more ticket</Button>
+                                    </Col>
+                                </Row>
+                                <TicketTypeTable ticketsList={ticketsList} reloadState={{reload, setReload}}/>
+                            </Col>
+                            {/* Revenue */}
+                            <Col>
+                                <h3 className="my-2">Revenue</h3>
+                                <RevenueTable ticketsList={ticketsList}/>
+                            </Col>
+                        </>
                     )}
-                {/* Revenues */}
-                <Col>
-
-                </Col>
             </Row>
         </Container>
     )

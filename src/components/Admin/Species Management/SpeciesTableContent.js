@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Accordion, Button } from "react-bootstrap";
+import { Accordion, Button, Image } from "react-bootstrap";
 import SpeciesDeleteModal from "./SpeciesDeleteModal";
 import { useNavigate } from "react-router-dom";
 
@@ -46,9 +46,10 @@ function SpeciesTableContent({ species, index, reloadState }) {
                 <p><strong>Ecological: </strong> {species.ecological}</p>
                 <p><strong>Diet: </strong> {species.diet}</p>
                 <p><strong>Breeding and reproduction: </strong> {species.breedingAndReproduction}</p>
-                <img src={species.image} alt="species" width="100%" height="auto" />
-                <Button variant="danger" className="me-2 mt-2" onClick={handleShow}>Delete</Button>
-                <Button variant="warning" className="me-2 mt-2" onClick={handleUpdateSpecies}>Update</Button>
+                {/* <img src={species.image} alt="species" width="100%" height="auto" /> */}
+                <Image src={species.image} alt="species" width="300rem" height="300rem" />
+                <Button variant="danger" className="me-2" onClick={handleShow}>Delete</Button>
+                <Button variant="warning" onClick={handleUpdateSpecies}>Update</Button>
             </Accordion.Body>
             <SpeciesDeleteModal show={show} handleClose={handleClose} handleDelete={handleDelete} species={species} />
         </Accordion.Item>
