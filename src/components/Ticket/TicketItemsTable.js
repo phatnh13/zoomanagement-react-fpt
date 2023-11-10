@@ -47,7 +47,11 @@ const TicketItemsTable = () => {
                                 <p className="pt-3">Valid from: {date} </p>
                                 <p>Valid to: {dateValid}</p>
                             </th>
-                            <th><div className="mt-5">{data.ticket.price}</div></th>
+                            <th><div className="mt-5">{data.ticket.price === 0 ? (
+                                                <p>Free</p>
+                                            ) : (
+                                                <p>{data.ticket.price}$</p>
+                                            )}</div></th>
                             <th><div className="mt-5">{data.quantity}</div></th>
                             <th><div className="mt-5">{data.ticket.price * data.quantity}</div></th>
                         </tr>
