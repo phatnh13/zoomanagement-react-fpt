@@ -27,7 +27,7 @@ const HomeView = () => {
                 <div className="home-view__bottom d-flex">
                     <Row className="home-view-bottom__table d-flex">
                         <Col className="col-md-5">
-                            <Row style={{height: '4rem'}}>
+                            <Row style={{height: '9.5rem'}}>
                                 <h1 style={{ display: 'flex', justifyContent: 'center', color: '#3C5724', fontSize: '1.4rem' }}>OPENING HOURS</h1>
                                 <h2 style={{ fontSize: '1.5rem' }}>Today, {date} </h2>
                                 <h2 style={{ fontSize: '1.5rem' }}> 9:00 - 18:30</h2>
@@ -40,7 +40,6 @@ const HomeView = () => {
                                     </Button>
                                 </Link>
                             </div>
-
                         </Col>
                         <Col className="col-md-2 text-center">
                             <svg width="2" height="160" viewBox="0 0 1 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +47,7 @@ const HomeView = () => {
                             </svg>
                         </Col>
                         <Col className="col-md-4">
-                            <Row style={{height: '4rem'}}>
+                            <Row style={{height: '9.5rem'}}>
                                 <h1 style={{ display: 'flex', justifyContent: 'center', color: '#3C5724', fontSize: '1.4rem' }}>MAP</h1>
                                 <div className="home-view-bottom__logo">
                                     <Image src={MapLogo} />

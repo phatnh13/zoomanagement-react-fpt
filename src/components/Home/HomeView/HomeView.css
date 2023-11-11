@@ -30,9 +30,10 @@ video{
 }
 
 .home-view-bottom__btn{
-    align-items: center;
-    justify-content: center;
     display: flex;
+    flex-direction: column; /* Ensure this is set to column */
+    align-items: center; /* Optional: Align items in the center */
+    justify-content: center; /* Optional: Justify content in the center */
     margin-bottom: 5px;
     z-index: 2;
 }
