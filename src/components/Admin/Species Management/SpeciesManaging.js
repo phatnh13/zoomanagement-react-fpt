@@ -37,7 +37,7 @@ function SpeciesManaging() {
             <Row>
                 {isLoading === true ? (
                     <Col>
-                    <Spin />
+                    <h1>Is Loading ...</h1>
                     </Col>
                 ) : (
                     <Col>

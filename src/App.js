@@ -32,8 +32,21 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 function App() {
+  const emptyUser = {
+    userId: 0,
+    userName: "",
+    email: "",
+    role: "",
+    token: "",
+    expiration: ""
+  };
+  if (!localStorage.getItem("loginUser")) {
+    localStorage.setItem("loginUser", JSON.stringify(emptyUser));
+  };
   const expirationDate = JSON.parse(localStorage.getItem("loginUser")).expiration;
-    
+  if (!localStorage.getItem("isLoggedIn")) {
+    localStorage.setItem("isLoggedIn", "false");
+  };
   
     if (DateHelper.isExpired(expirationDate)) {
       localStorage.setItem("isLoggedIn", "false");
