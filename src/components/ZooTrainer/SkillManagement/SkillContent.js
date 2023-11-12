@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row, Image } from "react-bootstrap";
 import DeleteSkillModal from "./Modal/DeleteSkillModal";
 import UpdateSkillModal from "./Modal/UpdateSkillModal";
+import Update from "../../../assets/edit.png";
+import Delete from "../../../assets/delete.png";
 function SkillContent({skill, reloadState, updateSkill}) {
     //#region Handle Modal
         //Delete modal
@@ -51,10 +53,10 @@ function SkillContent({skill, reloadState, updateSkill}) {
                     </Card.Text>
                     </Col>
                     <Col lg={2} md={3} sm={3} className="d-grid">
-                        <Button variant="outline-warning" size="md" onClick={handleShowUpdateModal}>Update</Button>
+                        <Button variant="outline-warning" size="md" onClick={handleShowUpdateModal}><Image style={{ height: '1.5rem', width: '1.5rem' }} src={Update}></Image></Button>
                     </Col>
                     <Col lg={2} md={3} sm={3} className="d-grid">
-                        <Button variant="outline-danger" size="md" onClick={handleShowDeleteModal}>Delete</Button>
+                        <Button variant="outline-danger" size="md" onClick={handleShowDeleteModal}><Image style={{ height: '1.5rem', width: '1.5rem' }} src={Delete}></Image></Button>
                     </Col>
                 </Row>
             </Card.Body>

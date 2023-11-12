@@ -4,6 +4,7 @@ import CageTable from "./CageTable";
 import AddCageModal from "./Modal/AddCageModal";
 import AreaTable from "./AreaTable";
 import AddAreaModal from "./Modal/AddAreaModal";
+import { Spin } from "antd";
 
 function CageAreaManaging() {
     //#region Modal
@@ -115,7 +116,7 @@ function CageAreaManaging() {
             </Row>
             {isLoading === true ? (
                 <Row>
-                    <h1>Is Loading ...</h1>
+                    <Spin />
                 </Row>
             ) : (
                 <Row className="">

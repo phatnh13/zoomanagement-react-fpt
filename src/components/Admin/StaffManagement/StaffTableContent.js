@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import StaffDeleteModal from "./StaffDeleteModal";
 import { DateHelper } from "../../DateHelper";
+import Delete from "../../../assets/delete.png";
+import Update from "../../../assets/edit.png";
 
 const StaffTableContent = ({ user }) => {
     const [showDeleteModal, setShow] = useState(false);
@@ -43,10 +45,10 @@ const StaffTableContent = ({ user }) => {
             <td>{user.email}</td>
             <td>{DateHelper.formatDate(user.dateOfBirth)}</td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
+                <Button variant="outline-warning" size="sm" h onClick={handleUpdate}><Image style={{height: '1rem', width: '1rem'}} src={Update}></Image></Button>
             </td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleShow}>Delete</Button>
+                <Button variant="outline-danger" size="sm" onClick={handleShow}><Image style={{height: '1rem', width: '1rem'}} src={Delete}></Image></Button>
             </td>
             {/* <UpdateStaff user={user} /> */}
             <StaffDeleteModal show={showDeleteModal} handleClose={handleClose} handleDelete={handleDelete} user={user} />

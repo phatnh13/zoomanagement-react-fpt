@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import SkillContent from "./SkillContent";
+import { Spin } from "antd";
 function SkillManaging() {
     const userId = JSON.parse(localStorage.getItem("loginUser")).userId;
     const [user, setUser] = useState({});
@@ -95,7 +96,7 @@ function SkillManaging() {
                     <Card>
                         {isLoading === true ? ( 
                             <Card.Body>
-                                <div>Is Loading ...</div>
+                                <Spin/>
                             </Card.Body>
                         ) : (
                             <Card.Body>

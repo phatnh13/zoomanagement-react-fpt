@@ -36,7 +36,7 @@ const TrainerNavbar = () => {
                     <Navbar.Text>
                         <NavDropdown title={name} >
                             <NavDropdown.Item>
-                                <Link to='/user/profile'>Profile</Link>
+                                <Link to='/user/profile' className ="text-decoration-none">Profile</Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>

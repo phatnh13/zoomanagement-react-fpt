@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Pagination, Col, Row, Container } from "react-bootstrap";
 import FoodTable from "./FoodTable";
+import { Spin } from "antd";
 
 function FoodManaging() {
     const [foodList, setFoodList] = useState([]);
@@ -49,7 +50,7 @@ function FoodManaging() {
                 <Col lg={10} md={10} sm={12}>
                     {isLoading === true ? (
                         <Row>
-                            <h1>Is Loading ...</h1>
+                            <Spin />
                         </Row>
                     ) : (
                         <Row>
