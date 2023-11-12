@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Pagination, Col, Row, Container, Form, Button } from "react-bootstrap";
+import { Pagination, Col, Row, Container, Form } from "react-bootstrap";
 import AnimalStatusTable from "./AnimalStatusTable";
 import { Spin } from "antd";
 
