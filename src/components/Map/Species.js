@@ -10,9 +10,8 @@ const Species = () => {
 
     const onMouseEnter = (e) => {
         e.target.style.border = '2px none';
-        e.target.style.transition = '0.2s';
+        e.target.style.transition = '0.3s';
         e.target.style.transitionTimingFunction = 'ease-in-out';
-        e.target.style.transitionDelay = '0.1s';
         e.target.style.shadow = '5px 5px 10px #000003';
     }
     const onMouseLeave = (e) => {
@@ -27,7 +26,7 @@ const Species = () => {
 
     return (
         <>
-            <div className="vh-100" style={{ backgroundColor: '#F7F1DB', paddingTop: '10rem' }}>
+            <div className="vh-50" style={{ backgroundColor: '#F7F1DB', paddingTop: '10rem' }}>
                 <Container fluid className="vh-50">
                     <Col md={6} className="g-container pb-5">
                         <header className="col-md-12 ce-header">
@@ -58,9 +57,9 @@ const Species = () => {
                             </Col>
                         </Card.Body>
                     </Card>
-                    <Col md={6} className="g-container">
+                    <Col md={6} className="g-container pb-3">
                         <div className="">
-                            <Link to="/map" className="justify-content-start btn mb-3 mt-3"
+                            <Link to="/map" className="justify-content-start btn mb-3 mt-4"
                                 onMouseEnter={(e) => onMouseEnter(e)}
                                 onMouseLeave={(e) => onMouseLeave(e)}
                             >
