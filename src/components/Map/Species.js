@@ -9,14 +9,15 @@ const Species = () => {
     const [species] = useState(location.state.item);
 
     const onMouseEnter = (e) => {
-        e.target.style.border = '2px none';
         e.target.style.transition = '0.3s';
         e.target.style.transitionTimingFunction = 'ease-in-out';
-        e.target.style.shadow = '5px 5px 10px #000003';
+        e.target.style.border = '2px solid black';
+
     }
     const onMouseLeave = (e) => {
         e.target.style.color = 'black';
-        e.target.style.border = '2px solid black';
+        e.target.style.border = '2px #CCCCCC';
+
     }
 
     useEffect(() => {
