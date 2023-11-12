@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 function TicketDetail({ticket, from, to}) {
     const [revenue, setRevenue] = useState({});
     useEffect(() => {
@@ -22,7 +22,11 @@ function TicketDetail({ticket, from, to}) {
         <Card className="mb-2">
             <Card.Body>
                 <Card.Text>
-                    {ticket.ticketName}: <span className="text-primary mx-5">{revenue.totalQuantity} solds</span> <span className="text-success mx-5">{revenue.totalRevenue}$</span>
+                    <Row>
+                        <Col lg={8} md={8} sm={8}>{ticket.ticketName}:</Col>
+                        <Col lg={2} md={2} sm={2}><span className="text-primary">{revenue.totalQuantity} solds</span></Col>
+                        <Col lg={2} md={2} sm={2}><span className="text-success">{revenue.totalRevenue}$</span></Col>
+                    </Row>
                 </Card.Text>
             </Card.Body>
         </Card>
