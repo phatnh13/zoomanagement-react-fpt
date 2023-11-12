@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Button, Image } from "react-bootstrap";
 import DeleteMealModal from "./Modal/DeleteMealModal";
 import ViewFood from "./Modal/ViewFood";
-import Update from "../../../assets/edit.png";
+import Delete from "../../../assets/delete.png";
 import View from "../../../assets/view.png";
 function MealTableContent({ meal, reloadState }) {
     //#region Control Modal
@@ -22,7 +22,7 @@ function MealTableContent({ meal, reloadState }) {
             <td>
                 <Button variant="outline-success" onClick={handleShowViewFoodModal}><Image style={{ height: '1rem', width: '1rem' }} src={View}></Image></Button>
             </td>
-            <td><Button variant="outline-warning" onClick={handleShowDeleteMealModal}><Image style={{ height: '1rem', width: '1rem' }} src={Update}></Image></Button></td>
+            <td><Button variant="outline-danger" onClick={handleShowDeleteMealModal}><Image style={{ height: '1rem', width: '1rem' }} src={Delete}></Image></Button></td>
             <DeleteMealModal 
             show={showDeleteMealModal}
             handleClose={handleCloseDeleteMealModal}

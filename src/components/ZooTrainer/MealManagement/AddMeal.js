@@ -6,7 +6,6 @@ import { Link, useLocation } from "react-router-dom";
 function AddMeal() {
     const [foodList, setFoodList] = useState([]);
     const [foodAddList, setFoodAddList] = useState([]);
-    const [mealList, setMealList] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     //#region Pagination
@@ -32,7 +31,7 @@ function AddMeal() {
     const [note, setNote] = useState("");
 
     let handleAddMeal = () => {
-        const newMeals = foodAddList.map(food => (
+        var newMeals = foodAddList.map(food => (
             {
                 animalUserId: animalUserId,
                 foodId: food.foodId,
@@ -40,36 +39,29 @@ function AddMeal() {
                 feedingTime: DateHelper.formatTime(time),
             }
         ));
-        setMealList(prevMealList => { return [...prevMealList, ...newMeals]});
-        console.log(mealList, "mealList");
-            fetch(`https://vietnamzoo.azurewebsites.net/api/Meal`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
-            },
-            body: JSON.stringify(mealList),
-            })
-            .then((res) => {
-                if (res.ok) {
-                    alert("Add meal success!");
-                    setMealList([]);
-                    setNote("");
-                }
-                else {
-                    alert("Add meal failed!");
-                }
-            })
-            .catch(rejected => {
-                console.log(rejected);
-            });
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Meal`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+        },
+        body: JSON.stringify(newMeals),
+        })
+        .then((res) => {
+            if (res.ok) {
+                alert("Add meal success!");
+                newMeals = [];
+                setNote("");
+            }
+            else {
+                alert("Add meal failed!");
+            }
+        })
+        .catch(rejected => {
+            console.log(rejected);
+        });
         setFoodAddList([]);
-
     }
-
-    useEffect(() => {
-        console.log(foodAddList);
-    }, [foodAddList]);
     useEffect(() => {
         fetch(`https://vietnamzoo.azurewebsites.net/api/Food?pageNumber=${currentPage}&searchBy=FoodName`, {
             method: "GET",
