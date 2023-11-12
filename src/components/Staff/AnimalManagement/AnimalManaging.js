@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Pagination, Col, Row, Container, Form, Button } from "react-bootstrap";
 import AnimalTable from "./AnimalTable";
+import { Spin } from "antd";
 
 function AnimalManaging() {
 
@@ -93,7 +94,7 @@ function AnimalManaging() {
             <Row>
                 {isLoading === true ? (
                     <Col>
-                        <h1>Is Loading ...</h1>
+                        <Spin />
                     </Col>
                 ) : (
                     <Col>

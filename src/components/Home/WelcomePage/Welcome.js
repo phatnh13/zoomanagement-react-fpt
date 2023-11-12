@@ -14,7 +14,7 @@ const Welcome = () => {
                         <Button className="btn-view-all-price mt-3 me-5 mb-3 btn btn-success"><Link className="link-underline-opacity-0 link-underline link-light" to="/viewticket">View all price</Link></Button>
                     </div>
                     <Row className="view-price__welcome mt-1">
-                        <Card md={6} lg={6} className="view-price__card mx-5">
+                        <Card xs={6} sm={6} md={6} lg={6} className="view-price__card mx-5">
                             <Card.Img className="image-price" src={TicketHome1} />
                             <Card.Body>
                                 <Card.Title className="view-price__txt-ticket mx-5">Day Ticket</Card.Title>
@@ -23,7 +23,7 @@ const Welcome = () => {
                                 </Card.Title>
                             </Card.Body>
                         </Card>
-                        <Card md={6} lg={6} className="view-price__card mx-5">
+                        <Card xs={6} sm={6} md={6} lg={6} className="view-price__card mx-5">
                             <Card.Img className="image-price" src={TicketHome2} />
                             <Card.Body>
                                 <Card.Title className="view-price__txt-ticket mx-5">Annual Passes</Card.Title>
@@ -37,6 +37,5 @@ const Welcome = () => {
             </div>
         </>
     )
-
 }
 export default Welcome;

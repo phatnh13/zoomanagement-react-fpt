@@ -1,10 +1,12 @@
 import React, {useState} from "react";
-import {Button} from "react-bootstrap";
+import {Button, Image} from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
 import DeleteAnimalModal from "./Modal/DeleteAnimalModal";
 import AnimalShowZooTrainerModal from "./Modal/AnimalShowZooTrainerModal";
 import AnimalShowCageModal from "./Modal/AnimalShowCageModal";
 import AnimalUpdateModal from "./Modal/AnimalUpdateModal";
+import Delete from "../../../assets/delete.png";
+import Update from "../../../assets/edit.png";
 
 const TrainerTableContent = ({animal, reloadState}) => {
     //#region Modal
@@ -91,16 +93,16 @@ const TrainerTableContent = ({animal, reloadState}) => {
             <td>{DateHelper.formatDate(animal.dateArrive)}</td>
             <td>{animal.status}</td>
             <td className="text-center">
-                <Button variant="outline-danger" size="sm" onClick={handleShowCage} >Cages</Button>
+                <Button variant="outline-success" size="sm" onClick={handleShowCage} >Cages</Button>
             </td>
             <td className="text-center">
-                <Button variant="outline-danger" size="sm" onClick={handleShowTrainerModal} >Zoo Trainers</Button>
+                <Button variant="outline-success" size="sm" onClick={handleShowTrainerModal} >Zoo Trainers</Button>
             </td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleShowUpdateModal}>Update</Button>
+                <Button variant="outline-warning" size="sm" onClick={handleShowUpdateModal}><Image style={{ height: '1rem', width: '1rem' }} src={Update}></Image></Button>
             </td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleShowDeleteModal}>Delete</Button>
+                <Button variant="outline-danger" size="sm" onClick={handleShowDeleteModal}><Image style={{ height: '1rem', width: '1rem' }} src={Delete}></Image></Button>
             </td>
             <AnimalShowCageModal
             show={showCageModal}

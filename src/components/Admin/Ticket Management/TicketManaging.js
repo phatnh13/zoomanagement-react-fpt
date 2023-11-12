@@ -3,6 +3,7 @@ import { Col, Container, Row, Button } from "react-bootstrap";
 import TicketTypeTable from "./TicketType/TicketTypeTable";
 import { useNavigate } from "react-router-dom";
 import RevenueTable from "./Revenue/RevenueTable";
+import { Spin } from 'antd';
 function TicketManaging() {
     const [ticketsList, setTicketsList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -37,7 +38,7 @@ function TicketManaging() {
                 {isLoading === true ?
                     (
                         <Col lg={6} md={12} sm={12} className="d-flex justify-content-center">
-                            <h3>Loading...</h3>
+                            <Spin />
                         </Col>
                     ) :
                     (

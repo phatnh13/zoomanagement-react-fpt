@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TrainerTable from "./TrainerTable";
 import { Container, Button, Row, Col, Form, Pagination } from "react-bootstrap";
+import { Spin } from "antd";
 function ZooTrainerManaging() {
     const [trainer, setTrainer] = useState([]);
     const [searchBy, setSearchBy] = useState("FullName");
@@ -94,7 +95,7 @@ function ZooTrainerManaging() {
             <Row>
                 {isLoading === true ? (
                     <Col>
-                        <h1>Is Loading ...</h1>
+                        <Spin />
                     </Col>
                 ) : (
                     <Col>

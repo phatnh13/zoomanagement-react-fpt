@@ -1,8 +1,9 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
 import MealTable from "./MealTable";
+import { Spin } from "antd";
 function MealManaging() {
     //Get animalId from url
     const { animalId } = useParams();
@@ -54,9 +55,7 @@ function MealManaging() {
     return (
         <Container fluid>
             {isLoading ? (
-                <Spinner animation="border" role="status">
-                    <span className="sr-only">Is Loading ...</span>
-                </Spinner>
+                <Spin />
             ) : (
                 <>
                     <h2 className="text-center"><span className="text-danger">

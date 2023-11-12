@@ -1,5 +1,6 @@
 import React from "react";
-import { Modal, Form, Button, Row, Col } from "react-bootstrap";
+import { Modal, Form, Button, Row, Col, Image } from "react-bootstrap";
+import Delete from "../../../../assets/delete.png";
 function ViewFood({ show, handleClose, meal, reloadState}) {
     const foodsList = meal.food;
     return ( 
@@ -40,7 +41,7 @@ function ViewFood({ show, handleClose, meal, reloadState}) {
                             <Form.Control type="text" value={food.foodName} readOnly/>
                         </Col>
                         <Col lg={2} md={2} sm={4} className="d-grid">
-                            <Button variant="outline-primary" size="sm" onClick={handleDeleteMealFood}>Delete</Button>
+                            <Button variant="outline-danger" size="sm" onClick={handleDeleteMealFood}><Image style={{ height: '1rem', width: '1rem' }} src={Delete}></Image></Button>
                         </Col>
                     </Row>
                 )

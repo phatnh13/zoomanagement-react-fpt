@@ -3,6 +3,7 @@ import { Accordion, Button, Image } from "react-bootstrap";
 import SpeciesDeleteModal from "./SpeciesDeleteModal";
 import { useNavigate } from "react-router-dom";
 
+
 function SpeciesTableContent({ species, index, reloadState }) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -48,8 +49,10 @@ function SpeciesTableContent({ species, index, reloadState }) {
                 <p><strong>Breeding and reproduction: </strong> {species.breedingAndReproduction}</p>
                 {/* <img src={species.image} alt="species" width="100%" height="auto" /> */}
                 <Image src={species.image} alt="species" width="300rem" height="300rem" />
+                <div className="my-2">
                 <Button variant="danger" className="me-2" onClick={handleShow}>Delete</Button>
                 <Button variant="warning" onClick={handleUpdateSpecies}>Update</Button>
+                </div>
             </Accordion.Body>
             <SpeciesDeleteModal show={show} handleClose={handleClose} handleDelete={handleDelete} species={species} />
         </Accordion.Item>

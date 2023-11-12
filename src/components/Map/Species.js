@@ -8,6 +8,18 @@ const Species = () => {
     const location = useLocation();
     const [species] = useState(location.state.item);
 
+    const onMouseEnter = (e) => {
+        e.target.style.border = '2px none';
+        e.target.style.transition = '0.2s';
+        e.target.style.transitionTimingFunction = 'ease-in-out';
+        e.target.style.transitionDelay = '0.1s';
+        e.target.style.shadow = '5px 5px 10px #000003';
+    }
+    const onMouseLeave = (e) => {
+        e.target.style.color = 'black';
+        e.target.style.border = '2px solid black';
+    }
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
@@ -15,7 +27,7 @@ const Species = () => {
 
     return (
         <>
-            <div style={{ backgroundColor: '#F7F1DB', paddingTop: '10rem' }}>
+            <div className="vh-100" style={{ backgroundColor: '#F7F1DB', paddingTop: '10rem' }}>
                 <Container fluid className="vh-50">
                     <Col md={6} className="g-container pb-5">
                         <header className="col-md-12 ce-header">
@@ -48,8 +60,12 @@ const Species = () => {
                     </Card>
                     <Col md={6} className="g-container">
                         <div className="">
-                            <Link to="/map" className="justify-content-start btn mb-3 mt-3">
-                                Back to the overview {'>'}
+                            <Link to="/map" className="justify-content-start btn mb-3 mt-3"
+                                onMouseEnter={(e) => onMouseEnter(e)}
+                                onMouseLeave={(e) => onMouseLeave(e)}
+                            >
+                                Back to the overview &#62;
+
                             </Link>
                         </div>
                     </Col>

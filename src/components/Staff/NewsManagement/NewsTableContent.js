@@ -1,8 +1,11 @@
 import React, {useState} from "react";
-import { Button } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
 import { useNavigate } from "react-router-dom";
 import DeleteNewsModal from "./Modal/DeleteNewsModal";
+import Delete from "../../../assets/delete.png";
+import Update from "../../../assets/edit.png";
+import View from "../../../assets/view.png";
 function NewsTableContent({news}) {
     //Modal
     const [showDelete, setShowDelete] = useState(false);
@@ -41,17 +44,17 @@ function NewsTableContent({news}) {
             <td>{DateHelper.formatDate(news.releaseDate)}</td>
             <td>
                 <div className="d-grid">
-                    <Button variant="outline-success" size="sm" onClick={handleView}>View</Button>
+                    <Button variant="outline-success" size="sm" onClick={handleView}><Image style={{ height: '1rem', width: '1rem' }} src={View}></Image></Button>
                 </div>
             </td>
             <td>
                 <div className="d-grid">
-                    <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
+                    <Button variant="outline-warning" size="sm" onClick={handleUpdate}><Image style={{ height: '1rem', width: '1rem' }} src={Update}></Image></Button>
                 </div>
             </td>
             <td>
                 <div className="d-grid">
-                    <Button variant="outline-danger" size="sm" onClick={handleShowDelete}>Delete</Button>
+                    <Button variant="outline-danger" size="sm" onClick={handleShowDelete}><Image style={{ height: '1rem', width: '1rem' }} src={Delete}></Image></Button>
                 </div>
             </td>
             <DeleteNewsModal 

@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react';
-import { Container, Row, Col, Form, Button,Pagination, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Spin } from 'antd';
 import SpeciesTable from './SpeciesTable';
 
 function SpeciesManaging() {
@@ -34,9 +35,9 @@ function SpeciesManaging() {
                 </Col>
             </Row>
             <Row>
-                {isLoading == true ? (
+                {isLoading === true ? (
                     <Col>
-                    <Spinner>Is Loading ...</Spinner>
+                    <Spin />
                     </Col>
                 ) : (
                     <Col>

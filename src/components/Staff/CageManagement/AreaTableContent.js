@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import { Button, FormControl } from 'react-bootstrap';
+import { Button, FormControl, Image } from 'react-bootstrap';
 import DeleteAreaModal from './Modal/DeleteAreaModal';
+import Delete from "../../../assets/delete.png";
+import Update from "../../../assets/edit.png";
 
 function AreaTableContent({area, reloadState}) {
     //Modal Handling
@@ -68,10 +70,10 @@ function AreaTableContent({area, reloadState}) {
                 (e) => setAreaName(e.target.value)} />
             </td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
+                <Button variant="outline-warning" size="sm" onClick={handleUpdate}><Image style={{ height: '1rem', width: '1rem' }} src={Update}></Image></Button>
             </td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleShow}>Delete</Button>
+                <Button variant="outline-danger" size="sm" onClick={handleShow}><Image style={{ height: '1rem', width: '1rem' }} src={Delete}></Image></Button>
             </td>
             <DeleteAreaModal area={area} show={showState} handleClose={handleClose} handleDelete={handleDelete} />
         </tr>

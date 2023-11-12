@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Button, Row, Col, Form, Pagination } from "react-bootstrap";
 import StaffTable from "./StaffTable";
 import { useNavigate } from "react-router-dom";
+import { Spin } from 'antd';
 const StaffManaging = () => {
 
     const [users, setUsers] = useState([]);
@@ -95,7 +96,7 @@ const StaffManaging = () => {
             <Row>
                 {isLoading ? (
                     <Col>
-                        <h1>Loading...</h1>
+                        <h1><Spin /></h1>
                     </Col>
                 ) : (
                     <Col>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Pagination, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import NewsTable from "./NewsTable";
+import { Spin } from "antd";
 function NewsManaging() {
 
     const [searchString, setsearchString] = useState("");
@@ -86,7 +87,7 @@ function NewsManaging() {
             <Row>
                 {isLoading === true ? (
                     <Col>
-                        <h1>Is Loading ...</h1>
+                        <Spin />
                     </Col>
                 ) : (
                     <Col>

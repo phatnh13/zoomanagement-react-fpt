@@ -25,7 +25,7 @@ const Footer = () => {
                             </p>
                             <p>
                                 <FaLocationDot className="contact-icon" />
-                                Lô Èa-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, TP HCM
+                                Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, TP HCM
                             </p>
                             <p>
                                 <FaPhoneFlip className="contact-icon" />

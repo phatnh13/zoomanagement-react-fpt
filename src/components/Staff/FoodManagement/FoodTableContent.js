@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
-import {Button, Form} from "react-bootstrap";
+import {Button, Form, Image} from "react-bootstrap";
 import DeleteFoodModal from "./Modal/DeleteFoodModal";
+import Delete from "../../../assets/delete.png";
+import Update from "../../../assets/edit.png";
 
 const TrainerTableContent = ({food, reloadState}) => {
     //#region Modal
@@ -69,10 +71,10 @@ const TrainerTableContent = ({food, reloadState}) => {
                 onChange={(e) => {setLocalFoodName(e.target.value)}}/>
             </td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
+                <Button variant="outline-warning" size="sm" onClick={handleUpdate}><Image style={{ height: '1rem', width: '1rem' }} src={Update}></Image></Button>
             </td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleShowDeleteModal}>Delete</Button>
+                <Button variant="outline-danger" size="sm" onClick={handleShowDeleteModal}><Image style={{ height: '1rem', width: '1rem' }} src={Delete}></Image></Button>
             </td>
             <DeleteFoodModal 
             show={showDeleteModal} 

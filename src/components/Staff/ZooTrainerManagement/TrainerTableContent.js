@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import {Button} from "react-bootstrap";
+import {Button, Image} from "react-bootstrap";
 import TrainerDeleteModal from "./TrainerDeleteModal";
 import TrainerShowAnimalModal from "./TrainerShowAnimalModal";
 import { DateHelper } from "../../DateHelper";
-
+import Delete from "../../../assets/delete.png";
+import Update from "../../../assets/edit.png";
 const TrainerTableContent = ({user, reloadState}) => {
     //#region Modal
         //Delete Modal
@@ -74,13 +75,13 @@ const TrainerTableContent = ({user, reloadState}) => {
             <td>{user.email}</td>
             <td>{DateHelper.formatDate(user.dateOfBirth)}</td>
             <td className="text-center">
-                <Button variant="outline-danger" size="sm" onClick={handleShowAnimal}>Animal</Button>
+                <Button variant="outline-success" size="sm" onClick={handleShowAnimal}>Animal</Button>
             </td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleUpdate}>Update</Button>
+                <Button variant="outline-warning" size="sm" onClick={handleUpdate}><Image style={{ height: '1rem', width: '1rem' }} src={Update}></Image></Button>
             </td>
             <td className="text-center">
-                <Button variant="outline-primary" size="sm" onClick={handleShowDeleteModal}>Delete</Button>
+                <Button variant="outline-danger" size="sm" onClick={handleShowDeleteModal}><Image style={{ height: '1rem', width: '1rem' }} src={Delete}></Image></Button>
             </td>
             <TrainerShowAnimalModal show={showAnimalModal} handleClose={handleCloseAnimalModal} animalList={animalList} user={user} />
             <TrainerDeleteModal show={showDeleteModal} handleClose={handleCloseDeleteModal} handleDelete={handleDelete} user={user} />

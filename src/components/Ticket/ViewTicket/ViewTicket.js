@@ -24,7 +24,7 @@ const ViewTicket = () => {
                                 <Card className="mx-5" key={data.ticketId} data={data}>
                                     <Card.Img style={{ height: '300px', width: 'auto' }} variant="top" src={data.image} />
                                     <Card.Body>
-                                        <Card.Title className="card-title-2-rows" style={{ color: '#3C5724', height: '2.5rem' }}>{data.ticketName}</Card.Title>
+                                        <Card.Title className="card-title-2-rows" style={{ color: '#3C5724', height: '3.5rem' }}>{data.ticketName}</Card.Title>
                                         <Card.Text>
                                             {/* Toan tu ba ngoi => print Free instead of 0 */}
                                             {data.price === 0 ? (
