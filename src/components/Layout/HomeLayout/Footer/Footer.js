@@ -15,7 +15,7 @@ const Footer = () => {
                             <FaGoogle className="footer-icon" />
                             <FaInstagram className="footer-icon" />
                             <FaYoutube className="footer-icon" />
-                            <p>Project Web</p>
+                            <p className="mt-4">Project Web</p>
                             <p>VK3P SaiGon</p>
                         </Col>
                         <Col className="footer-location-icon mt-3">
