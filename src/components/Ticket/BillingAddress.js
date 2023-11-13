@@ -9,7 +9,7 @@ const BillingAddress = () => {
       },[])
     const NavigationButtons = ({ onBackClick, onNextClick }) => {
         return (
-            <div className="navigation-buttons button-direct">
+            <div className="navigation-buttons button-direct pb-5">
                 <Link to='/viewcart'>
                     <Button className="button-left" onClick={onBackClick}>
                         <svg

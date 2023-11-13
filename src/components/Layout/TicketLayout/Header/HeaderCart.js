@@ -14,7 +14,10 @@ const HeaderCart = () => {
                 <Col className="header-left col-md-10">
                     <Row>
                     <Col className="zoo-logo col-md-2">
+                        <Link to ='/'>
                         <Image src={WebLogo} />
+                        </Link>
+                        
                     </Col>
                     <Col className="col-md-3">
                         <Row>

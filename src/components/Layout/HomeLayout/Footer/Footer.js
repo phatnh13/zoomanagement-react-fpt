@@ -10,22 +10,22 @@ const Footer = () => {
             <div className="footer-top">
                 <Container className="footer-infor">
                     <Row>
-                        <Col className="footer-social-icon">
+                        <Col className="footer-social-icon mt-3">
                             <FaFacebook className="footer-icon" />
                             <FaGoogle className="footer-icon" />
                             <FaInstagram className="footer-icon" />
                             <FaYoutube className="footer-icon" />
-                            <p>Công Ty TNHH MTV</p>
+                            <p>Project Web</p>
                             <p>VK3P SaiGon</p>
                         </Col>
-                        <Col className="footer-location-icon">
+                        <Col className="footer-location-icon mt-3">
                             <p>
                                 <BiLogoGmail className="contact-icon" />
                                 saigonzoo.vk3p@gmail.com
                             </p>
                             <p>
                                 <FaLocationDot className="contact-icon" />
-                                Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, TP HCM
+                                E2a-7, D1 Street, Long Thạnh Mỹ, Thu Duc City, TP HCM
                             </p>
                             <p>
                                 <FaPhoneFlip className="contact-icon" />

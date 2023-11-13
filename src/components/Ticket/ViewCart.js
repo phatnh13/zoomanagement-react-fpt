@@ -10,7 +10,7 @@ const ViewCart = () => {
       },[])
     const NavigationButtons = ({ onBackClick, onNextClick }) => {
         return (
-            <div className="button-direct">
+            <div className="button-direct pb-5">
                 <Link to='/buyingticket'>
                     <Button className="button-left" onClick={onBackClick}>
                         <svg
