@@ -48,7 +48,11 @@ function RevenueTable({ ticketsList }) {
                 <Card className="mb-2">
                     <Card.Body>
                         <Card.Text>
-                            Total: <span className="text-primary mx-5">{revenue.totalQuantity} solds</span> <span className="text-success mx-5">{revenue.totalRevenue}$</span>
+                        <Row>
+                        <Col lg={8} md={8} sm={8}>Total:</Col>
+                        <Col lg={2} md={2} sm={2}><span className="text-primary">{revenue.totalQuantity} solds</span></Col>
+                        <Col lg={2} md={2} sm={2}><span className="text-success">{revenue.totalRevenue}$</span></Col>
+                    </Row>
                         </Card.Text>
                     </Card.Body>
                 </Card>

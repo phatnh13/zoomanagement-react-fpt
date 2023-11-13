@@ -18,6 +18,9 @@ const TrainerNavbar = () => {
         localStorage.setItem("isLoggedIn", "false");
         navigate("/login");
     }
+    const handleProfile = () => {
+        navigate("/user/profile");
+    }
     return (
         <Navbar expand="md" className="bg-body-tertiary">
             <Container>
@@ -35,9 +38,7 @@ const TrainerNavbar = () => {
                     </Nav>
                     <Navbar.Text>
                         <NavDropdown title={name} >
-                            <NavDropdown.Item>
-                                <Link to='/user/profile' className ="text-decoration-none">Profile</Link>
-                            </NavDropdown.Item>
+                            <NavDropdown.Item onClick={handleProfile}>Profile</NavDropdown.Item>
                             <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Navbar.Text>

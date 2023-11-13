@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Image, Card, Button } from "react-bootstrap";
+import { Container, Image, Card } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { DateHelper } from "../../DateHelper";
 
@@ -16,8 +16,11 @@ function ViewNews() {
                         <hr/>
                         <p><strong>Category:</strong> <span className="text-warning">{news.newsCategories.categoryName}</span></p>
                         <hr/>
+                        <p><strong>Thumbnail:</strong></p>
+                        <Image fluid src={news.thumnail} alt="Thumbnail"></Image>
+                        <hr />
                         <p>{news.content}</p>
-                        <Image fluid src={news.image} alt="Pic1"></Image>
+                        <Image fluid src={news.image} alt="Image"></Image>
                     </Card.Text>
                     <Link to="/staff/news" className="text-align-end btn m-auto border "> {'<'} Back</Link>
                 </Card.Body>
