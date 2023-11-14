@@ -5,9 +5,10 @@ function ShowAnimalModal({ show, handleClose, reloadState, cage }) {
     const [animalList, setAnimalList] = useState([]);
 
     useEffect(() => {
+        //Set Animal List
         fetch(`https://vietnamzoo.azurewebsites.net/api/AnimalCage/cage/${cage.cageId}`, {
             method: "GET",
-            headers: {
+            headers: {  
                 "Content-type": "application/json; charset=UTF-8",
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
@@ -18,7 +19,7 @@ function ShowAnimalModal({ show, handleClose, reloadState, cage }) {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }, [reloadState.reload]);
+    }, [reloadState.reload, cage]);
     return (
         <Modal show={show} onHide={handleClose} size="lg">
             <Modal.Body>
