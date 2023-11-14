@@ -10,9 +10,9 @@ const TrainerTable = ({ trainerList, reloadState }) => {
             <Table striped bordered hover responsive="md" >
                 <thead>
                     <tr>
-                        <th className="col-1">User ID</th>
-                        <th className="col-2">User Name</th>
-                        <th className="col-2">Full Name</th>
+                        <th className="col-1">No</th>
+                        <th className="col-3">Full Name</th>
+                        <th className="col-1">User Name</th>
                         <th className="col-1">Gender</th>
                         <th>phoneNumber</th>
                         <th>Email</th>
@@ -24,7 +24,7 @@ const TrainerTable = ({ trainerList, reloadState }) => {
                 </thead>
                 <tbody>
                     {trainerList.map((control, index) => {
-                        return <TrainerTableContent key={index} user={control} reloadState={reloadState} />;
+                        return <TrainerTableContent key={index} index={index} user={control} reloadState={reloadState} />;
                     })}
                 </tbody>
             </Table>

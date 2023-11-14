@@ -6,7 +6,7 @@ import TrainerShowAnimalModal from "./TrainerShowAnimalModal";
 import { DateHelper } from "../../DateHelper";
 import Delete from "../../../assets/delete.png";
 import Update from "../../../assets/edit.png";
-const TrainerTableContent = ({user, reloadState}) => {
+const TrainerTableContent = ({user, reloadState, index}) => {
     //#region Modal
         //Delete Modal
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -67,9 +67,9 @@ const TrainerTableContent = ({user, reloadState}) => {
     }
     return (
         <tr>
-            <td>{user.userId}</td>
-            <td>{user.userName}</td>
-            <td>{user.fullName}</td>
+            <td>{index+1}</td>
+            <td className="col-3">{user.fullName}</td>
+            <td className="col-1">{user.userName}</td>
             <td>{user.gender}</td>
             <td>{user.phoneNumber}</td>
             <td>{user.email}</td>

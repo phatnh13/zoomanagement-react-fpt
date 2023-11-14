@@ -6,7 +6,7 @@ import { DateHelper } from "../../DateHelper";
 import Delete from "../../../assets/delete.png";
 import Update from "../../../assets/edit.png";
 
-const StaffTableContent = ({ user, reloadState }) => {
+const StaffTableContent = ({ user, reloadState, index }) => {
     const [showDeleteModal, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -37,8 +37,9 @@ const StaffTableContent = ({ user, reloadState }) => {
     }
     return (
         <tr>
+            <td>{index+1}</td>
+            <td className="col-3">{user.fullName}</td>
             <td>{user.userName}</td>
-            <td>{user.fullName}</td>
             <td>{user.gender}</td>
             <td>{user.phoneNumber}</td>
             <td>{user.email}</td>
