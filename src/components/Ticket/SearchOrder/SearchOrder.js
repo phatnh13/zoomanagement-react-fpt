@@ -4,11 +4,32 @@ import { Input, Spin } from 'antd';
 import GiraffeRun from '../../../assets/Giraffe-Run.mp4';
 import './SearchOrder.css';
 import { LoadingOutlined } from '@ant-design/icons';
+import { useLocation } from 'react-router-dom';
 
 const SearchOrder = () => {
-
+    const location = useLocation();
+    const LocorderId = location.state?.orderId;
     useMemo(() => {
-        window.scrollTo({ top: 0 })
+        window.scrollTo({ top: 0 });
+        if(LocorderId){
+            fetch(`https://vietnamzoo.azurewebsites.net/api/Order/${LocorderId}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((data) => data.json())
+            .then((data) => {
+                setOrderDetail(data);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.error(error);
+                setIsError(true); // Set isError to true
+                setErrorMessage('Order ID does not exist.'); // Set the error message
+                setIsLoading(false);
+            });
+        }
     }, [])
 
     const [orderId, setOrderId] = useState('');

@@ -53,7 +53,7 @@ const TicketItemsTable = () => {
                                                 <p>{data.ticket.price}$</p>
                                             )}</div></th>
                             <th><div className="mt-5">{data.quantity}</div></th>
-                            <th><div className="mt-5">{data.ticket.price * data.quantity}</div></th>
+                            <th><div className="mt-5">{data.ticket.price * data.quantity}$</div></th>
                         </tr>
 
                     )
@@ -63,7 +63,7 @@ const TicketItemsTable = () => {
                     <th colSpan={4}>
                     </th>
                     <th>
-                        <FormLabel type='text'>{totalPrice}</FormLabel>
+                        <FormLabel type='text'>{totalPrice}$</FormLabel>
                     </th>
                 </tr>
             </tbody>

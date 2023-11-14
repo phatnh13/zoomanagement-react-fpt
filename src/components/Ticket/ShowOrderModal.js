@@ -11,7 +11,7 @@ const ShowOrderModal = ({ show, handleClose, orderId, success }) => {
 
         // Check if the order was successful and navigate to the home page
         if (success) {
-            navigate("/");
+            navigate("/searchorder", { state: {orderId: orderId} });
         }
     };
     return (
