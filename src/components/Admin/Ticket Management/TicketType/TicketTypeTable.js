@@ -6,7 +6,7 @@ function TicketTypeTable({ticketsList,reloadState}) {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th className="col-1"> ID</th>
+                    <th className="col-1">No</th>
                     <th className="col-6">Ticket Name</th>
                     <th className="col-1">Price</th>
                     <th className="col-1">ReleaseDate</th>
@@ -16,7 +16,7 @@ function TicketTypeTable({ticketsList,reloadState}) {
             </thead>
             <tbody>
                 {ticketsList.map((ticket, index) => {
-                    return <TicketTypeTableContent key={index} ticket={ticket} reloadState={reloadState} />
+                    return <TicketTypeTableContent key={index} ticket={ticket} index={index} reloadState={reloadState} />
                 })}
             </tbody>
         </Table>

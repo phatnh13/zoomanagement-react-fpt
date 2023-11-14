@@ -6,7 +6,7 @@ import DeleteTicketModal from "./Modal/DeleteTicketModal";
 import Delete from "../../../../assets/delete.png";
 import Update from "../../../../assets/edit.png";
 
-function TicketTypeTableContent({ ticket, reloadState }) {
+function TicketTypeTableContent({ ticket, reloadState, index }) {
     //#region modal
     //Edit ticket
     const [showEditTicketModal, setShowEditTicketModal] = useState(false);
@@ -21,7 +21,7 @@ function TicketTypeTableContent({ ticket, reloadState }) {
 
     return (
         <tr>
-            <td>{ticket.ticketId}</td>
+            <td>{index}</td>
             <td>{ticket.ticketName}</td>
             <td>{ticket.price}$</td>
             <td>{DateHelper.formatDate(ticket.releaseDate)}</td>

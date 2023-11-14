@@ -13,6 +13,7 @@ const StaffManaging = () => {
 
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
+    const [reload, setReload] = useState(false);
 
     //#region Pagination
     let PaginationLoad = () => {
@@ -51,7 +52,7 @@ const StaffManaging = () => {
             }).catch(rejected => {
                 console.log(rejected);
             });
-    }, [currentPage, searchBy, searchString]);
+    }, [currentPage, searchBy, searchString, reload]);
     return (
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center my-3 pb-1 border-bottom">
@@ -101,7 +102,7 @@ const StaffManaging = () => {
                 ) : (
                     <Col>
                         {/*Start Table*/}
-                        <StaffTable userList={users} />
+                        <StaffTable userList={users} reloadState={{reload, setReload}} />
                         <Pagination size="md" className="d-flex justify-content-center">
                             {PaginationLoad()}
                         </Pagination>

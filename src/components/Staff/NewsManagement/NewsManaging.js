@@ -43,7 +43,7 @@ function NewsManaging() {
                 setTotalPages(data.totalPages);
                 setIsLoading(false);
             })
-    }, []);
+    }, [currentPage, searchBy, searchString]);
     return (
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">

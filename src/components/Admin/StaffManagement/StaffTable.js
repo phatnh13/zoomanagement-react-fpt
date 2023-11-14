@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Table, } from "react-bootstrap";
 import StaffTableContent from "./StaffTableContent";
-const StaffTable = ({ userList }) => {
+const StaffTable = ({ userList, reloadState }) => {
     
     return (
         <Container>
@@ -11,7 +11,6 @@ const StaffTable = ({ userList }) => {
             <Table striped bordered hover responsive="md" >
                 <thead>
                     <tr>
-                        <th>User ID</th>
                         <th>User Name</th>
                         <th>Full Name</th>
                         <th>Gender</th>
@@ -24,7 +23,7 @@ const StaffTable = ({ userList }) => {
                 </thead>
                 <tbody>
                     {userList.map((control, index) => {
-                        return <StaffTableContent key={index} user={control} />;
+                        return <StaffTableContent key={index} user={control} reloadState={reloadState} />;
                     })}
                 </tbody>
             </Table>
