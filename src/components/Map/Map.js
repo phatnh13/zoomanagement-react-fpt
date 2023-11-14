@@ -25,15 +25,14 @@ const Map = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`https://vietnamzoo.azurewebsites.net/api/Species?searchBy=${searchBy}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/Species/GetAllSpecies`, {
             method: "GET",
             headers: {
                 "content-type": "application/json; charset=UTF-8"
             }
         }).then(data => data.json())
             .then(data => {
-                setSpecies(data.pagingList);
-                setTotalPages(data.totalPages);
+                setSpecies(data);
             }).catch(error => console.log(error))
 
     }, [currentPage, searchBy, searchString]);
