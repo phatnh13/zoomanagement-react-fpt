@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Col, Row, Container } from "react-bootstrap";
+import { Card, Col, Row, Container, Pagination } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import { DateHelper } from '../DateHelper';
 import NewsPanda from '../../assets/NewsPan.jpg'
@@ -10,8 +10,8 @@ const AllNews = () => {
   const [news, setNews] = useState([])
   const [searchString,] = useState('')
   const [searchBy,] = useState('ReleaseDate')
-  const [currentPage,] = useState(1);
-  const [, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const navigate = useNavigate()
 
   const handleNavigation = (item) => {
@@ -26,6 +26,22 @@ const AllNews = () => {
     window.scrollTo(0, 0);
   }, [])
 
+  //#region Pagination
+  let PaginationLoad = () => {
+    let items = [];
+    if (totalPages > 1) {
+      for (let page = 1; page <= totalPages; page++) {
+        items.push(<Pagination.Item key={page} onClick={onPaginationClick}>{page}</Pagination.Item>)
+      }
+    }
+    return items;
+  }
+
+  const onPaginationClick = (e) => {
+    setCurrentPage(e.target.text);
+  }
+  //#endregion
+
   useEffect(() => {
     fetch(`https://vietnamzoo.azurewebsites.net/api/News?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
       method: "GET",
@@ -38,7 +54,7 @@ const AllNews = () => {
         setTotalPages(data.totalPages);
       }).catch(error => console.log(error))
 
-  }, []);
+  }, [currentPage, searchBy, searchString]);
 
   return (
     <>
@@ -51,7 +67,6 @@ const AllNews = () => {
         </div>
         <Container fluid>
           <Row xs={1} md={3} className="g-4 p-5">
-
             {news.map((item, idx) => {
               return (
                 <Col className="md-3" key={idx}>
@@ -65,6 +80,11 @@ const AllNews = () => {
                 </Col>
               )
             })}
+          </Row>
+          <Row className="d-flex justify-content-center">
+            <Pagination size="md" className="d-flex justify-content-center">
+              {PaginationLoad()}
+            </Pagination>
           </Row>
         </Container>
       </div>
