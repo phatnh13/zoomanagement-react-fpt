@@ -12,6 +12,7 @@ function NewsManaging() {
     const [newsList, setNewsList] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
+    const [reload, setReload] = useState(false);
 
     //#region Pagination
     let PaginationLoad = () => {
@@ -43,7 +44,7 @@ function NewsManaging() {
                 setTotalPages(data.totalPages);
                 setIsLoading(false);
             })
-    }, [currentPage, searchBy, searchString]);
+    }, [currentPage, searchBy, searchString, reload]);
     return (
         <Container fluid>
             <Row className="vh-20 d-flex justify-content-center align-items-center m-3 pb-1 border-bottom">
@@ -91,7 +92,7 @@ function NewsManaging() {
                     </Col>
                 ) : (
                     <Col>
-                        <NewsTable newsList={newsList} />
+                        <NewsTable newsList={newsList} reloadState={{reload, setReload}} />
                         <Pagination size="md" className="d-flex justify-content-center">
                             {PaginationLoad()}
                         </Pagination>

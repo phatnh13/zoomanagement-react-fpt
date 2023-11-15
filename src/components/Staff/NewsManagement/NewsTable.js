@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import NewsTableContent from "./NewsTableContent";
-function NewsTable({newsList}) {
+function NewsTable({newsList, reloadState}) {
     return ( 
         <Table striped bordered hover responsive>
             <thead>
@@ -17,7 +17,7 @@ function NewsTable({newsList}) {
             </thead>
             <tbody>
                 {newsList.map((news, index) => {
-                    return <NewsTableContent index={index} news={news} />
+                    return <NewsTableContent index={index} reloadState={reloadState} news={news} />
                 })}
             </tbody>
 

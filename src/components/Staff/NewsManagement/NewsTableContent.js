@@ -6,7 +6,7 @@ import DeleteNewsModal from "./Modal/DeleteNewsModal";
 import Delete from "../../../assets/delete.png";
 import Update from "../../../assets/edit.png";
 import View from "../../../assets/view.png";
-function NewsTableContent({news}) {
+function NewsTableContent({news, reloadState}) {
     //Modal
     const [showDelete, setShowDelete] = useState(false);
     const handleCloseDelete = () => setShowDelete(false);
@@ -30,6 +30,8 @@ function NewsTableContent({news}) {
             .then((res) => {
                 if (res.ok) {
                     alert("Delete successfully");
+                    reloadState.setReload(!reloadState.reload);
+                    handleCloseDelete();
                 } else {
                     alert("Delete failed");
                 }
