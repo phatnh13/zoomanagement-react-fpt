@@ -11,6 +11,11 @@ function NewsTableContent({news, reloadState}) {
     const [showDelete, setShowDelete] = useState(false);
     const handleCloseDelete = () => setShowDelete(false);
     const handleShowDelete = () => setShowDelete(true);
+    const [isContentHidden, setIsContentHidden] = useState(false);
+
+    const handleToggleContent = () => {
+        setIsContentHidden(!isContentHidden);
+      };
 
     const navigate = useNavigate();
     let handleView = () => {
@@ -57,6 +62,11 @@ function NewsTableContent({news, reloadState}) {
             <td>
                 <div className="d-grid">
                     <Button variant="outline-danger" size="sm" onClick={handleShowDelete}><Image style={{ height: '1rem', width: '1rem' }} src={Delete}></Image></Button>
+                </div>
+            </td>
+            <td>
+                <div className="d-grid">
+                    <Button variant="outline-warning" size="sm" onClick={handleToggleContent} >{isContentHidden ? 'Show' : 'Hide'}</Button>
                 </div>
             </td>
             <DeleteNewsModal 

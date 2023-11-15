@@ -9,7 +9,6 @@ const Map = () => {
     const [searchString,] = useState('')
     const [searchBy,] = useState('speciesName')
     const [currentPage,] = useState(1);
-    const [, setTotalPages] = useState(0);
     const navigate = useNavigate()
 
     const handleNavigation = (item) => {
@@ -54,7 +53,7 @@ const Map = () => {
                 <Container fluid>
                     <Row xs={1} md={4} style={{ justifyContent: 'flex-start', padding: '2rem 16rem 2rem 16rem' }}>
 
-                        {species?.map((item, idx) => {
+                        {species.map((item, idx) => {
                             return (
                                 <Col key={idx}>
                                     <center>

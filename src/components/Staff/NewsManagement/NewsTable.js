@@ -13,6 +13,8 @@ function NewsTable({newsList, reloadState}) {
                     <th className="col-1">View</th>
                     <th className="col-1">Update</th>
                     <th className="col-1">Delete</th>
+                    <th className="col-1">Hide/Show</th>
+
                 </tr>
             </thead>
             <tbody>
