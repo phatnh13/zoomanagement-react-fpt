@@ -7,13 +7,11 @@ import './WelcomeNews.css';
 
 const WelcomeNews = () => {
     const [news, setNews] = useState([])
-
     const navigate = useNavigate()
 
     const handleNavigation = (item) => {
         navigate(`/news`, { state: { item: item } })
     }
-
 
     const handleClick = (item) => {
         handleNavigation(item);
@@ -47,7 +45,7 @@ const WelcomeNews = () => {
                         return (
                             <Col key={idx} >
                                 <Card style={{ border: 'none', borderRadius: '50px', cursor: 'pointer' }} onClick={() => handleClick(item)}>
-                                    <Card.Img  style={{height: '197.52px', width: 'auto'}} src={item.thumnail} />
+                                    <Card.Img style={{ height: '197.52px', width: 'auto' }} src={item.thumnail} />
                                     <Card.Body style={{ backgroundColor: '#F7F1DB' }}>
                                         <Card.Title style={{ fontSize: '1rem' }}>{item.title}</Card.Title>
                                     </Card.Body>

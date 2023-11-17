@@ -1,16 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import "./News.css";
-import { Container, Image, Row } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Container, Image, Row, Col, Card } from "react-bootstrap";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { DateHelper } from '../DateHelper';
 
 const News = () => {
     const location = useLocation();
-    const [news, setNews] = useState(location.state.item);
+    const [categoryId,] = useState(location.state.item.newsCategories.categoryId);
+    const [news] = useState(location.state.item);
+    const [relativeNews, setRelativeNews] = useState([])
+    const navigate = useNavigate()
+
+    const handleNavigation = (item) => {
+        navigate(`/news`, { state: { item: item } })
+    }
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
+
+    const handleClick = (item) => {
+        window.location.reload();
+        window.scrollTo(0, 0);
+        handleNavigation(item);
+    }
+
+    useEffect(() => {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/News/get-relative-news?CategoryId=${categoryId}`, {
+            method: "GET",
+            headers: {
+                "content-type": "application/json; charset=UTF-8"
+            }
+        }).then(data => data.json())
+            .then(data => {
+                setRelativeNews(data);
+            }).catch(error => console.log(error))
+
+    }, [categoryId]);
 
     const onMouseEnter = (e) => {
         e.target.style.color = '#CCCCCC';
@@ -43,7 +69,7 @@ const News = () => {
                                                     </time>
                                                 </span>
                                                 {/* <!-- categories --> */}
-                                                <span class="news-list-category">{news.author}</span>
+                                                <span class="news-list-category">{news.newsCategories.categoryName}</span>
                                             </div>
                                             <div className=" text-left">
                                                 <h1 className="main-heading mb-5">{news.title}</h1>
@@ -54,6 +80,20 @@ const News = () => {
                                             </div>
                                             {/* link back */}
                                             <hr></hr>
+                                            <Row md={3}>
+                                                {relativeNews.map((item, idx) => {
+                                                    return (
+                                                        <Col key={idx} >
+                                                            <Card style={{ border: 'none', borderRadius: '50px', cursor: 'pointer' }} onClick={() => handleClick(item)}>
+                                                                <Card.Img style={{ height: '197.52px', width: 'auto' }} src={item.thumnail} />
+                                                                <Card.Body style={{ backgroundColor: '#F7F1DB' }}>
+                                                                    <Card.Title style={{ fontSize: '1rem' }}>{item.title}</Card.Title>
+                                                                </Card.Body>
+                                                            </Card>
+                                                        </Col>
+                                                    )
+                                                })}
+                                            </Row>
                                             <div>
                                                 <Link
                                                     to="/zoo-news"
