@@ -66,7 +66,7 @@ function NewsTableContent({news, reloadState}) {
             </td>
             <td>
                 <div className="d-grid">
-                    <Button variant="outline-warning" size="sm" onClick={handleToggleContent} >{isContentHidden ? 'Show' : 'Hide'}</Button>
+                    <Button variant="outline-warning" size="sm" onClick={handleToggleContent} >{isContentHidden ? 'Active' : 'Unactive'}</Button>
                 </div>
             </td>
             <DeleteNewsModal 

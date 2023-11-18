@@ -12,6 +12,8 @@ function AddNews() {
     const [userId, setUserId] = useState(JSON.parse(localStorage.getItem("loginUser")).userId);
     const [imageFile, setImageFile] = useState(null);
     const [thumbnailFile, setThumbnailFile] = useState(null);
+    const [priority, setPriority] = useState(1);
+    const [isActive, setIsActive] = useState(true);
 
     const [newsCategories, setNewsCategories] = useState([]);
 
@@ -22,6 +24,8 @@ function AddNews() {
         author: false,
         categoryId: false,
         realeaseDate: false,
+        priority: false,
+        isactive: false,
     });
     let [errors, setErrors] = useState(
         {
@@ -30,8 +34,10 @@ function AddNews() {
             author: [],
             categoryId: [],
             releaseDate: [],
+            priority: [],
+            isactive: [],
         });
-        //Validation
+    //Validation
     let validate = () => {
         let errorsData = {};
         //title
@@ -53,6 +59,13 @@ function AddNews() {
         errorsData.categoryId = [];
         if (categoryId === "") {
             errorsData.categoryId.push("CategoryId box is required");
+        }
+        setErrors(errorsData);
+        if (priority === "") {
+            errorsData.priority.push("Priority box is required");
+        }
+        if (isActive === "") {
+            errorsData.isactive.push("IsActive box is required");
         }
         setErrors(errorsData);
     }
@@ -88,6 +101,8 @@ function AddNews() {
         formData.append("UserId", userId);
         formData.append("ImageFile", imageFile);
         formData.append("ThumnailFile", thumbnailFile);
+        formData.append("Priority", priority);
+        formData.append("IsActive", isActive);
         // formData.append("IsDeleted", false);
 
         //Send response to server if valid
@@ -123,7 +138,7 @@ function AddNews() {
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
-            .then((res) =>  res.json())
+            .then((res) => res.json())
             .then(data => {
                 setNewsCategories(data);
                 console.log(data, "dataaaa");
@@ -131,7 +146,7 @@ function AddNews() {
             })
             .catch((rejected) => console.log(rejected));
     }, []);
-    useEffect(validate, [title, content, author, categoryId, releaseDate, userId]);
+    useEffect(validate, [title, content, author, categoryId, releaseDate, userId, priority, isActive]);
     return (
         <Container fluid>
             <Row className="py-5 d-flex justify-content-center align-items-center">
@@ -210,9 +225,9 @@ function AddNews() {
                                                     className="mb-3"
                                                     controlId="newsCategoryId">
                                                     <Form.Label>Category</Form.Label>
-                                                    <Form.Select 
-                                                    value={categoryId}
-                                                    onChange={(e) => {setCategoryId(e.target.value);}}
+                                                    <Form.Select
+                                                        value={categoryId}
+                                                        onChange={(e) => { setCategoryId(e.target.value); }}
                                                     >
                                                         <option value="">Select category</option>
                                                         {newsCategories.map((item) => (
@@ -227,6 +242,39 @@ function AddNews() {
                                                             </option>
                                                         ))}
                                                     </Form.Select>
+                                                </Form.Group>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col lg={6} md={6} sm={12}>
+                                                <Form.Group className="mb-3" controlId="isActiveSelect">
+                                                    <Form.Label>Active</Form.Label>
+                                                    <Form.Select as="select" onChange={(e) => setIsActive(e.target.value === 'true')}>
+                                                        <option value="true">True</option>
+                                                        <option value="false">False</option>
+                                                    </Form.Select>
+                                                </Form.Group>
+                                            </Col>
+                                            <Col>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="newsPriority">
+                                                    <Form.Label>Priority</Form.Label>
+                                                    <Form.Control
+                                                        type="number"
+                                                        min="1"
+                                                        max="5"
+                                                        value={priority}
+                                                        onChange={(e) => {
+                                                            if (e.target.value >= 1 && e.target.value <= 5) {
+                                                                setPriority(e.target.value);
+                                                                validate();
+                                                            }
+                                                        }} />
+                                                    <div className="text-danger">
+                                                        {dirty["priority"] && errors["priority"] ?
+                                                            errors["priority"] : ""}
+                                                    </div>
                                                 </Form.Group>
                                             </Col>
                                         </Row>
@@ -265,7 +313,6 @@ function AddNews() {
                                                     errors["content"][0] : ""}
                                             </div>
                                         </Form.Group>
-
                                         <Row>
                                             <Col lg={6} md={6} sm={0}>
                                             </Col>
@@ -286,7 +333,7 @@ function AddNews() {
                 </Col>
             </Row>
         </Container>
-        
+
     )
 }
 
