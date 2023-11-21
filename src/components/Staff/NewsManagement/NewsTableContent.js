@@ -3,23 +3,28 @@ import { Button, Image } from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
 import { useNavigate } from "react-router-dom";
 import HideNewsModal from "./Modal/HideNewsModal";
-import Delete from "../../../assets/delete.png";
 import Update from "../../../assets/edit.png";
-import View from "../../../assets/view.png";
+import Show from "../../../assets/view.png";
+import ViewNews from "../../../assets/view_news.png";
+import HideNews from "../../../assets/hide.png";
 function NewsTableContent({ news, reloadState }) {
     //Modal
     const [showHideNews, setShowHideNews] = useState(false);
     const handleCloseHideNews = () => setShowHideNews(false);
     const handleShowHideNews = () => setShowHideNews(true);
     const [isItemVisible, setItemVisible] = useState(true);
-
     const navigate = useNavigate();
+
+
+
     let handleView = () => {
         navigate(`/staff/news/view/${news.newsId}`, { state: news });
     }
+
     let handleUpdate = () => {
         navigate(`/staff/news/update/`, { state: news });
     }
+
     let handleHideNews = () => {
         fetch(`https://vietnamzoo.azurewebsites.net/api/News/${news.newsId}`, {
             method: "DELETE",
@@ -32,14 +37,15 @@ function NewsTableContent({ news, reloadState }) {
                 if (res.ok) {
                     alert("The news has been hidden");
                     reloadState.setReload(!reloadState.reload);
+                    setItemVisible(!isItemVisible);
                     handleCloseHideNews();
                 } else {
-                    alert("The news has not been hidden");
+                    alert("The news has already hidden!");
                 }
             })
             .catch((error) => console.log(error));
     };
-    let handleShowItem = () => {
+    let handleShowNews = () => {
         fetch(`https://vietnamzoo.azurewebsites.net/api/News/active-news?NewsId=${news.newsId}`, {
             method: "PUT",
             headers: {
@@ -53,7 +59,6 @@ function NewsTableContent({ news, reloadState }) {
             .then((res) => {
                 if (res.ok) {
                     alert("Update successfully");
-                    setItemVisible(!isItemVisible);
                     reloadState.setReload(!reloadState.reload);
                 } else {
                     alert("Update failed");
@@ -65,13 +70,13 @@ function NewsTableContent({ news, reloadState }) {
     };
     return (
         <tr>
-            {isItemVisible && isItemVisible ? <td>{news.title}</td> : <td style={{ filter: 'blur' }}>{news.title}</td>}
-            {isItemVisible && isItemVisible ? <td>{news.author}</td> : <td style={{ color: 'red' }}>{news.author}</td>}
-            {isItemVisible && isItemVisible ? <td>{news.newsCategories.categoryName}</td> : <td style={{ color: 'red' }}>{news.newsCategories.categoryName}</td>}
-            {isItemVisible && isItemVisible ? <td>{DateHelper.formatDate(news.releaseDate)}</td> : <td style={{ color: 'red' }}>{DateHelper.formatDate(news.releaseDate)}</td>}
+            <td>{news.title}</td>
+            <td>{news.author}</td>
+            <td>{news.newsCategories.categoryName}</td>
+            <td>{DateHelper.formatDate(news.releaseDate)}</td>
             <td>
                 <div className="d-grid">
-                    <Button variant="outline-success" size="sm" onClick={handleView}><Image style={{ height: '1rem', width: '1rem' }} src={View}></Image></Button>
+                    <Button variant="outline-info" size="sm" onClick={handleView}><Image style={{ height: '1rem', width: '1rem' }} src={ViewNews}></Image></Button>
                 </div>
             </td>
             <td>
@@ -81,12 +86,12 @@ function NewsTableContent({ news, reloadState }) {
             </td>
             <td>
                 <div className="d-grid">
-                    <Button variant="outline-danger" size="sm" onClick={handleShowHideNews}><Image style={{ height: '1rem', width: '1rem' }} src={Delete}></Image></Button>
+                    <Button variant="outline-secondary" size="sm" onClick={handleShowHideNews}><Image style={{ height: '1rem', width: '1rem' }} src={HideNews}></Image></Button>
                 </div>
             </td>
             <td>
                 <div className="d-grid">
-                    <Button variant="outline-warning" size="sm" onClick={handleShowItem} >Active</Button>
+                    <Button variant="outline-success" size="sm" onClick={handleShowNews} ><Image style={{ height: '1rem', width: '1rem' }} src={Show}></Image></Button>
                 </div>
             </td>
             <HideNewsModal
