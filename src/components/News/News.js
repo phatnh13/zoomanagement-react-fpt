@@ -6,7 +6,7 @@ import { DateHelper } from '../DateHelper';
 
 const News = () => {
     const location = useLocation();
-    const [categoryId, setCategoryId] = useState(location.state.item.newsCategories.categoryId);
+    const [newsId, setNewsId] = useState(location.state.item.newsId);
     const [news] = useState(location.state.item);
     const [relativeNews, setRelativeNews] = useState([])
     const navigate = useNavigate()
@@ -21,12 +21,11 @@ const News = () => {
 
     const handleClick = (item) => {
         window.location.reload();
-        window.scrollTo(0, 0);
         handleNavigation(item);
     }
 
     useEffect(() => {
-        fetch(`https://vietnamzoo.azurewebsites.net/api/News/get-relative-news?CategoryId=${categoryId}`, {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/News/get-relative-news?NewsId=${newsId}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json; charset=UTF-8"
@@ -36,7 +35,7 @@ const News = () => {
                 setRelativeNews(data);
             }).catch(error => console.log(error))
 
-    }, [categoryId]);
+    }, [newsId]);
 
     const onMouseEnter = (e) => {
         e.target.style.color = '#CCCCCC';
@@ -52,7 +51,6 @@ const News = () => {
     }
     return (
         <>
-            {/* {console.log(newsId)} */}
             <div style={{ backgroundColor: '#F7F1DB', paddingTop: '10rem' }}>
                 <Container>
                     <Row>
@@ -96,9 +94,10 @@ const News = () => {
                                 return (
                                     <Col key={idx} >
                                         <hr></hr>
-                                        <Card style={{ border: 'none', borderRadius: '50px', cursor: 'pointer' }} onClick={() => handleClick(item)}>
+                                        <Card style={{ border: 'none', borderRadius: '50px', cursor: 'pointer' }}  onClick={() => handleClick(item)}>
                                             <Card.Img style={{ height: '197.52px' }} src={item.thumnail} />
                                             <Card.Body style={{ backgroundColor: '#F7F1DB' }}>
+                                            <Card.Title style={{ fontSize: '1rem' }}>{item.newsCategories.categoryName}</Card.Title>
                                                 <Card.Title style={{ fontSize: '1rem' }}>{item.title}</Card.Title>
                                             </Card.Body>
                                         </Card>

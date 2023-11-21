@@ -43,7 +43,7 @@ const AllNews = () => {
   //#endregion
 
   useEffect(() => {
-    fetch(`https://vietnamzoo.azurewebsites.net/api/News?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+    fetch(`https://vietnamzoo.azurewebsites.net/api/News/customer-news?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
       method: "GET",
       headers: {
         "content-type": "application/json; charset=UTF-8"

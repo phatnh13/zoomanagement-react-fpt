@@ -1,30 +1,30 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Button, Image } from "react-bootstrap";
 import { DateHelper } from "../../DateHelper";
 import { useNavigate } from "react-router-dom";
-import DeleteNewsModal from "./Modal/DeleteNewsModal";
+import HideNewsModal from "./Modal/HideNewsModal";
 import Delete from "../../../assets/delete.png";
 import Update from "../../../assets/edit.png";
 import View from "../../../assets/view.png";
-function NewsTableContent({news, reloadState}) {
+function NewsTableContent({ news, reloadState }) {
     //Modal
-    const [showDelete, setShowDelete] = useState(false);
-    const handleCloseDelete = () => setShowDelete(false);
-    const handleShowDelete = () => setShowDelete(true);
-    const [isContentHidden, setIsContentHidden] = useState(false);
+    const [showHideNews, setShowHideNews] = useState(false);
+    const handleCloseHideNews = () => setShowHideNews(false);
+    const handleShowHideNews = () => setShowHideNews(true);
+    const [isItemVisible, setItemVisible] = useState(true);
 
-    const handleToggleContent = () => {
-        setIsContentHidden(!isContentHidden);
-      };
+    const handleHideItem = () => {
+        setItemVisible(!isItemVisible);
+    };
 
     const navigate = useNavigate();
     let handleView = () => {
-        navigate(`/staff/news/view/${news.newsId}`, {state: news});
+        navigate(`/staff/news/view/${news.newsId}`, { state: news });
     }
     let handleUpdate = () => {
-        navigate(`/staff/news/update/`, {state: news});
+        navigate(`/staff/news/update/`, { state: news });
     }
-    let handleDelete = () => {
+    let handleHideNews = () => {
         fetch(`https://vietnamzoo.azurewebsites.net/api/News/${news.newsId}`, {
             method: "DELETE",
             headers: {
@@ -34,21 +34,45 @@ function NewsTableContent({news, reloadState}) {
         })
             .then((res) => {
                 if (res.ok) {
-                    alert("Delete successfully");
+                    alert("The news has been hidden");
                     reloadState.setReload(!reloadState.reload);
-                    handleCloseDelete();
+                    handleHideNews();
                 } else {
-                    alert("Delete failed");
+                    alert("The news has not been hidden");
                 }
             })
             .catch((error) => console.log(error));
-    }
-    return ( 
+    };
+    let handleShowItem = () => {
+        fetch(`https://vietnamzoo.azurewebsites.net/api/News/active-news?NewsId=${news.newsId}`, {
+            method: "PUT",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+            },
+            body: JSON.stringify({
+                "isActive": true
+            })
+        })
+            .then((res) => {
+                if (res.ok) {
+                    alert("Update successfully");
+                    setItemVisible(!isItemVisible);
+                    reloadState.setReload(!reloadState.reload);
+                } else {
+                    alert("Update failed");
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+    return (
         <tr>
-            <td>{news.title}</td>
-            <td>{news.author}</td>
-            <td>{news.newsCategories.categoryName}</td>
-            <td>{DateHelper.formatDate(news.releaseDate)}</td>
+            {isItemVisible && isItemVisible ? <td>{news.title}</td> : <td style={{ filter: 'blur' }}>{news.title}</td>}
+            {isItemVisible && isItemVisible ? <td>{news.author}</td> : <td style={{ color: 'red' }}>{news.author}</td>}
+            {isItemVisible && isItemVisible ? <td>{news.newsCategories.categoryName}</td> : <td style={{ color: 'red' }}>{news.newsCategories.categoryName}</td>}
+            {isItemVisible && isItemVisible ? <td>{DateHelper.formatDate(news.releaseDate)}</td> : <td style={{ color: 'red' }}>{DateHelper.formatDate(news.releaseDate)}</td>}
             <td>
                 <div className="d-grid">
                     <Button variant="outline-success" size="sm" onClick={handleView}><Image style={{ height: '1rem', width: '1rem' }} src={View}></Image></Button>
@@ -61,21 +85,21 @@ function NewsTableContent({news, reloadState}) {
             </td>
             <td>
                 <div className="d-grid">
-                    <Button variant="outline-danger" size="sm" onClick={handleShowDelete}><Image style={{ height: '1rem', width: '1rem' }} src={Delete}></Image></Button>
+                    <Button variant="outline-danger" size="sm" onClick={handleShowHideNews}><Image style={{ height: '1rem', width: '1rem' }} src={Delete}></Image></Button>
                 </div>
             </td>
             <td>
                 <div className="d-grid">
-                    <Button variant="outline-warning" size="sm" onClick={handleToggleContent} >{isContentHidden ? 'Active' : 'Unactive'}</Button>
+                    <Button variant="outline-warning" size="sm" onClick={handleShowItem} >Active</Button>
                 </div>
             </td>
-            <DeleteNewsModal 
-            show={showDelete} 
-            handleClose={handleCloseDelete} 
-            handleDelete={handleDelete} 
-            news={news} />
+            <HideNewsModal
+                show={showHideNews}
+                handleClose={handleCloseHideNews}
+                handleHideNews={handleHideNews}
+                news={news} />
         </tr>
-     )
+    )
 }
 
 export default NewsTableContent;

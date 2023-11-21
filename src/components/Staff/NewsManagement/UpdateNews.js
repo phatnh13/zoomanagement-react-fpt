@@ -15,8 +15,8 @@ function UpdateNews() {
     const [imageFile, setImageFile] = useState(null);
     const [thumbnailFile, setThumbnailFile] = useState(null);
     const [newsCategories, setNewsCategories] = useState([]);
-    const [priority, setPriority] = useState(1);
-    const [isActive, setIsActive] = useState(true);
+    const [priority, setPriority] = useState("");
+    const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
         if (news) {
@@ -25,6 +25,8 @@ function UpdateNews() {
             setAuthor(news.author);
             setCategoryId(news.newsCategories.categoryId);
             setReleaseDate(DateHelper.formatDateForInput(news.releaseDate));
+            setPriority(news.priority);
+            setIsActive(news.isActive);
         }
     }, [news]);
 
@@ -70,13 +72,6 @@ function UpdateNews() {
         if (categoryId === "") {
             errorsData.categoryId.push("Characteristic box is required");
         }
-        if (priority === "") {
-            errorsData.priority.push("Priority box is required");
-        }
-        if (isActive === "") {
-            errorsData.isactive.push("IsActive box is required");
-        }
-        setErrors(errorsData);
     }
     //Check valid before submit
     let isValid = () => {
@@ -97,6 +92,7 @@ function UpdateNews() {
             dirtyData[control] = true;
         });
         setDirty(dirtyData);
+        validate();
 
         // //Validate all input
         // validate();
@@ -254,12 +250,22 @@ function UpdateNews() {
                                         </Row>
                                         <Row>
                                             <Col lg={6} md={6} sm={12}>
-                                                <Form.Group className="mb-3" controlId="isActiveSelect">
-                                                    <Form.Label>Active</Form.Label>
-                                                    <Form.Select as="select" onChange={(e) => setIsActive(e.target.value === 'true')}>
-                                                        <option value="true">True</option>
-                                                        <option value="false">False</option>
-                                                    </Form.Select>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="newsAddReleaseDate">
+                                                    <Form.Label>ReleaseDate</Form.Label>
+                                                    <Form.Control
+                                                        type="date"
+                                                        value={releaseDate}
+                                                        onChange={(e) => {
+                                                            setReleaseDate(e.target.value);
+                                                            validate();
+                                                        }}
+                                                        placeholder="Enter its release date" />
+                                                    <div className="text-danger">
+                                                        {dirty["releaseDate"] && errors["releaseDate"][0] ?
+                                                            errors["releaseDate"][0] : ""}
+                                                    </div>
                                                 </Form.Group>
                                             </Col>
                                             <Col>
@@ -273,10 +279,7 @@ function UpdateNews() {
                                                         max="5"
                                                         value={priority}
                                                         onChange={(e) => {
-                                                            if (e.target.value >= 1 && e.target.value <= 5) {
-                                                                setPriority(e.target.value);
-                                                                validate();
-                                                            }
+                                                            setPriority(e.target.value);
                                                         }} />
                                                     <div className="text-danger">
                                                         {dirty["priority"] && errors["priority"] ?
@@ -285,23 +288,6 @@ function UpdateNews() {
                                                 </Form.Group>
                                             </Col>
                                         </Row>
-                                        <Form.Group
-                                            className="mb-3"
-                                            controlId="newsAddReleaseDate">
-                                            <Form.Label>ReleaseDate</Form.Label>
-                                            <Form.Control
-                                                type="date"
-                                                value={releaseDate}
-                                                onChange={(e) => {
-                                                    setReleaseDate(e.target.value);
-                                                    validate();
-                                                }}
-                                                placeholder="Enter its release date" />
-                                            <div className="text-danger">
-                                                {dirty["releaseDate"] && errors["releaseDate"][0] ?
-                                                    errors["releaseDate"][0] : ""}
-                                            </div>
-                                        </Form.Group>
                                         <Form.Group
                                             className="mb-3 vh-50"
                                             controlId="newsAddContent">
@@ -320,9 +306,12 @@ function UpdateNews() {
                                                     errors["content"][0] : ""}
                                             </div>
                                         </Form.Group>
-
                                         <Row>
                                             <Col lg={6} md={6} sm={0}>
+                                                <Form.Group className="mb-3" controlId="isActiveSelect">
+                                                    <Form.Check type="checkbox" checked={isActive} label="Is Active" onChange={(e) => setIsActive(e.target.checked)}>
+                                                    </Form.Check>
+                                                </Form.Group>
                                             </Col>
                                             <Col lg={6} md={6} sm={12} className="d-flex justify-content-end">
                                                 <Button onClick={handleBack} size="sm" variant="secondary" className="mx-2" >

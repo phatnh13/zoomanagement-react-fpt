@@ -3,14 +3,14 @@ import { Container, Row, Col, Button, Pagination, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import NewsTable from "./NewsTable";
 import { Spin } from "antd";
-function NewsManaging() {
+function NewsManaging(news, reloadState) {
 
     const [searchString, setsearchString] = useState("");
     const [totalPages, setTotalPages] = useState(0);
     const [searchBy, setSearchBy] = useState("Title")
     const [currentPage, setCurrentPage] = useState(1);
     const [newsList, setNewsList] = useState([]);
-
+    const [isItemVisible, setItemVisible] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [reload, setReload] = useState(false);
 
@@ -37,8 +37,13 @@ function NewsManaging() {
         navigate("/staff/news/add");
     }
     useEffect(() => {
-        fetch(`https://vietnamzoo.azurewebsites.net/api/News?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`)
-            .then(res => res.json())
+        fetch(`https://vietnamzoo.azurewebsites.net/api/News?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
+            }
+        }).then(res => res.json())
             .then(data => {
                 setNewsList(data.pagingList);
                 setTotalPages(data.totalPages);
@@ -92,7 +97,7 @@ function NewsManaging() {
                     </Col>
                 ) : (
                     <Col>
-                        <NewsTable newsList={newsList} reloadState={{reload, setReload}} />
+                        <NewsTable newsList={newsList} reloadState={{ reload, setReload }} />
                         <Pagination size="md" className="d-flex justify-content-center">
                             {PaginationLoad()}
                         </Pagination>
