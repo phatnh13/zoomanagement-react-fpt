@@ -3,14 +3,13 @@ import { Container, Row, Col, Button, Pagination, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import NewsTable from "./NewsTable";
 import { Spin } from "antd";
-function NewsManaging(news, reloadState) {
+function NewsManaging() {
 
     const [searchString, setsearchString] = useState("");
     const [totalPages, setTotalPages] = useState(0);
     const [searchBy, setSearchBy] = useState("Title")
     const [currentPage, setCurrentPage] = useState(1);
     const [newsList, setNewsList] = useState([]);
-    const [isItemVisible, setItemVisible] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [reload, setReload] = useState(false);
 

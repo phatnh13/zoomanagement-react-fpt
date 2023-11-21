@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
-function HideNewsModal({show, handleClose, handleHide, news }) {
+function HideNewsModal({show, handleClose, handleHideNews, news }) {
     return ( 
         <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -14,7 +14,7 @@ function HideNewsModal({show, handleClose, handleHide, news }) {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleHide}>
+                    <Button variant="primary" onClick={handleHideNews}>
                         Hide
                     </Button>
                 </Modal.Footer>
