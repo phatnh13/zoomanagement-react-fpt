@@ -25,6 +25,7 @@ function NewsTableContent({ news, reloadState }) {
         navigate(`/staff/news/update/`, { state: news });
     }
 
+    /*fetch hide news*/
     let handleHideNews = () => {
         fetch(`https://vietnamzoo.azurewebsites.net/api/News/${news.newsId}`, {
             method: "DELETE",
@@ -32,6 +33,9 @@ function NewsTableContent({ news, reloadState }) {
                 "Content-type": "application/json; charset=UTF-8",
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
+            body: JSON.stringify({
+                "isActive": false
+            })
         })
             .then((res) => {
                 if (res.ok) {
@@ -45,6 +49,8 @@ function NewsTableContent({ news, reloadState }) {
             })
             .catch((error) => console.log(error));
     };
+
+    /*fetch show news*/
     let handleShowNews = () => {
         fetch(`https://vietnamzoo.azurewebsites.net/api/News/active-news?NewsId=${news.newsId}`, {
             method: "PUT",
@@ -61,7 +67,7 @@ function NewsTableContent({ news, reloadState }) {
                     alert("Update successfully");
                     reloadState.setReload(!reloadState.reload);
                 } else {
-                    alert("Update failed");
+                    alert("The news has already been shown");
                 }
             })
             .catch((error) => {
