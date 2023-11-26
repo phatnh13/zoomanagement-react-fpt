@@ -11,10 +11,12 @@ function UpdateNews() {
     const [author, setAuthor] = useState("");
     const [categoryId, setCategoryId] = useState("");
     const [releaseDate, setReleaseDate] = useState(DateHelper.getToday());
-    const userId =JSON.parse(localStorage.getItem("loginUser")).userId;
+    const userId = JSON.parse(localStorage.getItem("loginUser")).userId;
     const [imageFile, setImageFile] = useState(null);
     const [thumbnailFile, setThumbnailFile] = useState(null);
     const [newsCategories, setNewsCategories] = useState([]);
+    const [priority, setPriority] = useState("");
+    const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
         if (news) {
@@ -23,6 +25,8 @@ function UpdateNews() {
             setAuthor(news.author);
             setCategoryId(news.newsCategories.categoryId);
             setReleaseDate(DateHelper.formatDateForInput(news.releaseDate));
+            setPriority(news.priority);
+            setIsActive(news.isActive);
         }
     }, [news]);
 
@@ -32,6 +36,8 @@ function UpdateNews() {
         author: false,
         categoryId: false,
         realeaseDate: false,
+        priority: false,
+        isactive: false,
     });
     let [errors, setErrors] = useState(
         {
@@ -40,6 +46,8 @@ function UpdateNews() {
             author: [],
             categoryId: [],
             releaseDate: [],
+            priority: [],
+            isactive: [],
         });
     //Validation
     let validate = () => {
@@ -64,7 +72,6 @@ function UpdateNews() {
         if (categoryId === "") {
             errorsData.categoryId.push("Characteristic box is required");
         }
-        setErrors(errorsData);
     }
     //Check valid before submit
     let isValid = () => {
@@ -85,11 +92,12 @@ function UpdateNews() {
             dirtyData[control] = true;
         });
         setDirty(dirtyData);
+        validate();
 
         // //Validate all input
         // validate();
         let formData = new FormData();
-        
+
         formData.append("NewsId", location.state.newsId);
         formData.append("Title", title);
         formData.append("Content", content);
@@ -99,6 +107,8 @@ function UpdateNews() {
         formData.append("UserId", userId);
         formData.append("ImageFile", imageFile);
         formData.append("ThumnailFile", thumbnailFile);
+        formData.append("Priority", priority);
+        formData.append("IsActive", isActive);
         // formData.append("IsDeleted", false);
 
         //Send response to server if valid
@@ -134,13 +144,13 @@ function UpdateNews() {
                 "Authorization": "bearer " + JSON.parse(localStorage.getItem("loginUser")).token
             },
         })
-            .then((res) =>  res.json())
+            .then((res) => res.json())
             .then(data => {
                 setNewsCategories(data);
             })
             .catch((rejected) => console.log(rejected));
     }, []);
-    useEffect(validate, [title, content, author, categoryId, releaseDate, userId]);
+    useEffect(validate, [title, content, author, categoryId, releaseDate, userId, priority, isActive]);
     return (
         <Container fluid>
             <Row className="py-5 d-flex justify-content-center align-items-center">
@@ -220,7 +230,7 @@ function UpdateNews() {
                                                     controlId="newsCategoryId">
                                                     <Form.Label>Category</Form.Label>
                                                     <Form.Select value={categoryId}
-                                                    onChange={(e) => {setCategoryId(e.target.value)}}
+                                                        onChange={(e) => { setCategoryId(e.target.value) }}
                                                     >
                                                         <option value="">Select category</option>
                                                         {newsCategories.map((item) => (
@@ -238,23 +248,46 @@ function UpdateNews() {
                                                 </Form.Group>
                                             </Col>
                                         </Row>
-                                        <Form.Group
-                                            className="mb-3"
-                                            controlId="newsAddReleaseDate">
-                                            <Form.Label>ReleaseDate</Form.Label>
-                                            <Form.Control
-                                                type="date"
-                                                value={releaseDate}
-                                                onChange={(e) => {
-                                                    setReleaseDate(e.target.value);
-                                                    validate();
-                                                }}
-                                                placeholder="Enter its release date" />
-                                            <div className="text-danger">
-                                                {dirty["releaseDate"] && errors["releaseDate"][0] ?
-                                                    errors["releaseDate"][0] : ""}
-                                            </div>
-                                        </Form.Group>
+                                        <Row>
+                                            <Col lg={6} md={6} sm={12}>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="newsAddReleaseDate">
+                                                    <Form.Label>ReleaseDate</Form.Label>
+                                                    <Form.Control
+                                                        type="date"
+                                                        value={releaseDate}
+                                                        onChange={(e) => {
+                                                            setReleaseDate(e.target.value);
+                                                            validate();
+                                                        }}
+                                                        placeholder="Enter its release date" />
+                                                    <div className="text-danger">
+                                                        {dirty["releaseDate"] && errors["releaseDate"][0] ?
+                                                            errors["releaseDate"][0] : ""}
+                                                    </div>
+                                                </Form.Group>
+                                            </Col>
+                                            <Col>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="newsPriority">
+                                                    <Form.Label>Priority</Form.Label>
+                                                    <Form.Control
+                                                        type="number"
+                                                        min="1"
+                                                        max="5"
+                                                        value={priority}
+                                                        onChange={(e) => {
+                                                            setPriority(e.target.value);
+                                                        }} />
+                                                    <div className="text-danger">
+                                                        {dirty["priority"] && errors["priority"] ?
+                                                            errors["priority"] : ""}
+                                                    </div>
+                                                </Form.Group>
+                                            </Col>
+                                        </Row>
                                         <Form.Group
                                             className="mb-3 vh-50"
                                             controlId="newsAddContent">
@@ -273,9 +306,12 @@ function UpdateNews() {
                                                     errors["content"][0] : ""}
                                             </div>
                                         </Form.Group>
-
                                         <Row>
                                             <Col lg={6} md={6} sm={0}>
+                                                <Form.Group className="mb-3" controlId="isActiveSelect">
+                                                    <Form.Check type="checkbox" checked={isActive} label="Is Active" onChange={(e) => setIsActive(e.target.checked)}>
+                                                    </Form.Check>
+                                                </Form.Group>
                                             </Col>
                                             <Col lg={6} md={6} sm={12} className="d-flex justify-content-end">
                                                 <Button onClick={handleBack} size="sm" variant="secondary" className="mx-2" >

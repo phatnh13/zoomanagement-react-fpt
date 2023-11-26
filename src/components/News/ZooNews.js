@@ -9,7 +9,7 @@ const AllNews = () => {
 
   const [news, setNews] = useState([])
   const [searchString,] = useState('')
-  const [searchBy,] = useState('ReleaseDate')
+  const [searchBy] = useState("Title")
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const navigate = useNavigate()
@@ -43,7 +43,7 @@ const AllNews = () => {
   //#endregion
 
   useEffect(() => {
-    fetch(`https://vietnamzoo.azurewebsites.net/api/News?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
+    fetch(`https://vietnamzoo.azurewebsites.net/api/News/customer-news?pageNumber=${currentPage}&searchBy=${searchBy}&searchString=${searchString}`, {
       method: "GET",
       headers: {
         "content-type": "application/json; charset=UTF-8"
@@ -67,19 +67,25 @@ const AllNews = () => {
         </div>
         <Container fluid>
           <Row xs={1} md={3} className="g-4 p-5">
-            {news.map((item, idx) => {
-              return (
-                <Col className="md-3" key={idx}>
-                  <Card style={{ backgroundColor: '#3c5724', justifyContent: 'start', cursor: 'pointer' }} onClick={() => handleClick(item)}>
-                    <Card.Img style={{ width: '100%', height: '343.15px' }} variant="top" src={item.thumnail} />
-                    <Card.Body style={{ color: '#FFFFFF', flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
-                      <Card.Title style={{ height: '4rem', overflow: 'hidden', textOverflow: 'inherit' }} >{item.title}</Card.Title>
-                      <Card.Title style={{ lineHeight: '1.875rem' }} >{DateHelper.formatDate(item.releaseDate)}</Card.Title>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              )
-            })}
+            {news.length === 0 ? (
+              <p className='text-center' style={{fontSize:'1.5rem'}}>No current news about the zoo. Please check back later!</p>
+            ) : (
+              news.map((item, idx) => {
+                return (
+                  <Col className="md-3" key={idx}>
+                    <Card style={{ backgroundColor: '#3c5724', justifyContent: 'start', cursor: 'pointer' }} onClick={() => handleClick(item)}>
+                      <Card.Img style={{ width: '100%', height: '343.15px' }} variant="top" src={item.thumnail} />
+                      <Card.Body style={{ color: '#FFFFFF', flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
+                        <Card.Title style={{ height: '4rem', overflow: 'hidden', textOverflow: 'inherit' }} >{item.title}</Card.Title>
+                      </Card.Body>
+                      <Card.Body style={{ color: '#FFFFFF', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Card.Title style={{ lineHeight: '1.875rem' }} >{DateHelper.formatDate(item.releaseDate)}</Card.Title>
+                        <Card.Title style={{ lineHeight: '1.875rem' }} >{item.newsCategories.categoryName}</Card.Title>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                )
+              }))}
           </Row>
           <Row className="d-flex justify-content-center">
             <Pagination size="md" className="d-flex justify-content-center">
