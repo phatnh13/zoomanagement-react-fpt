@@ -12,7 +12,6 @@ function NewsTableContent({ news, reloadState }) {
     const [showHideNews, setShowHideNews] = useState(false);
     const handleCloseHideNews = () => setShowHideNews(false);
     const handleShowHideNews = () => setShowHideNews(true);
-    const [isItemVisible, setItemVisible] = useState(true);
     const navigate = useNavigate();
 
 
@@ -41,7 +40,6 @@ function NewsTableContent({ news, reloadState }) {
                 if (res.ok) {
                     alert("The news has been hidden");
                     reloadState.setReload(!reloadState.reload);
-                    setItemVisible(!isItemVisible);
                     handleCloseHideNews();
                 } else {
                     alert("The news has already hidden!");
