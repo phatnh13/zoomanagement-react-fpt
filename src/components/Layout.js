@@ -19,6 +19,7 @@ const Layout = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    GoodBye
     )
 };
 
